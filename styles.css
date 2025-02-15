@@ -144,6 +144,79 @@ ul, ol {
 }
 
 /* トップページ全体 */
+/* .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background: url('images/background.jpg') no-repeat center center/cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+/* 背景を暗くして文字を見やすくする 
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+} */
+
+/* ナビゲーション 
+nav {
+    position: absolute;
+    top: 20px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 10px 20px;
+    border-radius: 10px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 5px 10px;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+} */
+
+/* 中央のテキスト 
+.hero-text {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-text h1 {
+    font-size: 4em;
+    margin: 0;
+}
+
+.hero-text p {
+    font-size: 1.5em;
+} */
+
+/* トップページのデザイン */
 .hero {
     position: relative;
     width: 100%;
@@ -157,7 +230,7 @@ ul, ol {
     color: white;
 }
 
-/* 背景を暗くして文字を見やすくする */
+/* 背景を少し暗くして文字を見やすくする */
 .hero::before {
     content: "";
     position: absolute;
@@ -166,15 +239,17 @@ ul, ol {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
+    z-index: 0;
 }
 
-/* ナビゲーション */
+/* ナビゲーションの修正 */
 nav {
     position: absolute;
     top: 20px;
     width: 100%;
     display: flex;
     justify-content: center;
+    background: transparent; /* 背景色をなくす */
 }
 
 nav ul {
@@ -208,7 +283,7 @@ nav ul li a:hover {
 }
 
 .hero-text h1 {
-    font-size: 4em;
+    font-size: 4em;  /* 文字を大きく */
     margin: 0;
 }
 
