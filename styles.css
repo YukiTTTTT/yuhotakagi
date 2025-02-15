@@ -7,13 +7,13 @@ body {
 }
 
 /* ヘッダー */
-header {
+/* header {
     background-color: #333;
     color: white;
     padding: 15px 0;
 }
 
-/* nav ul {
+nav ul {
     list-style: none;
     padding: 0;
 }
