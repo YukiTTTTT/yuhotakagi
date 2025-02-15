@@ -1,22 +1,25 @@
-/* コンサート情報 */
-.concerts {
+/* レッスン情報 */
+.lesson {
     padding: 50px 20px;
-    background-color: #f4f4f4;
+    background-color: #fff;
     text-align: center;
 }
 
-.concert {
-    background: white;
-    padding: 20px;
-    margin: 20px auto;
-    width: 80%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+.lesson h3 {
+    margin-top: 20px;
+    font-size: 1.5em;
 }
 
-.concert img {
-    width: 100%;
-    height: auto;
-    border-radius: 10px;
+.lesson ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.lesson ul li {
+    background: #f4f4f4;
+    margin: 10px auto;
+    padding: 10px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 5px;
 }
