@@ -1,14 +1,22 @@
-/* プロフィールページ */
-.profile {
+/* コンサート情報 */
+.concerts {
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f4f4f4;
     text-align: center;
 }
 
-.profile-img {
-    width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin: 20px 0;
+.concert {
+    background: white;
+    padding: 20px;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.concert img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
