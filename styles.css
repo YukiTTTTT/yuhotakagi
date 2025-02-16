@@ -245,6 +245,8 @@ nav ul li a:hover {
 
 .home-page body {
     padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
 }
 body:not(.home-page) {
     padding-top: 70px; /* ヘッダーの高さ分だけ余白を作る */
