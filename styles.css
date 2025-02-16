@@ -40,7 +40,7 @@ footer {
 }
 
 .profile-img {
-    width: 200px;
+    width: 275px;
     height: auto;
     border-radius: 0;
     object-fit: contain; /* アスペクト比を維持し、画像全体を表示 */
