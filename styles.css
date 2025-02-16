@@ -41,9 +41,10 @@ footer {
 
 .profile-img {
     width: 200px;
-    height: 200px;
-    border-radius: 50%;
-    object-fit: cover;
+    height: auto;
+    border-radius: 0;
+    object-fit: contain; /* アスペクト比を維持し、画像全体を表示 */
+    object-position: center center; /* 画像を中央に配置 */
     margin: 20px 0;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* シャドウを追加 */
     border: 2px solid #eee; /* ボーダーを追加 */
