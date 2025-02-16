@@ -326,7 +326,7 @@ footer {
     background: #222;
     color: white;
     position: relative;
-    position: sticky;
+    position: fixed;
     z-index: 100; /* 他の要素より手前に表示 */
     bottom: 0;
     width: 100%;
