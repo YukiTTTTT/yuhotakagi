@@ -138,9 +138,13 @@ ul, ol {
     background-color: #f8f8f8;
     padding: 12px;
     border-left: 4px solid #ccc;
-    font-size: 0.85em;  /* 文字サイズを少し小さく */
+    font-size: 0.85em;
     color: #555;
-    line-height: 1.4; /* 行間を少し詰める */
+    line-height: 1.4;
+    text-align: center; /* 中央揃え */
+    max-width: 600px; /* 幅を制限 */
+    margin: 10px auto; /* 中央に配置 */
+    border-radius: 5px; /* 角を少し丸く */
 }
 
 
