@@ -54,6 +54,7 @@ footer {
     font-weight: bold;
     margin-top: 10px;
     font-family: 'Playfair Display', serif; /* フォントを変更 */
+    font-family: 'M PLUS Rounded 1c', sans-serif; /* フォントを指定 */
     letter-spacing: 0.05em; /* 文字間隔を調整 */
 }
 .profile-bio {
