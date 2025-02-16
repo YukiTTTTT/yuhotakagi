@@ -167,7 +167,7 @@ ul, ol {
 .contact p {
     margin-bottom: 10px;
     line-height: 1.5;
-    text-align: center;
+    /*text-align: center;*/
 }
 
 .contact-notes {
