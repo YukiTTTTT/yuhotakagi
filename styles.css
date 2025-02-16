@@ -6,29 +6,6 @@ body {
     text-align: center;
 }
 
-/* ヘッダー */
-/* header {
-    background-color: #333;
-    color: white;
-    padding: 15px 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-}
-
-nav ul li {
-    display: inline;
-    margin: 0 15px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-}*/
-
 /* メインビジュアル */
 .main-visual {
     background: url('images/main.jpg') no-repeat center center/cover;
@@ -143,245 +120,7 @@ ul, ol {
     text-decoration: underline;
 }
 
-/* トップページ全体 */
-/* .hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('images/background.jpg') no-repeat center center/cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
 
-/* 背景を暗くして文字を見やすくする 
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-} */
-
-/* ナビゲーション 
-nav {
-    position: absolute;
-    top: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 10px 20px;
-    border-radius: 10px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 5px 10px;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-} */
-
-/* 中央のテキスト 
-.hero-text {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-text h1 {
-    font-size: 4em;
-    margin: 0;
-}
-
-.hero-text p {
-    font-size: 1.5em;
-} */
-
-/* トップページのデザイン 
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('images/background.jpg') no-repeat center center/cover;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
-
-/* 背景を少し暗くして文字を見やすくする 
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 0;
-}
-
-/* ナビゲーションの修正 
-nav {
-    position: absolute;
-    top: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background: transparent; /* 背景色をなくす 
-}
-
-nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 10px 20px;
-    border-radius: 10px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 5px 10px;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* 中央のテキスト 
-.hero-text {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-text h1 {
-    font-size: 4em;  /* 文字を大きく 
-    margin: 0;
-}
-
-.hero-text p {
-    font-size: 1.5em;
-}*/
-/* 画面全体を背景画像に 
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('images/background.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
-
-/* 背景を少し暗くする（テキストを見やすく） 
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.3); /* 透明度調整 
-    z-index: 0;
-}
-
-/* 中央のテキスト 
-.hero-text {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-text h1 {
-    font-size: 4em;
-    margin: 0;
-    font-weight: bold;
-}
-
-.hero-text p {
-    font-size: 1.5em;
-}
-
-/* ナビゲーション 
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 透明感のある黒 
-    padding: 15px 0;
-    text-align: center;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 10px;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* スマホ対応（レスポンシブ） 
-@media screen and (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 3em;
-    }
-    
-    .hero-text p {
-        font-size: 1.2em;
-    }
-
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-}*/
-/* 画面全体を背景画像に */
-/* 画面全体を背景画像に */
 .hero {
     position: relative;
     width: 100%;
@@ -426,12 +165,13 @@ nav ul li a:hover {
 
 /* ナビゲーション */
 nav {
-    position: fixed;
+    position: fixed; /* 画面上部に固定 */
     top: 0;
     width: 100%;
-    background: rgba(0, 0, 0, 0.3); /* 透明感のある黒 */
+    background: rgba(0, 0, 0, 0.5); /* 透明感のある黒 */
     padding: 15px 0;
     text-align: center;
+    z-index: 1000; /* 他の要素の上に表示 */
 }
 
 nav ul {
@@ -459,21 +199,19 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+/* ヘッダーが他の要素と重ならないように調整 */
+body {
+    padding-top: 70px; /* ヘッダーの高さ分だけ余白を作る */
+}
+
 /* スマホ対応 */
 @media screen and (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 3em;
-    }
-    
-    .hero-text p {
-        font-size: 1.2em;
-    }
-
     nav ul {
         flex-direction: column;
         gap: 10px;
     }
 }
+
 footer {
     text-align: center;
     padding: 20px;
@@ -497,6 +235,7 @@ nav ul {
     display: flex;
     gap: 20px;
 }
+
 
 nav ul li {
     display: inline;
