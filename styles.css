@@ -51,22 +51,36 @@ footer {
 }
 .profile-name {
     font-size: 1.8em;
-    font-weight: 500;
-    margin-top: 10px;
-    font-family: 'Playfair Display', serif; /* フォントを変更 */
-    font-family: 'M PLUS Rounded 1c', sans-serif; /* フォントを指定 */
-    letter-spacing: 0.05em; /* 文字間隔を調整 */
+    font-weight: 400;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    letter-spacing: 0.05em;
+    color: #333;
 }
 .profile-bio {
     margin-top: 15px;
     text-align: left;
-    max-width: 600px;
+    max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 1.8; /* 行間を広げる */
-    font-size: 1.1em; /* フォントサイズを少し大きく */
-    color: #555; /* 文字色を変更 */
+    line-height: 2; /* 行間を広げる */
+    font-size: 1.15em; /* フォントサイズを少し大きく */
+    color: #444; /* 文字色を変更 */
+    font-family: 'Noto Serif JP', serif; /* 明朝体を使用 */
+    padding: 0 20px;
+    word-break: break-word;
     /*margin-bottom: 0.5em;*/
+}
+/* 段落間の余白 */
+.profile-bio p {
+    margin-bottom: 1em;
+}
+
+/* 強調テキスト */
+.profile-bio strong {
+    font-weight: 700;
+    color: #333;
 }
 
 /* コンサート情報 */
