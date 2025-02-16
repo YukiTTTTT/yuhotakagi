@@ -381,6 +381,7 @@ nav ul li a:hover {
     }
 }*/
 /* 画面全体を背景画像に */
+/* 画面全体を背景画像に */
 .hero {
     position: relative;
     width: 100%;
@@ -471,59 +472,5 @@ nav ul li a:hover {
     nav ul {
         flex-direction: column;
         gap: 10px;
-    }
-}
-/* ナビゲーションバーのデザイン */
-nav {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.7); /* 背景を少し濃く */
-    padding: 15px 0;
-    text-align: center;
-    z-index: 1000;
-}
-
-/* ナビゲーションメニューのリスト */
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-/* 各ボタンのデザイン */
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 10px 15px;
-    transition: 0.3s;
-    background: rgba(255, 255, 255, 0.2); /* ボタンっぽくする */
-    border-radius: 5px;
-}
-
-nav ul li a:hover {
-    background: rgba(255, 255, 255, 0.5);
-    text-decoration: none;
-}
-
-/* スマホ対応 */
-@media screen and (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    nav ul li a {
-        display: block;
-        padding: 15px;
-        font-size: 1em;
     }
 }
