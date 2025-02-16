@@ -4,6 +4,45 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding-top: 70px; /* ヘッダーの高さ分だけ余白を作る */
+}
+
+/* ナビゲーション */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 /* メインビジュアル */
@@ -18,18 +57,26 @@ body {
     font-weight: bold;
 }
 
-/* 自己紹介 */
-.about {
-    padding: 50px 20px;
-    background-color: #f4f4f4;
-}
-
 /* フッター */
 footer {
-    background-color: #333;
+    text-align: center;
+    padding: 20px;
+    background: #222;
     color: white;
-    padding: 10px 0;
-    margin-top: 20px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    padding: 0;
+    list-style: none;
+}
+
+footer ul li {
+    margin: 0 10px;
 }
 
 /* プロフィールページ */
@@ -46,11 +93,13 @@ footer {
     object-fit: cover;
     margin: 20px 0;
 }
+
 .profile-name {
     font-size: 1.5em;
     font-weight: bold;
     margin-top: 10px;
 }
+
 .profile-bio {
     margin-top: 15px;
     text-align: left;
@@ -123,12 +172,6 @@ ul, ol {
     text-align: left;
 }
 
-.contact h2 {
-    font-size: 1.8em;
-    margin-bottom: 10px;
-    text-align: center;
-}
-
 .contact p {
     margin-bottom: 10px;
     line-height: 1.5;
@@ -136,95 +179,13 @@ ul, ol {
 
 .contact-notes {
     background-color: #f8f8f8;
-    padding: 15px;
-    border-left: 4px solid #ccc;
-    font-size: 0.9em;
-    color: #555;
-}
-
-
-/* ヘッダーとか */
-.hero {
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    background: url('images/background.jpg') no-repeat center center/cover;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-}
-
-/* 背景を少し暗くする（テキストを見やすく） */
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* 透明度調整 */
-    z-index: 0;
-}
-
-/* 中央のテキスト */
-.hero-text {
-    position: relative;
-    z-index: 1;
-}
-
-.hero-text h1 {
-    font-size: 5em;
-    margin: 0;
-    font-weight: 300;
-    letter-spacing: 2px;
-}
-
-.hero-text p {
-    font-size: 1.8em;
-    font-weight: 200;
-}
-
-/* ナビゲーション */
-nav {
-    position: fixed; /* 画面上部に固定 */
-    top: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.5); /* 透明感のある黒 */
-    padding: 15px 0;
-    text-align: center;
-    z-index: 1000; /* 他の要素の上に表示 */
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
     padding: 10px;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-
-/* ヘッダーが他の要素と重ならないように調整 */
-body {
-    padding-top: 70px; /* ヘッダーの高さ分だけ余白を作る */
+    border-left: 4px solid #ccc;
+    font-size: 0.8em;  /* 文字サイズを小さく */
+    color: #555;
+    line-height: 1.4;
+    max-width: 600px;
+    margin: 20px auto;
 }
 
 /* スマホ対応 */
@@ -233,45 +194,9 @@ body {
         flex-direction: column;
         gap: 10px;
     }
-}
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #222;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
-}
-nav {
-    display: flex;
-    justify-content: center;
-    background: rgba(0, 0, 0, 0.3);
-    padding: 15px 0;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 20px;
-}
-
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 10px;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
+    footer ul {
+        flex-direction: column;
+        gap: 10px;
+    }
 }
