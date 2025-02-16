@@ -83,7 +83,8 @@ footer {
     color: #333;
 }
 
-.profile h2 { /* または、プロフィールというタイトルを囲んでいる要素 */
+/* ページタイトル */
+.page-title {
     font-size: 2.0em; /* フォントサイズを大きく */
     font-family: 'M PLUS Rounded 1c', sans-serif; /* フォントを変更 */
     color: #555; /* 文字色を変更 */
@@ -181,7 +182,6 @@ ul, ol {
     margin: 10px auto; /* 中央に配置 */
     border-radius: 5px; /* 角を少し丸く */
 }
-
 
 /* ヘッダーとか */
 .hero {
@@ -342,7 +342,6 @@ nav ul {
     display: flex;
     gap: 20px;
 }
-
 
 nav ul li {
     display: inline;
