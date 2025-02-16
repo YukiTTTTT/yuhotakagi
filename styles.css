@@ -201,9 +201,10 @@ ul, ol {
 }
 
 .hero-text h1 {
-    font-size: 4em;
+    font-size: 5em;
     margin: 0;
     margin-bottom: 0.2em; /* 余白を調整 */
+    font-weight: bold; /* 文字を太く */
     font-weight: 300;
     letter-spacing: 0.05em;/* 文字間隔を調整 */
     font-family: 'Playfair Display', serif;
@@ -214,6 +215,7 @@ ul, ol {
 .hero-text p {
     font-size: 1.5em;
     font-weight: 200;
+    font-weight: bold; /* 文字を太く */
     font-family: 'Montserrat', sans-serif;
     color: #f0f0f0; /* 色を調整 */
     line-height: 1.6; /* 行間を調整 */
