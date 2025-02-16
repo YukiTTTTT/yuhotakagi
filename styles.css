@@ -51,7 +51,7 @@ footer {
 }
 .profile-name {
     font-size: 1.8em;
-    font-weight: bold;
+    font-weight: 500;
     margin-top: 10px;
     font-family: 'Playfair Display', serif; /* フォントを変更 */
     font-family: 'M PLUS Rounded 1c', sans-serif; /* フォントを指定 */
