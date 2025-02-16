@@ -234,7 +234,10 @@ nav ul li a:hover {
 
 /* ヘッダーが他の要素と重ならないように調整 */
 body {
-    padding-top: 70px; /* ヘッダーの高さ分だけ余白を作る */
+    /* padding-top: 70px; ヘッダーの高さ分だけ余白を作る */
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 /* スマホ対応 */
