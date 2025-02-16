@@ -162,12 +162,13 @@ ul, ol {
     font-size: 1.8em;
     margin-bottom: 10px;
     text-align: center;
+    width: 100%;
 }
 
 .contact p {
     margin-bottom: 10px;
     line-height: 1.5;
-    /*text-align: center;*/
+    text-align: center;
 }
 
 .contact-notes {
