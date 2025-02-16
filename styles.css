@@ -483,3 +483,33 @@ footer {
     bottom: 0;
     width: 100%;
 }
+nav {
+    display: flex;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 15px 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
+
+nav ul li {
+    display: inline;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
