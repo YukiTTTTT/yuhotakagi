@@ -52,6 +52,7 @@ footer {
     /*display: none;  初期状態では非表示 */
 }
 
+/* ハンバーガーメニュー */
 .hamburger-menu {
     display: none;
     cursor: pointer;
@@ -62,36 +63,44 @@ footer {
     width: 25px;
     height: 3px;
     margin: 5px auto;
-    background-color: #333;
+    background-color: white; /* ハンバーガーアイコンの色を白に変更 */
 }
 
-@media screen and (max-width: 768px) {
-    .hamburger-menu {
-        display: block;
-        position: fixed;
-        top: 15px;
-        right: 15px;
-        z-index: 1000;
-    }
+/* ナビゲーション */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(80, 3, 26, 1);
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+}
 
-    .nav-menu {
-        display: none;
-        position: fixed;
-        top: 0;
-        right: 0;
-        width: 250px;
-        height: 100vh;
-        background-color: #fff;
-        padding-top: 50px;
-    }
+nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+}
 
-    .nav-menu.active {
-        display: block;
-    }
+nav ul li {
+    display: inline;
+}
 
-    .nav-menu ul {
-        flex-direction: column;
-    }
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+    padding: 10px;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
 }
 
 /* プロフィールページ */
@@ -366,6 +375,60 @@ body:not(.home-page) {
 
 /* スマホ対応 */
 @media screen and (max-width: 768px) {
+    nav {
+        background: transparent; /* 通常のナビゲーションの背景を透明に */
+    }
+
+    .hamburger-menu {
+        display: block;
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 1000;
+    }
+
+    .hamburger-menu span {
+        background-color: white; /* ハンバーガーアイコンの色を白に変更 */
+    }
+
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: rgba(80, 3, 26, 0.9); /* メニューの背景色を設定 */
+        padding-top: 50px;
+        box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+        text-align: left; /* メニュー項目を左寄せにする */
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        padding-left: 20px; /* リストの左側にパディングを追加 */
+    }
+
+    .nav-menu li {
+        margin: 10px 0;
+    }
+
+    .nav-menu a {
+        color: white; /* メニューテキストの色を白に */
+        display: block;
+        padding: 10px 20px;
+        font-size: 1.2em;
+        text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu a:hover {
+        background-color: rgba(255, 255, 255, 0.1); /* ホバー時の背景色 */
+    }
+
     nav ul {
         flex-direction: column;
         gap: 10px;
