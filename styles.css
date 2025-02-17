@@ -1,12 +1,16 @@
 /* 基本設定 */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
 body {
     font-family: 'Arial', sans-serif;
-    margin: 0;
     padding: 0;
     text-align: center;
-    min-height: 100vh; /* 追加: ページの最小高さを設定 */
-    display: flex; /* 追加: flexboxを使用 */
-    flex-direction: column; /* 追加: 縦方向に並べる */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 /* メインビジュアル */
@@ -31,8 +35,13 @@ body {
 footer {
     background-color: #333;
     color: white;
-    padding: 10px 0;
-    margin-top: 0;
+    padding: 20px;
+    text-align: center;
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    display: none; /* 初期状態では非表示 */
 }
 
 /* プロフィールページ */
@@ -46,12 +55,13 @@ footer {
     width: 275px;
     height: auto;
     border-radius: 0;
-    object-fit: contain; /* アスペクト比を維持し、画像全体を表示 */
-    object-position: center center; /* 画像を中央に配置 */
+    object-fit: contain;
+    object-position: center center;
     margin: 20px 0;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* シャドウを追加 */
-    border: 2px solid #eee; /* ボーダーを追加 */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    border: 2px solid #eee;
 }
+
 .profile-name {
     font-size: 1.8em;
     font-weight: 400;
@@ -61,26 +71,25 @@ footer {
     letter-spacing: 0.05em;
     color: #333;
 }
+
 .profile-bio {
     margin-top: 15px;
     text-align: left;
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 2; /* 行間を広げる */
-    font-size: 1.15em; /* フォントサイズを少し大きく */
-    color: #444; /* 文字色を変更 */
-    font-family: 'Noto Serif JP', serif; /* 明朝体を使用 */
+    line-height: 2;
+    font-size: 1.15em;
+    color: #444;
+    font-family: 'Noto Serif JP', serif;
     padding: 0 20px;
     word-break: break-word;
-    /*margin-bottom: 0.5em;*/
 }
-/* 段落間の余白 */
+
 .profile-bio p {
     margin-bottom: 1em;
 }
 
-/* 強調テキスト */
 .profile-bio strong {
     font-weight: 700;
     color: #333;
@@ -88,13 +97,13 @@ footer {
 
 /* ページタイトル */
 .page-title {
-    font-size: 2.0em; /* フォントサイズを大きく */
-    font-family: 'M PLUS Rounded 1c', sans-serif; /* フォントを変更 */
-    color: #555; /* 文字色を変更 */
-    text-align: center; /* 中央揃え */
-    margin-bottom: 20px; /* 下の余白を調整 */
-    border-bottom: 2px solid #ccc; /* 下線を追加 */
-    padding-bottom: 10px; /* 下線の余白を調整 */
+    font-size: 2.0em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
 }
 
 /* コンサート情報 */
@@ -181,29 +190,29 @@ ul, ol {
     font-size: 0.85em;
     color: #555;
     line-height: 1.4;
-    text-align: center; /* 中央揃え */
-    max-width: 600px; /* 幅を制限 */
-    margin: 10px auto; /* 中央に配置 */
-    border-radius: 5px; /* 角を少し丸く */
+    text-align: center;
+    max-width: 600px;
+    margin: 10px auto;
+    border-radius: 5px;
 }
 
 /* ヘッダーとか */
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh; /* ビューポート全体の高さを確保 */
+    height: 100vh;
     background: url('images/background.jpg') no-repeat center center;
-    background-size: cover; /* 画像を要素全体に拡大・縮小 */
-    margin: 0; /* 不要な余白を削除 */
+    background-size: cover;
+    margin: 0;
     padding: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
+    flex: 1;
 }
 
-/* 背景を少し暗くする（テキストを見やすく） */
 .hero::before {
     content: "";
     position: absolute;
@@ -211,11 +220,10 @@ ul, ol {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.4); /* 透明度調整 */
+    background: rgba(0, 0, 0, 0.4);
     z-index: 0;
 }
 
-/* 中央のテキスト */
 .hero-text {
     position: relative;
     z-index: 1;
@@ -228,46 +236,37 @@ ul, ol {
     to { opacity: 1; }
 }
 
-@media (max-width: 768px) {
-    .hero-text h1 {
-        font-size: 3em; /* 小さい画面でのフォントサイズ */
-    }
-    .hero-text p {
-        font-size: 1.2em; /* 小さい画面でのフォントサイズ */
-    }
-}
-
 .hero-text h1 {
     font-size: 5em;
     margin: 0;
-    margin-bottom: 0.2em; /* 余白を調整 */
-    font-weight: bold; /* 文字を太く */
+    margin-bottom: 0.2em;
     font-weight: 300;
-    letter-spacing: 0.05em;/* 文字間隔を調整 */
+    letter-spacing: 0.05em;
     font-family: 'Playfair Display', serif;
-    color: #f0f0f0; /* 色を調整 */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* テキストシャドウを追加 */
+    color: #f0f0f0;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .hero-text p {
     font-size: 1.5em;
-    font-weight: 200;
-    font-weight: bold; /* 文字を太く */
+    font-weight: bold;
     font-family: 'Montserrat', sans-serif;
-    color: #f0f0f0; /* 色を調整 */
-    line-height: 1.6; /* 行間を調整 */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); /* テキストシャドウを追加 */
+    color: #f0f0f0;
+    line-height: 1.6;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 /* ナビゲーション */
 nav {
-    position: fixed; /* 画面上部に固定 */
+    position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(80, 3, 26, 1); /* 赤っぽい色 */
+    background: rgba(80, 3, 26, 1);
     padding: 15px 0;
     text-align: center;
-    z-index: 1000; /* 他の要素の上に表示 */
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul {
@@ -275,7 +274,6 @@ nav ul {
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
     gap: 20px;
 }
 
@@ -311,8 +309,9 @@ nav ul li a:hover {
     padding-bottom: 0;
     margin-bottom: 0;
 }
+
 body:not(.home-page) {
-    padding-top: 70px; /* ヘッダーの高さ分だけ余白を作る */
+    padding-top: 70px;
 }
 
 /* スマホ対応 */
@@ -321,47 +320,12 @@ body:not(.home-page) {
         flex-direction: column;
         gap: 10px;
     }
-}
 
-footer {
-    text-align: center;
-    padding: 20px;
-    background: #222;
-    color: white;
-    position: sticky;
-    /*position: fixed;*/
-    z-index: 100; /* 他の要素より手前に表示 */
-    bottom: 0;
-    width: 100%;
-    margin-top: auto; /* 追加: フッターを下部に押し下げる */
-}
-nav {
-    display: flex;
-    justify-content: center;
-    background: rgba(80, 3, 26, 1);
-    padding: 15px 0;
-}
+    .hero-text h1 {
+        font-size: 3em;
+    }
 
-nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 20px;
-}
-
-nav ul li {
-    display: inline;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-    padding: 10px;
-    transition: 0.3s;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
+    .hero-text p {
+        font-size: 1.2em;
+    }
 }
