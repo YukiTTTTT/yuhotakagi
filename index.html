@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" style="height: 100%;">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,28 +9,30 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
 </head>
-<body class="home-page">
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">HOME</a></li>
-                <li><a href="profile.html">PROFILE</a></li>
-                <li><a href="concerts.html">CONCERTS</a></li>
-                <li><a href="lesson.html">LESSON</a></li>
-                <li><a href="contact.html">CONTACT</a></li>
-            </ul>
-        </nav>
-    </header>
+<body class="home-page" style="height: 100%; margin: 0;">
+    <div style="min-height: 100%; display: flex; flex-direction: column;">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="profile.html">PROFILE</a></li>
+                    <li><a href="concerts.html">CONCERTS</a></li>
+                    <li><a href="lesson.html">LESSON</a></li>
+                    <li><a href="contact.html">CONTACT</a></li>
+                </ul>
+            </nav>
+        </header>
 
-    <div class="hero">
-        <div class="hero-text">
-            <h1>Yuho Takagi</h1>
-            <p>Cellist</p>
+        <div class="hero" style="flex: 1;">
+            <div class="hero-text">
+                <h1>Yuho Takagi</h1>
+                <p>Cellist</p>
+            </div>
         </div>
-    </div>
 
-    <footer>
-        <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
-    </footer>
+        <footer style="position: sticky; top: 100vh;">
+            <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
+        </footer>
+    </div>
 </body>
 </html>
