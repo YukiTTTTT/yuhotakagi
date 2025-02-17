@@ -2,7 +2,7 @@
 html, body {
     height: 100%;
     margin: 0;
-    /*padding: 0;*/
+    padding: 0;
 }
 
 body {
@@ -50,6 +50,48 @@ footer {
     padding: 20px 0;
     text-align: center;
     /*display: none;  初期状態では非表示 */
+}
+
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: #333;
+}
+
+@media screen and (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+        position: fixed;
+        top: 15px;
+        right: 15px;
+        z-index: 1000;
+    }
+
+    .nav-menu {
+        display: none;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 250px;
+        height: 100vh;
+        background-color: #fff;
+        padding-top: 50px;
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+    }
 }
 
 /* プロフィールページ */
