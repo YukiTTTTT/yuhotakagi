@@ -10,11 +10,12 @@ body {
     flex-direction: column;
     font-family: 'Arial', sans-serif;
     text-align: center;
+    min-height: 100vh; /* 修正: 最小の高さを設定 */
 }
 
 /* コンテンツラッパー */
 .content-wrapper {
-    flex: 1 0 auto;
+    flex: 1;
     display: flex;
     flex-direction: column;
 }
