@@ -2,20 +2,20 @@
 html, body {
     height: 100%;
     margin: 0;
-    padding: 0;
+    /*padding: 0;*/
 }
 
 body {
     display: flex;
     flex-direction: column;
-    font-family: 'Arial', sans-serif;
+    font-family: 'Arial', 'Helvetica', sans-serif;
     text-align: center;
     min-height: 100vh; /* 修正: 最小の高さを設定 */
 }
 
 /* コンテンツラッパー */
-.content-wrapper {
-    flex: 1;
+.wrapper {
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
 }
@@ -47,7 +47,7 @@ footer {
     flex-shrink: 0;
     background-color: #333;
     color: white;
-    padding: 20px;
+    padding: 20px 0;
     text-align: center;
     /*display: none;  初期状態では非表示 */
 }
