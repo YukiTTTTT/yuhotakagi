@@ -2,22 +2,25 @@
 html, body {
     height: 100%;
     margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    padding: 0;
-    text-align: center;
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
 }
 
 /* コンテンツラッパー */
 .content-wrapper {
-    flex: 1;
+    flex: 1 0 auto;
     display: flex;
     flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 /* メインビジュアル */
@@ -40,14 +43,11 @@ body {
 
 /* フッター */
 footer {
+    flex-shrink: 0;
     background-color: #333;
     color: white;
     padding: 20px;
     text-align: center;
-    width: 100%;
-    z-index: 100;
-    opacity: 0;
-    transition: opacity 0.3s ease;
     /*display: none;  初期状態では非表示 */
 }
 
