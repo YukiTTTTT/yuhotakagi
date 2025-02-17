@@ -4,6 +4,9 @@ body {
     margin: 0;
     padding: 0;
     text-align: center;
+    min-height: 100vh; /* 追加: ページの最小高さを設定 */
+    display: flex; /* 追加: flexboxを使用 */
+    flex-direction: column; /* 追加: 縦方向に並べる */
 }
 
 /* メインビジュアル */
@@ -325,11 +328,12 @@ footer {
     padding: 20px;
     background: #222;
     color: white;
-    position: relative;
-    position: fixed;
+    position: sticky;
+    /*position: fixed;*/
     z-index: 100; /* 他の要素より手前に表示 */
     bottom: 0;
     width: 100%;
+    margin-top: auto; /* 追加: フッターを下部に押し下げる */
 }
 nav {
     display: flex;
