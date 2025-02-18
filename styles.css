@@ -464,11 +464,7 @@ body:not(.home-page) {
 /* スマートフォン表示用スタイル */
 @media screen and (max-width: 768px) {
     .concerts {
-        padding: 5px 5px; /* 全体の余白を調整 */
-    }
-
-    .concerts-container {
-        display: block; /* 縦並びにする */
+        padding: 5px; /* 全体の余白を調整 */
     }
 
     .concert-item {
@@ -497,10 +493,9 @@ body:not(.home-page) {
     }
 
     .concert-info img {
-        max-width: 100%; /* 画像を画面幅いっぱいに表示 */
+        max-width: 100%; /* チラシが親要素からはみ出さないように設定 */
         height: auto; /* 高さ自動調整 */
-        border-radius: 5px; /* 画像の角を丸くする */
-        margin-bottom: 10px; /* 画像下に余白を追加 */
+        margin-bottom: 10px; /* 下部に余白を追加 */
     }
 
     .concert-info h3 {
@@ -513,7 +508,6 @@ body:not(.home-page) {
         font-size: 1em; /* テキストのフォントサイズを調整 */
         line-height: 1.4; /* 行間を調整 */
         margin-bottom: 5px; /* 段落の下に余白を追加 */
-        white-space: pre-line; /* 改行を反映 */
     }
 
     .concert-info a {
