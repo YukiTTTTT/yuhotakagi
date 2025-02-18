@@ -11,6 +11,7 @@ body {
     font-family: 'Arial', 'Helvetica', sans-serif;
     text-align: center;
     min-height: 100vh;
+    background-color: #f4f4f4; /* グレーの背景色 */
 }
 
 /* コンテンツラッパー */
@@ -121,10 +122,13 @@ nav ul li a:hover {
 }
 
 /* プロフィールページ */
-.profile {
-    padding: 50px 20px;
-    background-color: #fff;
-    text-align: center;
+.profile, .lesson, .contact {
+    background-color: white;
+    margin: 20px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
 }
 
 .profile-img {
@@ -193,29 +197,6 @@ nav ul li a:hover {
     text-align: center;
 }
 
-.concert-item {
-    background: white;
-    margin: 20px auto;
-    width: 95%;
-    max-width: 600px;
-    border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    overflow: hidden;
-}
-
-.concert-info {
-    padding: 10px;
-}
-
-.concert-info img {
-    width: 100%;
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    margin-bottom: 10px;
-}
-
 /* レッスン情報 */
 .lesson {
     padding: 50px 20px;
@@ -234,11 +215,9 @@ nav ul li a:hover {
 }
 
 .lesson ul li {
-    background: #f4f4f4;
-    margin: 10px auto;
-    padding: 10px;
-    width: 80%;
-    max-width: 600px;
+    background: #f9f9f9;
+    margin: 10px 0;
+    padding: 15px;
     border-radius: 5px;
 }
 
@@ -252,8 +231,8 @@ ul, ol {
 /* お問い合わせページ */
 .contact {
     max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+    margin: 20px auto;
+    padding: 30px;
     text-align: left;
 }
 
@@ -271,15 +250,14 @@ ul, ol {
 }
 
 .contact-notes {
-    background-color: #f8f8f8;
-    padding: 12px;
+    background-color: #f9f9f9;
+    padding: 15px;
     border-left: 4px solid #ccc;
     font-size: 0.85em;
     color: #555;
     line-height: 1.4;
     text-align: center;
-    max-width: 600px;
-    margin: 10px auto;
+    margin: 20px 0;
     border-radius: 5px;
 }
 
@@ -423,29 +401,6 @@ body:not(.home-page) {
         font-size: 1.2em;
     }
 
-    .profile {
-        padding: 30px 15px;
-    }
-
-    .profile-img {
-        width: 200px;
-    }
-
-    .profile-name {
-        font-size: 1.5em;
-        white-space: nowrap;
-    }
-
-    .profile-bio {
-        font-size: 1em;
-        line-height: 1.6;
-        padding: 0 10px;
-    }
-
-    .profile-bio p {
-        margin-bottom: 0.8em;
-    }
-
     .concerts {
         padding: 10px 5px;
     }
@@ -478,61 +433,85 @@ body:not(.home-page) {
         line-height: 1.4;
         margin-bottom: 5px;
     }
+
+    .profile, .lesson, .contact {
+        margin: 10px;
+        padding: 20px;
+    }
+
+    .profile-img {
+        width: 200px;
+    }
+
+    .profile-name {
+        font-size: 1.5em;
+        white-space: nowrap;
+    }
+
+    .profile-bio {
+        font-size: 1em;
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+
+    .profile-bio p {
+        margin-bottom: 0.8em;
+    }
 }
 
-/* PCの画面用のスタイル */
+/* PC画面用のスタイル */
 @media screen and (min-width: 769px) {
     .concerts-container {
-        display: flex; /* 横並びにする */
-        flex-direction: column; /* 縦方向に複数要素を並べる */
-        gap: 20px; /* 各コンサート間のスペースを設定 */
-        align-items: center; /* 中央揃え */
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
     }
 
     .concert-item {
-        display: flex; /* 横並びレイアウト */
-        width: 90%; /* 幅を90%に設定して画面幅いっぱいに近づける */
-        max-width: 1200px; /* 最大幅を1200pxに設定 */
-        margin: 0 auto; /* 中央揃え */
+        display: flex;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
         background: white;
-        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* 少し強調された影を追加 */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
         overflow: hidden;
     }
 
     .concert-date {
-        width: 25%; /* 日付部分の幅を25%に設定 */
+        width: 25%;
         padding: 20px;
         background-color: #f4f4f4;
         font-weight: bold;
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 1.5em; /* フォントサイズを大きくする */
+        font-size: 1.5em;
     }
 
     .concert-info {
-        width: 75%; /* 残りの幅を75%に設定 */
+        width: 75%;
         padding: 20px;
-        text-align: left; /* 左寄せ */
+        text-align: left;
     }
 
     .concert-info img {
-        width: auto; /* 横幅は自動調整 */
-        height: auto; /* 高さも自動調整 */
-        max-width: 150px; /* 最大幅を150pxに制限 */
-        float: right; /* 情報部分の右側に配置 */
-        margin-left: 20px; /* 左側に余白を追加 */
-        border-radius: 5px; /* チラシ画像の角を丸くする */
+        width: auto;
+        height: auto;
+        max-width: 150px;
+        float: right;
+        margin-left: 20px;
+        border-radius: 5px;
     }
 
     .concert-info h3 {
-        font-size: 1.5em; /* 見出しを大きくする */
+        font-size: 1.5em;
         margin-top: 0;
     }
 
     .concert-info p {
-        font-size: 1em; /* テキストサイズを調整 */
-        line-height: 1.6; /* 行間を広げて読みやすくする */
+        font-size: 1em;
+        line-height: 1.6;
     }
 }
