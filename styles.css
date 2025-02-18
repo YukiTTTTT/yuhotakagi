@@ -122,7 +122,7 @@ nav ul li a:hover {
 
 /* プロフィールページ */
 .profile {
-    padding: 50px 50px;
+    padding: 50px 20px;
     background-color: #fff;
     text-align: center;
 }
@@ -133,9 +133,10 @@ nav ul li a:hover {
     border-radius: 0;
     object-fit: contain;
     object-position: center center;
-    margin: 20px 0;
+    margin: 20px auto;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border: 2px solid #eee;
+    max-width: 100%;
 }
 
 .profile-name {
@@ -146,6 +147,8 @@ nav ul li a:hover {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     letter-spacing: 0.05em;
     color: #333;
+    word-break: keep-all;
+    overflow-wrap: break-word;
 }
 
 .profile-bio {
@@ -154,12 +157,13 @@ nav ul li a:hover {
     max-width: 700px;
     margin-left: auto;
     margin-right: auto;
-    line-height: 2;
+    line-height: 1.8;
     font-size: 1.15em;
     color: #444;
     font-family: 'Noto Serif JP', serif;
     padding: 0 20px;
-    word-break: break-word;
+    word-break: normal;
+    overflow-wrap: break-word;
 }
 
 .profile-bio p {
@@ -417,6 +421,29 @@ body:not(.home-page) {
 
     .hero-text p {
         font-size: 1.2em;
+    }
+
+    .profile {
+        padding: 30px 15px;
+    }
+
+    .profile-img {
+        width: 200px;
+    }
+
+    .profile-name {
+        font-size: 1.5em;
+        white-space: nowrap;
+    }
+
+    .profile-bio {
+        font-size: 1em;
+        line-height: 1.6;
+        padding: 0 10px;
+    }
+
+    .profile-bio p {
+        margin-bottom: 0.8em;
     }
 
     .concerts {
