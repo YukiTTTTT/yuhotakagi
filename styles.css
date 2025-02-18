@@ -184,26 +184,32 @@ nav ul li a:hover {
 
 /* コンサート情報 */
 .concerts {
-    padding: 50px 20px;
+    padding: 20px 10px;
     background-color: #f4f4f4;
     text-align: center;
 }
 
-.concert {
+.concert-item {
     background: white;
     margin: 20px auto;
-    width: 90%;
+    width: 95%;
     max-width: 600px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box; /* padding を含めて幅を計算 */
+    box-sizing: border-box;
+    overflow: hidden;
 }
 
-.concert img {
+.concert-info {
+    padding: 10px;
+}
+
+.concert-info img {
+    width: 100%;
     max-width: 100%;
     height: auto;
-    border-radius: 10px;
-    padding: 10px; /* 上下左右にpaddingを追加 */
+    border-radius: 5px;
+    margin-bottom: 10px;
 }
 
 /* レッスン情報 */
@@ -412,6 +418,39 @@ body:not(.home-page) {
     .hero-text p {
         font-size: 1.2em;
     }
+
+    .concerts {
+        padding: 10px 5px;
+    }
+
+    .concert-item {
+        width: 100%;
+        margin: 10px 0;
+        padding: 10px;
+    }
+
+    .concert-info {
+        padding: 5px;
+    }
+
+    .concert-info img {
+        width: 100%;
+        max-width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    .concert-info h3 {
+        font-size: 1.1em;
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .concert-info p {
+        font-size: 0.9em;
+        line-height: 1.4;
+        margin-bottom: 5px;
+    }
 }
 
 /* コンサート情報のPC表示用スタイル */
@@ -459,56 +498,5 @@ body:not(.home-page) {
 
     .concert-info h3 {
         margin-top: 0;
-    }
-}
-
-/* スマートフォン表示用スタイル */
-@media screen and (max-width: 768px) {
-    .concerts {
-        padding: 5px;
-    }
-
-    .concert-item {
-        display: block;
-        width: 100%;
-        margin: 10px auto;
-        padding: 10px;
-        border-radius: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-        background-color: #fff;
-        text-align: left;
-        overflow: hidden;
-    }
-
-    .concert-date {
-        width: 100%;
-        padding: 5px;
-        text-align: center;
-        font-weight: bold;
-        border-bottom: 1px solid #ddd;
-        margin-bottom: 5px;
-    }
-
-    .concert-info {
-        width: 100%;
-        padding: 5px;
-    }
-
-    .concert-info img {
-        max-width: 100%;
-        height: auto;
-        margin-bottom: 10px;
-    }
-
-    .concert-info h3 {
-        font-size: 1.2em;
-        margin-top: 5px;
-        margin-bottom: 5px;
-    }
-
-    .concert-info p {
-        font-size: 1em;
-        line-height: 1.4;
-        margin-bottom: 5px;
     }
 }
