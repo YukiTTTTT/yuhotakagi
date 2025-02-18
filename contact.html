@@ -29,15 +29,39 @@
         <main>
             <section class="contact">
                 <h2 class="page-title">CONTACT</h2>
-                <p>お問い合わせは以下のメールアドレスまでお願いいたします。</p>
-                <p><a href="mailto:your-email@example.com">your-email@example.com</a></p>
-                <p>※お問い合わせフォームもご利用いただけます：</p>
-                <p><a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank">Googleフォームで問い合わせる</a></p>
-                <div class="contact-notes">
-                    <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
-                    <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
-                    <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
-                    <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
+                <div class="contact-content">
+                    <p>お問い合わせは以下のメールアドレスまでお願いいたします。</p>
+                    <p><a href="mailto:your-email@example.com" aria-label="メールアドレス">your-email@example.com</a></p>
+                    <p>※お問い合わせフォームもご利用いただけます：</p>
+                    <p><a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer">Googleフォームで問い合わせる</a></p>
+
+                    <!-- お問い合わせフォーム -->
+                    <form action="/submit_form" method="post">
+                        <div class="form_group">
+                            <label for="name">お名前:</label>
+                            <input type="text" id="name" name="name" required aria-label="お名前">
+                        </div>
+
+                        <div class="form_group">
+                            <label for="email">メールアドレス:</label>
+                            <input type="email" id="email" name="email" required aria-label="メールアドレス">
+                        </div>
+
+                        <div class="form_group">
+                            <label for="message">お問い合わせ内容:</label>
+                            <textarea id="message" name="message" rows="4" required aria-label="お問い合わせ内容"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit_btn">送信</button>
+                    </form>
+
+                    <!-- 注意事項 -->
+                    <div class="contact-notes">
+                        <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
+                        <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
+                        <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
+                        <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
+                    </div>
                 </div>
             </section>
         </main>
@@ -46,6 +70,7 @@
             <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
         </footer>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
