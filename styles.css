@@ -121,7 +121,7 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* プロフィールページ */
+/* プロフィール、レッスン、コンタクトページ */
 .profile, .lesson, .contact {
     background-color: white;
     margin: 20px auto;
@@ -193,8 +193,6 @@ nav ul li a:hover {
 /* コンサート情報 */
 .concerts {
     padding: 20px 10px;
-    background-color: #f4f4f4;
-    text-align: center;
 }
 
 /* レッスン情報 */
@@ -406,9 +404,11 @@ body:not(.home-page) {
     }
 
     .concert-item {
-        width: 100%;
-        margin: 10px 0;
-        padding: 10px;
+        background-color: white;
+        margin-bottom: 20px;
+        padding: 15px;
+        border-radius: 10px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
 
     .concert-info {
@@ -416,20 +416,19 @@ body:not(.home-page) {
     }
 
     .concert-info img {
-        width: 100%;
         max-width: 100%;
         height: auto;
         margin-bottom: 10px;
     }
 
     .concert-info h3 {
-        font-size: 1.1em;
+        font-size: 1.2em;
         margin-top: 5px;
         margin-bottom: 5px;
     }
 
     .concert-info p {
-        font-size: 0.9em;
+        font-size: 1em;
         line-height: 1.4;
         margin-bottom: 5px;
     }
@@ -472,7 +471,7 @@ body:not(.home-page) {
         display: flex;
         width: 90%;
         max-width: 1200px;
-        margin: 0 auto;
+        margin: 20px auto;
         background: white;
         box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
         border-radius: 10px;
