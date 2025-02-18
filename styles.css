@@ -476,6 +476,7 @@ body:not(.home-page) {
         box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 影をつける */
         background-color: #fff; /* 背景色を白にする */
         text-align: left; /* テキストを左寄せにする */
+	    overflow: hidden; /* 画像がはみ出さないように追加 */
     }
 
     .concert-date {
