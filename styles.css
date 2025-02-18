@@ -463,43 +463,65 @@ body:not(.home-page) {
 
 /* スマートフォン表示用スタイル */
 @media screen and (max-width: 768px) {
+    .concerts {
+        padding: 5px 5px; /* 全体の余白を調整 */
+    }
+
     .concerts-container {
-        display: block;
+        display: block; /* 縦並びにする */
     }
 
     .concert-item {
-        display: block;
-        width: 100%;
-        margin-bottom: 20px;
-        background: white;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        border-radius: 10px;
-        overflow: hidden;
+        display: block; /* 各コンサート情報を縦に並べる */
+        width: 100%; /* 画面幅いっぱいに広げる */
+        margin: 10px auto; /* 上下の余白を調整し、中央寄せ */
+        padding: 10px; /* コンテンツ周りの余白を調整 */
+        border-radius: 5px; /* 角を丸くする */
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* 影をつける */
+        background-color: #fff; /* 背景色を白にする */
+        text-align: left; /* テキストを左寄せにする */
     }
 
     .concert-date {
-        width: 100%;
-        padding: 10px;
-        background-color: #f4f4f4;
-        font-weight: bold;
-        text-align: center;
-        font-size: 1em;
+        width: 100%; /* 日付を画面幅いっぱいに表示 */
+        padding: 5px; /* 日付の余白を調整 */
+        text-align: center; /* 日付を中央に表示 */
+        font-weight: bold; /* 太字にする */
+        border-bottom: 1px solid #ddd; /* 下線を引く */
+        margin-bottom: 5px; /* 下に余白を追加 */
     }
 
     .concert-info {
-        width: 100%;
-        padding: 15px;
-        text-align: left;
+        width: 100%; /* コンテンツを画面幅いっぱいに表示 */
+        padding: 5px; /* コンテンツの余白を調整 */
     }
 
     .concert-info img {
-        width: 100%;
-        height: auto;
-        margin-bottom: 10px;
+        max-width: 100%; /* 画像を画面幅いっぱいに表示 */
+        height: auto; /* 高さ自動調整 */
+        border-radius: 5px; /* 画像の角を丸くする */
+        margin-bottom: 10px; /* 画像下に余白を追加 */
     }
 
     .concert-info h3 {
-        margin-top: 0;
-        font-size: 1.2em;
+        font-size: 1.2em; /* 見出しのフォントサイズを調整 */
+        margin-top: 5px; /* 見出しの上に余白を追加 */
+        margin-bottom: 5px; /* 見出しの下に余白を追加 */
+    }
+
+    .concert-info p {
+        font-size: 1em; /* テキストのフォントサイズを調整 */
+        line-height: 1.4; /* 行間を調整 */
+        margin-bottom: 5px; /* 段落の下に余白を追加 */
+        white-space: pre-line; /* 改行を反映 */
+    }
+
+    .concert-info a {
+        color: #007bff; /* リンク色を設定 */
+        text-decoration: none; /* 下線を消す */
+    }
+
+    .concert-info a:hover {
+        text-decoration: underline; /* ホバー時に下線を表示 */
     }
 }
