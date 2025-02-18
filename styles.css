@@ -412,6 +412,7 @@ body:not(.home-page) {
         font-size: 1.2em;
     }
 }
+
 /* コンサート情報のPC表示用スタイル */
 @media screen and (min-width: 769px) {
     .concerts-container {
@@ -460,21 +461,45 @@ body:not(.home-page) {
     }
 }
 
-/* スマートフォン表示用スタイル（既存のスタイルを維持） */
+/* スマートフォン表示用スタイル */
 @media screen and (max-width: 768px) {
-    .concert {
-        background: white;
-        padding: 20px;
-        margin: 20px auto;
-        width: 80%;
-        max-width: 600px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    .concerts-container {
+        display: block;
     }
 
-    .concert img {
+    .concert-item {
+        display: block;
+        width: 100%;
+        margin-bottom: 20px;
+        background: white;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .concert-date {
+        width: 100%;
+        padding: 10px;
+        background-color: #f4f4f4;
+        font-weight: bold;
+        text-align: center;
+        font-size: 1em;
+    }
+
+    .concert-info {
+        width: 100%;
+        padding: 15px;
+        text-align: left;
+    }
+
+    .concert-info img {
         width: 100%;
         height: auto;
-        border-radius: 10px;
+        margin-bottom: 10px;
+    }
+
+    .concert-info h3 {
+        margin-top: 0;
+        font-size: 1.2em;
     }
 }
