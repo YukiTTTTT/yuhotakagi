@@ -515,14 +515,14 @@ body:not(.home-page) {
     }
 }
 
-/*タブレット用*/
+/* タブレット用 */
 @media screen and (min-width: 768px) and (max-width: 1024px) {
     .contact {
-      margin: 0 auto;
-      max-width: 90%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+        margin: 0 auto;
+        max-width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .contact-content {
@@ -531,4 +531,9 @@ body:not(.home-page) {
         margin: 0 auto;
         padding: 0 20px;
     }
-  }
+
+    /* 既存のスタイルを上書き */
+    body.contact-page .contact {
+        text-align: center; /* テキストを中央揃えにする */
+    }
+}
