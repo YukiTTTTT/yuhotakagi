@@ -129,6 +129,8 @@ nav ul li a:hover {
     overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 800px;
+    padding: 0;
+    overflow: visible;
 }
 
 /* ページタイトル */
@@ -141,6 +143,7 @@ nav ul li a:hover {
     padding: 20px 0 10px;
     background-color: #f4f4f4;
     border-bottom: 2px solid #ccc;
+    width: 100%;
 }
 
 /* 各画面のコンテンツ */
