@@ -513,4 +513,12 @@ body:not(.home-page) {
         font-size: 1em;
         line-height: 1.6;
     }
+
+    /*タブレット用*/
+    @media screen and (min-width: 768px) and (max-width: 1024px) {
+        .contact {
+          margin: 0 auto;
+          max-width: 90%;
+        }
+      }
 }
