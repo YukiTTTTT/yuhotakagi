@@ -123,35 +123,12 @@ nav ul li a:hover {
 
 /* プロフィール、レッスン、コンタクトページ */
 .profile, .lesson, .contact {
-    background-color: #f4f4f4;
+    background-color: white;
     margin: 20px auto;
+    padding: 30px;
     border-radius: 10px;
-    overflow: hidden;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     max-width: 800px;
-    padding: 0;
-    overflow: visible;
-}
-
-/* ページタイトル */
-.page-title {
-    font-size: 2.0em;
-    font-family: 'Ubuntu Mono', 'M PLUS Rounded 1c', sans-serif;
-    color: #555;
-    text-align: center;
-    margin: 0;
-    padding: 20px 0 10px;
-    background-color: #f4f4f4;
-    border-bottom: 2px solid #ccc;
-    width: 100%;
-}
-
-/* 各画面のコンテンツ */
-.profile-content,
-.lesson-content,
-.contact-content {
-    background-color: #fff;
-    padding: 30px;
 }
 
 .profile-img {
@@ -200,6 +177,17 @@ nav ul li a:hover {
 .profile-bio strong {
     font-weight: 700;
     color: #333;
+}
+
+/* ページタイトル */
+.page-title {
+    font-size: 2.0em;
+    font-family: 'Ubuntu Mono', 'M PLUS Rounded 1c', sans-serif;
+    color: #555;
+    text-align: center;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 10px;
 }
 
 /* コンサート情報 */
@@ -546,6 +534,6 @@ body:not(.home-page) {
 
     /* 既存のスタイルを上書き */
     body.contact-page .contact {
-        text-align: center;
+        text-align: center; /* テキストを中央揃えにする */
     }
 }
