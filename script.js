@@ -1,9 +1,9 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const hamburger = document.querySelector('.hamburger-menu');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navMenu = document.querySelector('.nav-menu');
     const closeMenu = document.querySelector('.close-menu');
 
-    hamburger.addEventListener('click', function() {
+    hamburgerMenu.addEventListener('click', function() {
         navMenu.classList.add('active');
     });
 
@@ -13,12 +13,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // メニュー外をクリックしたときにもメニューを閉じる
     document.addEventListener('click', function(event) {
-        if (!navMenu.contains(event.target) && !hamburger.contains(event.target)) {
+        if (!navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
             navMenu.classList.remove('active');
         }
-    });
-    lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true
     });
 });
