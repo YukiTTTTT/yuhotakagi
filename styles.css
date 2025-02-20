@@ -489,8 +489,8 @@ body:not(.home-page) {
     }
 
     .profile, .lesson, .contact {
-        margin: 10px;
-        padding: 20px;
+        margin: 10px; 
+        padding: 20px; 
     }
 
     .profile-img {
@@ -499,102 +499,105 @@ body:not(.home-page) {
 
     .profile-name {
         font-size: 1.5em; /* フォントサイズを調整 */
-        white-space: nowrap;
+        white-space: nowrap; 
     }
 
     .profile-bio {
         font-size: 1em; /* フォントサイズを調整 */
-        line-height: 1.6;
+        line-height: 1.6; 
         padding: 0 10px; /* パディングを調整 */
     }
 
     .profile-bio p {
-        margin-bottom: 0.8em;
+        margin-bottom: 0.8em; 
     }
 
-    /* レッスンページのモバイル対応 - 改善版 */
-    .lesson {
-        padding: 25px 18px;
-    }
+   /* レッスンページのモバイル対応 - 改善版 */
+   .lesson { 
+       padding:25px; 
+       max-width :90%; /* 横幅を調整 */ 
+       margin : auto; /* 中央揃え */ 
+   }
     
-    .lesson .page-title {
-        font-size: 1.8em;
-        margin-bottom: 20px;
-    }
+   .lesson .page-title { 
+       font-size :1.8em; 
+       margin-bottom :20px; 
+   }
     
-    .lesson > p {
-        font-size: 1.05em;
-        line-height: 1.6;
-    }
+   .lesson > p { 
+       font-size :1.05em; 
+       line-height :1.6; 
+   }
     
-    .lesson h3 {
-        font-size: 1.4em;
-        text-align: center;
-        border-left: none;
-        border-bottom: 2px solid #50031a;
-        padding-left: 0;
-        padding-bottom: 8px;
-        margin-top: 25px;
-    }
+   .lesson h3 { 
+       font-size :1.4em; 
+       text-align :center; 
+       border-left :none; 
+       border-bottom :2px solid #50031a; 
+       padding-left :0; 
+       padding-bottom :8px; 
+       margin-top :25px; 
+   }
     
-    .lesson ul li {
-        padding: 10px 8px;
-        font-size: 0.95em;
-    }
-
-    .contact {
-        padding: 20px; /* パディングを調整 */
-        max-width: 90%; /* 横幅を画面幅に合わせる */
-        margin: 10px auto; /* 上下左右の余白を調整 */
-        text-align: center; /* テキストを中央揃え */
-    }
-
-    .contact h2 {
-        font-size: 1.5em; /* タイトルフォントサイズ調整 */
-        margin-bottom: 15px; /* タイトル下部余白調整 */
-    }
-
-    .contact p {
-        font-size: 1em; /* 説明文フォントサイズ調整 */
-        margin-bottom: 15px; /* 説明文下部余白調整 */
-        line-height: 1.5; /* 行間を広げる */
-    }
-
-    .contact form {
-        display: flex;
-        flex-direction: column;
-        gap: 10px; /* 各要素間の間隔を縮小 */
-        width: 100%; /* フォームの幅を画面いっぱいに */
-        max-width: 400px; /* フォームの最大幅を設定 */
-        margin: 0 auto; /* フォームを中央に配置 */
-    }
-
-    .contact input,
-    .contact textarea {
-        font-size: 0.9em; /* フォントサイズ調整 */
-        padding: 10px; /* パディング調整 */
-        border-radius: 4px; /* ボーダー角丸調整 */
-        margin-bottom: 10px; /* フィールド間隔設定 */
-        box-shadow: none; /* スマホで視覚的ノイズを減らすため影を削除 */
-        width: 100%; /* 入力フィールドの幅を画面いっぱいに */
-        box-sizing: border-box; /* 幅にパディングとボーダーを含める */
-    }
-
-    .contact button {
-        padding: 10px 20px;
-        font-size: 1em; /* ボタンフォントサイズ調整 */
-        width: 100%; /* ボタン幅を画面いっぱいに */
-        text-align: center; /* テキスト中央揃え */
-        margin-top: 10px; /* ボタン上部余白設定 */
-        margin-bottom: 10px; /* ボタン下部余白設定 */
-        box-sizing: border-box; /* 幅にパディングとボーダーを含める */
-    }
-
-    .contact-notes {
-        font-size: 0.8em; /* 注釈フォントサイズ調整 */
-        padding: 10px; /* パディング調整 */
-    }
-    }
+   .lesson ul li { 
+       padding :10px ; 
+       font-size :0.95em ; 
+   }
+   
+   /* コンタクトページのスタイル調整 */
+   .contact { 
+       padding :20px ; /* パディングを調整 */ 
+       max-width :90%; /* 横幅を調整 */ 
+       margin : auto ; /* 中央揃え */ 
+       text-align : center ; /* テキストを中央揃え */ 
+   }
+   
+   .contact h2 { 
+       font-size :1.5em ; /* タイトルフォントサイズ調整 */ 
+       margin-bottom :15px ; /* タイトル下部余白調整 */ 
+   }
+   
+   .contact p { 
+       font-size :1em ; /* 説明文フォントサイズ調整 */ 
+       margin-bottom :15px ; /* 説明文下部余白調整 */ 
+       line-height :1.5 ; /* 行間を広げる */ 
+   }
+   
+   .contact form { 
+       display :flex ; 
+       flex-direction :column ; 
+       gap :10px ; /* 各要素間の間隔を縮小 */  
+       width :100% ; /* フォームの幅を画面いっぱいに */  
+       max-width :400px ; /* フォームの最大幅を設定 */  
+       margin :0 auto ; /* フォームを中央に配置 */  
+   }
+   
+   .contact input ,  
+   .contact textarea {  
+       font-size :0.9em ; /* フォントサイズ調整 */  
+       padding :10px ; /* パディング調整 */  
+       border-radius :4px ; /* ボーダー角丸調整 */  
+       margin-bottom :10px ; /* フィールド間隔設定 */  
+       box-shadow :none ; /* スマホで視覚的ノイズを減らすため影を削除 */  
+       width :100% ; /* 入力フィールドの幅を画面いっぱいに */  
+       box-sizing :border-box ; /* 幅にパディングとボーダーを含める */  
+   }
+   
+   .contact button {  
+      padding :10px ;  
+      font-size :1em ; /* ボタンフォントサイズ調整 */  
+      width :100% ; /* ボタン幅を画面いっぱいに */  
+      text-align:center;/* テキスト中央揃え */
+      margin-top :10px ;/* ボタン上部余白設定 */
+      margin-bottom :10px ;/* ボタン下部余白設定 */
+      box-sizing:border-box;/* 幅にパディングとボーダーを含める */
+   }
+   
+   .contact-notes {  
+      font-size :0.8em ;/* 注釈フォントサイズ調整 */
+      padding :10px ;/* パディング調整 */
+   }
+}
 
 /* PC画面用のスタイル */
 @media screen and (min-width: 769px) {
