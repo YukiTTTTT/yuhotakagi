@@ -198,29 +198,78 @@ nav ul li a:hover {
     padding: 20px 10px;
 }
 
-/* レッスン情報 */
+/* レッスン情報 - 改善版 */
 .lesson {
-    padding: 50px 20px;
-    background-color: #f9f9f9; /* 薄いグレー */
-    border-top: 5px solid #50031a; /* アクセントカラー */
+    padding: 40px 30px;
+    background-color: #fff;
+    border-top: 5px solid #50031a;
+    max-width: 800px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* メインタイトルのスタイル強化 */
+.lesson .page-title {
+    font-size: 2.2em;
+    margin-bottom: 30px;
+    color: #444;
+    border-bottom: 2px solid #ccc;
+    padding-bottom: 15px;
     text-align: center;
 }
 
-.lesson h3 {
-    margin-top: 20px;
-    font-size: 1.5em;
+/* 導入文のスタイル */
+.lesson > p {
+    font-size: 1.15em;
+    line-height: 1.8;
+    margin-bottom: 15px;
+    text-align: left;
+    color: #333;
 }
 
+/* サブ見出しのスタイル差別化 */
+.lesson h3 {
+    font-size: 1.6em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #50031a;
+    border-left: 4px solid #50031a;
+    padding-left: 12px;
+    text-align: left;
+}
+
+/* リストアイテムの改善 */
 .lesson ul {
-    list-style-type: none;
+    list-style: none;
     padding: 0;
+    margin: 0;
+    text-align: left;
 }
 
 .lesson ul li {
-    background: #f9f9f9;
-    margin: 10px 0;
-    padding: 15px;
+    padding: 12px 10px;
+    margin-bottom: 10px;
+    background-color: #f9f9f9;
     border-radius: 5px;
+    border-left: 3px solid #50031a;
+    font-size: 1.1em;
+    line-height: 1.5;
+    color: #444;
+}
+
+/* リンクスタイルの強化 */
+.lesson a {
+    color: #50031a;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    border-bottom: 1px dotted #50031a;
+}
+
+.lesson a:hover {
+    color: #72052a;
+    border-bottom: 1px solid #72052a;
 }
 
 /* 箇条書き解消 */
@@ -461,6 +510,36 @@ body:not(.home-page) {
 
     .profile-bio p {
         margin-bottom: 0.8em;
+    }
+
+    /* レッスンページのモバイル対応 - 改善版 */
+    .lesson {
+        padding: 25px 18px;
+    }
+    
+    .lesson .page-title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
+    
+    .lesson > p {
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
+    
+    .lesson h3 {
+        font-size: 1.4em;
+        text-align: center;
+        border-left: none;
+        border-bottom: 2px solid #50031a;
+        padding-left: 0;
+        padding-bottom: 8px;
+        margin-top: 25px;
+    }
+    
+    .lesson ul li {
+        padding: 10px 8px;
+        font-size: 0.95em;
     }
 
     .contact {
