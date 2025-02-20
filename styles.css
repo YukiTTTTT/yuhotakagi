@@ -35,18 +35,20 @@ main {
     color: white;
     font-size: 24px;
     font-weight: bold;
+    background-color: rgba(80, 3, 26, 0.8); /* 背景色を追加 */
 }
 
 /* 自己紹介 */
 .about {
     padding: 50px 20px;
-    background-color: #f4f4f4;
+    background-color: #fff; /* 白背景 */
+    border-top: 5px solid #50031a; /* アクセントカラー */
 }
 
 /* フッター */
 footer {
     flex-shrink: 0;
-    background-color: #333;
+    background-color: #50031a; /* アクセントカラーに統一 */
     color: white;
     padding: 20px 0;
     text-align: center;
@@ -198,7 +200,8 @@ nav ul li a:hover {
 /* レッスン情報 */
 .lesson {
     padding: 50px 20px;
-    background-color: #fff;
+    background-color: #f9f9f9; /* 薄いグレー */
+    border-top: 5px solid #50031a; /* アクセントカラー */
     text-align: center;
 }
 
@@ -232,6 +235,8 @@ ul, ol {
     margin: 20px auto;
     padding: 30px;
     text-align: left;
+    background-color: #fff;
+    border-top: 5px solid #50031a; /* アクセントカラー */
 }
 
 .contact h2 {
@@ -355,10 +360,10 @@ body:not(.home-page) {
         position: fixed;
         top: 0;
         right: 0;
-        width: 250px;
+        width: 100%; /* 画面幅いっぱいに広げる */
         height: 100vh;
         background-color: rgba(80, 3, 26, 0.9);
-        padding-top: 50px;
+        padding-top: 60px; /* 上部の余白を増やす */
         box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
     }
 
@@ -372,18 +377,18 @@ body:not(.home-page) {
 
     .nav-menu ul {
         flex-direction: column;
-        padding-left: 20px;
+        padding-left: 10px; /* 左の余白を調整 */
     }
 
     .nav-menu li {
-        margin: 10px 0;
+        margin: 15px 0; /* メニュー項目の間隔を広げる */
     }
 
     .nav-menu a {
         color: white;
         display: block;
         padding: 10px 20px;
-        font-size: 1.2em;
+        font-size: 1.1em; /* フォントサイズを調整 */
         text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.1);
     }
 
@@ -439,22 +444,38 @@ body:not(.home-page) {
     }
 
     .profile-img {
-        width: 200px;
+        width: 150px; /* 画像サイズを縮小 */
     }
 
     .profile-name {
-        font-size: 1.5em;
+        font-size: 1.5em; /* フォントサイズを調整 */
         white-space: nowrap;
     }
 
     .profile-bio {
-        font-size: 1em;
+        font-size: 1em; /* フォントサイズを調整 */
         line-height: 1.6;
-        padding: 0 10px;
+        padding: 0 10px; /* パディングを調整 */
     }
 
     .profile-bio p {
         margin-bottom: 0.8em;
+    }
+
+    .contact {
+        padding: 20px 10px; /* パディングを調整 */
+    }
+
+    .contact h2 {
+        font-size: 1.5em; /* フォントサイズを調整 */
+    }
+
+    .contact p {
+        font-size: 1em; /* フォントサイズを調整 */
+    }
+
+    footer {
+        padding: 15px 0; /* パディングを調整 */
     }
 }
 
