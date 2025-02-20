@@ -543,21 +543,58 @@ body:not(.home-page) {
     }
 
     .contact {
-        padding: 20px 10px; /* パディングを調整 */
+        padding: 20px; /* パディングを調整 */
+        max-width: 100%; /* 横幅を画面幅に合わせる */
+        margin: 10px auto; /* 上下左右の余白を調整 */
+        text-align: center; /* テキストを中央揃え */
     }
 
     .contact h2 {
-        font-size: 1.5em; /* フォントサイズを調整 */
+        font-size: 1.5em; /* タイトルフォントサイズ調整 */
+        margin-bottom: 15px; /* タイトル下部余白調整 */
     }
 
     .contact p {
-        font-size: 1em; /* フォントサイズを調整 */
+        font-size: 1em; /* 説明文フォントサイズ調整 */
+        margin-bottom: 15px; /* 説明文下部余白調整 */
+        line-height: 1.5; /* 行間を広げる */
     }
 
-    footer {
-        padding: 15px 0; /* パディングを調整 */
+    .contact form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* 各要素間の間隔を縮小 */
+        width: 100%; /* フォームの幅を画面いっぱいに */
+        max-width: 400px; /* フォームの最大幅を設定 */
+        margin: 0 auto; /* フォームを中央に配置 */
     }
-}
+
+    .contact input,
+    .contact textarea {
+        font-size: 0.9em; /* フォントサイズ調整 */
+        padding: 10px; /* パディング調整 */
+        border-radius: 4px; /* ボーダー角丸調整 */
+        margin-bottom: 10px; /* フィールド間隔設定 */
+        box-shadow: none; /* スマホで視覚的ノイズを減らすため影を削除 */
+        width: 100%; /* 入力フィールドの幅を画面いっぱいに */
+        box-sizing: border-box; /* 幅にパディングとボーダーを含める */
+    }
+
+    .contact button {
+        padding: 10px 20px;
+        font-size: 1em; /* ボタンフォントサイズ調整 */
+        width: 100%; /* ボタン幅を画面いっぱいに */
+        text-align: center; /* テキスト中央揃え */
+        margin-top: 10px; /* ボタン上部余白設定 */
+        margin-bottom: 10px; /* ボタン下部余白設定 */
+        box-sizing: border-box; /* 幅にパディングとボーダーを含める */
+    }
+
+    .contact-notes {
+        font-size: 0.8em; /* 注釈フォントサイズ調整 */
+        padding: 10px; /* パディング調整 */
+    }
+    }
 
 /* PC画面用のスタイル */
 @media screen and (min-width: 769px) {
