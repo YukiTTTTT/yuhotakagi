@@ -17,4 +17,8 @@ document.addEventListener('DOMContentLoaded', function() {
             navMenu.classList.remove('active');
         }
     });
+    lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+    });
 });
