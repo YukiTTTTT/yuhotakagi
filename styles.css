@@ -286,7 +286,7 @@ ul, ol {
     padding: 30px;
     text-align: left;
     background-color: #fff;
-    border-top: 5px solid #50031a; /* アクセントカラー */
+    border-top: 5px solid #50031a; /* アクセントカラーを追加 */
 }
 
 .contact h2 {
@@ -563,24 +563,14 @@ body:not(.home-page) {
        line-height :1.5 ; /* 行間を広げる */
    }
 
-    /* google form */
-    .google-form {
-        position: relative;
-        padding-bottom: 100%; /* 16:9の縦横比を保つ */
-        height: 0;
-        overflow: hidden;
-        max-width: 100%; /* フォームの最大幅を設定 */
-        margin: 20px auto; /* 中央揃え */
-    }
-
-    .contact form {
-        display :flex ;
-        flex-direction :column ;
-        gap :10px ; /* 各要素間の間隔を縮小 */
-        width :100% ; /* フォームの幅を画面いっぱいに */
-        max-width :400px ; /* フォームの最大幅を設定 */
-        margin :0 auto ; /* フォームを中央に配置 */
-    }
+   .contact form {
+       display :flex ;
+       flex-direction :column ;
+       gap :10px ; /* 各要素間の間隔を縮小 */
+       width :100% ; /* フォームの幅を画面いっぱいに */
+       max-width :400px ; /* フォームの最大幅を設定 */
+       margin :0 auto ; /* フォームを中央に配置 */
+   }
 
    .contact input ,
    .contact textarea {
@@ -607,6 +597,15 @@ body:not(.home-page) {
       font-size :0.8em ;/* 注釈フォントサイズ調整 */
       padding :10px ;/* パディング調整 */
    }
+ /* google form */
+    .google-form {
+        position: relative;
+        padding-bottom: 100%; /* 16:9の縦横比を保つ */
+        height: 0;
+        overflow: hidden;
+        max-width: 100%; /* フォームの最大幅を設定 */
+        margin: 20px auto; /* 中央揃え */
+    }
 }
 
 /* PC画面用のスタイル */
