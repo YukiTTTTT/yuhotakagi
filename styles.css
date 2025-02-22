@@ -596,6 +596,7 @@ body:not(.home-page) {
    .contact-notes {
       font-size :0.8em ;/* 注釈フォントサイズ調整 */
       padding :10px ;/* パディング調整 */
+      text-align: left;
    }
  /* google form */
     .google-form {
