@@ -314,6 +314,94 @@ ul, ol {
     border-radius: 5px;
 }
 
+/* 既存のスタイルはそのまま保持 */
+/* 基本設定 */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+/* [前の全てのCSSをそのまま保持] */
+
+/* お申し込み方法セクションの新しいスタイル */
+.contact-methods {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+}
+
+.contact-intro {
+    margin-bottom: 15px;
+    text-align: left;
+    color: #444;
+    font-size: 1.1em;
+}
+
+.contact-option {
+    background-color: white;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border-left: 3px solid #50031a;
+    display: flex;
+    align-items: center;
+    text-align: left;
+}
+
+.contact-option-label {
+    font-weight: bold;
+    margin-right: 10px;
+    min-width: 120px;
+    color: #333;
+}
+
+.contact-option a {
+    color: #50031a;
+    text-decoration: none;
+    transition: color 0.3s;
+    border-bottom: 1px dotted #50031a;
+}
+
+.contact-option a:hover {
+    color: #72052a;
+    border-bottom: 1px solid #72052a;
+}
+
+.contact-note {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-left: 4px solid #ccc;
+    font-size: 0.95em;
+    color: #555;
+    line-height: 1.4;
+    text-align: left;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+/* スマホ対応 - お申し込み方法セクション */
+@media screen and (max-width: 768px) {
+    .contact-option {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .contact-option-label {
+        margin-bottom: 5px;
+        min-width: auto;
+    }
+
+    .contact-methods {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .contact-intro {
+        font-size: 1em;
+    }
+}
+
 /* ヘッダーとか */
 .hero {
     position: relative;
