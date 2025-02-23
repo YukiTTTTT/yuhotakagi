@@ -311,6 +311,7 @@ ul, ol {
     line-height: 1.4;
     text-align: center;
     margin: 20px 0;
+    border-left: 3px solid #50031a;
     border-radius: 5px;
 }
 
