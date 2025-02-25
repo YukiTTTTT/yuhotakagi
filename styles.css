@@ -133,7 +133,7 @@ nav ul li a.active {
     border-bottom: 2px solid white;
 }
 
-/* ロゴスタイル */
+/* ロゴスタイル 
 .logo-container {
     margin-bottom: 20px;
 }
@@ -151,7 +151,7 @@ nav ul li a.active {
     text-align: center;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     font-family: 'Playfair Display', serif;
-}
+}*/
 
 /* プロフィール、レッスン、コンタクトページ */
 .profile, .lesson, .contact {
