@@ -1020,12 +1020,12 @@ body:not(.home-page) {
 
     /* アイコン用のスタイル改善 */
     .section-icon {
-        max-width: 80px;  /* サイズを小さくする */
-        max-height: 80px;
+        max-width: 120px;  /* サイズを小さくする */
+        max-height: 120px;
         width: auto;
         height: auto;
         object-fit: contain;
-        margin: auto;
+        margin: 20px;
     }
 
     .section-image {
@@ -1033,8 +1033,10 @@ body:not(.home-page) {
         align-items: center;
         justify-content: center;
         background-color: #f8f8f8;
-        padding: 50px 0;  /* 上下のパディングを追加 */
-        border-bottom: 1px solid #eaeaea;  /* 区切り線を追加 */
+        padding: 40px 0;  /* 上下のパディングを増やす */
+        height: auto;     /* 固定高さを解除 */
+        min-height: 200px; /* 最小高さを設定 */
+        /*border-bottom: 1px solid #eaeaea; 区切り線を追加 */
     }
     /* モバイル用のアイコンサイズ調整 */
     @media screen and (max-width: 768px) {
