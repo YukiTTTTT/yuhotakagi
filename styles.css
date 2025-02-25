@@ -85,7 +85,39 @@ footer {
     color: white;
     cursor: pointer;
 }
+/* 右下のCLOSEボタン */
+.bottom-close-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: rgba(80, 3, 26, 0.9);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    display: none; /* 初期状態では非表示 */
+    transition: background-color 0.3s;
+    text-align: center;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
 
+.bottom-close-button:hover, .bottom-close-button:active {
+    background-color: rgba(120, 10, 40, 0.9);
+}
+
+/* モバイル表示時のメニューが開いている場合に表示 */
+.nav-menu.active .bottom-close-button {
+    display: block;
+    animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 /* ナビゲーション */
 nav {
     position: fixed;
