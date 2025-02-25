@@ -186,26 +186,6 @@ nav ul li a.active::after {
     }
 }
 
-/* ロゴスタイル 
-.logo-container {
-    margin-bottom: 20px;
-}
-
-.logo {
-    display: inline-block;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
-    border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.9);
-    color: #50031a;
-    font-size: 24px;
-    font-weight: bold;
-    text-align: center;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-    font-family: 'Playfair Display', serif;
-}*/
-
 /* プロフィール、レッスン、コンタクトページ */
 .profile, .lesson, .contact {
     background-color: white;
@@ -535,8 +515,7 @@ ul, ol {
 body:not(.home-page) {
     padding-top: 70px;
 }
-
-/* Home Sections Styling - 新しく追加 */
+/* 改善されたホームセクションのスタイル */
 .home-sections {
     padding: 60px 0;
     background-color: #f8f8f8;
@@ -547,9 +526,8 @@ body:not(.home-page) {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 30px;
 }
 
@@ -558,11 +536,10 @@ body:not(.home-page) {
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    width: calc(50% - 15px);
-    max-width: 550px;
     display: flex;
     flex-direction: column;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    height: 100%;
 }
 
 .home-section:hover {
@@ -571,20 +548,18 @@ body:not(.home-page) {
 }
 
 .section-image {
-    width: 100%;
-    height: 250px;
-    overflow: hidden;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fafafa;
+    height: 180px;
 }
 
-.section-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.home-section:hover .section-image img {
-    transform: scale(1.05);
+.section-icon {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
 }
 
 .section-content {
@@ -593,6 +568,8 @@ body:not(.home-page) {
     display: flex;
     flex-direction: column;
     text-align: center;
+    background-color: #fff;
+    border-top: 1px solid #f0f0f0;
 }
 
 .section-content h2 {
@@ -856,24 +833,25 @@ body:not(.home-page) {
         margin: 20px auto; /* 中央揃え */
     }
     
-    /* HOME画面下部セクションのモバイル対応 */
+    /* 改善されたHOME画面下部セクションのモバイル対応 */
     .home-sections {
         padding: 40px 0;
     }
     
     .section-container {
-        flex-direction: column;
+        grid-template-columns: 1fr;
         padding: 0 15px;
-    }
-    
-    .home-section {
-        width: 100%;
-        max-width: 100%;
-        margin-bottom: 20px;
+        gap: 20px;
     }
     
     .section-image {
-        height: 200px;
+        height: 150px;
+        padding: 20px;
+    }
+    
+    .section-icon {
+        width: 80px;
+        height: 80px;
     }
     
     .section-content {
@@ -995,15 +973,12 @@ body:not(.home-page) {
     
     /* タブレット用のHOME画面下部セクション */
     .section-container {
+        grid-template-columns: repeat(2, 1fr);
         padding: 0 30px;
     }
     
-    .home-section {
-        width: calc(50% - 15px);
-    }
-    
     .section-image {
-        height: 220px;
+        height: 170px;
     }
     
     .section-content {
@@ -1016,37 +991,5 @@ body:not(.home-page) {
     
     .section-content p {
         font-size: 1em;
-    }
-
-    /* アイコン用のスタイル改善 */
-    .section-icon {
-        max-width: 120px;  /* サイズを小さくする */
-        max-height: 120px;
-        width: auto;
-        height: auto;
-        object-fit: contain;
-        margin: 20px;
-    }
-
-    .section-image {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: #f8f8f8;
-        padding: 40px 0;  /* 上下のパディングを増やす */
-        height: auto;     /* 固定高さを解除 */
-        min-height: 200px; /* 最小高さを設定 */
-        /*border-bottom: 1px solid #eaeaea; 区切り線を追加 */
-    }
-    /* モバイル用のアイコンサイズ調整 */
-    @media screen and (max-width: 768px) {
-        .section-icon {
-            max-width: 60px;
-            max-height: 60px;
-        }
-    
-        .section-image {
-            padding: 30px 0;
-        }
     }
 }
