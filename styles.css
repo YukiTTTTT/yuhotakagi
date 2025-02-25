@@ -398,15 +398,6 @@ ul, ol {
     border-radius: 5px;
 }
 
-/* 既存のスタイルはそのまま保持 */
-/* 基本設定 */
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-/* [前の全てのCSSをそのまま保持] */
-
 /* お申し込み方法セクションの新しいスタイル */
 .contact-methods {
     background-color: #f9f9f9;
@@ -462,28 +453,6 @@ html, body {
     text-align: left;
     margin: 20px 0;
     border-radius: 5px;
-}
-
-/* スマホ対応 - お申し込み方法セクション */
-@media screen and (max-width: 768px) {
-    .contact-option {
-        flex-direction: column;
-        padding: 12px;
-    }
-
-    .contact-option-label {
-        margin-bottom: 5px;
-        min-width: auto;
-    }
-
-    .contact-methods {
-        padding: 15px;
-        margin: 15px 0;
-    }
-
-    .contact-intro {
-        font-size: 1em;
-    }
 }
 
 /* ヘッダーとか */
@@ -565,6 +534,112 @@ html, body {
 
 body:not(.home-page) {
     padding-top: 70px;
+}
+
+/* Home Sections Styling - 新しく追加 */
+.home-sections {
+    padding: 60px 0;
+    background-color: #f8f8f8;
+    border-top: 5px solid #50031a;
+}
+
+.section-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
+.home-section {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    width: calc(50% - 15px);
+    max-width: 550px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.home-section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.section-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.section-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.home-section:hover .section-image img {
+    transform: scale(1.05);
+}
+
+.section-content {
+    padding: 25px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.section-content h2 {
+    color: #50031a;
+    font-size: 1.8em;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section-content h2::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 2px;
+    background-color: #50031a;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.section-content p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+    font-size: 1.1em;
+}
+
+.section-button {
+    display: inline-block;
+    background-color: #50031a;
+    color: white;
+    text-decoration: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-top: auto;
+    align-self: center;
+}
+
+.section-button:hover {
+    background-color: #720426;
 }
 
 /* スマホ対応 */
@@ -684,93 +759,94 @@ body:not(.home-page) {
         margin-bottom: 0.8em;
     }
 
-   /* レッスンページのモバイル対応 - 改善版 */
-   .lesson {
-       padding:25px;
-       max-width :90%; /* 横幅を調整 */
-       margin : auto; /* 中央揃え */
-   }
+    /* レッスンページのモバイル対応 - 改善版 */
+    .lesson {
+        padding: 25px;
+        max-width: 90%; /* 横幅を調整 */
+        margin: auto; /* 中央揃え */
+    }
 
-   .lesson .page-title {
-       font-size :1.8em;
-       margin-bottom :20px;
-   }
+    .lesson .page-title {
+        font-size: 1.8em;
+        margin-bottom: 20px;
+    }
 
-   .lesson > p {
-       font-size :1.05em;
-       line-height :1.6;
-   }
+    .lesson > p {
+        font-size: 1.05em;
+        line-height: 1.6;
+    }
 
-   .lesson h3 {
-       font-size :1.4em;
-       text-align :center;
-       border-left :none;
-       border-bottom :2px solid #50031a;
-       padding-left :0;
-       padding-bottom :8px;
-       margin-top :25px;
-   }
+    .lesson h3 {
+        font-size: 1.4em;
+        text-align: center;
+        border-left: none;
+        border-bottom: 2px solid #50031a;
+        padding-left: 0;
+        padding-bottom: 8px;
+        margin-top: 25px;
+    }
 
-   .lesson ul li {
-       padding :10px ;
-       font-size :0.95em ;
-   }
+    .lesson ul li {
+        padding: 10px;
+        font-size: 0.95em;
+    }
 
-   /* コンタクトページのスタイル調整 */
-   .contact {
-       padding :20px ; /* パディングを調整 */
-       max-width :90%; /* 横幅を調整 */
-       margin : auto ; /* 中央揃え */
-       text-align : center ; /* テキストを中央揃え */
-   }
+    /* コンタクトページのスタイル調整 */
+    .contact {
+        padding: 20px; /* パディングを調整 */
+        max-width: 90%; /* 横幅を調整 */
+        margin: auto; /* 中央揃え */
+        text-align: center; /* テキストを中央揃え */
+    }
 
-   .contact h2 {
-       font-size :1.5em ; /* タイトルフォントサイズ調整 */
-       margin-bottom :15px ; /* タイトル下部余白調整 */
-   }
+    .contact h2 {
+        font-size: 1.5em; /* タイトルフォントサイズ調整 */
+        margin-bottom: 15px; /* タイトル下部余白調整 */
+    }
 
-   .contact p {
-       font-size :1em ; /* 説明文フォントサイズ調整 */
-       margin-bottom :15px ; /* 説明文下部余白調整 */
-       line-height :1.5 ; /* 行間を広げる */
-   }
+    .contact p {
+        font-size: 1em; /* 説明文フォントサイズ調整 */
+        margin-bottom: 15px; /* 説明文下部余白調整 */
+        line-height: 1.5; /* 行間を広げる */
+    }
 
-   .contact form {
-       display :flex ;
-       flex-direction :column ;
-       gap :10px ; /* 各要素間の間隔を縮小 */
-       width :100% ; /* フォームの幅を画面いっぱいに */
-       max-width :400px ; /* フォームの最大幅を設定 */
-       margin :0 auto ; /* フォームを中央に配置 */
-   }
+    .contact form {
+        display: flex;
+        flex-direction: column;
+        gap: 10px; /* 各要素間の間隔を縮小 */
+        width: 100%; /* フォームの幅を画面いっぱいに */
+        max-width: 400px; /* フォームの最大幅を設定 */
+        margin: 0 auto; /* フォームを中央に配置 */
+    }
 
-   .contact input ,
-   .contact textarea {
-       font-size :0.9em ; /* フォントサイズ調整 */
-       padding :10px ; /* パディング調整 */
-       border-radius :4px ; /* ボーダー角丸調整 */
-       margin-bottom :10px ; /* フィールド間隔設定 */
-       box-shadow :none ; /* スマホで視覚的ノイズを減らすため影を削除 */
-       width :100% ; /* 入力フィールドの幅を画面いっぱいに */
-       box-sizing :border-box ; /* 幅にパディングとボーダーを含める */
-   }
+    .contact input,
+    .contact textarea {
+        font-size: 0.9em; /* フォントサイズ調整 */
+        padding: 10px; /* パディング調整 */
+        border-radius: 4px; /* ボーダー角丸調整 */
+        margin-bottom: 10px; /* フィールド間隔設定 */
+        box-shadow: none; /* スマホで視覚的ノイズを減らすため影を削除 */
+        width: 100%; /* 入力フィールドの幅を画面いっぱいに */
+        box-sizing: border-box; /* 幅にパディングとボーダーを含める */
+    }
 
-   .contact button {
-      padding :10px ;
-      font-size :1em ; /* ボタンフォントサイズ調整 */
-      width :100% ; /* ボタン幅を画面いっぱいに */
-      text-align:center;/* テキスト中央揃え */
-      margin-top :10px ;/* ボタン上部余白設定 */
-      margin-bottom :10px ;/* ボタン下部余白設定 */
-      box-sizing:border-box;/* 幅にパディングとボーダーを含める */
-   }
+    .contact button {
+        padding: 10px;
+        font-size: 1em; /* ボタンフォントサイズ調整 */
+        width: 100%; /* ボタン幅を画面いっぱいに */
+        text-align: center; /* テキスト中央揃え */
+        margin-top: 10px; /* ボタン上部余白設定 */
+        margin-bottom: 10px; /* ボタン下部余白設定 */
+        box-sizing: border-box; /* 幅にパディングとボーダーを含める */
+    }
 
-   .contact-notes {
-      font-size :0.8em ;/* 注釈フォントサイズ調整 */
-      padding :10px ;/* パディング調整 */
-      text-align: left;
-   }
- /* google form */
+    .contact-notes {
+        font-size: 0.8em; /* 注釈フォントサイズ調整 */
+        padding: 10px; /* パディング調整 */
+        text-align: left;
+    }
+    
+    /* google form */
     .google-form {
         position: relative;
         padding-bottom: 100%; /* 16:9の縦横比を保つ */
@@ -778,6 +854,63 @@ body:not(.home-page) {
         overflow: hidden;
         max-width: 100%; /* フォームの最大幅を設定 */
         margin: 20px auto; /* 中央揃え */
+    }
+    
+    /* HOME画面下部セクションのモバイル対応 */
+    .home-sections {
+        padding: 40px 0;
+    }
+    
+    .section-container {
+        flex-direction: column;
+        padding: 0 15px;
+    }
+    
+    .home-section {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 20px;
+    }
+    
+    .section-image {
+        height: 200px;
+    }
+    
+    .section-content {
+        padding: 20px 15px;
+    }
+    
+    .section-content h2 {
+        font-size: 1.5em;
+    }
+    
+    .section-content p {
+        font-size: 1em;
+    }
+    
+    .section-button {
+        padding: 8px 20px;
+        font-size: 0.95em;
+    }
+    
+    /* お申し込み方法セクションのモバイル対応 */
+    .contact-option {
+        flex-direction: column;
+        padding: 12px;
+    }
+
+    .contact-option-label {
+        margin-bottom: 5px;
+        min-width: auto;
+    }
+
+    .contact-methods {
+        padding: 15px;
+        margin: 15px 0;
+    }
+
+    .contact-intro {
+        font-size: 1em;
     }
 }
 
@@ -858,5 +991,30 @@ body:not(.home-page) {
     /* 既存のスタイルを上書き */
     body.contact-page .contact {
         text-align: center; /* テキストを中央揃えにする */
+    }
+    
+    /* タブレット用のHOME画面下部セクション */
+    .section-container {
+        padding: 0 30px;
+    }
+    
+    .home-section {
+        width: calc(50% - 15px);
+    }
+    
+    .section-image {
+        height: 220px;
+    }
+    
+    .section-content {
+        padding: 20px;
+    }
+    
+    .section-content h2 {
+        font-size: 1.6em;
+    }
+    
+    .section-content p {
+        font-size: 1em;
     }
 }
