@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navMenu = document.querySelector('.nav-menu');
     const closeMenu = document.querySelector('.close-menu');
+    const currentPage = window.location.pathname.split('/').pop();
+    const navLinks = document.querySelectorAll('nav ul li a');
+
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        if (linkHref === currentPage || 
+            (currentPage === '' && linkHref === 'index.html') || 
+            (currentPage === '/' && linkHref === 'index.html')) {
+            link.classList.add('active');
+        }
+    });
 
     hamburgerMenu.addEventListener('click', function() {
         navMenu.classList.add('active');

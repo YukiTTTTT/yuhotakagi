@@ -117,10 +117,40 @@ nav ul li a {
     font-size: 1.2em;
     padding: 10px;
     transition: 0.3s;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* テキストシャドウを追加 */
+    font-weight: 500; /* フォントを若干太くする */
 }
 
+/* ホバー時の視認性向上 */
 nav ul li a:hover {
-    text-decoration: underline;
+    text-decoration: none;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+/* アクティブなメニュー項目のスタイル */
+nav ul li a.active {
+    border-bottom: 2px solid white;
+}
+
+/* ロゴスタイル */
+.logo-container {
+    margin-bottom: 20px;
+}
+
+.logo {
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    line-height: 60px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #50031a;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Playfair Display', serif;
 }
 
 /* プロフィール、レッスン、コンタクトページ */
