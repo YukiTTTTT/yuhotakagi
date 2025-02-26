@@ -396,16 +396,20 @@
       color: #666;
     }
 
-    /* リンクボタンを白文字に変更 */
+    /* リンクボタンを小さく、高さをそろえる */
     .contact-option-link {
       display: inline-block;
       background-color: #50031a;
       color: white !important;
       text-decoration: none;
-      padding: 8px 20px;
+      padding: 8px 15px;
       border-radius: 4px;
       font-weight: 500;
+      font-size: 0.9em;
       transition: background-color 0.3s ease, transform 0.3s ease;
+      height: 18px;
+      line-height: 18px;
+      min-width: 120px;
     }
 
     .contact-option-link:hover {
@@ -690,7 +694,7 @@
                     お問い合わせは以下の方法で承ります：
                 </div>
                 
-                <!-- コンタクトオプションの修正 - リンクテキストの色を白に -->
+                <!-- コンタクトオプションの修正 -->
                 <div class="contact-options">
                     <div class="contact-option-card">
                         <div class="contact-icon">
@@ -699,7 +703,7 @@
                             </svg>
                         </div>
                         <h3 class="contact-option-title">メールでのお問い合わせ</h3>
-                        <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link" style="color: #ffffff !important;">メールを送る</a>
+                        <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
                     </div>
                     
                     <div class="contact-option-card">
@@ -709,7 +713,7 @@
                             </svg>
                         </div>
                         <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link" style="color: #ffffff !important;">Googleフォームへ</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">Googleフォームへ</a>
                     </div>
                 </div>
                 
@@ -774,77 +778,54 @@
     
     <script src="script.js"></script>
     
-    <!-- FAQアコーディオン修正用スクリプト -->
+    <!-- FAQアコーディオン修正用スクリプト - 直接埋め込みでFAQを動作させる -->
     <script>
+    // この部分をbody終了タグの直前に追加
     document.addEventListener('DOMContentLoaded', function() {
-        // FAQ機能の実装 - インラインでの修正
-        const faqQuestions = document.querySelectorAll('.faq-question');
+      const faqItems = document.querySelectorAll('.faq-item');
+      
+      if (faqItems.length > 0) {
+        console.log('FAQアイテムが見つかりました:', faqItems.length);
         
-        if (faqQuestions.length > 0) {
-        console.log('FAQセクションが見つかりました。質問数:', faqQuestions.length);
-        
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log('質問がクリックされました:', this.textContent);
+        faqItems.forEach(item => {
+          const question = item.querySelector('.faq-question');
+          const answer = item.querySelector('.faq-answer');
+          
+          if (question && answer) {
+            // 初期状態ではすべての回答を非表示にする
+            answer.style.maxHeight = '0px';
+            answer.style.padding = '0 20px';
+            answer.style.overflow = 'hidden';
+            answer.style.transition = 'all 0.3s ease';
             
-            // この質問のアクティブ状態をトグル
-            this.classList.toggle('active');
-            
-            // 対応する回答要素を取得
-            const answer = this.nextElementSibling;
-            console.log('回答要素:', answer);
-            
-            if (answer && answer.classList.contains('faq-answer')) {
-                answer.classList.toggle('active');
-                
-                if (answer.classList.contains('active')) {
+            question.addEventListener('click', function() {
+              console.log('質問クリック:', this.textContent.trim());
+              
+              // アクティブ状態のトグル
+              const isActive = this.classList.contains('active');
+              
+              // 一度すべての質問を非アクティブにする
+              document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+                const a = q.nextElementSibling;
+                if (a) {
+                  a.classList.remove('active');
+                  a.style.maxHeight = '0px';
+                  a.style.padding = '0 20px';
+                }
+              });
+              
+              // クリックした質問をアクティブにする（すでにアクティブだった場合は閉じる）
+              if (!isActive) {
+                this.classList.add('active');
+                answer.classList.add('active');
                 answer.style.maxHeight = answer.scrollHeight + 'px';
                 answer.style.padding = '20px';
-                } else {
-                answer.style.maxHeight = '0';
-                answer.style.padding = '0 20px';
-                }
-            }
-            
-            // 他の質問を閉じる（アコーディオン動作）
-            faqQuestions.forEach(q => {
-                if (q !== this) {
-                q.classList.remove('active');
-                const qAnswer = q.nextElementSibling;
-                if (qAnswer && qAnswer.classList.contains('faq-answer')) {
-                    qAnswer.classList.remove('active');
-                    qAnswer.style.maxHeight = '0';
-                    qAnswer.style.padding = '0 20px';
-                }
-                }
+              }
             });
-            });
+          }
         });
-        
-        // スタイルを追加
-        const style = document.createElement('style');
-        style.textContent = `
-            .faq-question {
-            cursor: pointer;
-            position: relative;
-            }
-            
-            .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            }
-            
-            .faq-answer.active {
-            max-height: 1000px;
-            padding: 20px !important;
-            }
-        `;
-        document.head.appendChild(style);
-        } else {
-        console.log('FAQセクションが見つかりませんでした');
-        }
+      }
     });
     </script>
 </body>
