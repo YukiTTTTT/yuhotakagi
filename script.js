@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollIndicator = document.getElementById('scroll-indicator');
     const backToTop = document.getElementById('back-to-top');
 
+    // 現在のページをハイライト
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
         if (linkHref === currentPage || 
@@ -17,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // ハンバーガーメニューの処理
     hamburgerMenu.addEventListener('click', function() {
         navMenu.classList.add('active');
     });
@@ -34,15 +36,6 @@ document.addEventListener('DOMContentLoaded', function() {
     document.addEventListener('click', function(event) {
         if (!navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
             navMenu.classList.remove('active');
-        }
-    });
-
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || 
-            (currentPage === '' && linkHref === 'index.html') || 
-            (currentPage === '/' && linkHref === 'index.html')) {
-            link.classList.add('active');
         }
     });
 
@@ -66,7 +59,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    // トップに戻るボタンの処理
+
+    // トップに戻るボタンの処理 - すべてのページで有効に
     if (backToTop) {
         // スクロール位置に応じてボタンの表示/非表示を切り替える
         window.addEventListener('scroll', function() {
@@ -89,6 +83,43 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // タッチデバイス対応
         backToTop.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    } else {
+        // backToTopが存在しない場合（他のページ）にボタンを作成して追加
+        const newBackToTop = document.createElement('div');
+        newBackToTop.id = 'back-to-top';
+        newBackToTop.className = 'back-to-top';
+        newBackToTop.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        `;
+        document.body.appendChild(newBackToTop);
+        
+        // スクロール位置に応じてボタンの表示/非表示を切り替える
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                newBackToTop.classList.add('visible');
+            } else {
+                newBackToTop.classList.remove('visible');
+            }
+        });
+        
+        // クリック時の処理
+        newBackToTop.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // タッチデバイス対応
+        newBackToTop.addEventListener('touchend', function(e) {
             e.preventDefault();
             window.scrollTo({
                 top: 0,
