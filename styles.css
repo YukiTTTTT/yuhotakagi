@@ -143,7 +143,7 @@ nav ul li {
     display: inline;
 }
 
-/*nav ul li a {
+nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 1.2em;
@@ -151,12 +151,8 @@ nav ul li {
     position:relative;
     transition: 0.3s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* テキストシャドウを追加 */
-    /*font-weight: 500; フォントを若干太くする 
-}*/
-nav ul li a {
-    position: relative;
-    transition: all 0.3s ease;
-  }
+    font-weight: 500; /*フォントを若干太くする */
+}
 
 /* ホバー時の視認性向上 */
 nav ul li a:hover {
