@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('nav ul li a');
     const bottomCloseButton = document.querySelector('.bottom-close-button');
+    const scrollIndicator = document.getElementById('scroll-indicator');
 
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
@@ -43,4 +44,25 @@ document.addEventListener('DOMContentLoaded', function() {
             link.classList.add('active');
         }
     });
+
+    // スクロールインジケーターのクリックイベント追加
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            // ホームセクションへスムーズにスクロール
+            const homeSections = document.querySelector('.home-sections');
+            if (homeSections) {
+                homeSections.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        
+        // タッチデバイスのためのタッチイベント追加
+        scrollIndicator.addEventListener('touchend', function(e) {
+            e.preventDefault(); // デフォルトの動作を防止
+            // ホームセクションへスムーズにスクロール
+            const homeSections = document.querySelector('.home-sections');
+            if (homeSections) {
+                homeSections.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
 });

@@ -515,6 +515,13 @@ ul, ol {
     color: white;
     animation: bounce 2s infinite;
     z-index: 2;
+    cursor: pointer; /* カーソルをポインターに変更 */
+    transition: opacity 0.3s;
+    padding: 15px; /* クリックしやすいようにパディングを追加 */
+}
+
+.scroll-indicator:hover {
+    opacity: 0.8; /* ホバー時に少し透明に */
 }
 
 .scroll-indicator svg {
