@@ -869,11 +869,72 @@ body:not(.home-page) {
     /* google form */
     .google-form {
         position: relative;
-        padding-bottom: 100%; /* 16:9の縦横比を保つ */
+        padding-bottom: 600px; /* 固定の高さに変更 */
         height: 0;
         overflow: hidden;
-        max-width: 100%; /* フォームの最大幅を設定 */
-        margin: 20px auto; /* 中央揃え */
+        max-width: 100%;
+        margin: 20px auto;
+    }
+    
+    .google-form iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+    }
+    
+    /* フォーム下部の注意書きエリア */
+    .form-notes {
+        margin-top: 620px; /* Google フォームの下に十分なスペースを確保 */
+        padding: 15px;
+        background-color: #f9f9f9;
+        border-left: 3px solid #50031a;
+        border-radius: 5px;
+        margin-bottom: 30px;
+        font-size: 0.9em;
+        line-height: 1.6;
+    }
+    
+    /* フォーム読み込み中の表示スタイル */
+    .form-loading {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 50px 20px;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+        text-align: center;
+    }
+    
+    .loading-spinner {
+        width: 40px;
+        height: 40px;
+        margin: 20px auto;
+        border: 3px solid #f3f3f3;
+        border-top: 3px solid #50031a;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    
+    /* スマホ表示の調整 */
+    @media screen and (max-width: 768px) {
+        .google-form {
+            padding-bottom: 500px; /* スマホでは少し小さく */
+        }
+        
+        .form-notes {
+            margin-top: 520px;
+            padding: 12px;
+            font-size: 0.85em;
+        }
     }
     
     /* 改善されたHOME画面下部セクションのモバイル対応 */

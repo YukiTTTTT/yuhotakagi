@@ -96,4 +96,46 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // Google フォームの遅延読み込み処理
+    function loadGoogleForm() {
+        // すでに読み込み済みなら何もしない
+        if (document.getElementById('contactForm')) return;
+        
+        const formContainer = document.querySelector('.google-form');
+        if (!formContainer) return;
+        
+        // 実際のGoogle Forms URL (これを実際のURLに変更してください)
+        const formUrl = 'https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true';
+        
+        // iframeを遅延して読み込む
+        setTimeout(() => {
+            const iframe = document.createElement('iframe');
+            iframe.id = 'contactForm';
+            iframe.src = formUrl;
+            iframe.width = '100%';
+            iframe.height = '100%';
+            iframe.frameBorder = '0';
+            iframe.marginHeight = '0';
+            iframe.marginWidth = '0';
+            
+            // iframeが読み込まれたら読み込み中表示を消す
+            iframe.onload = () => {
+                const loadingDiv = document.getElementById('formLoading');
+                if (loadingDiv && loadingDiv.parentNode) {
+                    loadingDiv.parentNode.removeChild(loadingDiv);
+                }
+            };
+            
+            formContainer.appendChild(iframe);
+        }, 300); // 300ms遅延させる
+    }
+
+    // DOMContentLoadedイベントを既存のコードに追加
+    document.addEventListener('DOMContentLoaded', function() {
+        // 既存のコード...
+        
+        // Google フォームの読み込み
+        loadGoogleForm();
+    });
 });
