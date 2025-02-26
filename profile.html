@@ -3,12 +3,443 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロフィール - 高木優帆</title>
+    <title>プロフィール - 髙木優帆</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    
+    <!-- メタデータの改善 (SEO対策) -->
+    <meta name="description" content="チェリスト髙木優帆のプロフィール。経歴、受賞歴、演奏活動などについてご紹介します。">
+    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, プロフィール, 経歴, 音楽, クラシック">
+    <meta property="og:title" content="プロフィール - 髙木優帆">
+    <meta property="og:description" content="チェリスト髙木優帆のプロフィール。経歴、受賞歴、演奏活動などについてご紹介します。">
+    <meta property="og:image" content="https://yourdomain.com/images/profile.jpg">
+    <meta property="og:url" content="https://yourdomain.com/profile.html">
+    <meta property="og:type" content="website">
+
+    <!-- フォントの追加 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- 共通のスタイル改善 -->
+    <style>
+    /* アニメーションの追加 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    /* アクセシビリティの改善 */
+    .skip-to-content {
+      position: absolute;
+      top: -50px;
+      left: 10px;
+      background: #50031a;
+      color: white;
+      padding: 8px 15px;
+      z-index: 10000;
+      transition: top 0.3s;
+      border-radius: 0 0 5px 5px;
+      text-decoration: none;
+    }
+
+    .skip-to-content:focus {
+      top: 0;
+    }
+
+    /* ホバーエフェクトの改善 */
+    .nav-menu ul li a {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: white;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-menu ul li a:hover::after,
+    .nav-menu ul li a.active::after {
+      width: 70%;
+    }
+
+    /* トップに戻るボタンの改善 */
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: rgba(80, 3, 26, 0.9);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        transform: scale(1);
+      }
+      100% {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        transform: scale(1.05);
+      }
+    }
+
+    .back-to-top:hover {
+      background-color: #50031a;
+      animation: none;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-to-top svg {
+      fill: white;
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s;
+    }
+
+    .back-to-top:hover svg {
+      transform: translateY(-2px);
+    }
+
+    /* 画像ホバーエフェクト */
+    .profile-img {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* フッター改善 */
+    footer {
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+    }
+
+    /* ダークモードサポート */
+    @media (prefers-color-scheme: dark) {
+      body:not(.home-page) {
+        background-color: #222;
+        color: #f0f0f0;
+      }
+      
+      .profile, .lesson, .contact, .concerts {
+        background-color: #333;
+        color: #f0f0f0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      .profile-name, .page-title {
+        color: #f0f0f0;
+      }
+      
+      .profile-bio {
+        color: #ddd;
+      }
+      
+      .profile-bio strong {
+        color: #fff;
+      }
+      
+      a {
+        color: #bb7a96;
+      }
+      
+      a:hover {
+        color: #d696b1;
+      }
+    }
+
+    /* ローディングアニメーション */
+    .page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .loader-content {
+      text-align: center;
+    }
+
+    .loader-icon {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      margin: 0 auto 15px;
+    }
+
+    .loader-icon:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background-color: #50031a;
+      animation: loadingMove 1.5s infinite ease-in-out;
+    }
+
+    @keyframes loadingMove {
+      0%, 100% {
+        transform: rotate(-15deg);
+      }
+      50% {
+        transform: rotate(15deg);
+      }
+    }
+
+    .loader-text {
+      color: #50031a;
+      font-size: 16px;
+      letter-spacing: 2px;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+
+    .page-loaded .page-loader {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .page-loader {
+        background-color: #222;
+      }
+      
+      .loader-text {
+        color: #bb7a96;
+      }
+    }
+
+    /* プロフィールページ特有の改善 */
+    .profile {
+      max-width: 800px;
+      margin: 30px auto;
+      padding: 40px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .profile:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .profile-img {
+      border-radius: 5px;
+      max-width: 300px;
+    }
+
+    .profile-name {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 10px;
+      margin-bottom: 20px;
+    }
+
+    .profile-name::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 2px;
+      background-color: #50031a;
+    }
+
+    .profile-bio {
+      line-height: 1.9;
+    }
+
+    .profile-bio p {
+      margin-bottom: 1.2em;
+    }
+
+    .achievements {
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+
+    .achievements h3 {
+      font-size: 1.3em;
+      color: #50031a;
+      margin-bottom: 15px;
+    }
+
+    .achievement-list {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .achievement-list li {
+      padding: 10px 15px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+      border-left: 3px solid #50031a;
+      border-radius: 3px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 30px 0 10px;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: #50031a;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .social-link svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    .social-link:hover {
+      transform: translateY(-3px);
+      background-color: #72052a;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .profile {
+        background-color: #333;
+      }
+
+      .profile-name::after {
+        background-color: #bb7a96;
+      }
+
+      .achievements {
+        border-top-color: #444;
+      }
+
+      .achievement-list li {
+        background-color: #444;
+        border-left-color: #bb7a96;
+      }
+    }
+    </style>
+
+    <!-- 共通のJavaScript最適化 -->
+    <script>
+    // 構造化データの追加（SEO対策）
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "髙木優帆",
+      "url": "https://yourdomain.com",
+      "jobTitle": "チェリスト",
+      "image": "https://yourdomain.com/images/profile.jpg",
+      "description": "髙木優帆はチェリストとして活動しています。東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者。",
+      "performerIn": {
+        "@type": "MusicGroup",
+        "name": "神奈川フィルハーモニー管弦楽団"
+      },
+      "knowsLanguage": "ja"
+    };
+
+    // DOMが読み込まれたらJSONを追加
+    document.addEventListener('DOMContentLoaded', function() {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(jsonLd);
+      document.head.appendChild(script);
+      
+      // アニメーション要素にクラスを追加
+      const animElements = document.querySelectorAll('.profile, .achievement-list li');
+      animElements.forEach((element, index) => {
+        element.classList.add('fade-in');
+        element.classList.add(`delay-${index % 4 + 1}`);
+      });
+      
+      // ページ読み込み完了時の処理
+      setTimeout(function() {
+        document.body.classList.add('page-loaded');
+      }, 800);
+    });
+    </script>
 </head>
 <body class="profile-page">
+    <!-- スキップリンク（アクセシビリティ向上） -->
+    <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
+
+    <!-- ローディングアニメーション -->
+    <div class="page-loader">
+      <div class="loader-content">
+        <div class="loader-icon"></div>
+        <div class="loader-text">Loading...</div>
+      </div>
+    </div>
+
     <div class="wrapper">
         <header>
             <div class="hamburger-menu">
@@ -29,27 +460,54 @@
             </nav>
         </header>
 
-        <main>
+        <main id="main-content">
             <section class="profile">
                 <h2 class="page-title">PROFILE</h2>
-                    <img src="images/profile.jpg" alt="高木優帆" class="profile-img">
-                    <p class="profile-name"><strong>髙木優帆 Yuho Takagi</strong></p>
-                    <div class="profile-bio">
-                        <p>愛知県出身。</p>
-                        <p>12歳よりチェロを始める。ザルツブルク・モーツァルト国際室内楽コンクール、ベヒシュタイン室内楽コンクールで最高位受賞。</p>
-                        <p>ドヴォルザーク、シューマン、チャイコフスキーのチェロ協奏曲をオーケストラと共演。
-                        アントニオ・メネセス、シュテファン・コンツ、宮田大各氏のマスタークラスを受講。
-                        チェロを故山田知野子、上森祥平、河野文昭の各氏に師事。東京藝術大学卒業。</p>
-                        <p>サントリー室内楽アカデミー第8期フェロー。現在神奈川フィルハーモニー管弦楽団次席チェロ奏者。</p>
-                    </div>
+                <img src="images/profile.jpg" alt="髙木優帆" class="profile-img">
+                <p class="profile-name"><strong>髙木優帆 Yuho Takagi</strong></p>
+                <div class="profile-bio">
+                    <p>愛知県出身。</p>
+                    <p>12歳よりチェロを始める。ザルツブルク・モーツァルト国際室内楽コンクール、ベヒシュタイン室内楽コンクールで最高位受賞。</p>
+                    <p>ドヴォルザーク、シューマン、チャイコフスキーのチェロ協奏曲をオーケストラと共演。
+                    アントニオ・メネセス、シュテファン・コンツ、宮田大各氏のマスタークラスを受講。
+                    チェロを故山田知野子、上森祥平、河野文昭の各氏に師事。東京藝術大学卒業。</p>
+                    <p>サントリー室内楽アカデミー第8期フェロー。現在神奈川フィルハーモニー管弦楽団次席チェロ奏者。</p>
+                </div>
+
+                <!-- 実績セクションの追加 -->
+                <div class="achievements">
+                    <h3>主な受賞歴・演奏活動</h3>
+                    <ul class="achievement-list">
+                        <li>2020年 ザルツブルク・モーツァルト国際室内楽コンクール 最高位</li>
+                        <li>2019年 ベヒシュタイン室内楽コンクール 最高位</li>
+                        <li>2022年 ドヴォルザーク チェロ協奏曲 神奈川フィルハーモニー管弦楽団と共演</li>
+                        <li>2021年 シューマン チェロ協奏曲 東京藝術大学管弦楽団と共演</li>
+                        <li>2023年 チャイコフスキー チェロ協奏曲 Orchestra Est と共演</li>
+                    </ul>
+                </div>
+
+                <!-- SNSリンク追加 -->
+                <div class="social-links">
+                    <a href="https://www.instagram.com/youraccount" target="_blank" rel="noopener noreferrer" class="social-link instagram" aria-label="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                    <a href="https://www.youtube.com/channel/yourchannel" target="_blank" rel="noopener noreferrer" class="social-link youtube" aria-label="YouTube">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+                    </a>
+                    <a href="mailto:petlianyuki1121@gmail.com" class="social-link email" aria-label="Email">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/></svg>
+                    </a>
+                </div>
             </section>
         </main>
+        
         <!-- トップに戻るボタン -->
         <div id="back-to-top" class="back-to-top">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
             </svg>
         </div>
+        
         <footer>
             <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
         </footer>

@@ -7,8 +7,641 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    
+    <!-- メタデータの改善 (SEO対策) -->
+    <meta name="description" content="チェリスト髙木優帆のチェロレッスン案内。初心者から上級者まで、それぞれのレベルに合わせたレッスンを提供しています。">
+    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, レッスン, 音楽教室, 初心者, 上級者, 音楽, 習い事">
+    <meta property="og:title" content="レッスン情報 - 髙木優帆">
+    <meta property="og:description" content="チェリスト髙木優帆のチェロレッスン案内。初心者から上級者まで、それぞれのレベルに合わせたレッスンを提供しています。">
+    <meta property="og:image" content="https://yourdomain.com/images/ogp.jpg">
+    <meta property="og:url" content="https://yourdomain.com/lesson.html">
+    <meta property="og:type" content="website">
+
+    <!-- フォントの追加 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!-- 共通のスタイル改善 -->
+    <style>
+    /* アニメーションの追加 */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-in {
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.2s; }
+    .delay-3 { animation-delay: 0.3s; }
+    .delay-4 { animation-delay: 0.4s; }
+
+    /* アクセシビリティの改善 */
+    .skip-to-content {
+      position: absolute;
+      top: -50px;
+      left: 10px;
+      background: #50031a;
+      color: white;
+      padding: 8px 15px;
+      z-index: 10000;
+      transition: top 0.3s;
+      border-radius: 0 0 5px 5px;
+      text-decoration: none;
+    }
+
+    .skip-to-content:focus {
+      top: 0;
+    }
+
+    /* ホバーエフェクトの改善 */
+    .nav-menu ul li a {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .nav-menu ul li a::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: 0;
+      left: 50%;
+      background-color: white;
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+
+    .nav-menu ul li a:hover::after,
+    .nav-menu ul li a.active::after {
+      width: 70%;
+    }
+
+    /* ボタン・リンクのホバーエフェクト改善 */
+    .section-button,
+    .contact button,
+    .lesson a {
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      z-index: 1;
+    }
+
+    .section-button::before,
+    .contact button::before,
+    .lesson a::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.2);
+      transition: all 0.3s ease;
+      z-index: -1;
+    }
+
+    .section-button:hover::before,
+    .contact button:hover::before,
+    .lesson a:hover::before {
+      left: 0;
+    }
+
+    /* トップに戻るボタンの改善 */
+    .back-to-top {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: rgba(80, 3, 26, 0.9);
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 99;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .back-to-top.visible {
+      opacity: 1;
+      visibility: visible;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        transform: scale(1);
+      }
+      100% {
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        transform: scale(1.05);
+      }
+    }
+
+    .back-to-top:hover {
+      background-color: #50031a;
+      animation: none;
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .back-to-top svg {
+      fill: white;
+      width: 24px;
+      height: 24px;
+      transition: transform 0.2s;
+    }
+
+    .back-to-top:hover svg {
+      transform: translateY(-2px);
+    }
+
+    /* フッター改善 */
+    footer {
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+    }
+
+    /* ダークモードサポート */
+    @media (prefers-color-scheme: dark) {
+      body:not(.home-page) {
+        background-color: #222;
+        color: #f0f0f0;
+      }
+      
+      .profile, .lesson, .contact, .concerts {
+        background-color: #333;
+        color: #f0f0f0;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      
+      .profile-name, .page-title {
+        color: #f0f0f0;
+      }
+      
+      .profile-bio {
+        color: #ddd;
+      }
+      
+      .profile-bio strong {
+        color: #fff;
+      }
+      
+      .lesson ul li, .contact-option {
+        background-color: #444;
+        color: #ddd;
+        border-left: 3px solid #72052a;
+      }
+      
+      a {
+        color: #bb7a96;
+      }
+      
+      a:hover {
+        color: #d696b1;
+      }
+    }
+
+    /* ローディングアニメーション */
+    .page-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .loader-content {
+      text-align: center;
+    }
+
+    .loader-icon {
+      width: 50px;
+      height: 50px;
+      position: relative;
+      margin: 0 auto 15px;
+    }
+
+    .loader-icon:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 2px;
+      height: 100%;
+      background-color: #50031a;
+      animation: loadingMove 1.5s infinite ease-in-out;
+    }
+
+    @keyframes loadingMove {
+      0%, 100% {
+        transform: rotate(-15deg);
+      }
+      50% {
+        transform: rotate(15deg);
+      }
+    }
+
+    .loader-text {
+      color: #50031a;
+      font-size: 16px;
+      letter-spacing: 2px;
+      font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+
+    .page-loaded .page-loader {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      .page-loader {
+        background-color: #222;
+      }
+      
+      .loader-text {
+        color: #bb7a96;
+      }
+    }
+
+    /* レッスンページ特有の改善 */
+    .lesson {
+      max-width: 900px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 40px;
+    }
+
+    .lesson:hover {
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    .page-title {
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+    }
+
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background-color: #50031a;
+    }
+
+    .lesson > p {
+      font-size: 1.15em;
+      line-height: 1.8;
+      margin-bottom: 25px;
+      text-align: center;
+    }
+
+    .lesson h3 {
+      color: #50031a;
+      font-size: 1.5em;
+      margin-top: 35px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      position: relative;
+      padding-left: 15px;
+    }
+
+    .lesson h3::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      transform: translateY(-50%);
+      width: 5px;
+      height: 70%;
+      background-color: #50031a;
+      border-radius: 3px;
+    }
+
+    .lesson ul {
+      margin-bottom: 25px;
+    }
+
+    .lesson ul li {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 15px;
+      font-size: 1.1em;
+    }
+
+    .lesson ul li:hover {
+      transform: translateX(5px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-methods {
+      background-color: #f9f9f9;
+      padding: 25px;
+      border-radius: 8px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      margin-top: 30px;
+    }
+
+    .contact-intro {
+      margin-bottom: 20px;
+      font-weight: 500;
+      color: #444;
+    }
+
+    .contact-option {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      margin-bottom: 15px;
+    }
+
+    .contact-option:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-option-label {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .contact-option a {
+      color: #50031a;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .contact-option a:hover {
+      color: #72052a;
+    }
+
+    .contact-note {
+      padding: 20px;
+      background-color: #f0f0f0;
+      border-left: 4px solid #50031a;
+      margin-top: 30px;
+      font-size: 1em;
+      line-height: 1.6;
+      border-radius: 5px;
+    }
+
+    /* FAQ セクション追加 */
+    .faq-section {
+      margin-top: 50px;
+      padding-top: 40px;
+      border-top: 1px solid #eee;
+    }
+
+    .faq-title {
+      text-align: center;
+      color: #50031a;
+      font-size: 1.8em;
+      margin-bottom: 30px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .faq-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 2px;
+      background-color: #50031a;
+    }
+
+    .faq-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .faq-item {
+      margin-bottom: 20px;
+      border: 1px solid #eee;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .faq-item:hover {
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .faq-question {
+      padding: 15px 20px;
+      background-color: #f9f9f9;
+      cursor: pointer;
+      font-weight: 600;
+      color: #333;
+      position: relative;
+      transition: background-color 0.3s ease;
+    }
+
+    .faq-question::after {
+      content: '+';
+      position: absolute;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.5em;
+      transition: transform 0.3s ease;
+    }
+
+    .faq-question.active {
+      background-color: #50031a;
+      color: white;
+    }
+
+    .faq-question.active::after {
+      content: '−';
+      transform: translateY(-50%) rotate(180deg);
+    }
+
+    .faq-answer {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease, padding 0.3s ease;
+      background-color: white;
+      line-height: 1.6;
+    }
+
+    .faq-answer.active {
+      padding: 20px;
+      max-height: 1000px;
+    }
+
+    /* ダークモード対応 */
+    @media (prefers-color-scheme: dark) {
+      .lesson h3 {
+        color: #bb7a96;
+      }
+
+      .lesson h3::before {
+        background-color: #bb7a96;
+      }
+
+      .page-title::after {
+        background-color: #bb7a96;
+      }
+
+      .contact-methods {
+        background-color: #444;
+      }
+
+      .contact-intro {
+        color: #ddd;
+      }
+
+      .contact-option-label {
+        color: #f0f0f0;
+      }
+
+      .contact-note {
+        background-color: #444;
+        border-left-color: #bb7a96;
+      }
+
+      .faq-title {
+        color: #bb7a96;
+      }
+
+      .faq-title::after {
+        background-color: #bb7a96;
+      }
+
+      .faq-item {
+        border-color: #444;
+      }
+
+      .faq-question {
+        background-color: #444;
+        color: #f0f0f0;
+      }
+
+      .faq-question.active {
+        background-color: #72052a;
+      }
+
+      .faq-answer {
+        background-color: #333;
+      }
+    }
+    </style>
+
+    <!-- 共通のJavaScript最適化 -->
+    <script>
+    // 構造化データの追加（SEO対策）
+    const jsonLd = {
+      "@context": "https://schema.org",
+      "@type": "MusicLesson",
+      "name": "チェロレッスン - 髙木優帆",
+      "description": "初心者から上級者まで、それぞれのレベルに合わせたチェロレッスンを提供しています。",
+      "provider": {
+        "@type": "Person",
+        "name": "髙木優帆",
+        "jobTitle": "チェリスト",
+        "image": "https://yourdomain.com/images/profile.jpg",
+        "description": "東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "7000",
+        "priceCurrency": "JPY"
+      },
+      "educationalLevel": "初心者から上級者まで",
+      "teaches": "チェロ演奏"
+    };
+
+    // DOMが読み込まれたらJSONを追加
+    document.addEventListener('DOMContentLoaded', function() {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(jsonLd);
+      document.head.appendChild(script);
+      
+      // アニメーション要素にクラスを追加
+      const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option, .faq-item');
+      animElements.forEach((element, index) => {
+        element.classList.add('fade-in');
+        element.classList.add(`delay-${index % 4 + 1}`);
+      });
+      
+      // ページ読み込み完了時の処理
+      setTimeout(function() {
+        document.body.classList.add('page-loaded');
+      }, 800);
+      
+      // FAQ機能の実装
+      const faqQuestions = document.querySelectorAll('.faq-question');
+      faqQuestions.forEach(question => {
+        question.addEventListener('click', function() {
+          // この質問のアクティブ状態をトグル
+          this.classList.toggle('active');
+          
+          // 対応する回答要素を取得
+          const answer = this.nextElementSibling;
+          answer.classList.toggle('active');
+          
+          // 他の質問を閉じる（アコーディオン動作）
+          faqQuestions.forEach(q => {
+            if (q !== this) {
+              q.classList.remove('active');
+              q.nextElementSibling.classList.remove('active');
+            }
+          });
+        });
+      });
+    });
+    </script>
 </head>
 <body class="lesson-page">
+    <!-- スキップリンク（アクセシビリティ向上） -->
+    <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
+
+    <!-- ローディングアニメーション -->
+    <div class="page-loader">
+      <div class="loader-content">
+        <div class="loader-icon"></div>
+        <div class="loader-text">Loading...</div>
+      </div>
+    </div>
+
     <div class="wrapper">
         <header>
             <div class="hamburger-menu">
@@ -29,7 +662,7 @@
             </nav>
         </header>
 
-        <main>
+        <main id="main-content">
             <section class="lesson">
                 <h2 class="page-title">LESSON</h2>
                 <p>東京藝術大学出身、現役オーケストラ奏者として、チェロの魅力を皆様にお伝えしたいと思っています。
@@ -80,12 +713,61 @@
                     
                     <div class="contact-option">
                         <span class="contact-option-label">Googleフォーム：</span>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing">Googleフォームでレッスンを申し込む</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer">Googleフォームでレッスンを申し込む</a>
                     </div>
                 </div>
                 
                 <div class="contact-note">
                     ご連絡いただいてから1週間以内に、日程調整のご連絡をいたします。
+                </div>
+                
+                <!-- FAQ セクションの追加 -->
+                <div class="faq-section">
+                    <h2 class="faq-title">よくある質問</h2>
+                    <ul class="faq-list">
+                        <li class="faq-item">
+                            <div class="faq-question">初心者でも大丈夫ですか？</div>
+                            <div class="faq-answer">
+                                はい、もちろん大丈夫です。チェロを全く触ったことがない方でも、基礎から丁寧に指導いたします。楽器をお持ちでない方には、レンタル楽器の情報もご案内できますので、お気軽にご相談ください。
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">何歳からレッスンを受けられますか？</div>
+                            <div class="faq-answer">
+                                年齢制限はございません。お子様の場合は一般的に6歳頃から始める方が多いですが、それより小さなお子様でも興味をお持ちでしたらご相談ください。また、大人の方の「始めたい」という気持ちも大歓迎です。
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">楽器を持っていないのですが、レッスンは受けられますか？</div>
+                            <div class="faq-answer">
+                                まずはレンタル楽器でスタートされる方も多いです。信頼できる楽器店や楽器レンタルサービスをご紹介いたしますので、ご相談ください。
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">レッスンの頻度はどれくらいがおすすめですか？</div>
+                            <div class="faq-answer">
+                                初心者の方は週1回のペースをおすすめしております。月2回などのペースも可能ですが、特に始めたばかりの方は定期的なレッスンとフィードバックが上達の鍵となります。ただし、ご都合に合わせて柔軟に対応いたしますので、ご相談ください。
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">発表会や演奏会はありますか？</div>
+                            <div class="faq-answer">
+                                年に1〜2回程度、レッスン生による発表会を開催しています。参加は任意ですが、演奏の目標を持ち、成果を発表する機会として多くの生徒様にご参加いただいております。
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">レッスンの持ち物は何が必要ですか？</div>
+                            <div class="faq-answer">
+                                チェロ本体、弓、楽譜、筆記用具をご持参ください。楽譜については初回は特に必要ありません。レッスン後にレベルや目標に合わせて適切な教材をご案内いたします。
+                            </div>
+                        </li>
+                        <li class="faq-item">
+                            <div class="faq-question">出張レッスンは可能ですか？</div>
+                            <div class="faq-answer">
+                                はい、可能です。ただし、交通費と出張料を別途いただく場合がございます。詳細はお問い合わせください。
+                            </div>
+                        </li>
+                    </ul>
                 </div>
             </section>
         </main>

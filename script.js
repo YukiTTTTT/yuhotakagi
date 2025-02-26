@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const scrollIndicator = document.getElementById('scroll-indicator');
     const backToTop = document.getElementById('back-to-top');
 
-    // 現在のページをハイライト
+    // 現在のページのナビゲーションリンクをアクティブにする
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
         if (linkHref === currentPage || 
@@ -18,49 +18,32 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ハンバーガーメニューの処理
+    // ハンバーガーメニューのクリックイベント
     hamburgerMenu.addEventListener('click', function() {
         navMenu.classList.add('active');
+        document.body.style.overflow = 'hidden'; // スクロール禁止
     });
 
-    closeMenu.addEventListener('click', function() {
+    // ナビゲーションメニューを閉じる
+    function closeNavMenu() {
         navMenu.classList.remove('active');
-    });
+        document.body.style.overflow = ''; // スクロール許可
+    }
 
-    // 右下のCLOSEボタンにイベントリスナーを追加
-    bottomCloseButton.addEventListener('click', function() {
-        navMenu.classList.remove('active');
-    });
+    // 閉じるボタンのクリックイベント
+    closeMenu.addEventListener('click', closeNavMenu);
 
-    // メニュー外をクリックしたときにもメニューを閉じる
+    // 右下のCLOSEボタンのクリックイベント
+    bottomCloseButton.addEventListener('click', closeNavMenu);
+
+    // メニュー外をクリックしたときにメニューを閉じる
     document.addEventListener('click', function(event) {
         if (!navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
-            navMenu.classList.remove('active');
+            closeNavMenu();
         }
     });
 
-    // スクロールインジケーターのクリックイベント追加
-    if (scrollIndicator) {
-        scrollIndicator.addEventListener('click', function() {
-            // ホームセクションへスムーズにスクロール
-            const homeSections = document.querySelector('.home-sections');
-            if (homeSections) {
-                homeSections.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-        
-        // タッチデバイスのためのタッチイベント追加
-        scrollIndicator.addEventListener('touchend', function(e) {
-            e.preventDefault(); // デフォルトの動作を防止
-            // ホームセクションへスムーズにスクロール
-            const homeSections = document.querySelector('.home-sections');
-            if (homeSections) {
-                homeSections.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
-    }
-
-    // トップに戻るボタンの処理 - すべてのページで有効に
+    // トップに戻るボタンの処理
     if (backToTop) {
         // スクロール位置に応じてボタンの表示/非表示を切り替える
         window.addEventListener('scroll', function() {
@@ -124,6 +107,75 @@ document.addEventListener('DOMContentLoaded', function() {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
+            });
+        });
+    }
+
+    // スクロールインジケーターのクリックイベント追加（ホームページのみ）
+    if (scrollIndicator) {
+        scrollIndicator.addEventListener('click', function() {
+            // ホームセクションへスムーズにスクロール
+            const homeSections = document.querySelector('.home-sections');
+            if (homeSections) {
+                homeSections.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+        
+        // タッチデバイスのためのタッチイベント追加
+        scrollIndicator.addEventListener('touchend', function(e) {
+            e.preventDefault(); // デフォルトの動作を防止
+            // ホームセクションへスムーズにスクロール
+            const homeSections = document.querySelector('.home-sections');
+            if (homeSections) {
+                homeSections.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    }
+
+    // 画像の遅延読み込み
+    const lazyImages = document.querySelectorAll('img[loading="lazy"]');
+    
+    if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const img = entry.target;
+                    img.src = img.dataset.src;
+                    img.removeAttribute('loading');
+                    imageObserver.unobserve(img);
+                }
+            });
+        });
+        
+        lazyImages.forEach(img => imageObserver.observe(img));
+    } else {
+        // Fallback for browsers without IntersectionObserver support
+        lazyImages.forEach(img => {
+            img.src = img.dataset.src;
+            img.removeAttribute('loading');
+        });
+    }
+
+    // FAQアコーディオン機能
+    const faqQuestions = document.querySelectorAll('.faq-question');
+    
+    if (faqQuestions.length > 0) {
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function() {
+                // この質問のアクティブ状態をトグル
+                this.classList.toggle('active');
+                
+                // 対応する回答要素を取得
+                const answer = this.nextElementSibling;
+                answer.classList.toggle('active');
+                
+                // 他の質問を閉じる（アコーディオン動作）
+                faqQuestions.forEach(q => {
+                    if (q !== this) {
+                        q.classList.remove('active');
+                        q.nextElementSibling.classList.remove('active');
+                    }
+                });
             });
         });
     }
