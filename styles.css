@@ -143,7 +143,7 @@ nav ul li {
     display: inline;
 }
 
-nav ul li a {
+/*nav ul li a {
     color: white;
     text-decoration: none;
     font-size: 1.2em;
@@ -151,8 +151,12 @@ nav ul li a {
     position:relative;
     transition: 0.3s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* テキストシャドウを追加 */
-    font-weight: 500; /* フォントを若干太くする */
-}
+    /*font-weight: 500; フォントを若干太くする 
+}*/
+nav ul li a {
+    position: relative;
+    transition: all 0.3s ease;
+  }
 
 /* ホバー時の視認性向上 */
 nav ul li a:hover {
@@ -180,6 +184,18 @@ nav ul li a.active::after {
     transition: all 0.3s ease;
     transform: translateX(-50%);
 }
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px; /* 位置を調整 */
+    left: 50%;
+    background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+  }
 
 nav ul li a:hover::after,
 nav ul li a.active::after {
@@ -403,6 +419,18 @@ ul, ol {
 }
 
 /* お申し込み方法の強調スタイル */
+.contact-method-intro {
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #50031a;
+    margin: 30px 0 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+}
+
+/* お申し込み方法の強調スタイル */
 .contact-intro {
     text-align: center;
     font-size: 1.2em;
@@ -448,7 +476,7 @@ ul, ol {
 .contact-option-link {
     display: inline-block;
     background-color: #50031a;
-    color: white;
+    color: white !important;
     text-decoration: none;
     padding: 8px 20px;
     border-radius: 4px;
@@ -459,7 +487,7 @@ ul, ol {
 .contact-option-link:hover {
     background-color: #72052a;
     transform: translateY(-2px);
-    color: white;
+    color: white !important;
     text-decoration: none;
 }
 

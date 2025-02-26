@@ -330,7 +330,7 @@
     }
 
     /* お申し込み方法をより目立たせる */
-    .contact-intro {
+    .contact-method-intro {
       text-align: center;
       font-size: 1.2em;
       font-weight: 500;
@@ -400,7 +400,7 @@
     .contact-option-link {
       display: inline-block;
       background-color: #50031a;
-      color: white;
+      color: white !important;
       text-decoration: none;
       padding: 8px 20px;
       border-radius: 4px;
@@ -411,7 +411,7 @@
     .contact-option-link:hover {
       background-color: #72052a;
       transform: translateY(-2px);
-      color: white;
+      color: white !important;
       text-decoration: none;
     }
 
@@ -608,27 +608,6 @@
       setTimeout(function() {
         document.body.classList.add('page-loaded');
       }, 800);
-      
-      // FAQ機能の実装
-      const faqQuestions = document.querySelectorAll('.faq-question');
-      faqQuestions.forEach(question => {
-        question.addEventListener('click', function() {
-          // この質問のアクティブ状態をトグル
-          this.classList.toggle('active');
-          
-          // 対応する回答要素を取得
-          const answer = this.nextElementSibling;
-          answer.classList.toggle('active');
-          
-          // 他の質問を閉じる（アコーディオン動作）
-          faqQuestions.forEach(q => {
-            if (q !== this) {
-              q.classList.remove('active');
-              q.nextElementSibling.classList.remove('active');
-            }
-          });
-        });
-      });
     });
     </script>
 </head>
@@ -707,11 +686,11 @@
 
                 <h3>お申し込み方法</h3>
                 <!-- お申し込み方法をより目立たせる -->
-                <div class="contact-intro">
+                <div class="contact-method-intro">
                     お問い合わせは以下の方法で承ります：
                 </div>
                 
-                <!-- コンタクトオプションの修正 - リンクテキストの変更 -->
+                <!-- コンタクトオプションの修正 - リンクテキストの色を白に -->
                 <div class="contact-options">
                     <div class="contact-option-card">
                         <div class="contact-icon">
@@ -720,7 +699,7 @@
                             </svg>
                         </div>
                         <h3 class="contact-option-title">メールでのお問い合わせ</h3>
-                        <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
+                        <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link" style="color: #ffffff !important;">メールを送る</a>
                     </div>
                     
                     <div class="contact-option-card">
@@ -730,7 +709,7 @@
                             </svg>
                         </div>
                         <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">Googleフォームへ</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link" style="color: #ffffff !important;">Googleフォームへ</a>
                     </div>
                 </div>
                 
@@ -792,6 +771,81 @@
             <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
         </footer>
     </div>
+    
     <script src="script.js"></script>
+    
+    <!-- FAQアコーディオン修正用スクリプト -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // FAQ機能の実装 - インラインでの修正
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        if (faqQuestions.length > 0) {
+        console.log('FAQセクションが見つかりました。質問数:', faqQuestions.length);
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('質問がクリックされました:', this.textContent);
+            
+            // この質問のアクティブ状態をトグル
+            this.classList.toggle('active');
+            
+            // 対応する回答要素を取得
+            const answer = this.nextElementSibling;
+            console.log('回答要素:', answer);
+            
+            if (answer && answer.classList.contains('faq-answer')) {
+                answer.classList.toggle('active');
+                
+                if (answer.classList.contains('active')) {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                answer.style.padding = '20px';
+                } else {
+                answer.style.maxHeight = '0';
+                answer.style.padding = '0 20px';
+                }
+            }
+            
+            // 他の質問を閉じる（アコーディオン動作）
+            faqQuestions.forEach(q => {
+                if (q !== this) {
+                q.classList.remove('active');
+                const qAnswer = q.nextElementSibling;
+                if (qAnswer && qAnswer.classList.contains('faq-answer')) {
+                    qAnswer.classList.remove('active');
+                    qAnswer.style.maxHeight = '0';
+                    qAnswer.style.padding = '0 20px';
+                }
+                }
+            });
+            });
+        });
+        
+        // スタイルを追加
+        const style = document.createElement('style');
+        style.textContent = `
+            .faq-question {
+            cursor: pointer;
+            position: relative;
+            }
+            
+            .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            }
+            
+            .faq-answer.active {
+            max-height: 1000px;
+            padding: 20px !important;
+            }
+        `;
+        document.head.appendChild(style);
+        } else {
+        console.log('FAQセクションが見つかりませんでした');
+        }
+    });
+    </script>
 </body>
 </html>
