@@ -188,45 +188,7 @@
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
     }
 
-    /* ダークモードサポート */
-    @media (prefers-color-scheme: dark) {
-      body:not(.home-page) {
-        background-color: #222;
-        color: #f0f0f0;
-      }
-      
-      .profile, .lesson, .contact, .concerts {
-        background-color: #333;
-        color: #f0f0f0;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      }
-      
-      .profile-name, .page-title {
-        color: #f0f0f0;
-      }
-      
-      .profile-bio {
-        color: #ddd;
-      }
-      
-      .profile-bio strong {
-        color: #fff;
-      }
-      
-      .lesson ul li, .contact-option {
-        background-color: #444;
-        color: #ddd;
-        border-left: 3px solid #72052a;
-      }
-      
-      a {
-        color: #bb7a96;
-      }
-      
-      a:hover {
-        color: #d696b1;
-      }
-    }
+    
 
     /* ローディングアニメーション */
     .page-loader {
@@ -286,15 +248,7 @@
       visibility: hidden;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .page-loader {
-        background-color: #222;
-      }
-      
-      .loader-text {
-        color: #bb7a96;
-      }
-    }
+ 
 
     /* レッスンページ特有の改善 */
     .lesson {
@@ -506,62 +460,6 @@
       max-height: 1000px;
     }
 
-    /* ダークモード対応 */
-    @media (prefers-color-scheme: dark) {
-      .lesson h3 {
-        color: #bb7a96;
-      }
-
-      .lesson h3::before {
-        background-color: #bb7a96;
-      }
-
-      .page-title::after {
-        background-color: #bb7a96;
-      }
-
-      .contact-methods {
-        background-color: #444;
-      }
-
-      .contact-intro {
-        color: #ddd;
-      }
-
-      .contact-option-label {
-        color: #f0f0f0;
-      }
-
-      .contact-note {
-        background-color: #444;
-        border-left-color: #bb7a96;
-      }
-
-      .faq-title {
-        color: #bb7a96;
-      }
-
-      .faq-title::after {
-        background-color: #bb7a96;
-      }
-
-      .faq-item {
-        border-color: #444;
-      }
-
-      .faq-question {
-        background-color: #444;
-        color: #f0f0f0;
-      }
-
-      .faq-question.active {
-        background-color: #72052a;
-      }
-
-      .faq-answer {
-        background-color: #333;
-      }
-    }
     </style>
 
     <!-- 共通のJavaScript最適化 -->
@@ -747,12 +645,6 @@
                             <div class="faq-question">レッスンの頻度はどれくらいがおすすめですか？</div>
                             <div class="faq-answer">
                                 初心者の方は週1回のペースをおすすめしております。月2回などのペースも可能ですが、特に始めたばかりの方は定期的なレッスンとフィードバックが上達の鍵となります。ただし、ご都合に合わせて柔軟に対応いたしますので、ご相談ください。
-                            </div>
-                        </li>
-                        <li class="faq-item">
-                            <div class="faq-question">発表会や演奏会はありますか？</div>
-                            <div class="faq-answer">
-                                年に1〜2回程度、レッスン生による発表会を開催しています。参加は任意ですが、演奏の目標を持ち、成果を発表する機会として多くの生徒様にご参加いただいております。
                             </div>
                         </li>
                         <li class="faq-item">

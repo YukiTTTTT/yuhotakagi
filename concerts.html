@@ -159,43 +159,6 @@
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
     }
 
-    /* ダークモードサポート */
-    @media (prefers-color-scheme: dark) {
-      body:not(.home-page) {
-        background-color: #222;
-        color: #f0f0f0;
-      }
-      
-      .profile, .lesson, .contact, .concerts {
-        background-color: #333;
-        color: #f0f0f0;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-      }
-      
-      .profile-name, .page-title {
-        color: #f0f0f0;
-      }
-      
-      .concert-item {
-        background-color: #333;
-      }
-      
-      .concert-date {
-        background-color: #444;
-      }
-      
-      .concert-info h3, .concert-info p {
-        color: #f0f0f0;
-      }
-      
-      a {
-        color: #bb7a96;
-      }
-      
-      a:hover {
-        color: #d696b1;
-      }
-    }
 
     /* ローディングアニメーション */
     .page-loader {
@@ -255,15 +218,7 @@
       visibility: hidden;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .page-loader {
-        background-color: #222;
-      }
-      
-      .loader-text {
-        color: #bb7a96;
-      }
-    }
+
 
     /* コンサートページ特有の改善 */
     .concerts {
@@ -425,37 +380,7 @@
       background-color: #e0e0e0;
     }
 
-    @media (prefers-color-scheme: dark) {
-      .page-title::after {
-        background-color: #bb7a96;
-      }
-
-      .concert-date {
-        background-color: #444;
-        color: #f0f0f0;
-      }
-
-      .concert-info h3 {
-        color: #bb7a96;
-      }
-
-      .filter-button {
-        background-color: #444;
-        color: #f0f0f0;
-      }
-
-      .filter-button:hover:not(.active) {
-        background-color: #555;
-      }
-
-      .ticket-link, .share-button {
-        background-color: #72052a;
-      }
-
-      .ticket-link:hover, .share-button:hover {
-        background-color: #8f0636;
-      }
-    }
+    
 
     /* レスポンシブ調整 */
     @media screen and (max-width: 768px) {
