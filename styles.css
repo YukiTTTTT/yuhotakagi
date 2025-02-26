@@ -600,8 +600,8 @@ body:not(.home-page) {
 }
 
 .section-icon {
-    width: 100px;
-    height: 100px;
+    width: 130px;
+    height: 130px;
     object-fit: contain;
 }
 
@@ -893,8 +893,8 @@ body:not(.home-page) {
     }
     
     .section-icon {
-        width: 80px;
-        height: 80px;
+        width: 100px;
+        height: 100px;
     }
     
     .section-content {
