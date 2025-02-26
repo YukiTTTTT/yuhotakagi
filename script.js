@@ -19,15 +19,19 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ハンバーガーメニューのクリックイベント
-    hamburgerMenu.addEventListener('click', function() {
-        navMenu.classList.add('active');
-        document.body.style.overflow = 'hidden'; // スクロール禁止
-    });
+    if (hamburgerMenu) {
+        hamburgerMenu.addEventListener('click', function() {
+            navMenu.classList.add('active');
+            document.body.style.overflow = 'hidden'; // スクロール禁止
+        });
+    }
 
     // ナビゲーションメニューを閉じる
     function closeNavMenu() {
-        navMenu.classList.remove('active');
-        document.body.style.overflow = ''; // スクロール許可
+        if (navMenu) {
+            navMenu.classList.remove('active');
+            document.body.style.overflow = ''; // スクロール許可
+        }
     }
 
     // 閉じるボタンのクリックイベント
@@ -42,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // メニュー外をクリックしたときにメニューを閉じる
     document.addEventListener('click', function(event) {
-        if (navMenu && !navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+        if (navMenu && !navMenu.contains(event.target) && hamburgerMenu && !hamburgerMenu.contains(event.target)) {
             closeNavMenu();
         }
     });
@@ -139,24 +143,32 @@ document.addEventListener('DOMContentLoaded', function() {
     // 画像の遅延読み込み
     const lazyImages = document.querySelectorAll('img[loading="lazy"]');
     
-    if ('IntersectionObserver' in window) {
+    if ('IntersectionObserver' in window && lazyImages.length > 0) {
         const imageObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('loading');
-                    imageObserver.unobserve(img);
+                    if (img.dataset && img.dataset.src) {
+                        img.src = img.dataset.src;
+                        img.removeAttribute('loading');
+                        imageObserver.unobserve(img);
+                    }
                 }
             });
         });
         
-        lazyImages.forEach(img => imageObserver.observe(img));
-    } else {
+        lazyImages.forEach(img => {
+            if (img) {
+                imageObserver.observe(img);
+            }
+        });
+    } else if (lazyImages.length > 0) {
         // Fallback for browsers without IntersectionObserver support
         lazyImages.forEach(img => {
-            img.src = img.dataset.src;
-            img.removeAttribute('loading');
+            if (img && img.dataset && img.dataset.src) {
+                img.src = img.dataset.src;
+                img.removeAttribute('loading');
+            }
         });
     }
 
@@ -171,14 +183,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // 対応する回答要素を取得
                 const answer = this.nextElementSibling;
-                answer.classList.toggle('active');
+                if (answer && answer.classList.contains('faq-answer')) {
+                    answer.classList.toggle('active');
+                }
                 
                 // 他の質問を閉じる（アコーディオン動作）
                 faqQuestions.forEach(q => {
                     if (q !== this) {
                         q.classList.remove('active');
-                        if (q.nextElementSibling) {
-                            q.nextElementSibling.classList.remove('active');
+                        const qAnswer = q.nextElementSibling;
+                        if (qAnswer && qAnswer.classList.contains('faq-answer')) {
+                            qAnswer.classList.remove('active');
                         }
                     }
                 });

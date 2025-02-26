@@ -63,7 +63,7 @@
       top: 0;
     }
 
-    /* ホバーエフェクトの改善 */
+    /* ホバーエフェクトの改善 - タブの下線位置修正 */
     .nav-menu ul li a {
       position: relative;
       transition: all 0.3s ease;
@@ -74,7 +74,7 @@
       position: absolute;
       width: 0;
       height: 2px;
-      bottom: 0;
+      bottom: -5px; /* 位置を調整 */
       left: 50%;
       background-color: white;
       transition: all 0.3s ease;
@@ -83,7 +83,7 @@
 
     .nav-menu ul li a:hover::after,
     .nav-menu ul li a.active::after {
-      width: 70%;
+      width: 100%; /* 幅を調整 */
     }
 
     /* ボタン・リンクのホバーエフェクト改善 */
@@ -281,6 +281,15 @@
       text-align: center;
     }
 
+    /* 注意事項を左寄せにしてフォントを小さく */
+    .lesson > p.note {
+      text-align: left;
+      font-size: 0.95em;
+      color: #555;
+      margin-bottom: 10px;
+      padding-left: 10px;
+    }
+
     /* 見出しの縦線が二重になっている問題を修正 */
     .lesson h3 {
       color: #50031a;
@@ -318,6 +327,18 @@
     .lesson ul li:hover {
       transform: translateX(5px);
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    /* お申し込み方法をより目立たせる */
+    .contact-intro {
+      text-align: center;
+      font-size: 1.2em;
+      font-weight: 500;
+      color: #50031a;
+      margin: 30px 0 20px;
+      padding: 10px;
+      background-color: #f9f9f9;
+      border-radius: 5px;
     }
 
     /* コンタクトスタイルの修正 - CONTACTページに合わせる */
@@ -375,6 +396,7 @@
       color: #666;
     }
 
+    /* リンクボタンを白文字に変更 */
     .contact-option-link {
       display: inline-block;
       background-color: #50031a;
@@ -677,17 +699,19 @@
                     <li>70分レッスン：7,000円(基本料金)</li>
                     <li>30分レッスン：3,000円(小学生以下向け)</li>
                 </ul>
-                <p>※ レッスン料金については、ぜひお気軽にお問い合わせください。
+                <!-- 注意事項を左寄せにして小さく -->
+                <p class="note">※ レッスン料金については、ぜひお気軽にお問い合わせください。
                 70分7,000円のレッスンを基本としておりますが、生徒様のレベルやご要望に応じて、時間や料金を調整することも可能です。</p>
-                <p>※ 単発レッスン、定期レッスンどちらも承ります。</p>
-                <p>※ その他、出張レッスンや多人数レッスン、オーケストラ指導等はお問い合わせください。</p>
+                <p class="note">※ 単発レッスン、定期レッスンどちらも承ります。</p>
+                <p class="note">※ その他、出張レッスンや多人数レッスン、オーケストラ指導等はお問い合わせください。</p>
 
                 <h3>お申し込み方法</h3>
-                <div class="contact-intro" style="text-align: center; margin-bottom: 20px;">
+                <!-- お申し込み方法をより目立たせる -->
+                <div class="contact-intro">
                     お問い合わせは以下の方法で承ります：
                 </div>
                 
-                <!-- コンタクトオプションの修正 - CONTACTページに合わせる -->
+                <!-- コンタクトオプションの修正 - リンクテキストの変更 -->
                 <div class="contact-options">
                     <div class="contact-option-card">
                         <div class="contact-icon">
@@ -706,7 +730,7 @@
                             </svg>
                         </div>
                         <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">フォームへ</a>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">Googleフォームへ</a>
                     </div>
                 </div>
                 

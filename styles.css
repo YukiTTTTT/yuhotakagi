@@ -148,7 +148,8 @@ nav ul li a {
     text-decoration: none;
     font-size: 1.2em;
     padding: 10px;
-    transition: 0.3s;
+    position:relative;
+    transition: 0.3s ease;
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* テキストシャドウを追加 */
     font-weight: 500; /* フォントを若干太くする */
 }
@@ -171,11 +172,27 @@ nav ul li a.active {
 nav ul li a.active::after {
     content: '';
     position: absolute;
-    left: 10px; /* パディングと同じ値 */
-    right: 10px; /* パディングと同じ値 */
-    bottom: -2px;
+    width: 0;
     height: 2px;
+    bottom: -5px; /* 位置を調整 */
+    left: 50%;
     background-color: white;
+    transition: all 0.3s ease;
+    transform: translateX(-50%);
+}
+
+nav ul li a:hover::after,
+nav ul li a.active::after {
+  width: 100%; /* 幅を調整 */
+}
+
+/* レッスンページの注意事項用のスタイル */
+.lesson > p.note {
+  text-align: left;
+  font-size: 0.95em;
+  color: #555;
+  margin-bottom: 10px;
+  padding-left: 10px;
 }
 
 /* モバイル表示時の調整 */
@@ -385,11 +402,16 @@ ul, ol {
     margin: 20px 0;
 }
 
+/* お申し込み方法の強調スタイル */
 .contact-intro {
-    margin-bottom: 15px;
-    text-align: left;
-    color: #444;
-    font-size: 1.1em;
+    text-align: center;
+    font-size: 1.2em;
+    font-weight: 500;
+    color: #50031a;
+    margin: 30px 0 20px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
 }
 
 .contact-option {
@@ -420,6 +442,69 @@ ul, ol {
 .contact-option a:hover {
     color: #72052a;
     border-bottom: 1px solid #72052a;
+}
+
+/* お問い合わせボタンの白文字スタイル */
+.contact-option-link {
+    display: inline-block;
+    background-color: #50031a;
+    color: white;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+  
+.contact-option-link:hover {
+    background-color: #72052a;
+    transform: translateY(-2px);
+    color: white;
+    text-decoration: none;
+}
+
+/* FAQスタイルの修正 */
+.faq-question {
+    padding: 15px 20px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.faq-question::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+.faq-question.active {
+    background-color: #50031a;
+    color: white;
+}
+
+.faq-question.active::after {
+    content: '−';
+}
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background-color: white;
+    line-height: 1.6;
+}
+
+.faq-answer.active {
+    padding: 20px;
+    max-height: 1000px; /* アコーディオンを開く高さ */
 }
 
 .contact-note {
