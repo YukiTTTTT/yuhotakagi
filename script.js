@@ -31,14 +31,18 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 閉じるボタンのクリックイベント
-    closeMenu.addEventListener('click', closeNavMenu);
+    if (closeMenu) {
+        closeMenu.addEventListener('click', closeNavMenu);
+    }
 
     // 右下のCLOSEボタンのクリックイベント
-    bottomCloseButton.addEventListener('click', closeNavMenu);
+    if (bottomCloseButton) {
+        bottomCloseButton.addEventListener('click', closeNavMenu);
+    }
 
     // メニュー外をクリックしたときにメニューを閉じる
     document.addEventListener('click', function(event) {
-        if (!navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
+        if (navMenu && !navMenu.contains(event.target) && !hamburgerMenu.contains(event.target)) {
             closeNavMenu();
         }
     });
@@ -156,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // FAQアコーディオン機能
+    // FAQアコーディオン機能 - 修正版
     const faqQuestions = document.querySelectorAll('.faq-question');
     
     if (faqQuestions.length > 0) {
@@ -173,7 +177,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 faqQuestions.forEach(q => {
                     if (q !== this) {
                         q.classList.remove('active');
-                        q.nextElementSibling.classList.remove('active');
+                        if (q.nextElementSibling) {
+                            q.nextElementSibling.classList.remove('active');
+                        }
                     }
                 });
             });

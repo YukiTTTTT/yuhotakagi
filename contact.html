@@ -158,8 +158,6 @@
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
     }
 
-   
-
     /* ローディングアニメーション */
     .page-loader {
       position: fixed;
@@ -218,8 +216,6 @@
       visibility: hidden;
     }
 
-    
-
     /* コンタクトページ特有の改善 */
     .contact {
       max-width: 800px;
@@ -236,6 +232,7 @@
       position: relative;
       padding-bottom: 15px;
       margin-bottom: 30px;
+      text-align: center;
     }
 
     .page-title::after {
@@ -380,8 +377,6 @@
       text-decoration: none;
     }
 
-    
-
     /* モバイル対応 */
     @media screen and (max-width: 768px) {
       .contact {
@@ -433,7 +428,7 @@
       document.head.appendChild(script);
       
       // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.contact, .contact-intro, .contact-option-card, .google-form, .contact-notes');
+      const animElements = document.querySelectorAll('.contact, .contact-intro, .contact-option-card, .contact-notes');
       animElements.forEach((element, index) => {
         element.classList.add('fade-in');
         element.classList.add(`delay-${index % 4 + 1}`);
@@ -472,7 +467,7 @@
                     <li><a href="profile.html">PROFILE</a></li>
                     <li><a href="concerts.html">CONCERTS</a></li>
                     <li><a href="lesson.html">LESSON</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
+                    <li><a href="contact.html" class="active">CONTACT</a></li>
                 </ul>
                 <div class="bottom-close-button">CLOSE</div>
             </nav>
@@ -495,7 +490,6 @@
                             </svg>
                         </div>
                         <h3 class="contact-option-title">メールでのお問い合わせ</h3>
-                        <!--<p class="contact-option-description">直接メールでお問い合わせいただけます。レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>-->
                         <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
                     </div>
                     
@@ -506,15 +500,9 @@
                             </svg>
                         </div>
                         <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
-                        <!--<p class="contact-option-description">チェロレッスンのお申し込みは、Googleフォームからも受け付けております。ご希望の日時や内容をお知らせください。</p>-->
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">フォームへ</a>
                     </div>
                 </div>
-
-                <!-- Googleフォームの埋め込みコード -->
-                <!--<div class="google-form">
-                    <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?embedded=true" width="100%" height="500" frameborder="0" marginheight="0" marginwidth="0">読み込んでいます…</iframe>
-                </div>-->
                 
                 <div class="contact-notes">
                     <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>

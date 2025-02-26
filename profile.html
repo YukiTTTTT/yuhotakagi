@@ -168,8 +168,6 @@
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
     }
 
-    
-
     /* ローディングアニメーション */
     .page-loader {
       position: fixed;
@@ -228,8 +226,6 @@
       visibility: hidden;
     }
 
-    
-
     /* プロフィールページ特有の改善 */
     .profile {
       max-width: 800px;
@@ -245,13 +241,38 @@
     .profile-img {
       border-radius: 5px;
       max-width: 300px;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 2.0em;
+      position: relative;
+      padding-bottom: 15px;
+    }
+
+    .page-title::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 2px;
+      background-color: #50031a;
     }
 
     .profile-name {
       position: relative;
-      display: inline-block;
+      display: block;
+      text-align: center;
       padding-bottom: 10px;
       margin-bottom: 20px;
+      font-size: 1.8em;
     }
 
     .profile-name::after {
@@ -267,6 +288,11 @@
 
     .profile-bio {
       line-height: 1.9;
+      text-align: left;
+      max-width: 700px;
+      margin: 0 auto;
+      font-size: 1.15em;
+      color: #444;
     }
 
     .profile-bio p {
@@ -329,7 +355,26 @@
       box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
     }
 
-    
+    /* モバイル対応 */
+    @media screen and (max-width: 768px) {
+      .profile {
+        padding: 30px 20px;
+        margin: 20px auto;
+      }
+
+      .profile-img {
+        max-width: 200px;
+      }
+
+      .profile-name {
+        font-size: 1.5em;
+      }
+
+      .profile-bio {
+        font-size: 1em;
+        padding: 0 10px;
+      }
+    }
     </style>
 
     <!-- 共通のJavaScript最適化 -->
@@ -358,7 +403,7 @@
       document.head.appendChild(script);
       
       // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.profile, .achievement-list li');
+      const animElements = document.querySelectorAll('.profile, .profile-img, .profile-name, .profile-bio p');
       animElements.forEach((element, index) => {
         element.classList.add('fade-in');
         element.classList.add(`delay-${index % 4 + 1}`);
@@ -394,7 +439,7 @@
                 <div class="close-menu">×</div>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
-                    <li><a href="profile.html">PROFILE</a></li>
+                    <li><a href="profile.html" class="active">PROFILE</a></li>
                     <li><a href="concerts.html">CONCERTS</a></li>
                     <li><a href="lesson.html">LESSON</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
@@ -416,8 +461,6 @@
                     チェロを故山田知野子、上森祥平、河野文昭の各氏に師事。東京藝術大学卒業。</p>
                     <p>サントリー室内楽アカデミー第8期フェロー。現在神奈川フィルハーモニー管弦楽団次席チェロ奏者。</p>
                 </div>
-
-                
             </section>
         </main>
         

@@ -22,7 +22,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- 共通のスタイル改善 -->
+    <!-- スタイルの修正 -->
     <style>
     /* アニメーションの追加 */
     @keyframes fadeInUp {
@@ -188,8 +188,6 @@
       background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
     }
 
-    
-
     /* ローディングアニメーション */
     .page-loader {
       position: fixed;
@@ -248,9 +246,7 @@
       visibility: hidden;
     }
 
- 
-
-    /* レッスンページ特有の改善 */
+    /* レッスンページ特有の改善 - 修正版 */
     .lesson {
       max-width: 900px;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -285,6 +281,7 @@
       text-align: center;
     }
 
+    /* 見出しの縦線が二重になっている問題を修正 */
     .lesson h3 {
       color: #50031a;
       font-size: 1.5em;
@@ -293,6 +290,7 @@
       font-weight: 600;
       position: relative;
       padding-left: 15px;
+      border-left: none; /* styles.cssで指定されている可能性がある border-left を削除 */
     }
 
     .lesson h3::before {
@@ -322,74 +320,7 @@
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
     }
 
-    /*.contact-methods {
-      background-color: #f9f9f9;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      margin-top: 30px;
-    }
-
-    .contact-intro {
-      margin-bottom: 20px;
-      font-weight: 500;
-      color: #444;
-    }
-
-    .contact-option {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-bottom: 15px;
-    }
-
-    .contact-option:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-option-label {
-      font-weight: 600;
-      color: #333;
-    }
-
-    .contact-option a {
-      color: #50031a;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-
-    .contact-option a:hover {
-      color: #72052a;
-    }
-
-    .contact-note {
-      padding: 20px;
-      background-color: #f0f0f0;
-      border-left: 4px solid #50031a;
-      margin-top: 30px;
-      font-size: 1em;
-      line-height: 1.6;
-      border-radius: 5px;
-    }*/
-    .contact-notes {
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 30px;
-      font-size: 0.95em;
-      line-height: 1.6;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      border-left: 4px solid #50031a;
-    }
-
-    .contact-notes p {
-      margin-bottom: 10px;
-      font-size: 0.95em;
-    }
-
-    .contact-notes p:last-child {
-      margin-bottom: 0;
-    }
-
+    /* コンタクトスタイルの修正 - CONTACTページに合わせる */
     .contact-options {
       display: flex;
       justify-content: center;
@@ -462,31 +393,28 @@
       text-decoration: none;
     }
 
-    
-
-    /* モバイル対応 */
-    @media screen and (max-width: 768px) {
-      .contact {
-        padding: 30px 20px;
-      }
-
-      .contact-options {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .contact-option-card {
-        width: 100%;
-        max-width: 320px;
-      }
-
-      .google-form {
-        padding-bottom: 500px;
-      }
+    .contact-notes {
+      background-color: #f9f9f9;
+      padding: 20px;
+      border-radius: 8px;
+      margin-top: 30px;
+      font-size: 0.95em;
+      line-height: 1.6;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      border-left: 4px solid #50031a;
     }
 
-    /* FAQ セクション追加 */
+    .contact-note {
+      padding: 20px;
+      background-color: #f9f9f9;
+      border-left: 4px solid #50031a;
+      margin-top: 30px;
+      font-size: 1em;
+      line-height: 1.6;
+      border-radius: 5px;
+    }
+
+    /* FAQセクションの修正 */
     .faq-section {
       margin-top: 50px;
       padding-top: 40px;
@@ -558,7 +486,6 @@
 
     .faq-question.active::after {
       content: '−';
-      transform: translateY(-50%) rotate(180deg);
     }
 
     .faq-answer {
@@ -572,12 +499,52 @@
 
     .faq-answer.active {
       padding: 20px;
-      max-height: 1000px;
+      max-height: 1000px; /* アコーディオンを開く高さ */
     }
 
+    /* レスポンシブ対応 */
+    @media screen and (max-width: 768px) {
+      .lesson {
+        padding: 25px;
+        max-width: 90%;
+      }
+
+      .lesson .page-title {
+        font-size: 1.8em;
+      }
+
+      .lesson > p {
+        font-size: 1.05em;
+      }
+
+      .lesson h3 {
+        font-size: 1.4em;
+        text-align: left;
+        padding-left: 15px;
+      }
+
+      .lesson h3::before {
+        left: 0;
+      }
+
+      .lesson ul li {
+        font-size: 0.95em;
+      }
+
+      .contact-options {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .contact-option-card {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
     </style>
 
-    <!-- 共通のJavaScript最適化 -->
+    <!-- 共通のJavaScript -->
     <script>
     // 構造化データの追加（SEO対策）
     const jsonLd = {
@@ -609,7 +576,7 @@
       document.head.appendChild(script);
       
       // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option, .faq-item');
+      const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, .faq-item');
       animElements.forEach((element, index) => {
         element.classList.add('fade-in');
         element.classList.add(`delay-${index % 4 + 1}`);
@@ -668,7 +635,7 @@
                     <li><a href="index.html">HOME</a></li>
                     <li><a href="profile.html">PROFILE</a></li>
                     <li><a href="concerts.html">CONCERTS</a></li>
-                    <li><a href="lesson.html">LESSON</a></li>
+                    <li><a href="lesson.html" class="active">LESSON</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
                 </ul>
                 <div class="bottom-close-button">CLOSE</div>
@@ -716,49 +683,38 @@
                 <p>※ その他、出張レッスンや多人数レッスン、オーケストラ指導等はお問い合わせください。</p>
 
                 <h3>お申し込み方法</h3>
-                <div class="contact-methods">
-                    <div class="contact-intro">お問い合わせは以下の方法で承ります：</div>
-                    
-                                    <!-- コンタクトオプションの追加 -->
-                    <div class="contact-options">
-                        <div class="contact-option-card">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                                </svg>
-                            </div>
-                            <h3 class="contact-option-title">メールでのお問い合わせ</h3>
-                            <!--<p class="contact-option-description">直接メールでお問い合わせいただけます。レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>-->
-                            <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
+                <div class="contact-intro" style="text-align: center; margin-bottom: 20px;">
+                    お問い合わせは以下の方法で承ります：
+                </div>
+                
+                <!-- コンタクトオプションの修正 - CONTACTページに合わせる -->
+                <div class="contact-options">
+                    <div class="contact-option-card">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                            </svg>
                         </div>
-                        
-                        <div class="contact-option-card">
-                            <div class="contact-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                    <path d="M19 3h-14c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-14c0-1.1-.9-2-2-2zm-7 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 16c-2.2 0-4.2-.8-5.8-2.1 0-.7 3.9-1.9 5.8-1.9 1.9 0 5.8 1.2 5.8 1.9-1.6 1.3-3.6 2.1-5.8 2.1zm7-6h-14v-1.9c0-2.6 5.2-3.9 7-3.9 1.8 0 7 1.3 7 3.9v1.9z"/>
-                                </svg>
-                            </div>
-                            <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
-                            <!--<p class="contact-option-description">チェロレッスンのお申し込みは、Googleフォームからも受け付けております。ご希望の日時や内容をお知らせください。</p>-->
-                            <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">フォームへ</a>
-                        </div>
-                    </div>
-                    <!--<div class="contact-option">
-                        <span class="contact-option-label">メール：</span>
-                        <a href="mailto:petlianyuki1121@gmail.com">petlianyuki1121@gmail.com</a>
+                        <h3 class="contact-option-title">メールでのお問い合わせ</h3>
+                        <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
                     </div>
                     
-                    <div class="contact-option">
-                        <span class="contact-option-label">Googleフォーム：</span>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer">Googleフォームでレッスンを申し込む</a>
-                    </div>-->
+                    <div class="contact-option-card">
+                        <div class="contact-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M19 3h-14c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2v-14c0-1.1-.9-2-2-2zm-7 2c1.1 0 2 .9 2 2s-.9 2-2 2-2-.9-2-2 .9-2 2-2zm0 16c-2.2 0-4.2-.8-5.8-2.1 0-.7 3.9-1.9 5.8-1.9 1.9 0 5.8 1.2 5.8 1.9-1.6 1.3-3.6 2.1-5.8 2.1zm7-6h-14v-1.9c0-2.6 5.2-3.9 7-3.9 1.8 0 7 1.3 7 3.9v1.9z"/>
+                            </svg>
+                        </div>
+                        <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">フォームへ</a>
+                    </div>
                 </div>
                 
                 <div class="contact-note">
                     ご連絡いただいてから1週間以内に、日程調整のご連絡をいたします。
                 </div>
                 
-                <!-- FAQ セクションの追加 -->
+                <!-- FAQ セクション -->
                 <div class="faq-section">
                     <h2 class="faq-title">よくある質問</h2>
                     <ul class="faq-list">
