@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const navLinks = document.querySelectorAll('nav ul li a');
     const bottomCloseButton = document.querySelector('.bottom-close-button');
     const scrollIndicator = document.getElementById('scroll-indicator');
+    const backToTop = document.getElementById('back-to-top');
 
     navLinks.forEach(link => {
         const linkHref = link.getAttribute('href');
@@ -63,6 +64,36 @@ document.addEventListener('DOMContentLoaded', function() {
             if (homeSections) {
                 homeSections.scrollIntoView({ behavior: 'smooth' });
             }
+        });
+    }
+    // トップに戻るボタンの処理
+    if (backToTop) {
+        // スクロール位置に応じてボタンの表示/非表示を切り替える
+        window.addEventListener('scroll', function() {
+            // スクロール位置が300px以上の場合に表示
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        // クリック時の処理
+        backToTop.addEventListener('click', function() {
+            // トップへスムーズにスクロール
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // タッチデバイス対応
+        backToTop.addEventListener('touchend', function(e) {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
         });
     }
 });
