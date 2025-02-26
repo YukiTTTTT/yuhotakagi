@@ -487,6 +487,21 @@ ul, ol {
     text-decoration: none;
 }
 
+.contact-option-title {
+    border-left: none !important;
+    padding-left: 0 !important;
+}
+  
+.contact-option-card h3.contact-option-title {
+    border-left: none !important;
+    padding-left: 0 !important;
+    text-align: center;
+}
+
+.contact-option-card h3.contact-option-title::before {
+    display: none !important;
+}
+
 /* FAQスタイルの修正 */
 .faq-question {
     padding: 15px 20px;

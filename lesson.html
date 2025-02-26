@@ -314,6 +314,27 @@
       border-radius: 3px;
     }
 
+    /* コンタクトオプションのタイトルから縦棒を削除し、小さくする */
+    .contact-option-title {
+      font-size: 0.95em; /* フォントサイズを小さく */
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #333;
+      border-left: none !important; /* 縦棒を削除 */
+      padding-left: 0 !important; /* パディングをリセット */
+    }
+
+    /* h3から継承される可能性のあるスタイルを上書き */
+    .contact-option-card h3.contact-option-title {
+      border-left: none !important;
+      padding-left: 0 !important;
+      text-align: center;
+    }
+
+    .contact-option-card h3.contact-option-title::before {
+      display: none !important; /* 縦棒用の疑似要素を非表示 */
+    }
+
     .lesson ul {
       margin-bottom: 25px;
     }
@@ -382,13 +403,6 @@
       fill: #50031a;
     }
 
-    .contact-option-title {
-      font-size: 1.2em;
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #333;
-    }
-
     .contact-option-description {
       font-size: 0.95em;
       margin-bottom: 15px;
@@ -396,19 +410,17 @@
       color: #666;
     }
 
-    /* リンクボタンを小さく、高さをそろえる */
+    /* リンクボタンスタイル - 元のサイズに戻す */
     .contact-option-link {
       display: inline-block;
       background-color: #50031a;
       color: white !important;
       text-decoration: none;
-      padding: 8px 15px;
+      padding: 8px 20px;
       border-radius: 4px;
       font-weight: 500;
-      font-size: 0.9em;
+      font-size: 1em; /* 元のサイズに戻す */
       transition: background-color 0.3s ease, transform 0.3s ease;
-      height: 18px;
-      line-height: 18px;
       min-width: 120px;
     }
 
@@ -440,7 +452,7 @@
       border-radius: 5px;
     }
 
-    /* FAQセクションの修正 */
+    /* FAQセクションの修正 - 完全な書き換え */
     .faq-section {
       margin-top: 50px;
       padding-top: 40px;
@@ -472,7 +484,8 @@
       padding: 0;
     }
 
-    .faq-item {
+    /* 新しいFAQスタイル - ネイティブのdetails/summaryを使用 */
+    details.faq-item {
       margin-bottom: 20px;
       border: 1px solid #eee;
       border-radius: 8px;
@@ -481,11 +494,11 @@
       transition: box-shadow 0.3s ease;
     }
 
-    .faq-item:hover {
+    details.faq-item:hover {
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .faq-question {
+    details.faq-item summary {
       padding: 15px 20px;
       background-color: #f9f9f9;
       cursor: pointer;
@@ -493,9 +506,14 @@
       color: #333;
       position: relative;
       transition: background-color 0.3s ease;
+      list-style: none; /* Remove default arrow */
     }
 
-    .faq-question::after {
+    details.faq-item summary::-webkit-details-marker {
+      display: none;
+    }
+
+    details.faq-item summary::after {
       content: '+';
       position: absolute;
       right: 20px;
@@ -505,27 +523,19 @@
       transition: transform 0.3s ease;
     }
 
-    .faq-question.active {
+    details.faq-item[open] summary {
       background-color: #50031a;
       color: white;
     }
 
-    .faq-question.active::after {
+    details.faq-item[open] summary::after {
       content: '−';
     }
 
-    .faq-answer {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.3s ease, padding 0.3s ease;
+    details.faq-item .faq-content {
+      padding: 20px;
       background-color: white;
       line-height: 1.6;
-    }
-
-    .faq-answer.active {
-      padding: 20px;
-      max-height: 1000px; /* アコーディオンを開く高さ */
     }
 
     /* レスポンシブ対応 */
@@ -602,7 +612,7 @@
       document.head.appendChild(script);
       
       // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, .faq-item');
+      const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, details.faq-item');
       animElements.forEach((element, index) => {
         element.classList.add('fade-in');
         element.classList.add(`delay-${index % 4 + 1}`);
@@ -721,47 +731,51 @@
                     ご連絡いただいてから1週間以内に、日程調整のご連絡をいたします。
                 </div>
                 
-                <!-- FAQ セクション -->
+                <!-- FAQ セクション - HTML5のdetails/summaryタグを使用 -->
                 <div class="faq-section">
                     <h2 class="faq-title">よくある質問</h2>
-                    <ul class="faq-list">
-                        <li class="faq-item">
-                            <div class="faq-question">初心者でも大丈夫ですか？</div>
-                            <div class="faq-answer">
-                                はい、もちろん大丈夫です。チェロを全く触ったことがない方でも、基礎から丁寧に指導いたします。楽器をお持ちでない方には、レンタル楽器の情報もご案内できますので、お気軽にご相談ください。
-                            </div>
-                        </li>
-                        <li class="faq-item">
-                            <div class="faq-question">何歳からレッスンを受けられますか？</div>
-                            <div class="faq-answer">
-                                年齢制限はございません。お子様の場合は一般的に6歳頃から始める方が多いですが、それより小さなお子様でも興味をお持ちでしたらご相談ください。また、大人の方の「始めたい」という気持ちも大歓迎です。
-                            </div>
-                        </li>
-                        <li class="faq-item">
-                            <div class="faq-question">楽器を持っていないのですが、レッスンは受けられますか？</div>
-                            <div class="faq-answer">
-                                まずはレンタル楽器でスタートされる方も多いです。信頼できる楽器店や楽器レンタルサービスをご紹介いたしますので、ご相談ください。
-                            </div>
-                        </li>
-                        <li class="faq-item">
-                            <div class="faq-question">レッスンの頻度はどれくらいがおすすめですか？</div>
-                            <div class="faq-answer">
-                                初心者の方は週1回のペースをおすすめしております。月2回などのペースも可能ですが、特に始めたばかりの方は定期的なレッスンとフィードバックが上達の鍵となります。ただし、ご都合に合わせて柔軟に対応いたしますので、ご相談ください。
-                            </div>
-                        </li>
-                        <li class="faq-item">
-                            <div class="faq-question">レッスンの持ち物は何が必要ですか？</div>
-                            <div class="faq-answer">
-                                チェロ本体、弓、楽譜、筆記用具をご持参ください。楽譜については初回は特に必要ありません。レッスン後にレベルや目標に合わせて適切な教材をご案内いたします。
-                            </div>
-                        </li>
-                        <li class="faq-item">
-                            <div class="faq-question">出張レッスンは可能ですか？</div>
-                            <div class="faq-answer">
-                                はい、可能です。ただし、交通費と出張料を別途いただく場合がございます。詳細はお問い合わせください。
-                            </div>
-                        </li>
-                    </ul>
+                    
+                    <details class="faq-item">
+                        <summary>初心者でも大丈夫ですか？</summary>
+                        <div class="faq-content">
+                            はい、もちろん大丈夫です。チェロを全く触ったことがない方でも、基礎から丁寧に指導いたします。楽器をお持ちでない方には、レンタル楽器の情報もご案内できますので、お気軽にご相談ください。
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary>何歳からレッスンを受けられますか？</summary>
+                        <div class="faq-content">
+                            年齢制限はございません。お子様の場合は一般的に6歳頃から始める方が多いですが、それより小さなお子様でも興味をお持ちでしたらご相談ください。また、大人の方の「始めたい」という気持ちも大歓迎です。
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary>楽器を持っていないのですが、レッスンは受けられますか？</summary>
+                        <div class="faq-content">
+                            まずはレンタル楽器でスタートされる方も多いです。信頼できる楽器店や楽器レンタルサービスをご紹介いたしますので、ご相談ください。
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary>レッスンの頻度はどれくらいがおすすめですか？</summary>
+                        <div class="faq-content">
+                            初心者の方は週1回のペースをおすすめしております。月2回などのペースも可能ですが、特に始めたばかりの方は定期的なレッスンとフィードバックが上達の鍵となります。ただし、ご都合に合わせて柔軟に対応いたしますので、ご相談ください。
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary>レッスンの持ち物は何が必要ですか？</summary>
+                        <div class="faq-content">
+                            チェロ本体、弓、楽譜、筆記用具をご持参ください。楽譜については初回は特に必要ありません。レッスン後にレベルや目標に合わせて適切な教材をご案内いたします。
+                        </div>
+                    </details>
+                    
+                    <details class="faq-item">
+                        <summary>出張レッスンは可能ですか？</summary>
+                        <div class="faq-content">
+                            はい、可能です。ただし、交通費と出張料を別途いただく場合がございます。詳細はお問い合わせください。
+                        </div>
+                    </details>
                 </div>
             </section>
         </main>
@@ -777,56 +791,5 @@
     </div>
     
     <script src="script.js"></script>
-    
-    <!-- FAQアコーディオン修正用スクリプト - 直接埋め込みでFAQを動作させる -->
-    <script>
-    // この部分をbody終了タグの直前に追加
-    document.addEventListener('DOMContentLoaded', function() {
-      const faqItems = document.querySelectorAll('.faq-item');
-      
-      if (faqItems.length > 0) {
-        console.log('FAQアイテムが見つかりました:', faqItems.length);
-        
-        faqItems.forEach(item => {
-          const question = item.querySelector('.faq-question');
-          const answer = item.querySelector('.faq-answer');
-          
-          if (question && answer) {
-            // 初期状態ではすべての回答を非表示にする
-            answer.style.maxHeight = '0px';
-            answer.style.padding = '0 20px';
-            answer.style.overflow = 'hidden';
-            answer.style.transition = 'all 0.3s ease';
-            
-            question.addEventListener('click', function() {
-              console.log('質問クリック:', this.textContent.trim());
-              
-              // アクティブ状態のトグル
-              const isActive = this.classList.contains('active');
-              
-              // 一度すべての質問を非アクティブにする
-              document.querySelectorAll('.faq-question').forEach(q => {
-                q.classList.remove('active');
-                const a = q.nextElementSibling;
-                if (a) {
-                  a.classList.remove('active');
-                  a.style.maxHeight = '0px';
-                  a.style.padding = '0 20px';
-                }
-              });
-              
-              // クリックした質問をアクティブにする（すでにアクティブだった場合は閉じる）
-              if (!isActive) {
-                this.classList.add('active');
-                answer.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-                answer.style.padding = '20px';
-              }
-            });
-          }
-        });
-      }
-    });
-    </script>
 </body>
 </html>
