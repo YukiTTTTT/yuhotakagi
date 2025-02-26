@@ -244,7 +244,6 @@ nav ul li a.active::after {
     font-weight: 700;
     color: #333;
 }
-
 /* ページタイトル */
 .page-title {
     font-size: 2.0em;
@@ -435,11 +434,11 @@ ul, ol {
     border-radius: 5px;
 }
 
-/* ヘッダーとか */
+/* ヒーロー部分のスタイル */
 .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 85vh; /* 100vhから85vhに変更して、下部が見えるようにする */
     background: url('images/background.jpg') no-repeat center center;
     background-size: cover;
     margin: 0;
@@ -495,15 +494,52 @@ ul, ol {
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
-/* ヘッダーが他の要素と重ならないように調整 */
+/* ホームページ特有の調整 */
 .home-page .hero {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 85vh; /* 100vhから85vhに変更 */
     background: url('images/background.jpg') no-repeat center center;
     background-size: cover;
     margin: 0;
     padding: 0;
+}
+
+/* スクロール指示アイコンを追加 */
+.scroll-indicator {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: white;
+    animation: bounce 2s infinite;
+    z-index: 2;
+}
+
+.scroll-indicator svg {
+    width: 30px;
+    height: 30px;
+    fill: white;
+    filter: drop-shadow(0px 0px 2px rgba(0,0,0,0.5));
+}
+
+.scroll-text {
+    font-size: 12px;
+    margin-top: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.7);
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0) translateX(-50%);
+    }
+    40% {
+        transform: translateY(-10px) translateX(-50%);
+    }
+    60% {
+        transform: translateY(-5px) translateX(-50%);
+    }
 }
 
 .home-page body {
@@ -890,6 +926,20 @@ body:not(.home-page) {
     .contact-intro {
         font-size: 1em;
     }
+    
+    /* スクロールインジケーターのモバイル調整 */
+    .scroll-indicator {
+        bottom: 15px;
+    }
+    
+    .scroll-indicator svg {
+        width: 25px;
+        height: 25px;
+    }
+    
+    .scroll-text {
+        font-size: 10px;
+    }
 }
 
 /* PC画面用のスタイル */
@@ -991,5 +1041,18 @@ body:not(.home-page) {
     
     .section-content p {
         font-size: 1em;
+    }
+    
+    /* ヒーローセクションのタブレット対応 */
+    .hero {
+        height: 85vh;
+    }
+    
+    .hero-text h1 {
+        font-size: 4em;
+    }
+    
+    .scroll-indicator {
+        bottom: 20px;
     }
 }
