@@ -316,19 +316,24 @@
 
     /* コンタクトオプションのタイトルから縦棒を削除し、小さくする */
     .contact-option-title {
-      font-size: 0.80em; /* フォントサイズを小さく */
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #333;
-      border-left: none !important; /* 縦棒を削除 */
-      padding-left: 0 !important; /* パディングをリセット */
+        font-size: 0.85em; /* さらに小さく */
+        font-weight: 600;
+        margin-bottom: 15px; /* マージンを少し大きく */
+        color: #333;
+        border-left: none !important;
+        padding-left: 0 !important;
+        min-height: 40px; /* 最小の高さを設定して、タイトルの高さを揃える */
+        display: flex;
+        justify-content: center;
+        align-items: center; /* 上下中央揃え */
     }
 
     /* h3から継承される可能性のあるスタイルを上書き */
     .contact-option-card h3.contact-option-title {
-      border-left: none !important;
-      padding-left: 0 !important;
-      text-align: center;
+        border-left: none !important;
+        padding-left: 0 !important;
+        text-align: center;
+        min-height: 40px; /* 最小の高さを設定 */
     }
 
     .contact-option-card h3.contact-option-title::before {
@@ -379,6 +384,10 @@
       width: 280px;
       text-align: center;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* 内容を均等に配置 */
+      min-height: 200px; /* 最小の高さを設定して、カードの高さを揃える */
     }
 
     .contact-option-card:hover {
@@ -576,6 +585,10 @@
       .contact-option-card {
         width: 100%;
         max-width: 320px;
+      }
+      /* ボタンを下部に配置 */
+      .contact-option-card .contact-option-link {
+        margin-top: auto; /* 上部の余白を自動調整 */
       }
     }
     </style>
