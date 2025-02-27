@@ -563,6 +563,14 @@ ul, ol {
     line-height: 1.6;
 }
 
+/* ここに以下のコードを追加 */
+details.faq-item .faq-content {
+    padding: 20px;
+    background-color: white;
+    line-height: 1.6;
+    text-align: left; /* 左寄せに設定 */
+}
+
 .faq-answer.active {
     padding: 20px;
     max-height: 1000px; /* アコーディオンを開く高さ */
@@ -1272,10 +1280,10 @@ details.faq-item summary::after {
 
     /* FAQ コンテンツの左寄せ設定 */
     details.faq-item .faq-content {
-    padding: 20px;
-    background-color: white;
-    line-height: 1.6;
-    text-align: left; /* 左寄せに設定 */
+        padding: 20px;
+        background-color: white;
+        line-height: 1.6;
+        text-align: left; /* 左寄せに設定 */
     }
 
     /* ナビメニューのactive状態の下線 */
