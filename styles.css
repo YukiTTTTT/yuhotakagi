@@ -1100,6 +1100,42 @@ details.faq-item summary::after {
         padding: 10px; /* パディング調整 */
         text-align: left;
     }
+
+    /* コンタクトオプションのタイトル - 黒字で小さく（!importantで強制） */
+.contact-option-title,
+h3.contact-option-title,
+.contact-option-card h3.contact-option-title {
+    font-size: 0.8em !important; /* 強制的に小さく */
+    font-weight: 500 !important;
+    margin-bottom: 15px;
+    color: #333 !important; /* 強制的に黒字に */
+    border-left: none !important;
+    padding-left: 0 !important;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap; /* 改行を防止 */
+}
+
+/* アイコンを大きく */
+.contact-icon {
+    width: 75px !important; /* サイズアップ（強制） */
+    height: 75px !important; /* サイズアップ（強制） */
+    margin: 0 auto 15px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon svg {
+    width: 38px !important; /* サイズアップ（強制） */
+    height: 38px !important; /* サイズアップ（強制） */
+    fill: #50031a;
+}
     
     /* google form */
     .google-form {
