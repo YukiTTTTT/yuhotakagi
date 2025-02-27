@@ -210,8 +210,15 @@ nav ul li a.active::after {
 /* モバイル表示時の調整 */
 @media screen and (max-width: 768px) {
     nav ul li a.active::after {
-        left: 20px; /* モバイル用パディングに合わせる */
-        right: 20px; /* モバイル用パディングに合わせる */
+        content: '';
+        position: absolute;
+        width: 70%; /* 下線の幅 */
+        height: 2px;
+        bottom: -5px;
+        left: 50%; /* 中央に配置 */
+        transform: translateX(-50%); /* 中央揃え */
+        background-color: white;
+        transition: all 0.3s ease;
     }
 }
 
@@ -395,15 +402,20 @@ ul, ol {
 
 .contact-notes {
     background-color: #f9f9f9;
-    padding: 15px;
-    border-left: 4px solid #ccc;
-    font-size: 0.85em;
-    color: #555;
-    line-height: 1.4;
-    text-align: center;
-    margin: 20px 0;
-    border-left: 3px solid #50031a;
-    border-radius: 5px;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    font-size: 0.95em;
+    line-height: 1.6;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #50031a;
+    text-align: left; /* 左寄せに変更 */
+}
+
+.contact-notes p {
+    margin-bottom: 10px;
+    font-size: 0.95em;
+    text-align: left; /* 各段落も左寄せに */
 }
 
 /* お申し込み方法セクションの新しいスタイル */
@@ -417,7 +429,7 @@ ul, ol {
 /* お申し込み方法の強調スタイル */
 .contact-method-intro {
     text-align: center;
-    font-size: 1.2em;
+    font-size: 1.1em; /* サイズを少し小さく */
     font-weight: 500;
     color: #50031a;
     margin: 30px 0 20px;
@@ -429,13 +441,11 @@ ul, ol {
 /* お申し込み方法の強調スタイル */
 .contact-intro {
     text-align: center;
-    font-size: 1.2em;
-    font-weight: 500;
-    color: #50031a;
-    margin: 30px 0 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
+    max-width: 600px;
+    margin: 0 auto 30px;
+    font-size: 0.95rem; /* フォントサイズを小さく */
+    line-height: 1.6;
+    color: #333;
 }
 
 .contact-option {
@@ -487,19 +497,31 @@ ul, ol {
     text-decoration: none;
 }
 
+/* コンタクトオプションのタイトル */
 .contact-option-title {
+    font-size: 0.95em; /* フォントサイズ調整 */
+    font-weight: 600;
+    margin-bottom: 15px;
+    color: #333;
     border-left: none !important;
     padding-left: 0 !important;
+    min-height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap; /* 改行を防止 */
 }
   
 .contact-option-card h3.contact-option-title {
     border-left: none !important;
     padding-left: 0 !important;
     text-align: center;
+    min-height: 40px; /* 最小の高さを設定 */
 }
 
 .contact-option-card h3.contact-option-title::before {
-    display: none !important;
+    display: none !important; /* 縦棒用の疑似要素を非表示 */
 }
 
 /* FAQスタイルの修正 */
@@ -786,6 +808,87 @@ body:not(.home-page) {
     background-color: #720426;
 }
 
+/* FAQ部分の修正 - summaryとdetails用のスタイル */
+details.faq-item {
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.3s ease;
+}
+
+details.faq-item summary {
+    padding: 15px 45px 15px 20px; /* 右側のパディングを増やして+マークとテキストが重ならないように */
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-weight: 600;
+    color: #333;
+    position: relative;
+    transition: background-color 0.3s ease;
+    list-style: none; /* デフォルトの矢印を削除 */
+}
+
+details.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+details.faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.5em;
+    transition: transform 0.3s ease;
+}
+
+/* コンタクトスタイルの修正 - CONTACTページに合わせる */
+.contact-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.contact-option-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    width: 300px; /* 幅を広げる */
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* 内容を均等に配置 */
+    min-height: 200px; /* 最小の高さを設定して、カードの高さを揃える */
+    margin: 0 auto; /* カードを中央寄せ */
+}
+
+.contact-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 15px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-icon svg {
+    width: 30px;
+    height: 30px;
+    fill: #50031a;
+}
+
 /* スマホ対応 */
 @media screen and (max-width: 768px) {
     .hamburger-menu {
@@ -1049,16 +1152,14 @@ body:not(.home-page) {
     }
     
     /* スマホ表示の調整 */
-    @media screen and (max-width: 768px) {
-        .google-form {
-            padding-bottom: 500px; /* スマホでは少し小さく */
-        }
-        
-        .form-notes {
-            margin-top: 520px;
-            padding: 12px;
-            font-size: 0.85em;
-        }
+    .google-form {
+        padding-bottom: 500px; /* スマホでは少し小さく */
+    }
+    
+    .form-notes {
+        margin-top: 520px;
+        padding: 12px;
+        font-size: 0.85em;
     }
     
     /* 改善されたHOME画面下部セクションのモバイル対応 */
@@ -1131,6 +1232,55 @@ body:not(.home-page) {
     
     .scroll-text {
         font-size: 10px;
+    }
+
+    /* コンタクトオプションのカード調整 */
+    .contact-options {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .contact-option-card {
+        width: 90%; /* 幅を調整 */
+        max-width: 280px; /* 最大幅を設定 */
+        padding: 15px; /* パディングを小さく */
+        min-height: 180px; /* 高さを少し減らす */
+    }
+    
+    .contact-method-intro {
+        font-size: 0.95em; /* スマホ表示時はさらに小さく */
+        padding: 8px;
+    }
+    
+    /* コンタクトオプションのタイトル */
+    .contact-option-title {
+        font-size: 0.9em; /* スマホ表示時はさらに小さく */
+        min-height: 30px; /* 高さを調整 */
+    }
+    
+    /* FAQ項目のスマホ対応 */
+    details.faq-item summary {
+        padding: 12px 40px 12px 15px; /* パディングを調整 */
+        font-size: 0.95em; /* フォントサイズ調整 */
+    }
+    
+    details.faq-item .faq-content {
+        padding: 15px;
+        font-size: 0.9em;
+    }
+
+    /* ナビメニューのactive状態の下線 */
+    .nav-menu ul li a.active::after {
+        content: '';
+        position: absolute;
+        width: 70%; /* 下線の幅 */
+        height: 2px;
+        bottom: -5px;
+        left: 50%; /* 中央に配置 */
+        transform: translateX(-50%); /* 中央揃え */
+        background-color: white;
+        transition: all 0.3s ease;
     }
 }
 
