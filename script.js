@@ -242,21 +242,36 @@ document.addEventListener('DOMContentLoaded', function() {
                 // フィルタリング処理
                 concertItems.forEach(item => {
                     const dateString = item.querySelector('.concert-date').textContent;
-                    const concertDate = new Date(dateString);
-                    
-                    // いったん表示をリセット（CSSの初期表示に戻す）
-                    item.style.display = '';
-                    
-                    // フィルタリング条件に基づいて表示/非表示を決定
-                    if (filter === 'all') {
-                        // すべて表示：何もしない（CSSのデフォルト表示）
-                    } else if (filter === 'upcoming' && concertDate >= now) {
-                        // 今後の公演
-                    } else if (filter === 'past' && concertDate < now) {
-                        // 過去の公演
+                    // 日本語形式の日付（YYYY/MM/DD）を正しく解析する
+                    const dateParts = dateString.split('/');
+                    if (dateParts.length === 3) {
+                        // yearが4桁、monthが1-12（0-11に変換）、dayが日にち
+                        const year = parseInt(dateParts[0]);
+                        const month = parseInt(dateParts[1]) - 1; // JavaScriptの月は0-11
+                        const day = parseInt(dateParts[2]);
+                        
+                        const concertDate = new Date(year, month, day);
+                        
+                        // いったん表示をリセット（CSSの初期表示に戻す）
+                        item.style.display = '';
+                        
+                        // フィルタリング条件に基づいて表示/非表示を決定
+                        if (filter === 'all') {
+                            // すべて表示：何もしない（CSSのデフォルト表示）
+                            console.log(`${dateString} - 表示`);
+                        } else if (filter === 'upcoming' && concertDate >= now) {
+                            // 今後の公演
+                            console.log(`${dateString} - 今後: ${concertDate >= now}`);
+                        } else if (filter === 'past' && concertDate < now) {
+                            // 過去の公演
+                            console.log(`${dateString} - 過去: ${concertDate < now}`);
+                        } else {
+                            // フィルタリング条件に合わない場合は非表示に
+                            item.style.display = 'none';
+                            console.log(`${dateString} - 非表示: ${filter}`);
+                        }
                     } else {
-                        // フィルタリング条件に合わない場合は非表示に
-                        item.style.display = 'none';
+                        console.error(`無効な日付形式: ${dateString}`);
                     }
                 });
                 
