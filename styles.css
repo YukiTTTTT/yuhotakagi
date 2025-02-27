@@ -1270,6 +1270,14 @@ details.faq-item summary::after {
         font-size: 0.9em;
     }
 
+    /* FAQ コンテンツの左寄せ設定 */
+    details.faq-item .faq-content {
+    padding: 20px;
+    background-color: white;
+    line-height: 1.6;
+    text-align: left; /* 左寄せに設定 */
+    }
+
     /* ナビメニューのactive状態の下線 */
     .nav-menu ul li a.active::after {
         content: '';
