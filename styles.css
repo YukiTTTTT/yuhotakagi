@@ -592,17 +592,17 @@ details.faq-item .faq-content {
 .hero {
     position: relative;
     width: 100%;
-    height: 90vh; /* 100vhから85vhに変更して、下部が見えるようにする */
-    background: url('images/background.jpg') no-repeat center center;
+    height: 100vh; /* 画面全体の高さを使用 */
+    background: url('images/background.jpg') no-repeat center 40%; /* 背景画像の縦位置を調整 */
     background-size: cover;
     margin: 0;
     padding: 0;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
     color: white;
-    flex: 1;
 }
 
 /* モバイル表示の調整 */
@@ -627,7 +627,7 @@ details.faq-item .faq-content {
 .hero-text {
     position: relative;
     z-index: 1;
-    opacity: 0;
+    padding-top: 30vh; /* 上部の余白を調整 */
     animation: fadeIn 1s forwards;
 }
 
@@ -637,23 +637,23 @@ details.faq-item .faq-content {
 }
 
 .hero-text h1 {
-    font-size: 5em;
-    margin: 0;
-    margin-bottom: 0.2em;
+    font-size: 4.5em; /* フォントサイズを調整 */
+    margin: 0 0 0.1em 0; /* 下部マージンを小さく */
     font-weight: 300;
     letter-spacing: 0.05em;
     font-family: 'Playfair Display', serif;
     color: #f0f0f0;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 .hero-text p {
     font-size: 1.5em;
     font-weight: bold;
+    margin: 0.1em 0; /* 余白を小さく */
     font-family: 'Montserrat', sans-serif;
     color: #f0f0f0;
-    line-height: 1.6;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 /* ホームページ特有の調整 */
@@ -670,7 +670,7 @@ details.faq-item .faq-content {
 /* スクロール指示アイコンを追加 */
 .scroll-indicator {
     position: absolute;
-    bottom: 15px;
+    bottom: 20px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -956,12 +956,37 @@ details.faq-item summary::after {
         background-color: rgba(255, 255, 255, 0.1);
     }
 
+    .hero {
+        height: 90vh; /* モバイルでは少し小さく */
+        background-position: 45% 40%; /* 水平位置も微調整して右手が見えるように */
+    }
+    
+    .hero-text {
+        padding-top: 25vh; /* モバイルでは上部余白を小さく */
+    }
+    
     .hero-text h1 {
-        font-size: 3em;
+        font-size: 3.5em; /* モバイルでのフォントサイズ調整 */
     }
 
     .hero-text p {
         font-size: 1.2em;
+    }
+
+    /* スマートフォンの縦長画面対応 */
+    @media screen and (max-height: 700px) {
+        .hero {
+            height: 85vh;
+            background-position: 45% 35%;
+        }
+        
+        .hero-text {
+            padding-top: 20vh;
+        }
+        
+        .hero-text h1 {
+            font-size: 3em;
+        }
     }
 
     .concerts {
@@ -1586,6 +1611,35 @@ h3.contact-option-title,
         
         .back-to-top::after {
             display: none; /* モバイルではテキストラベルを非表示に */
+        }
+    }
+    /* 標準的なモバイル表示 (iPhone等)向け */
+    @media screen and (max-width: 480px) {
+        .hero {
+            background-position: 42% 38%; /* さらに微調整 */
+        }
+        
+        .hero-text {
+            padding-top: 22vh;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.2em;
+        }
+        
+        .hero-text p {
+            font-size: 1.3em;
+        }
+    }
+
+    /* 小さいモバイル画面向け */
+    @media screen and (max-width: 375px) {
+        .hero {
+            background-position: 40% 37%;
+        }
+        
+        .hero-text h1 {
+            font-size: 2.8em;
         }
     }
 }
