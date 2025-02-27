@@ -200,4 +200,69 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
+    // コンサートページのフィルター機能
+    const filterButtons = document.querySelectorAll('.filter-button');
+    const concertItems = document.querySelectorAll('.concert-item');
+    
+    // PCとモバイルでのスタイルを適用する関数
+    function applyResponsiveStyles() {
+        const isMobile = window.innerWidth <= 768;
+        
+        concertItems.forEach(item => {
+            // いったんすべてのインラインスタイルをリセット
+            item.style.display = '';
+            
+            if (isMobile) {
+                // モバイル表示のデフォルトスタイル
+                // 何も追加しないことでCSSのスタイルが適用される
+            } else {
+                // PC表示ではフレックスレイアウトを適用
+                item.style.display = 'flex';
+            }
+        });
+    }
+    
+    // 初期表示時にスタイルを適用
+    applyResponsiveStyles();
+    
+    // ウィンドウサイズ変更時にもスタイルを再適用
+    window.addEventListener('resize', applyResponsiveStyles);
+    
+    if (filterButtons.length > 0) {
+        filterButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // アクティブクラスを付け替え
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.getAttribute('data-filter');
+                const now = new Date();
+                
+                // フィルタリング処理
+                concertItems.forEach(item => {
+                    const dateString = item.querySelector('.concert-date').textContent;
+                    const concertDate = new Date(dateString);
+                    
+                    // いったん表示をリセット（CSSの初期表示に戻す）
+                    item.style.display = '';
+                    
+                    // フィルタリング条件に基づいて表示/非表示を決定
+                    if (filter === 'all') {
+                        // すべて表示：何もしない（CSSのデフォルト表示）
+                    } else if (filter === 'upcoming' && concertDate >= now) {
+                        // 今後の公演
+                    } else if (filter === 'past' && concertDate < now) {
+                        // 過去の公演
+                    } else {
+                        // フィルタリング条件に合わない場合は非表示に
+                        item.style.display = 'none';
+                    }
+                });
+                
+                // フィルタリング後にレスポンシブスタイルを再適用
+                applyResponsiveStyles();
+            });
+        });
+    }
 });
