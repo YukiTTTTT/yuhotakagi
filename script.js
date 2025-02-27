@@ -201,82 +201,38 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // コンサートページのフィルター機能
+    // コンサートページのフィルターボタン
     const filterButtons = document.querySelectorAll('.filter-button');
-    const concertItems = document.querySelectorAll('.concert-item');
-    
-    // PCとモバイルでのスタイルを適用する関数
-    function applyResponsiveStyles() {
-        const isMobile = window.innerWidth <= 768;
-        
-        concertItems.forEach(item => {
-            // いったんすべてのインラインスタイルをリセット
-            item.style.display = '';
-            
-            if (isMobile) {
-                // モバイル表示のデフォルトスタイル
-                // 何も追加しないことでCSSのスタイルが適用される
-            } else {
-                // PC表示ではフレックスレイアウトを適用
-                item.style.display = 'flex';
-            }
-        });
-    }
-    
-    // 初期表示時にスタイルを適用
-    applyResponsiveStyles();
-    
-    // ウィンドウサイズ変更時にもスタイルを再適用
-    window.addEventListener('resize', applyResponsiveStyles);
-    
     if (filterButtons.length > 0) {
+        // コンサートアイテムを取得
+        const concertItems = document.querySelectorAll('.concert-item');
+        
+        // フィルターボタンのクリックイベント
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
-                // アクティブクラスを付け替え
+                // アクティブクラスをトグル
                 filterButtons.forEach(btn => btn.classList.remove('active'));
                 this.classList.add('active');
                 
                 const filter = this.getAttribute('data-filter');
                 const now = new Date();
                 
-                // フィルタリング処理
+                // コンサートアイテムをフィルタリング
                 concertItems.forEach(item => {
-                    const dateString = item.querySelector('.concert-date').textContent;
-                    // 日本語形式の日付（YYYY/MM/DD）を正しく解析する
-                    const dateParts = dateString.split('/');
-                    if (dateParts.length === 3) {
-                        // yearが4桁、monthが1-12（0-11に変換）、dayが日にち
-                        const year = parseInt(dateParts[0]);
-                        const month = parseInt(dateParts[1]) - 1; // JavaScriptの月は0-11
-                        const day = parseInt(dateParts[2]);
+                    // スタイルをリセットして、CSSのデフォルト表示に戻す
+                    item.style.removeProperty('display');
+                    
+                    if (filter !== 'all') {
+                        const dateString = item.querySelector('.concert-date').textContent;
+                        const concertDate = new Date(dateString);
                         
-                        const concertDate = new Date(year, month, day);
-                        
-                        // いったん表示をリセット（CSSの初期表示に戻す）
-                        item.style.display = '';
-                        
-                        // フィルタリング条件に基づいて表示/非表示を決定
-                        if (filter === 'all') {
-                            // すべて表示：何もしない（CSSのデフォルト表示）
-                            console.log(`${dateString} - 表示`);
-                        } else if (filter === 'upcoming' && concertDate >= now) {
-                            // 今後の公演
-                            console.log(`${dateString} - 今後: ${concertDate >= now}`);
-                        } else if (filter === 'past' && concertDate < now) {
-                            // 過去の公演
-                            console.log(`${dateString} - 過去: ${concertDate < now}`);
-                        } else {
-                            // フィルタリング条件に合わない場合は非表示に
+                        if ((filter === 'upcoming' && concertDate < now) || 
+                            (filter === 'past' && concertDate >= now)) {
+                            // フィルター条件に合わない場合は非表示
                             item.style.display = 'none';
-                            console.log(`${dateString} - 非表示: ${filter}`);
                         }
-                    } else {
-                        console.error(`無効な日付形式: ${dateString}`);
                     }
                 });
-                
-                // フィルタリング後にレスポンシブスタイルを再適用
-                applyResponsiveStyles();
             });
         });
     }
