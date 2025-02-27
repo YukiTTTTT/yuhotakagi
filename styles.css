@@ -632,7 +632,7 @@ details.faq-item .faq-content {
     z-index: 1;
     padding-top: 30vh; /* 上部の余白を調整 */
     animation: fadeIn 1s forwards;
-    transform: translateY(-15vh); /* 上に15vh移動させる - 必要に応じて調整 */
+    transform: translateY(-12vh); /* 上に15vh移動させる - 必要に応じて調整 */
 }
 
 @keyframes fadeIn {
@@ -967,7 +967,7 @@ details.faq-item summary::after {
     
     .hero-text {
         padding-top: 25vh; /* モバイルでは上部余白を小さく */
-        transform: translateY(-9vh);
+        transform: translateY(-10vh);
     }
     
     .hero-text h1 {
