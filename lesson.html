@@ -21,661 +21,662 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
-
     <!-- スタイルの修正 -->
     <style>
-    /* アニメーションの追加 */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
-
-    /* アクセシビリティの改善 */
-    .skip-to-content {
-      position: absolute;
-      top: -50px;
-      left: 10px;
-      background: #50031a;
-      color: white;
-      padding: 8px 15px;
-      z-index: 10000;
-      transition: top 0.3s;
-      border-radius: 0 0 5px 5px;
-      text-decoration: none;
-    }
-
-    .skip-to-content:focus {
-      top: 0;
-    }
-
-    /* ホバーエフェクトの改善 - タブの下線位置修正 */
-    .nav-menu ul li a {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .nav-menu ul li a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: -5px; /* 位置を調整 */
-      left: 50%;
-      background-color: white;
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    .nav-menu ul li a:hover::after,
-    .nav-menu ul li a.active::after {
-      width: 100%; /* 幅を調整 */
-    }
-
-    /* ボタン・リンクのホバーエフェクト改善 */
-    .section-button,
-    .contact button,
-    .lesson a {
-      position: relative;
-      overflow: hidden;
-      transition: all 0.3s ease;
-      z-index: 1;
-    }
-
-    .section-button::before,
-    .contact button::before,
-    .lesson a::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: rgba(255, 255, 255, 0.2);
-      transition: all 0.3s ease;
-      z-index: -1;
-    }
-
-    .section-button:hover::before,
-    .contact button:hover::before,
-    .lesson a:hover::before {
-      left: 0;
-    }
-
-    /* トップに戻るボタンの改善 */
-    .back-to-top {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: rgba(80, 3, 26, 0.9);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 99;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      animation: pulse 1.5s infinite alternate;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-        transform: scale(1);
-      }
-      100% {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        transform: scale(1.05);
-      }
-    }
-
-    .back-to-top:hover {
-      background-color: #50031a;
-      animation: none;
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    }
-
-    .back-to-top svg {
-      fill: white;
-      width: 24px;
-      height: 24px;
-      transition: transform 0.2s;
-    }
-
-    .back-to-top:hover svg {
-      transform: translateY(-2px);
-    }
-
-    /* フッター改善 */
-    footer {
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
-    }
-
-    /* ローディングアニメーション */
-    .page-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s, visibility 0.5s;
-    }
-
-    .loader-content {
-      text-align: center;
-    }
-
-    .loader-icon {
-      width: 50px;
-      height: 50px;
-      position: relative;
-      margin: 0 auto 15px;
-    }
-
-    .loader-icon:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      background-color: #50031a;
-      animation: loadingMove 1.5s infinite ease-in-out;
-    }
-
-    @keyframes loadingMove {
-      0%, 100% {
-        transform: rotate(-15deg);
-      }
-      50% {
-        transform: rotate(15deg);
-      }
-    }
-
-    .loader-text {
-      color: #50031a;
-      font-size: 16px;
-      letter-spacing: 2px;
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-    }
-
-    .page-loaded .page-loader {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    /* レッスンページ特有の改善 - 修正版 */
-    .lesson {
-      max-width: 900px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      padding: 40px;
-    }
-
-    .lesson:hover {
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .page-title {
-      position: relative;
-      padding-bottom: 15px;
-      margin-bottom: 30px;
-    }
-
-    .page-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 2px;
-      background-color: #50031a;
-    }
-
-    .lesson > p {
-      font-size: 1.15em;
-      line-height: 1.8;
-      margin-bottom: 25px;
-      text-align: center;
-    }
-
-    /* 注意事項を左寄せにしてフォントを小さく */
-    .lesson > p.note {
-      text-align: left;
-      font-size: 0.95em;
-      color: #555;
-      margin-bottom: 10px;
-      padding-left: 10px;
-    }
-
-    /* 見出しの縦線が二重になっている問題を修正 */
-    .lesson h3 {
-      color: #50031a;
-      font-size: 1.5em;
-      margin-top: 35px;
-      margin-bottom: 20px;
-      font-weight: 600;
-      position: relative;
-      padding-left: 15px;
-      border-left: none; /* styles.cssで指定されている可能性がある border-left を削除 */
-    }
-
-    .lesson h3::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 0;
-      transform: translateY(-50%);
-      width: 5px;
-      height: 70%;
-      background-color: #50031a;
-      border-radius: 3px;
-    }
-
-    /* コンタクトオプションのタイトルから縦棒を削除し、小さくする */
-    .contact-option-title {
-        font-size: 0.95em; /* フォントサイズ調整 */
-        font-weight: 600;
-        margin-bottom: 15px;
-        color: #333;
-        border-left: none !important;
-        padding-left: 0 !important;
-        min-height: 40px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        white-space: nowrap; /* 改行を防止 */
-    }
-
-    /* h3から継承される可能性のあるスタイルを上書き */
-    .contact-option-card h3.contact-option-title {
-        border-left: none !important;
-        padding-left: 0 !important;
-        text-align: center;
-        min-height: 40px; /* 最小の高さを設定 */
-    }
-
-    .contact-option-card h3.contact-option-title::before {
-      display: none !important; /* 縦棒用の疑似要素を非表示 */
-    }
-
-    .lesson ul {
-      margin-bottom: 25px;
-    }
-
-    .lesson ul li {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      margin-bottom: 15px;
-      font-size: 1.1em;
-    }
-
-    .lesson ul li:hover {
-      transform: translateX(5px);
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-    }
-
-    /* お申し込み方法をより目立たせる */
-    .contact-method-intro {
-      text-align: center;
-      font-size: 1.1em; /* サイズを少し小さく */
-      font-weight: 500;
-      color: #50031a;
-      margin: 30px 0 20px;
-      padding: 10px;
-      background-color: #f9f9f9;
-      border-radius: 5px;
-    }
-
-    /* コンタクトスタイルの修正 - CONTACTページに合わせる */
-    .contact-options {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-      flex-wrap: wrap;
-    }
-
-    .contact-option-card {
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      width: 300px; /* 幅を広げる */
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between; /* 内容を均等に配置 */
-      min-height: 200px; /* 最小の高さを設定して、カードの高さを揃える */
-      margin: 0 auto; /* カードを中央寄せ */
-    }
-
-    .contact-option-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 15px;
-      background-color: #f5f5f5;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-icon svg {
-      width: 30px;
-      height: 30px;
-      fill: #50031a;
-    }
-
-    .contact-option-description {
-      font-size: 0.95em;
-      margin-bottom: 15px;
-      line-height: 1.5;
-      color: #666;
-    }
-
-    /* リンクボタンスタイル - 元のサイズに戻す */
-    .contact-option-link {
-      display: inline-block;
-      background-color: #50031a;
-      color: white !important;
-      text-decoration: none;
-      padding: 8px 20px;
-      border-radius: 4px;
-      font-weight: 500;
-      font-size: 1em; /* 元のサイズに戻す */
-      transition: background-color 0.3s ease, transform 0.3s ease;
-      min-width: 120px;
-    }
-
-    .contact-option-link:hover {
-      background-color: #72052a;
-      transform: translateY(-2px);
-      color: white !important;
-      text-decoration: none;
-    }
-
-    .contact-notes {
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 30px;
-      font-size: 0.95em;
-      line-height: 1.6;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      border-left: 4px solid #50031a;
-    }
-
-    .contact-note {
-      padding: 20px;
-      background-color: #f9f9f9;
-      border-left: 4px solid #50031a;
-      margin-top: 30px;
-      font-size: 1em;
-      line-height: 1.6;
-      border-radius: 5px;
-    }
-
-    /* FAQセクションの修正 - 完全な書き換え */
-    .faq-section {
-      margin-top: 50px;
-      padding-top: 40px;
-      border-top: 1px solid #eee;
-    }
-
-    .faq-title {
-      text-align: center;
-      color: #50031a;
-      font-size: 1.8em;
-      margin-bottom: 30px;
-      position: relative;
-      padding-bottom: 15px;
-    }
-
-    .faq-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 60px;
-      height: 2px;
-      background-color: #50031a;
-    }
-
-    .faq-list {
-      list-style: none;
-      padding: 0;
-    }
-
-    /* 新しいFAQスタイル - ネイティブのdetails/summaryを使用 */
-    details.faq-item {
-      margin-bottom: 20px;
-      border: 1px solid #eee;
-      border-radius: 8px;
-      overflow: hidden;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-      transition: box-shadow 0.3s ease;
-    }
-
-    details.faq-item:hover {
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    details.faq-item summary {
-      padding: 15px 45px 15px 20px; /* 右側のパディングを増やして+マークとテキストが重ならないように */
-      background-color: #f9f9f9;
-      cursor: pointer;
-      font-weight: 600;
-      color: #333;
-      position: relative;
-      transition: background-color 0.3s ease;
-      list-style: none; /* Remove default arrow */
-    }
-
-    details.faq-item summary::-webkit-details-marker {
-      display: none;
-    }
-
-    details.faq-item summary::after {
-      content: '+';
-      position: absolute;
-      right: 20px;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 1.5em;
-      transition: transform 0.3s ease;
-    }
-
-    details.faq-item[open] summary {
-      background-color: #50031a;
-      color: white;
-    }
-
-    details.faq-item[open] summary::after {
-      content: '−';
-    }
-
-    details.faq-item .faq-content {
-      padding: 20px;
-      background-color: white;
-      line-height: 1.6;
-    }
-
-    /* レスポンシブ対応 */
-    @media screen and (max-width: 768px) {
-      .lesson {
-        padding: 25px;
-        max-width: 90%;
-      }
-
-      .lesson .page-title {
-        font-size: 1.8em;
-      }
-
-      .lesson > p {
-        font-size: 1.05em;
-      }
-
-      .lesson h3 {
-        font-size: 1.4em;
-        text-align: left;
-        padding-left: 15px;
-      }
-
-      .lesson h3::before {
-        left: 0;
-      }
-
-      .lesson ul li {
-        font-size: 0.95em;
-      }
-
-      .contact-options {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .contact-option-card {
-        width: 90%; /* 幅を調整 */
-        max-width: 280px; /* 最大幅を設定 */
-        padding: 15px; /* パディングを小さく */
-        min-height: 180px; /* 高さを少し減らす */
-      }
-      /* ボタンを下部に配置 */
-      .contact-option-card .contact-option-link {
-        margin-top: auto; /* 上部の余白を自動調整 */
-      }
-
-      /* お申し込み方法をより目立たせる */
-      .contact-method-intro {
-        font-size: 0.95em; /* スマホ表示時はさらに小さく */
-        padding: 8px;
-      }
-
-      /* コンタクトオプションのタイトル */
-      .contact-option-title {
-        font-size: 0.9em; /* スマホ表示時はさらに小さく */
-        min-height: 30px; /* 高さを調整 */
-      }
-
-      /* FAQ項目のスマホ対応 */
-      details.faq-item summary {
-        padding: 12px 40px 12px 15px; /* パディングを調整 */
-        font-size: 0.95em; /* フォントサイズ調整 */
-      }
-
-      details.faq-item .faq-content {
-        padding: 15px;
-        font-size: 0.9em;
-      }
-
-      /* ナビメニューのactive状態の下線 */
-      .nav-menu ul li a.active::after {
-        content: '';
-        position: absolute;
-        width: 70%; /* 下線の幅 */
-        height: 2px;
-        bottom: -5px;
-        left: 50%; /* 中央に配置 */
-        transform: translateX(-50%); /* 中央揃え */
-        background-color: white;
-        transition: all 0.3s ease;
-      }
-    }
+        /* アニメーションの追加 */
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+    
+        .fade-in {
+          animation: fadeInUp 0.6s ease forwards;
+        }
+    
+        .delay-1 { animation-delay: 0.1s; }
+        .delay-2 { animation-delay: 0.2s; }
+        .delay-3 { animation-delay: 0.3s; }
+        .delay-4 { animation-delay: 0.4s; }
+    
+        /* アクセシビリティの改善 */
+        .skip-to-content {
+          position: absolute;
+          top: -50px;
+          left: 10px;
+          background: #50031a;
+          color: white;
+          padding: 8px 15px;
+          z-index: 10000;
+          transition: top 0.3s;
+          border-radius: 0 0 5px 5px;
+          text-decoration: none;
+        }
+    
+        .skip-to-content:focus {
+          top: 0;
+        }
+    
+        /* ホバーエフェクトの改善 - タブの下線位置修正 */
+        .nav-menu ul li a {
+          position: relative;
+          transition: all 0.3s ease;
+        }
+    
+        .nav-menu ul li a::after {
+          content: '';
+          position: absolute;
+          width: 0;
+          height: 2px;
+          bottom: -5px; /* 位置を調整 */
+          left: 50%;
+          background-color: white;
+          transition: all 0.3s ease;
+          transform: translateX(-50%);
+        }
+    
+        .nav-menu ul li a:hover::after,
+        .nav-menu ul li a.active::after {
+          width: 100%; /* 幅を調整 */
+        }
+    
+        /* ボタン・リンクのホバーエフェクト改善 */
+        .section-button,
+        .contact button,
+        .lesson a {
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          z-index: 1;
+        }
+    
+        .section-button::before,
+        .contact button::before,
+        .lesson a::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: rgba(255, 255, 255, 0.2);
+          transition: all 0.3s ease;
+          z-index: -1;
+        }
+    
+        .section-button:hover::before,
+        .contact button:hover::before,
+        .lesson a:hover::before {
+          left: 0;
+        }
+    
+        /* トップに戻るボタンの改善 */
+        .back-to-top {
+          position: fixed;
+          bottom: 25px;
+          right: 25px;
+          background-color: rgba(80, 3, 26, 0.9);
+          color: white;
+          width: 50px;
+          height: 50px;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+          z-index: 99;
+          opacity: 0;
+          visibility: hidden;
+          transition: all 0.3s ease;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+        }
+    
+        .back-to-top.visible {
+          opacity: 1;
+          visibility: visible;
+          animation: pulse 1.5s infinite alternate;
+        }
+    
+        @keyframes pulse {
+          0% {
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+            transform: scale(1);
+          }
+          100% {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            transform: scale(1.05);
+          }
+        }
+    
+        .back-to-top:hover {
+          background-color: #50031a;
+          animation: none;
+          transform: translateY(-5px);
+          box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+        }
+    
+        .back-to-top svg {
+          fill: white;
+          width: 24px;
+          height: 24px;
+          transition: transform 0.2s;
+        }
+    
+        .back-to-top:hover svg {
+          transform: translateY(-2px);
+        }
+    
+        /* フッター改善 */
+        footer {
+          position: relative;
+          overflow: hidden;
+        }
+    
+        footer::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 2px;
+          background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+        }
+    
+        /* ローディングアニメーション */
+        .page-loader {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: #fff;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 9999;
+          transition: opacity 0.5s, visibility 0.5s;
+        }
+    
+        .loader-content {
+          text-align: center;
+        }
+    
+        .loader-icon {
+          width: 50px;
+          height: 50px;
+          position: relative;
+          margin: 0 auto 15px;
+        }
+    
+        .loader-icon:before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 2px;
+          height: 100%;
+          background-color: #50031a;
+          animation: loadingMove 1.5s infinite ease-in-out;
+        }
+    
+        @keyframes loadingMove {
+          0%, 100% {
+            transform: rotate(-15deg);
+          }
+          50% {
+            transform: rotate(15deg);
+          }
+        }
+    
+        .loader-text {
+          color: #50031a;
+          font-size: 16px;
+          letter-spacing: 2px;
+          font-family: 'M PLUS Rounded 1c', sans-serif;
+        }
+    
+        .page-loaded .page-loader {
+          opacity: 0;
+          visibility: hidden;
+        }
+    
+        /* レッスンページ特有の改善 - 修正版 */
+        .lesson {
+          max-width: 900px;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          padding: 40px;
+        }
+    
+        .lesson:hover {
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+    
+        .page-title {
+          position: relative;
+          padding-bottom: 15px;
+          margin-bottom: 30px;
+        }
+    
+        .page-title::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 80px;
+          height: 2px;
+          background-color: #50031a;
+        }
+    
+        .lesson > p {
+          font-size: 1.15em;
+          line-height: 1.8;
+          margin-bottom: 25px;
+          text-align: center;
+        }
+    
+        /* 注意事項を左寄せにしてフォントを小さく */
+        .lesson > p.note {
+          text-align: left;
+          font-size: 0.95em;
+          color: #555;
+          margin-bottom: 10px;
+          padding-left: 10px;
+        }
+    
+        /* 見出しの縦線が二重になっている問題を修正 */
+        .lesson h3 {
+          color: #50031a;
+          font-size: 1.5em;
+          margin-top: 35px;
+          margin-bottom: 20px;
+          font-weight: 600;
+          position: relative;
+          padding-left: 15px;
+          border-left: none; /* styles.cssで指定されている可能性がある border-left を削除 */
+        }
+    
+        .lesson h3::before {
+          content: '';
+          position: absolute;
+          top: 50%;
+          left: 0;
+          transform: translateY(-50%);
+          width: 5px;
+          height: 70%;
+          background-color: #50031a;
+          border-radius: 3px;
+        }
+    
+        /* コンタクトオプションのタイトルから縦棒を削除し、黒字にし、サイズを適切に調整 */
+        .contact-option-title {
+            font-size: 0.85em !important; /* フォントサイズ調整 */
+            font-weight: 600 !important;
+            margin-bottom: 15px;
+            color: #333 !important;
+            border-left: none !important;
+            padding-left: 0 !important;
+            min-height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            white-space: nowrap; /* 改行を防止 */
+        }
+    
+        /* h3から継承される可能性のあるスタイルを上書き */
+        .contact-option-card h3.contact-option-title {
+            border-left: none !important;
+            padding-left: 0 !important;
+            text-align: center;
+            min-height: 40px; /* 最小の高さを設定 */
+            font-size: 0.85em !important;
+        }
+    
+        .contact-option-card h3.contact-option-title::before {
+          display: none !important; /* 縦棒用の疑似要素を非表示 */
+        }
+    
+        /* アイコンサイズを調整 */
+        .contact-icon {
+          width: 70px !important;
+          height: 70px !important;
+          margin: 0 auto 15px;
+          background-color: #f5f5f5;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+    
+        .contact-icon svg {
+          width: 35px !important;
+          height: 35px !important;
+          fill: #50031a;
+        }
+    
+        .lesson ul {
+          margin-bottom: 25px;
+        }
+    
+        .lesson ul li {
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          margin-bottom: 15px;
+          font-size: 1.1em;
+        }
+    
+        .lesson ul li:hover {
+          transform: translateX(5px);
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+    
+        /* お申し込み方法をより目立たせる */
+        .contact-method-intro {
+          text-align: center;
+          font-size: 1.1em; /* サイズを少し小さく */
+          font-weight: 500;
+          color: #50031a;
+          margin: 30px 0 20px;
+          padding: 10px;
+          background-color: #f9f9f9;
+          border-radius: 5px;
+        }
+    
+        /* コンタクトスタイルの修正 - CONTACTページに合わせる */
+        .contact-options {
+          display: flex;
+          justify-content: center;
+          gap: 30px;
+          margin: 40px 0;
+          flex-wrap: wrap;
+        }
+    
+        .contact-option-card {
+          background-color: #fff;
+          border-radius: 8px;
+          padding: 25px;
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+          width: 300px; /* 幅を広げる */
+          text-align: center;
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between; /* 内容を均等に配置 */
+          min-height: 200px; /* 最小の高さを設定して、カードの高さを揃える */
+          margin: 0 auto; /* カードを中央寄せ */
+        }
+    
+        .contact-option-card:hover {
+          transform: translateY(-5px);
+          box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+    
+        .contact-option-description {
+          font-size: 0.95em;
+          margin-bottom: 15px;
+          line-height: 1.5;
+          color: #666;
+        }
+    
+        /* リンクボタンスタイル - 元のサイズに戻す */
+        .contact-option-link {
+          display: inline-block;
+          background-color: #50031a;
+          color: white !important;
+          text-decoration: none;
+          padding: 8px 20px;
+          border-radius: 4px;
+          font-weight: 500;
+          font-size: 1em; /* 元のサイズに戻す */
+          transition: background-color 0.3s ease, transform 0.3s ease;
+          min-width: 120px;
+        }
+    
+        .contact-option-link:hover {
+          background-color: #72052a;
+          transform: translateY(-2px);
+          color: white !important;
+          text-decoration: none;
+        }
+    
+        .contact-notes {
+          background-color: #f9f9f9;
+          padding: 20px;
+          border-radius: 8px;
+          margin-top: 30px;
+          font-size: 0.95em;
+          line-height: 1.6;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+          border-left: 4px solid #50031a;
+        }
+    
+        .contact-note {
+          padding: 20px;
+          background-color: #f9f9f9;
+          border-left: 4px solid #50031a;
+          margin-top: 30px;
+          font-size: 1em;
+          line-height: 1.6;
+          border-radius: 5px;
+        }
+    
+        /* FAQセクションの修正 - 完全な書き換え */
+        .faq-section {
+          margin-top: 50px;
+          padding-top: 40px;
+          border-top: 1px solid #eee;
+        }
+    
+        .faq-title {
+          text-align: center;
+          color: #50031a;
+          font-size: 1.8em;
+          margin-bottom: 30px;
+          position: relative;
+          padding-bottom: 15px;
+        }
+    
+        .faq-title::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 60px;
+          height: 2px;
+          background-color: #50031a;
+        }
+    
+        .faq-list {
+          list-style: none;
+          padding: 0;
+        }
+    
+        /* 新しいFAQスタイル - ネイティブのdetails/summaryを使用 */
+        details.faq-item {
+          margin-bottom: 20px;
+          border: 1px solid #eee;
+          border-radius: 8px;
+          overflow: hidden;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+          transition: box-shadow 0.3s ease;
+        }
+    
+        details.faq-item:hover {
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+    
+        details.faq-item summary {
+          padding: 15px 45px 15px 20px; /* 右側のパディングを増やして+マークとテキストが重ならないように */
+          background-color: #f9f9f9;
+          cursor: pointer;
+          font-weight: 600;
+          color: #333;
+          position: relative;
+          transition: background-color 0.3s ease;
+          list-style: none; /* Remove default arrow */
+        }
+    
+        details.faq-item summary::-webkit-details-marker {
+          display: none;
+        }
+    
+        details.faq-item summary::after {
+          content: '+';
+          position: absolute;
+          right: 20px;
+          top: 50%;
+          transform: translateY(-50%);
+          font-size: 1.5em;
+          transition: transform 0.3s ease;
+        }
+    
+        details.faq-item[open] summary {
+          background-color: #50031a;
+          color: white;
+        }
+    
+        details.faq-item[open] summary::after {
+          content: '−';
+        }
+    
+        details.faq-item .faq-content {
+          padding: 20px;
+          background-color: white;
+          line-height: 1.6;
+        }
+    
+        /* レスポンシブ対応 */
+        @media screen and (max-width: 768px) {
+          .lesson {
+            padding: 25px;
+            max-width: 90%;
+          }
+    
+          .lesson .page-title {
+            font-size: 1.8em;
+          }
+    
+          .lesson > p {
+            font-size: 1.05em;
+          }
+    
+          .lesson h3 {
+            font-size: 1.4em;
+            text-align: left;
+            padding-left: 15px;
+          }
+    
+          .lesson h3::before {
+            left: 0;
+          }
+    
+          .lesson ul li {
+            font-size: 0.95em;
+          }
+    
+          .contact-options {
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+          }
+    
+          .contact-option-card {
+            width: 90%; /* 幅を調整 */
+            max-width: 280px; /* 最大幅を設定 */
+            padding: 15px; /* パディングを小さく */
+            min-height: 180px; /* 高さを少し減らす */
+          }
+          /* ボタンを下部に配置 */
+          .contact-option-card .contact-option-link {
+            margin-top: auto; /* 上部の余白を自動調整 */
+          }
+    
+          /* お申し込み方法をより目立たせる */
+          .contact-method-intro {
+            font-size: 0.95em; /* スマホ表示時はさらに小さく */
+            padding: 8px;
+          }
+    
+          /* コンタクトオプションのタイトル */
+          .contact-option-title {
+            font-size: 0.85em !important; /* スマホ表示時調整 */
+            min-height: 30px; /* 高さを調整 */
+          }
+    
+          /* FAQ項目のスマホ対応 */
+          details.faq-item summary {
+            padding: 12px 40px 12px 15px; /* パディングを調整 */
+            font-size: 0.95em; /* フォントサイズ調整 */
+          }
+    
+          details.faq-item .faq-content {
+            padding: 15px;
+            font-size: 0.9em;
+          }
+    
+          /* ナビメニューのactive状態の下線 */
+          .nav-menu ul li a.active::after {
+            content: '';
+            position: absolute;
+            width: 70%; /* 下線の幅 */
+            height: 2px;
+            bottom: -5px;
+            left: 50%; /* 中央に配置 */
+            transform: translateX(-50%); /* 中央揃え */
+            background-color: white;
+            transition: all 0.3s ease;
+          }
+        }
     </style>
 
     <!-- 共通のJavaScript -->
     <script>
     // 構造化データの追加（SEO対策）
     const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "MusicLesson",
-      "name": "チェロレッスン - 髙木優帆",
-      "description": "初心者から上級者まで、それぞれのレベルに合わせたチェロレッスンを提供しています。",
-      "provider": {
+        "@context": "https://schema.org",
+        "@type": "MusicLesson",
+        "name": "チェロレッスン - 髙木優帆",
+        "description": "初心者から上級者まで、それぞれのレベルに合わせたチェロレッスンを提供しています。",
+        "provider": {
         "@type": "Person",
         "name": "髙木優帆",
         "jobTitle": "チェリスト",
         "image": "https://yourdomain.com/images/profile.jpg",
         "description": "東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者"
-      },
-      "offers": {
+        },
+        "offers": {
         "@type": "Offer",
         "price": "7000",
         "priceCurrency": "JPY"
-      },
-      "educationalLevel": "初心者から上級者まで",
-      "teaches": "チェロ演奏"
+        },
+        "educationalLevel": "初心者から上級者まで",
+        "teaches": "チェロ演奏"
     };
 
     // DOMが読み込まれたらJSONを追加
     document.addEventListener('DOMContentLoaded', function() {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(jsonLd);
-      document.head.appendChild(script);
-      
-      // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, details.faq-item');
-      animElements.forEach((element, index) => {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(jsonLd);
+        document.head.appendChild(script);
+        
+        // アニメーション要素にクラスを追加
+        const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, details.faq-item');
+        animElements.forEach((element, index) => {
         element.classList.add('fade-in');
         element.classList.add(`delay-${index % 4 + 1}`);
-      });
-      
-      // ページ読み込み完了時の処理
-      setTimeout(function() {
+        });
+        
+        // ページ読み込み完了時の処理
+        setTimeout(function() {
         document.body.classList.add('page-loaded');
-      }, 800);
+        }, 800);
     });
     </script>
 </head>
@@ -775,7 +776,7 @@
                             <svg viewBox="0 0 219.376 219.376" fill="#000000">
                                 <path d="M127.518,0H40.63c-6.617,0-12,5.383-12,12v195.376c0,6.617,5.383,12,12,12h138.117c6.617,0,12-5.383,12-12V59.227
                                 c0-3.204-1.248-6.217-3.514-8.484l-51.364-47.36C133.619,1.2,130.661,0,127.518,0z M175.747,204.376H43.63V15h71.768v40.236
-                                c0,8.885,7.225,16.114,16.105,16.114h44.244V204.376z M131.503,56.35c-0.609,0-1.105-0.5-1.105-1.114v-31.58l34.968,32.693H131.503z
+                                c0,8.885,7.225,16.114,16.105,16.114h44.244V204.376z M131.503,56.35c-0.609,0-1.105-0.5-1.105-1.114v-31.58l34.968 32.693H131.503z
                                 M65.499,97.805c-5.14,0-9.321,4.182-9.321,9.321c0,5.14,4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321
                                 C74.82,101.987,70.638,97.805,65.499,97.805z M82.499,99.627h79.5v15h-79.5V99.627z M65.499,127.805
                                 c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321S70.638,127.805,65.499,127.805z

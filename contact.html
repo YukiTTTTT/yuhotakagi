@@ -21,410 +21,426 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
-
     <!-- 共通のスタイル改善 -->
     <style>
-    /* アニメーションの追加 */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
+      /* アニメーションの追加 */
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
       }
-      to {
-        opacity: 1;
-        transform: translateY(0);
+  
+      .fade-in {
+        animation: fadeInUp 0.6s ease forwards;
       }
-    }
-
-    .fade-in {
-      animation: fadeInUp 0.6s ease forwards;
-    }
-
-    .delay-1 { animation-delay: 0.1s; }
-    .delay-2 { animation-delay: 0.2s; }
-    .delay-3 { animation-delay: 0.3s; }
-    .delay-4 { animation-delay: 0.4s; }
-
-    /* アクセシビリティの改善 */
-    .skip-to-content {
-      position: absolute;
-      top: -50px;
-      left: 10px;
-      background: #50031a;
-      color: white;
-      padding: 8px 15px;
-      z-index: 10000;
-      transition: top 0.3s;
-      border-radius: 0 0 5px 5px;
-      text-decoration: none;
-    }
-
-    .skip-to-content:focus {
-      top: 0;
-    }
-
-    /* ホバーエフェクトの改善 */
-    .nav-menu ul li a {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .nav-menu ul li a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 50%;
-      background-color: white;
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    .nav-menu ul li a:hover::after,
-    .nav-menu ul li a.active::after {
-      width: 70%;
-    }
-
-    /* トップに戻るボタンの改善 */
-    .back-to-top {
-      position: fixed;
-      bottom: 25px;
-      right: 25px;
-      background-color: rgba(80, 3, 26, 0.9);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      z-index: 99;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-    }
-
-    .back-to-top.visible {
-      opacity: 1;
-      visibility: visible;
-      animation: pulse 1.5s infinite alternate;
-    }
-
-    @keyframes pulse {
-      0% {
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
-        transform: scale(1);
-      }
-      100% {
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
-        transform: scale(1.05);
-      }
-    }
-
-    .back-to-top:hover {
-      background-color: #50031a;
-      animation: none;
-      transform: translateY(-5px);
-      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    }
-
-    .back-to-top svg {
-      fill: white;
-      width: 24px;
-      height: 24px;
-      transition: transform 0.2s;
-    }
-
-    .back-to-top:hover svg {
-      transform: translateY(-2px);
-    }
-
-    /* フッター改善 */
-    footer {
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
-    }
-
-    /* ローディングアニメーション */
-    .page-loader {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      z-index: 9999;
-      transition: opacity 0.5s, visibility 0.5s;
-    }
-
-    .loader-content {
-      text-align: center;
-    }
-
-    .loader-icon {
-      width: 50px;
-      height: 50px;
-      position: relative;
-      margin: 0 auto 15px;
-    }
-
-    .loader-icon:before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 2px;
-      height: 100%;
-      background-color: #50031a;
-      animation: loadingMove 1.5s infinite ease-in-out;
-    }
-
-    @keyframes loadingMove {
-      0%, 100% {
-        transform: rotate(-15deg);
-      }
-      50% {
-        transform: rotate(15deg);
-      }
-    }
-
-    .loader-text {
-      color: #50031a;
-      font-size: 16px;
-      letter-spacing: 2px;
-      font-family: 'M PLUS Rounded 1c', sans-serif;
-    }
-
-    .page-loaded .page-loader {
-      opacity: 0;
-      visibility: hidden;
-    }
-
-    /* コンタクトページ特有の改善 */
-    .contact {
-      max-width: 800px;
-      margin: 30px auto;
-      padding: 40px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .contact:hover {
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .page-title {
-      position: relative;
-      padding-bottom: 15px;
-      margin-bottom: 30px;
-      text-align: center;
-    }
-
-    .page-title::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 80px;
-      height: 2px;
-      background-color: #50031a;
-    }
-
-    .contact p {
-      font-size: 1.1em;
-      line-height: 1.6;
-      margin-bottom: 20px;
-    }
-
-    .contact-intro {
-      text-align: center;
-      max-width: 600px;
-      margin: 0 auto 30px;
-      font-size: 0.95rem; /* フォントサイズを小さく */
-      line-height: 1.6;
-      color: #333;
-    }
-
-    .google-form {
-      position: relative;
-      padding-bottom: 600px;
-      height: 0;
-      overflow: hidden;
-      max-width: 100%;
-      margin: 30px auto;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .google-form:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-    }
-
-    .google-form iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: none;
-      border-radius: 8px;
-    }
-
-    .contact-notes {
-      background-color: #f9f9f9;
-      padding: 20px;
-      border-radius: 8px;
-      margin-top: 30px;
-      font-size: 0.95em;
-      line-height: 1.6;
-      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-      border-left: 4px solid #50031a;
-      text-align: left; /* 左寄せに変更 */
-    }
-
-    .contact-notes p {
-      margin-bottom: 10px;
-      font-size: 0.95em;
-      text-align: left; /* 各段落も左寄せに */
-    }
-
-    .contact-options {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      margin: 40px 0;
-      flex-wrap: wrap;
-    }
-
-    .contact-option-card {
-      background-color: #fff;
-      border-radius: 8px;
-      padding: 25px;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-      width: 300px; /* 幅を広げる */
-      text-align: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      min-height: 200px;
-      margin: 0 auto; /* カードを中央寄せ */
-    }
-
-    .contact-option-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .contact-icon {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 15px;
-      background-color: #f5f5f5;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .contact-icon svg {
-      width: 30px;
-      height: 30px;
-      fill: #50031a;
-    }
-
-    .contact-option-title {
-      font-size: 0.95em; /* フォントサイズ調整 */
-      font-weight: 600;
-      margin-bottom: 10px;
-      color: #333;
-      white-space: nowrap; /* 改行を防止 */
-    }
-
-    .contact-option-description {
-      font-size: 0.95em;
-      margin-bottom: 15px;
-      line-height: 1.5;
-      color: #666;
-    }
-
-    .contact-option-link {
-      display: inline-block;
-      background-color: #50031a;
-      color: white;
-      text-decoration: none;
-      padding: 8px 20px;
-      border-radius: 4px;
-      font-weight: 500;
-      transition: background-color 0.3s ease, transform 0.3s ease;
-    }
-
-    .contact-option-link:hover {
-      background-color: #72052a;
-      transform: translateY(-2px);
-      color: white;
-      text-decoration: none;
-    }
-
-    /* モバイル対応 */
-    @media screen and (max-width: 768px) {
-      .contact {
-        padding: 30px 20px;
-      }
-
-      .contact-options {
-        flex-direction: column;
-        align-items: center;
-        gap: 20px;
-      }
-
-      .contact-option-card {
-        width: 90%; /* 幅を調整 */
-        max-width: 280px; /* 最大幅を設定 */
-        padding: 15px; /* パディングを小さく */
-        min-height: 180px; /* 高さを少し減らす */
-      }
-
-      .google-form {
-        padding-bottom: 500px;
-      }
-      
-      /* ナビメニューのactive状態の下線 */
-      .nav-menu ul li a.active::after {
-        content: '';
+  
+      .delay-1 { animation-delay: 0.1s; }
+      .delay-2 { animation-delay: 0.2s; }
+      .delay-3 { animation-delay: 0.3s; }
+      .delay-4 { animation-delay: 0.4s; }
+  
+      /* アクセシビリティの改善 */
+      .skip-to-content {
         position: absolute;
-        width: 70%; /* 下線の幅 */
-        height: 2px;
-        bottom: -5px;
-        left: 50%; /* 中央に配置 */
-        transform: translateX(-50%); /* 中央揃え */
-        background-color: white;
+        top: -50px;
+        left: 10px;
+        background: #50031a;
+        color: white;
+        padding: 8px 15px;
+        z-index: 10000;
+        transition: top 0.3s;
+        border-radius: 0 0 5px 5px;
+        text-decoration: none;
+      }
+  
+      .skip-to-content:focus {
+        top: 0;
+      }
+  
+      /* ホバーエフェクトの改善 */
+      .nav-menu ul li a {
+        position: relative;
         transition: all 0.3s ease;
       }
-      
-      /* コンタクトオプションのタイトル */
-      .contact-option-title {
-        font-size: 0.9em; /* スマホ表示時はさらに小さく */
+  
+      .nav-menu ul li a::after {
+        content: '';
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: 0;
+        left: 50%;
+        background-color: white;
+        transition: all 0.3s ease;
+        transform: translateX(-50%);
       }
-    }
+  
+      .nav-menu ul li a:hover::after,
+      .nav-menu ul li a.active::after {
+        width: 70%;
+      }
+  
+      /* トップに戻るボタンの改善 */
+      .back-to-top {
+        position: fixed;
+        bottom: 25px;
+        right: 25px;
+        background-color: rgba(80, 3, 26, 0.9);
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      }
+  
+      .back-to-top.visible {
+        opacity: 1;
+        visibility: visible;
+        animation: pulse 1.5s infinite alternate;
+      }
+  
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+          transform: scale(1);
+        }
+        100% {
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+          transform: scale(1.05);
+        }
+      }
+  
+      .back-to-top:hover {
+        background-color: #50031a;
+        animation: none;
+        transform: translateY(-5px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      }
+  
+      .back-to-top svg {
+        fill: white;
+        width: 24px;
+        height: 24px;
+        transition: transform 0.2s;
+      }
+  
+      .back-to-top:hover svg {
+        transform: translateY(-2px);
+      }
+  
+      /* フッター改善 */
+      footer {
+        position: relative;
+        overflow: hidden;
+      }
+  
+      footer::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
+      }
+  
+      /* ローディングアニメーション */
+      .page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s, visibility 0.5s;
+      }
+  
+      .loader-content {
+        text-align: center;
+      }
+  
+      .loader-icon {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        margin: 0 auto 15px;
+      }
+  
+      .loader-icon:before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 2px;
+        height: 100%;
+        background-color: #50031a;
+        animation: loadingMove 1.5s infinite ease-in-out;
+      }
+  
+      @keyframes loadingMove {
+        0%, 100% {
+          transform: rotate(-15deg);
+        }
+        50% {
+          transform: rotate(15deg);
+        }
+      }
+  
+      .loader-text {
+        color: #50031a;
+        font-size: 16px;
+        letter-spacing: 2px;
+        font-family: 'M PLUS Rounded 1c', sans-serif;
+      }
+  
+      .page-loaded .page-loader {
+        opacity: 0;
+        visibility: hidden;
+      }
+  
+      /* コンタクトページ特有の改善 */
+      .contact {
+        max-width: 800px;
+        margin: 30px auto;
+        padding: 40px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+  
+      .contact:hover {
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+  
+      .page-title {
+        position: relative;
+        padding-bottom: 15px;
+        margin-bottom: 30px;
+        text-align: center;
+      }
+  
+      .page-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 2px;
+        background-color: #50031a;
+      }
+  
+      .contact p {
+        font-size: 1.1em;
+        line-height: 1.6;
+        margin-bottom: 20px;
+      }
+  
+      .contact-intro {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto 30px;
+        font-size: 0.95rem; /* フォントサイズを小さく */
+        line-height: 1.6;
+        color: #333;
+      }
+  
+      .google-form {
+        position: relative;
+        padding-bottom: 600px;
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        margin: 30px auto;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+  
+      .google-form:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+  
+      .google-form iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 8px;
+      }
+  
+      .contact-notes {
+        background-color: #f9f9f9;
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 30px;
+        font-size: 0.95em;
+        line-height: 1.6;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        border-left: 4px solid #50031a;
+        text-align: left; /* 左寄せに変更 */
+      }
+  
+      .contact-notes p {
+        margin-bottom: 10px;
+        font-size: 0.95em;
+        text-align: left; /* 各段落も左寄せに */
+      }
+  
+      .contact-options {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 40px 0;
+        flex-wrap: wrap;
+      }
+  
+      .contact-option-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 25px;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        width: 300px; /* 幅を広げる */
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 200px;
+        margin: 0 auto; /* カードを中央寄せ */
+      }
+  
+      .contact-option-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      }
+  
+      /* アイコンサイズを調整 */
+      .contact-icon {
+        width: 70px !important;
+        height: 70px !important;
+        margin: 0 auto 15px;
+        background-color: #f5f5f5;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+  
+      .contact-icon svg {
+        width: 35px !important;
+        height: 35px !important;
+        fill: #50031a;
+      }
+  
+      /* コンタクトオプションのタイトルから縦棒を削除し、黒字にし、サイズを適切に調整 */
+      .contact-option-title {
+        font-size: 0.9em !important; /* フォントサイズを調整 */
+        font-weight: 600 !important;
+        margin-bottom: 10px;
+        color: #333 !important;
+        white-space: nowrap; /* 改行を防止 */
+        border-left: none !important;
+        padding-left: 0 !important;
+      }
+  
+      /* h3から継承される可能性のあるスタイルを上書き */
+      .contact-option-card h3.contact-option-title {
+        border-left: none !important;
+        padding-left: 0 !important;
+        text-align: center;
+        min-height: 40px; /* 最小の高さを設定 */
+        font-size: 0.9em !important;
+      }
+  
+      .contact-option-card h3.contact-option-title::before {
+        display: none !important; /* 縦棒用の疑似要素を非表示 */
+      }
+  
+      .contact-option-description {
+        font-size: 0.95em;
+        margin-bottom: 15px;
+        line-height: 1.5;
+        color: #666;
+      }
+  
+      .contact-option-link {
+        display: inline-block;
+        background-color: #50031a;
+        color: white !important;
+        text-decoration: none;
+        padding: 8px 20px;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+      }
+  
+      .contact-option-link:hover {
+        background-color: #72052a;
+        transform: translateY(-2px);
+        color: white !important;
+        text-decoration: none;
+      }
+  
+      /* モバイル対応 */
+      @media screen and (max-width: 768px) {
+        .contact {
+          padding: 30px 20px;
+        }
+  
+        .contact-options {
+          flex-direction: column;
+          align-items: center;
+          gap: 20px;
+        }
+  
+        .contact-option-card {
+          width: 90%; /* 幅を調整 */
+          max-width: 280px; /* 最大幅を設定 */
+          padding: 15px; /* パディングを小さく */
+          min-height: 180px; /* 高さを少し減らす */
+        }
+  
+        .google-form {
+          padding-bottom: 500px;
+        }
+        
+        /* ナビメニューのactive状態の下線 */
+        .nav-menu ul li a.active::after {
+          content: '';
+          position: absolute;
+          width: 70%; /* 下線の幅 */
+          height: 2px;
+          bottom: -5px;
+          left: 50%; /* 中央に配置 */
+          transform: translateX(-50%); /* 中央揃え */
+          background-color: white;
+          transition: all 0.3s ease;
+        }
+        
+        /* コンタクトオプションのタイトル */
+        .contact-option-title {
+          font-size: 0.9em !important; /* スマホ表示時調整 */
+        }
+      }
     </style>
 
     <!-- 共通のJavaScript最適化 -->
@@ -469,101 +485,71 @@
     </script>
 </head>
 <body class="contact-page">
-    <!-- スキップリンク（アクセシビリティ向上） -->
-    <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
+  <!-- スキップリンク（アクセシビリティ向上） -->
+  <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
 
-    <!-- ローディングアニメーション -->
-    <div class="page-loader">
-      <div class="loader-content">
-        <div class="loader-icon"></div>
-        <div class="loader-text">Loading...</div>
-      </div>
+  <!-- ローディングアニメーション -->
+  <div class="page-loader">
+    <div class="loader-content">
+      <div class="loader-icon"></div>
+      <div class="loader-text">Loading...</div>
     </div>
+  </div>
 
-    <div class="wrapper">
-        <header>
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav class="nav-menu">
-                <div class="close-menu">×</div>
-                <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="profile.html">PROFILE</a></li>
-                    <li><a href="concerts.html">CONCERTS</a></li>
-                    <li><a href="lesson.html">LESSON</a></li>
-                    <li><a href="contact.html" class="active">CONTACT</a></li>
-                </ul>
-                <div class="bottom-close-button">CLOSE</div>
-            </nav>
-        </header>
+  <div class="wrapper">
+      <header>
+          <div class="hamburger-menu">
+              <span></span>
+              <span></span>
+              <span></span>
+          </div>
+          <nav class="nav-menu">
+              <div class="close-menu">×</div>
+              <ul>
+                  <li><a href="index.html">HOME</a></li>
+                  <li><a href="profile.html">PROFILE</a></li>
+                  <li><a href="concerts.html">CONCERTS</a></li>
+                  <li><a href="lesson.html">LESSON</a></li>
+                  <li><a href="contact.html" class="active">CONTACT</a></li>
+              </ul>
+              <div class="bottom-close-button">CLOSE</div>
+          </nav>
+      </header>
 
-        <main id="main-content">
-            <section class="contact">
-                <h2 class="page-title">CONTACT</h2>
-                <style>
-                  /* コンタクト画面の導入テキスト用スタイル */
-                  .contact-intro {
-                    text-align: center;
-                    max-width: 600px;
-                    margin: 0 auto 30px;
-                    font-size: 0.95rem; /* 少し小さくしました */
-                    line-height: 1.6;
-                    color: #333; /* 黒に近い色を維持 */
-                  }
+      <main id="main-content">
+          <section class="contact">
+              <h2 class="page-title">CONTACT</h2>
+              <div class="contact-intro">
+                  <p>お問い合わせは、以下のフォームやメールなどで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
+              </div>
+
+              <!-- コンタクトオプションの追加 -->
+              <div class="contact-options">
+                  <div class="contact-option-card">
+                      <div class="contact-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                              <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
+                          </svg>
+                      </div>
+                      <h3 class="contact-option-title">メールでのお問い合わせ</h3>
+                      <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
+                  </div>
                   
-                  /* リンクボタンの白文字スタイル */
-                  .contact-option-link {
-                    display: inline-block;
-                    background-color: #50031a;
-                    color: #ffffff !important; /* 白色を強制 */
-                    text-decoration: none;
-                    padding: 8px 20px;
-                    border-radius: 4px;
-                    font-weight: 500;
-                    transition: background-color 0.3s ease, transform 0.3s ease;
-                  }
-                  
-                  .contact-option-link:hover {
-                    background-color: #72052a;
-                    transform: translateY(-2px);
-                    color: #ffffff !important; /* ホバー時も白色を維持 */
-                    text-decoration: none;
-                  }
-                  </style>
-                <div class="contact-intro">
-                    <p>お問い合わせは、以下のフォームやメールなどで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
-                </div>
-
-                <!-- コンタクトオプションの追加 -->
-                <div class="contact-options">
-                    <div class="contact-option-card">
-                        <div class="contact-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                            </svg>
-                        </div>
-                        <h3 class="contact-option-title">メールでのお問い合わせ</h3>
-                        <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
-                    </div>
-                    
-                    <div class="contact-option-card">
-                        <div class="contact-icon">
-                          <svg viewBox="0 0 219.376 219.376" fill="#000000">
-                            <path d="M127.518,0H40.63c-6.617,0-12,5.383-12,12v195.376c0,6.617,5.383,12,12,12h138.117c6.617,0,12-5.383,12-12V59.227
-                            c0-3.204-1.248-6.217-3.514-8.484l-51.364-47.36C133.619,1.2,130.661,0,127.518,0z M175.747,204.376H43.63V15h71.768v40.236
-                            c0,8.885,7.225,16.114,16.105,16.114h44.244V204.376z M131.503,56.35c-0.609,0-1.105-0.5-1.105-1.114v-31.58l34.968,32.693H131.503z
-                            M65.499,97.805c-5.14,0-9.321,4.182-9.321,9.321c0,5.14,4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321
-                            C74.82,101.987,70.638,97.805,65.499,97.805z M82.499,99.627h79.5v15h-79.5V99.627z M65.499,127.805
-                            c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321S70.638,127.805,65.499,127.805z
-                            M82.499,129.626h79.5v15h-79.5V129.626z M65.499,157.805c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321
-                            c5.14,0,9.321-4.182,9.321-9.321S70.638,157.805,65.499,157.805z M82.499,159.626h79.5v15h-79.5V159.626z"/>
-                        </svg>
-                        </div>
-                        <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">Googleフォームへ</a>
+                  <div class="contact-option-card">
+                      <div class="contact-icon">
+                        <svg viewBox="0 0 219.376 219.376" fill="#000000">
+                          <path d="M127.518,0H40.63c-6.617,0-12,5.383-12,12v195.376c0,6.617,5.383,12,12,12h138.117c6.617,0,12-5.383,12-12V59.227
+                          c0-3.204-1.248-6.217-3.514-8.484l-51.364-47.36C133.619,1.2,130.661,0,127.518,0z M175.747,204.376H43.63V15h71.768v40.236
+                          c0,8.885,7.225,16.114,16.105,16.114h44.244V204.376z M131.503,56.35c-0.609,0-1.105-0.5-1.105-1.114v-31.58l34.968 32.693H131.503z
+                          M65.499,97.805c-5.14,0-9.321,4.182-9.321,9.321c0,5.14,4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321
+                          C74.82,101.987,70.638,97.805,65.499,97.805z M82.499,99.627h79.5v15h-79.5V99.627z M65.499,127.805
+                          c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321S70.638,127.805,65.499,127.805z
+                          M82.499,129.626h79.5v15h-79.5V129.626z M65.499,157.805c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321
+                          c5.14,0,9.321-4.182,9.321-9.321S70.638,157.805,65.499,157.805z M82.499,159.626h79.5v15h-79.5V159.626z"/>
+                      </svg>
+                      </div>
+                      <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
+                      <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">Googleフォームへ</a>
                     </div>
                 </div>
                 
