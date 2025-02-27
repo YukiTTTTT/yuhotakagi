@@ -499,7 +499,7 @@ ul, ol {
 
 /* コンタクトオプションのタイトル */
 .contact-option-title {
-    font-size: 0.85em; /* フォントサイズ調整 */
+    font-size: 0.70em; /* フォントサイズ調整 */
     font-weight: 600;
     margin-bottom: 15px;
     color: #333;
