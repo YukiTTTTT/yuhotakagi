@@ -1628,6 +1628,8 @@ h3.contact-option-title,
         
         .hero-text {
             padding-top: 15vh;
+        }
+        .hero-text {
             transform: translateY(-8vh); /* 上に15vh移動させる - 必要に応じて調整 */
         }
         
