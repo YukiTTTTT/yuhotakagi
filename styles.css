@@ -499,7 +499,7 @@ ul, ol {
 
 /* コンタクトオプションのタイトル */
 .contact-option-title {
-    font-size: 0.95em; /* フォントサイズ調整 */
+    font-size: 0.85em; /* フォントサイズ調整 */
     font-weight: 600;
     margin-bottom: 15px;
     color: #333;
@@ -881,8 +881,8 @@ details.faq-item summary::after {
 }
 
 .contact-icon {
-    width: 60px;
-    height: 60px;
+    width: 75px;
+    height: 75px;
     margin: 0 auto 15px;
     background-color: #f5f5f5;
     border-radius: 50%;
@@ -892,8 +892,8 @@ details.faq-item summary::after {
 }
 
 .contact-icon svg {
-    width: 30px;
-    height: 30px;
+    width: 35px;
+    height: 35px;
     fill: #50031a;
 }
 
