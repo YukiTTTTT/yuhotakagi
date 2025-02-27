@@ -967,7 +967,7 @@ details.faq-item summary::after {
     
     .hero-text {
         padding-top: 25vh; /* モバイルでは上部余白を小さく */
-        transform: translateY(-13vh);
+        transform: translateY(-9vh);
     }
     
     .hero-text h1 {
