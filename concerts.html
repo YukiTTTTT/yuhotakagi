@@ -8,10 +8,11 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css" rel="stylesheet">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <link rel="canonical" href="https://yuhotakagi.com/concerts.html">
     
     <!-- メタデータの改善 (SEO対策) -->
-    <meta name="description" content="チェリスト髙木優帆の演奏会情報。今後のコンサートスケジュールや過去の公演をご紹介します。">
-    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, コンサート, 演奏会, スケジュール, クラシック">
+    <meta name="description" content="チェリスト髙木優帆の演奏会情報。今後の公演予定や過去の演奏会のスケジュールをご紹介します。クラシック音楽、チェロコンサート、室内楽公演などの情報をお届けします。">
+    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, コンサート, 演奏会, スケジュール, クラシック, 室内楽, リサイタル, 東京, 神奈川">
     <meta property="og:title" content="コンサート情報 | 髙木優帆 Yuho Takagi-Cellist 公式サイト">
     <meta property="og:description" content="チェリスト髙木優帆の演奏会情報。今後のコンサートスケジュールや過去の公演をご紹介します。">
     <meta property="og:image" content="https://yuhotakagi.com/images/ogp.jpg">
@@ -255,8 +256,8 @@
     }
 
     .concert-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
     }
 
     .concert-date {
@@ -266,6 +267,25 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* 日付表示のアクセント */
+    .concert-date::before {
+      content: '';
+      position: absolute;
+      top: -5px;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background-color: #50031a;
+      transform: translateX(-100%);
+      transition: transform 0.3s ease;
+    }
+    
+    .concert-item:hover .concert-date::before {
+      transform: translateX(0);
     }
 
     .concert-info {
@@ -379,8 +399,42 @@
     .filter-button:hover:not(.active) {
       background-color: #e0e0e0;
     }
-
     
+    /* カレンダー追加ボタン */
+    .calendar-button {
+      display: inline-flex;
+      align-items: center;
+      background-color: #4285F4;
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      border-radius: 4px;
+      font-size: 0.9em;
+      font-weight: 500;
+      margin-top: 12px;
+      transition: background-color 0.3s, transform 0.3s;
+    }
+    
+    .calendar-button:hover {
+      background-color: #3367D6;
+      transform: translateY(-2px);
+      text-decoration: none;
+      color: white;
+    }
+    
+    .calendar-button svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 6px;
+      fill: white;
+    }
+    
+    .concert-actions {
+      margin-top: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
 
     /* レスポンシブ調整 */
     @media screen and (max-width: 768px) {
@@ -396,45 +450,68 @@
       .concert-info h3 {
         font-size: 1.3em;
       }
+      
+      .share-button {
+        width: 40px;  /* サイズを大きく */
+        height: 40px;
+      }
+      
+      .share-button svg {
+        width: 20px;
+        height: 20px;
+      }
     }
     </style>
 
     <!-- 共通のJavaScript最適化 -->
     <script>
     // 構造化データの追加（SEO対策）
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "MusicEvent",
-      "name": "藤森洸一×高木優帆 Cello×Cello Duo Concert",
-      "performer": {
-        "@type": "Person",
-        "name": "髙木優帆"
-      },
-      "startDate": "2025-03-29T13:30+09:00",
-      "location": {
-        "@type": "Place",
-        "name": "代官山 Church Hall",
-        "address": {
-          "@type": "PostalAddress",
-          "addressLocality": "東京都",
-          "addressRegion": "渋谷区"
-        }
-      },
-      "offers": {
-        "@type": "Offer",
-        "price": "3500",
-        "priceCurrency": "JPY",
-        "availability": "https://schema.org/InStock",
-        "url": "mailto:koichi6230@gmail.com"
-      }
-    };
-
-    // DOMが読み込まれたらJSONを追加
     document.addEventListener('DOMContentLoaded', function() {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(jsonLd);
-      document.head.appendChild(script);
+      // コンサート情報から構造化データを動的に生成する関数
+      function generateConcertJsonLd() {
+        const concertItems = document.querySelectorAll('.concert-item');
+        
+        concertItems.forEach((item, index) => {
+          const dateText = item.querySelector('.concert-date').textContent;
+          const title = item.querySelector('h3').textContent.trim();
+          const venueElement = item.querySelector('p:nth-child(3)');
+          const venue = venueElement ? venueElement.textContent.replace('会場：', '').trim() : '';
+          
+          // 日付を ISO 形式に変換
+          const dateParts = dateText.split('/');
+          if (dateParts.length >= 3) {
+            const year = dateParts[0];
+            const month = dateParts[1].padStart(2, '0');
+            const day = dateParts[2].padStart(2, '0');
+            const isoDate = `${year}-${month}-${day}T13:00:00+09:00`; // デフォルト時間を13:00に設定
+            
+            const eventData = {
+              "@context": "https://schema.org",
+              "@type": "MusicEvent",
+              "name": title,
+              "performer": {
+                "@type": "Person",
+                "name": "髙木優帆"
+              },
+              "startDate": isoDate,
+              "location": {
+                "@type": "Place",
+                "name": venue,
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "東京都"
+                }
+              }
+            };
+            
+            // Script要素を作成して挿入
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(eventData);
+            document.head.appendChild(script);
+          }
+        });
+      }
       
       // アニメーション要素にクラスを追加
       const animElements = document.querySelectorAll('.concert-item');
@@ -446,42 +523,9 @@
       // ページ読み込み完了時の処理
       setTimeout(function() {
         document.body.classList.add('page-loaded');
+        // 構造化データを生成
+        generateConcertJsonLd();
       }, 800);
-      
-      // フィルターボタンの機能を実装
-      const filterButtons = document.querySelectorAll('.filter-button');
-      const concertItems = document.querySelectorAll('.concert-item');
-      
-      filterButtons.forEach(button => {
-        button.addEventListener('click', function() {
-          // アクティブクラスをトグル
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          this.classList.add('active');
-          
-          const filter = this.getAttribute('data-filter');
-          
-          // コンサートアイテムをフィルタリング
-          if (filter === 'all') {
-            concertItems.forEach(item => {
-              item.style.display = 'flex';
-            });
-          } else {
-            const now = new Date();
-            concertItems.forEach(item => {
-              const dateString = item.querySelector('.concert-date').textContent;
-              const concertDate = new Date(dateString);
-              
-              if (filter === 'upcoming' && concertDate >= now) {
-                item.style.display = 'flex';
-              } else if (filter === 'past' && concertDate < now) {
-                item.style.display = 'flex';
-              } else {
-                item.style.display = 'none';
-              }
-            });
-          }
-        });
-      });
     });
     </script>
 </head>
@@ -541,6 +585,15 @@
                             <p>一般：3,500円 学生：2,000円</p>
                             <p>お問い合わせ・お申込み：<a href="mailto:koichi6230@gmail.com">koichi6230@gmail.com</a></p>
                             
+                            <!-- カレンダー追加ボタン -->
+                            <div class="concert-actions">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=藤森洸一×高木優帆 Cello×Cello Duo Concert&dates=20250329T133000/20250329T153000&details=代官山 Church Hall にて開催されるチェロデュオコンサート&location=代官山 Church Hall" target="_blank" rel="noopener noreferrer" class="calendar-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"/>
+                                    </svg>
+                                    カレンダーに追加
+                                </a>
+                            </div>
                             
                             <!-- シェアボタン追加 -->
                             <div class="share-concert">
@@ -569,7 +622,15 @@
                             <p>一般：3,000円 学生：2,000円</p>
                             <p>お問い合わせ・お申込み：<a href="mailto:shioriwada.va@gmail.com">shioriwada.va@gmail.com</a></p>
                             
-                            
+                            <!-- カレンダー追加ボタン -->
+                            <div class="concert-actions">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=和田志織 ヴィオラ・リサイタル&dates=20250418T193000/20250418T213000&details=マリーコンツェルトにて開催されるヴィオラリサイタル&location=マリーコンツェルト" target="_blank" rel="noopener noreferrer" class="calendar-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"/>
+                                    </svg>
+                                    カレンダーに追加
+                                </a>
+                            </div>
                             
                             <!-- シェアボタン追加 -->
                             <div class="share-concert">
@@ -598,7 +659,15 @@
                             <p>自由席：1,500円</p>
                             <p>詳細：<a href="https://www.orchestra-est.jp/" target="_blank" rel="noopener noreferrer">公式サイト</a></p>
                             
-                            
+                            <!-- カレンダー追加ボタン -->
+                            <div class="concert-actions">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Orchestra Est 第11回演奏会&dates=20250608T133000/20250608T160000&details=横浜みなとみらいホール 大ホールにて開催されるオーケストラコンサート&location=横浜みなとみらいホール 大ホール" target="_blank" rel="noopener noreferrer" class="calendar-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"/>
+                                    </svg>
+                                    カレンダーに追加
+                                </a>
+                            </div>
                             
                             <!-- シェアボタン追加 -->
                             <div class="share-concert">
@@ -627,7 +696,15 @@
                             <p>指定席：1,500円 サイドビュー席：1,000円</p>
                             <p>詳細：<a href="https://www.suntory.co.jp/suntoryhall/schedule/detail/20250614_S_1.html" target="_blank" rel="noopener noreferrer">公式サイト</a></p>
                             
-                            
+                            <!-- カレンダー追加ボタン -->
+                            <div class="concert-actions">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=ENJOY!室内楽アカデミー・フェロー演奏会 Ⅰ&dates=20250614T110000/20250614T130000&details=サントリーホール ブルーローズにて開催される室内楽コンサート&location=サントリーホール ブルーローズ" target="_blank" rel="noopener noreferrer" class="calendar-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"/>
+                                    </svg>
+                                    カレンダーに追加
+                                </a>
+                            </div>
                             
                             <!-- シェアボタン追加 -->
                             <div class="share-concert">
@@ -656,6 +733,15 @@
                             <p>指定席：1,500円 サイドビュー席：1,000円</p>
                             <p>詳細：<a href="https://www.suntory.co.jp/suntoryhall/schedule/detail/20250621_S_1.html" target="_blank" rel="noopener noreferrer">公式サイト</a></p>
                             
+                            <!-- カレンダー追加ボタン -->
+                            <div class="concert-actions">
+                                <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=ENJOY!室内楽アカデミー・フェロー演奏会 Ⅱ&dates=20250621T110000/20250621T130000&details=サントリーホール ブルーローズにて開催される室内楽コンサート&location=サントリーホール ブルーローズ" target="_blank" rel="noopener noreferrer" class="calendar-button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"/>
+                                    </svg>
+                                    カレンダーに追加
+                                </a>
+                            </div>
                             
                             <!-- シェアボタン追加 -->
                             <div class="share-concert">

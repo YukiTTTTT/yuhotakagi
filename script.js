@@ -1,10 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const hamburgerMenu = document.querySelector('.hamburger-menu');
     const navMenu = document.querySelector('.nav-menu');
-    const closeMenu = document.querySelector('.close-menu');
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('nav ul li a');
-    const bottomCloseButton = document.querySelector('.bottom-close-button');
     const scrollIndicator = document.getElementById('scroll-indicator');
     const backToTop = document.getElementById('back-to-top');
 
@@ -18,15 +15,30 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // ハンバーガーメニューのクリックイベント
-    if (hamburgerMenu) {
-        hamburgerMenu.addEventListener('click', function() {
+    // 委任イベントリスナーでクリックイベントを処理
+    document.body.addEventListener('click', function(event) {
+        // ハンバーガーメニューのクリックイベント
+        if (event.target.closest('.hamburger-menu')) {
             navMenu.classList.add('active');
             document.body.style.overflow = 'hidden'; // スクロール禁止
-        });
-    }
+            event.preventDefault();
+        }
+        
+        // 閉じるボタンのクリックイベント
+        if (event.target.closest('.close-menu') || event.target.closest('.bottom-close-button')) {
+            closeNavMenu();
+            event.preventDefault();
+        }
+        
+        // メニュー外クリックで閉じる（モバイル用）
+        if (navMenu && navMenu.classList.contains('active') && 
+            !event.target.closest('.nav-menu') && 
+            !event.target.closest('.hamburger-menu')) {
+            closeNavMenu();
+        }
+    });
 
-    // ナビゲーションメニューを閉じる
+    // ナビゲーションメニューを閉じる関数
     function closeNavMenu() {
         if (navMenu) {
             navMenu.classList.remove('active');
@@ -34,29 +46,12 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // 閉じるボタンのクリックイベント
-    if (closeMenu) {
-        closeMenu.addEventListener('click', closeNavMenu);
-    }
-
-    // 右下のCLOSEボタンのクリックイベント
-    if (bottomCloseButton) {
-        bottomCloseButton.addEventListener('click', closeNavMenu);
-    }
-
-    // メニュー外をクリックしたときにメニューを閉じる
-    document.addEventListener('click', function(event) {
-        if (navMenu && !navMenu.contains(event.target) && hamburgerMenu && !hamburgerMenu.contains(event.target)) {
-            closeNavMenu();
-        }
-    });
-
     // トップに戻るボタンの処理
     if (backToTop) {
         // スクロール位置に応じてボタンの表示/非表示を切り替える
         window.addEventListener('scroll', function() {
-            // スクロール位置が300px以上の場合に表示
-            if (window.scrollY > 300) {
+            // 200pxスクロールしたら表示（以前より早く表示）
+            if (window.scrollY > 200) {
                 backToTop.classList.add('visible');
             } else {
                 backToTop.classList.remove('visible');
@@ -81,7 +76,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     } else {
-        // backToTopが存在しない場合（他のページ）にボタンを作成して追加
+        // backToTopが存在しない場合にボタンを作成
         const newBackToTop = document.createElement('div');
         newBackToTop.id = 'back-to-top';
         newBackToTop.className = 'back-to-top';
@@ -94,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // スクロール位置に応じてボタンの表示/非表示を切り替える
         window.addEventListener('scroll', function() {
-            if (window.scrollY > 300) {
+            if (window.scrollY > 200) {
                 newBackToTop.classList.add('visible');
             } else {
                 newBackToTop.classList.remove('visible');
@@ -131,8 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // タッチデバイスのためのタッチイベント追加
         scrollIndicator.addEventListener('touchend', function(e) {
-            e.preventDefault(); // デフォルトの動作を防止
-            // ホームセクションへスムーズにスクロール
+            e.preventDefault();
             const homeSections = document.querySelector('.home-sections');
             if (homeSections) {
                 homeSections.scrollIntoView({ behavior: 'smooth' });
@@ -172,31 +166,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // FAQアコーディオン機能 - 修正版
-    const faqQuestions = document.querySelectorAll('.faq-question');
+    // FAQアコーディオン機能
+    const faqItems = document.querySelectorAll('details.faq-item');
     
-    if (faqQuestions.length > 0) {
-        faqQuestions.forEach(question => {
-            question.addEventListener('click', function() {
-                // この質問のアクティブ状態をトグル
-                this.classList.toggle('active');
-                
-                // 対応する回答要素を取得
-                const answer = this.nextElementSibling;
-                if (answer && answer.classList.contains('faq-answer')) {
-                    answer.classList.toggle('active');
-                }
-                
-                // 他の質問を閉じる（アコーディオン動作）
-                faqQuestions.forEach(q => {
-                    if (q !== this) {
-                        q.classList.remove('active');
-                        const qAnswer = q.nextElementSibling;
-                        if (qAnswer && qAnswer.classList.contains('faq-answer')) {
-                            qAnswer.classList.remove('active');
+    if (faqItems.length > 0) {
+        faqItems.forEach(item => {
+            item.addEventListener('toggle', function() {
+                if (this.open) {
+                    // 他のFAQを閉じる（アコーディオン動作）
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== this && otherItem.open) {
+                            otherItem.open = false;
                         }
-                    }
-                });
+                    });
+                }
             });
         });
     }
@@ -219,7 +202,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // コンサートアイテムをフィルタリング
                 concertItems.forEach(item => {
-                    // スタイルをリセットして、CSSのデフォルト表示に戻す
                     item.style.removeProperty('display');
                     
                     if (filter !== 'all') {
@@ -228,12 +210,21 @@ document.addEventListener('DOMContentLoaded', function() {
                         
                         if ((filter === 'upcoming' && concertDate < now) || 
                             (filter === 'past' && concertDate >= now)) {
-                            // フィルター条件に合わない場合は非表示
                             item.style.display = 'none';
                         }
                     }
                 });
             });
+        });
+    }
+    
+    // パララックス効果（ヒーローセクション）
+    const hero = document.querySelector('.hero');
+    if (hero) {
+        window.addEventListener('scroll', function() {
+            const scrollPosition = window.scrollY;
+            // スクロール時に背景位置を少しずつ変更
+            hero.style.backgroundPositionY = `calc(60% + ${scrollPosition * 0.2}px)`;
         });
     }
 });
