@@ -1030,27 +1030,7 @@ details.faq-item summary::after {
         margin-bottom: 5px;
     }
 
-    /* カレンダー追加ボタン - 文字色を白に明示的に設定 */
-    .calendar-button {
-        display: inline-flex;
-        align-items: center;
-        background-color: #50031a;
-        color: white !important; /* !important を追加して確実に白色を適用 */
-        text-decoration: none;
-        padding: 8px 12px;
-        border-radius: 4px;
-        font-size: 0.9em;
-        font-weight: 500;
-        transition: background-color 0.3s, transform 0.3s;
-        margin-left: 10px;
-    }
     
-    .calendar-button:hover {
-        background-color: #72052a;
-        transform: translateY(-2px);
-        text-decoration: none;
-        color: white !important; /* ホバー時も白色を維持 */
-    }
 
     .profile, .lesson, .contact {
         margin: 10px;
