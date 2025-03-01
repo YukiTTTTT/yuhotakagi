@@ -421,8 +421,8 @@ nav ul li a.active::after {
 
 .profile-name .jp-name {
     display: block;
-    font-size: 2em;
-    font-weight: 600;
+    font-size: 1.5em;
+    font-weight: 500;
     font-family: 'Noto Serif JP', serif;
     letter-spacing: 0.07em;
     margin-bottom: 5px;
@@ -430,7 +430,7 @@ nav ul li a.active::after {
 
 .profile-name .en-name {
     display: block;
-    font-size: 1.4em;
+    font-size: 1.1em;
     font-weight: 400;
     font-family: 'Playfair Display', serif;
     letter-spacing: 0.05em;
@@ -443,8 +443,8 @@ nav ul li a.active::after {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 60px;
-    height: 2px;
+    width: 40px;
+    height: 1px;
     background-color: #50031a;
 }
 
