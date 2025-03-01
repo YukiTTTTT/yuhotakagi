@@ -783,7 +783,7 @@ details.faq-item .faq-content {
 .contact-note {
     background-color: #f9f9f9;
     padding: 15px;
-    border-left: 4px solid #ccc;
+    border-left: 4px solid #50031a;
     font-size: 0.95em;
     color: #555;
     line-height: 1.4;
@@ -1172,6 +1172,46 @@ details.faq-item summary::after {
     padding: 10px;
     background-color: #f9f9f9;
     border-radius: 5px;
+}
+
+/* FAQアイテムのスタイル */
+.faq-item {
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.faq-item summary {
+    cursor: pointer;
+    padding: 15px;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+}
+
+.faq-item summary:hover {
+    background-color: #f0f0f0;
+}
+
+.faq-item summary::after {
+    content: '+';
+    font-size: 1.5em;
+    color: #50031a;
+    transition: transform 0.3s ease;
+}
+
+.faq-item[open] summary::after {
+    content: '−';
+    transform: rotate(180deg);
+}
+
+.faq-item .faq-content {
+    padding: 15px;
+    background-color: white;
+    border-top: 1px solid #e0e0e0;
 }
 
 /* スマホ対応 */
