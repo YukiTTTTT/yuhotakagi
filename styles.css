@@ -1203,7 +1203,9 @@ details.faq-item summary::after {
     }
 
     .profile-img {
-        width: 150px; /* 画像サイズを縮小 */
+        width: 80%; /* 親コンテナの80%幅に設定 */
+        max-width: 250px; /* 最大幅を250pxに制限 */
+        margin: 0 auto 20px; /* 中央揃え */
     }
 
     .profile-name {
@@ -1831,6 +1833,13 @@ h3.contact-option-title,
         }
         .hero-text h1 {
             font-size: 2.8em;
+        }
+    }
+
+    /* タブレット向け設定 */
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        .profile-img {
+            max-width: 280px; /* タブレットでは少し大きめに */
         }
     }
 }
