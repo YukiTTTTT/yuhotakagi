@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロフィール | 髙木優帆 Yuho Takagi-Cellist 公式サイト</title>
+    <title>プライバシーポリシー | 髙木優帆 Yuho Takagi-Cellist 公式サイト</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="canonical" href="https://yuhotakagi.com/profile.html">
+    <link rel="canonical" href="https://yuhotakagi.com/privacy-policy.html">
     
     <!-- メタデータの改善 (SEO対策) -->
-    <meta name="description" content="チェリスト髙木優帆のプロフィール。東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者として活動中。ザルツブルク・モーツァルト国際室内楽コンクール、ベヒシュタイン室内楽コンクールで最高位受賞。">
-    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, プロフィール, 経歴, 音楽, クラシック, 神奈川フィルハーモニー管弦楽団, オーケストラ">
-    <meta property="og:title" content="プロフィール | 髙木優帆 Yuho Takagi-Cellist 公式サイト">
-    <meta property="og:description" content="チェリスト髙木優帆のプロフィール。経歴、受賞歴、演奏活動などについてご紹介します。">
-    <meta property="og:image" content="https://yuhotakagi.com/images/profile.jpg">
-    <meta property="og:url" content="https://yuhotakagi.com/profile.html">
+    <meta name="description" content="チェリスト髙木優帆の公式サイトのプライバシーポリシーです。個人情報の取り扱いについて説明しています。">
+    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, プライバシーポリシー, 個人情報保護方針">
+    <meta property="og:title" content="プライバシーポリシー | 髙木優帆 Yuho Takagi-Cellist 公式サイト">
+    <meta property="og:description" content="チェリスト髙木優帆の公式サイトのプライバシーポリシーです。個人情報の取り扱いについて説明しています。">
+    <meta property="og:image" content="https://yuhotakagi.com/images/ogp.jpg">
+    <meta property="og:url" content="https://yuhotakagi.com/privacy-policy.html">
     <meta property="og:type" content="website">
 
     <!-- フォントの追加 -->
@@ -143,16 +143,6 @@
       transform: translateY(-2px);
     }
 
-    /* 画像ホバーエフェクト */
-    .profile-img {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
     /* フッター改善 */
     footer {
       position: relative;
@@ -226,36 +216,30 @@
       opacity: 0;
       visibility: hidden;
     }
-
-    /* プロフィールページ特有の改善 */
-    .profile {
+    
+    /* プライバシーポリシーページ特有のスタイル */
+    .privacy-policy {
       max-width: 800px;
       margin: 30px auto;
       padding: 40px;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
-
-    .profile:hover {
+    
+    .privacy-policy:hover {
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
     }
-
-    .profile-img {
-      border-radius: 5px;
-      max-width: 300px;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto 20px;
-    }
-
+    
     .page-title {
+      position: relative;
       text-align: center;
       margin-bottom: 30px;
-      font-size: 2.0em;
-      position: relative;
       padding-bottom: 15px;
+      font-size: 2em;
     }
-
+    
     .page-title::after {
       content: '';
       position: absolute;
@@ -266,114 +250,70 @@
       height: 2px;
       background-color: #50031a;
     }
-
-    .profile-name {
-      position: relative;
-      display: block;
-      text-align: center;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      font-size: 1.8em;
+    
+    .privacy-section {
+      margin-bottom: 30px;
     }
-
-    .profile-name::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 2px;
-      background-color: #50031a;
-    }
-
-    .profile-bio {
-      line-height: 1.9;
-      text-align: left;
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.15em;
-      color: #444;
-    }
-
-    .profile-bio p {
-      margin-bottom: 1.2em;
-    }
-
-    .achievements {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-    }
-
-    .achievements h3 {
-      font-size: 1.3em;
+    
+    .privacy-section h3 {
       color: #50031a;
+      font-size: 1.4em;
+      margin-bottom: 15px;
+      border-left: 4px solid #50031a;
+      padding-left: 12px;
+    }
+    
+    .privacy-section p {
+      line-height: 1.8;
+      margin-bottom: 15px;
+      color: #333;
+      font-size: 1.05em;
+    }
+    
+    .privacy-section ul {
+      padding-left: 20px;
       margin-bottom: 15px;
     }
-
-    .achievement-list {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .achievement-list li {
-      padding: 10px 15px;
+    
+    .privacy-section ul li {
       margin-bottom: 10px;
-      background-color: #f9f9f9;
-      border-left: 3px solid #50031a;
-      border-radius: 3px;
+      line-height: 1.6;
+      position: relative;
+      padding-left: 15px;
     }
-
-    .social-links {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      margin: 30px 0 10px;
+    
+    .privacy-section ul li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: #50031a;
     }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #50031a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.3s ease;
+    
+    .last-updated {
+      font-size: 0.9em;
+      color: #666;
+      text-align: right;
+      margin-top: 30px;
+      font-style: italic;
     }
-
-    .social-link svg {
-      width: 20px;
-      height: 20px;
-      fill: white;
-    }
-
-    .social-link:hover {
-      transform: translateY(-3px);
-      background-color: #72052a;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-    }
-
+    
     /* モバイル対応 */
     @media screen and (max-width: 768px) {
-      .profile {
-        padding: 30px 20px;
-        margin: 20px auto;
+      .privacy-policy {
+        padding: 25px;
+        margin: 20px;
       }
-
-      .profile-img {
-        max-width: 200px;
+      
+      .page-title {
+        font-size: 1.6em;
       }
-
-      .profile-name {
-        font-size: 1.5em;
+      
+      .privacy-section h3 {
+        font-size: 1.2em;
       }
-
-      .profile-bio {
+      
+      .privacy-section p {
         font-size: 1em;
-        padding: 0 10px;
       }
     }
     </style>
@@ -383,21 +323,14 @@
     // 構造化データの追加（SEO対策）
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "髙木優帆",
-      "url": "https://yuhotakagi.com",
-      "jobTitle": "チェリスト",
-      "image": "https://yuhotakagi.com/images/profile.jpg",
-      "description": "髙木優帆はチェリストとして活動しています。東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者。",
-      "performerIn": {
-        "@type": "MusicGroup",
-        "name": "神奈川フィルハーモニー管弦楽団"
+      "@type": "WebPage",
+      "name": "プライバシーポリシー - 髙木優帆",
+      "description": "髙木優帆の公式サイトにおけるプライバシーポリシーについて説明しています。",
+      "publisher": {
+        "@type": "Person",
+        "name": "髙木優帆"
       },
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "東京藝術大学"
-      },
-      "knowsLanguage": "ja"
+      "inLanguage": "ja"
     };
 
     // DOMが読み込まれたらJSONを追加
@@ -408,7 +341,7 @@
       document.head.appendChild(script);
       
       // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.profile, .profile-img, .profile-name, .profile-bio p');
+      const animElements = document.querySelectorAll('.privacy-policy, .privacy-section');
       animElements.forEach((element, index) => {
         element.classList.add('fade-in');
         element.classList.add(`delay-${index % 4 + 1}`);
@@ -421,7 +354,7 @@
     });
     </script>
 </head>
-<body class="profile-page">
+<body>
     <!-- スキップリンク（アクセシビリティ向上） -->
     <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
 
@@ -444,7 +377,7 @@
                 <div class="close-menu">×</div>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
-                    <li><a href="profile.html" class="active">PROFILE</a></li>
+                    <li><a href="profile.html">PROFILE</a></li>
                     <li><a href="concerts.html">CONCERTS</a></li>
                     <li><a href="lesson.html">LESSON</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
@@ -454,17 +387,72 @@
         </header>
 
         <main id="main-content">
-            <section class="profile">
-                <h2 class="page-title">PROFILE</h2>
-                <img src="images/profile.jpg" alt="髙木優帆" class="profile-img">
-                <p class="profile-name"><strong>髙木優帆 Yuho Takagi</strong></p>
-                <div class="profile-bio">
-                    <p>愛知県出身。</p>
-                    <p>12歳よりチェロを始める。ザルツブルク・モーツァルト国際室内楽コンクール、ベヒシュタイン室内楽コンクールで最高位受賞。</p>
-                    <p>ドヴォルザーク、シューマン、チャイコフスキーのチェロ協奏曲をオーケストラと共演。
-                    アントニオ・メネセス、シュテファン・コンツ、宮田大各氏のマスタークラスを受講。
-                    チェロを故山田知野子、上森祥平、河野文昭の各氏に師事。東京藝術大学卒業。</p>
-                    <p>サントリー室内楽アカデミー第8期フェロー。現在神奈川フィルハーモニー管弦楽団次席チェロ奏者。</p>
+            <section class="privacy-policy">
+                <h2 class="page-title">プライバシーポリシー</h2>
+                
+                <div class="privacy-section">
+                    <h3>はじめに</h3>
+                    <p>髙木優帆（以下、「当サイト」といいます）は、サイト訪問者の皆様のプライバシーを尊重し、個人情報の保護に努めています。このプライバシーポリシーでは、当サイトでの個人情報の収集・利用・保護についての方針を説明します。</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>個人情報の収集</h3>
+                    <p>当サイトでは、以下の場合に個人情報を収集することがあります：</p>
+                    <ul>
+                        <li>お問い合わせフォームからのご連絡</li>
+                        <li>レッスンや演奏依頼のお申し込み</li>
+                    </ul>
+                    <p>収集する情報には、お名前、メールアドレス、電話番号などが含まれる場合があります。</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>個人情報の利用目的</h3>
+                    <p>当サイトは、収集した個人情報を以下の目的で利用します：</p>
+                    <ul>
+                        <li>お問い合わせへの回答や必要な情報の提供</li>
+                        <li>レッスンや演奏依頼のご予約・ご案内</li>
+                        <li>サービス提供に関わる重要なお知らせ</li>
+                    </ul>
+                    <p>これらの目的以外で個人情報を利用する場合は、あらかじめ利用目的を明示し、同意を得た上で行います。</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>個人情報の第三者への提供</h3>
+                    <p>当サイトは、以下の場合を除き、収集した個人情報を第三者に提供することはありません：</p>
+                    <ul>
+                        <li>法令に基づく場合</li>
+                        <li>本人の同意がある場合</li>
+                        <li>人の生命、身体または財産の保護のために必要がある場合</li>
+                    </ul>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>個人情報の安全管理</h3>
+                    <p>当サイトは、収集した個人情報の漏洩、紛失、改ざんなどを防ぐため、適切な安全管理措置を講じています。また、個人情報の取り扱いについては、関連する法令および当サイトのプライバシーポリシーを遵守します。</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>Cookieの使用</h3>
+                    <p>当サイトでは、ユーザーの利便性向上のためにCookieを使用することがあります。Cookieは個人を特定する情報を含まず、ブラウザの設定によりCookieの受け入れを拒否することも可能です。</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>アクセス解析ツールの使用</h3>
+                    <p>当サイトでは、Googleアナリティクスなどのアクセス解析ツールを使用して、訪問者の利用状況を分析しています。これらのツールはCookieを使用してデータを収集しますが、個人を特定する情報は含まれません。</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>プライバシーポリシーの変更</h3>
+                    <p>当サイトは、必要に応じてプライバシーポリシーの内容を変更することがあります。変更後のプライバシーポリシーは、当サイトに掲載した時点で効力を生じるものとします。</p>
+                </div>
+                
+                <div class="privacy-section">
+                    <h3>お問い合わせ</h3>
+                    <p>プライバシーポリシーに関するお問い合わせは、<a href="contact.html">お問い合わせページ</a>からお願いします。</p>
+                </div>
+                
+                <div class="last-updated">
+                    <p>最終更新日: 2025年3月1日</p>
                 </div>
             </section>
         </main>
