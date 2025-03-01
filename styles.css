@@ -688,6 +688,17 @@ ul, ol {
     text-decoration: none;
 }
 
+/* タイトルとボタンの余白調整 */
+.contact-option-title {
+    margin-bottom: 12px;
+    min-height: 36px;
+}
+  
+/* ボタンの位置調整 */
+.contact-option-link {
+    margin-top: 10px;
+}
+
 /* コンタクトオプションのタイトル */
 .contact-option-title {
     font-size: 0.70em; /* フォントサイズ調整 */
@@ -1066,7 +1077,7 @@ details.faq-item summary::after {
 .contact-option-card {
     background-color: #fff;
     border-radius: 8px;
-    padding: 25px;
+    padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     width: 300px; /* 幅を広げる */
     text-align: center;
@@ -1074,7 +1085,7 @@ details.faq-item summary::after {
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* 内容を均等に配置 */
-    min-height: 200px; /* 最小の高さを設定して、カードの高さを揃える */
+    min-height: 180px; /* 最小の高さを設定して、カードの高さを揃える */
     margin: 0 auto; /* カードを中央寄せ */
 }
 
@@ -1084,9 +1095,9 @@ details.faq-item summary::after {
 }
 
 .contact-icon {
-    width: 75px;
-    height: 75px;
-    margin: 0 auto 15px;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 12px;
     background-color: #f5f5f5;
     border-radius: 50%;
     display: flex;
@@ -1095,8 +1106,8 @@ details.faq-item summary::after {
 }
 
 .contact-icon svg {
-    width: 35px;
-    height: 35px;
+    width: 30px;
+    height: 30px;
     fill: #50031a;
 }
 
