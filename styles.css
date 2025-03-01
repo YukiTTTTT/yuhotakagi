@@ -411,15 +411,41 @@ nav ul li a.active::after {
 }
 
 .profile-name {
-    font-size: 1.8em;
-    font-weight: 400;
-    margin-top: 20px;
-    margin-bottom: 10px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    letter-spacing: 0.05em;
+    position: relative;
+    text-align: center;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
     color: #333;
-    word-break: keep-all;
-    overflow-wrap: break-word;
+}
+
+.profile-name .jp-name {
+    display: block;
+    font-size: 2em;
+    font-weight: 600;
+    font-family: 'Noto Serif JP', serif;
+    letter-spacing: 0.07em;
+    margin-bottom: 5px;
+}
+
+.profile-name .en-name {
+    display: block;
+    font-size: 1.4em;
+    font-weight: 400;
+    font-family: 'Playfair Display', serif;
+    letter-spacing: 0.05em;
+    color: #555;
+}
+
+.profile-name::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 2px;
+    background-color: #50031a;
 }
 
 .profile-bio {
@@ -1840,6 +1866,14 @@ h3.contact-option-title,
     @media screen and (min-width: 769px) and (max-width: 1024px) {
         .profile-img {
             max-width: 280px; /* タブレットでは少し大きめに */
+        }
+    }
+    @media screen and (max-width: 768px) {
+        .profile-name .jp-name {
+            font-size: 1.6em;
+        }
+        .profile-name .en-name {
+            font-size: 1.2em;
         }
     }
 }
