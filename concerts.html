@@ -509,66 +509,106 @@
     <script>
     // 構造化データの追加（SEO対策）
     document.addEventListener('DOMContentLoaded', function() {
-      // コンサート情報から構造化データを動的に生成する関数
-      function generateConcertJsonLd() {
+    // コンサート情報から構造化データを動的に生成する関数
+        function generateConcertJsonLd() {
         const concertItems = document.querySelectorAll('.concert-item');
+    
+    concertItems.forEach((item, index) => {
+      const dateText = item.querySelector('.concert-date').textContent;
+      const title = item.querySelector('h3').textContent.trim();
+      const venueElement = item.querySelector('p:nth-child(3)');
+      const venue = venueElement ? venueElement.textContent.replace('会場：', '').trim() : '';
+      
+      // コンサートイメージを取得
+      const imageElement = item.querySelector('img');
+      const imageUrl = imageElement ? new URL(imageElement.src, window.location.origin).href : '';
+      
+      // 日付を ISO 形式に変換
+      const dateParts = dateText.split('/');
+      if (dateParts.length >= 3) {
+        const year = dateParts[0];
+        const month = dateParts[1].padStart(2, '0');
+        const day = dateParts[2].padStart(2, '0');
+        const isoDate = `${year}-${month}-${day}T13:00:00+09:00`; // デフォルト時間を13:00に設定
         
-        concertItems.forEach((item, index) => {
-          const dateText = item.querySelector('.concert-date').textContent;
-          const title = item.querySelector('h3').textContent.trim();
-          const venueElement = item.querySelector('p:nth-child(3)');
-          const venue = venueElement ? venueElement.textContent.replace('会場：', '').trim() : '';
-          
-          // 日付を ISO 形式に変換
-          const dateParts = dateText.split('/');
-          if (dateParts.length >= 3) {
-            const year = dateParts[0];
-            const month = dateParts[1].padStart(2, '0');
-            const day = dateParts[2].padStart(2, '0');
-            const isoDate = `${year}-${month}-${day}T13:00:00+09:00`; // デフォルト時間を13:00に設定
-            
-            const eventData = {
-              "@context": "https://schema.org",
-              "@type": "MusicEvent",
-              "name": title,
-              "performer": {
-                "@type": "Person",
-                "name": "髙木優帆"
-              },
-              "startDate": isoDate,
-              "location": {
-                "@type": "Place",
-                "name": venue,
-                "address": {
-                  "@type": "PostalAddress",
-                  "addressLocality": "東京都"
-                }
-              }
-            };
-            
-            // Script要素を作成して挿入
-            const script = document.createElement('script');
-            script.type = 'application/ld+json';
-            script.textContent = JSON.stringify(eventData);
-            document.head.appendChild(script);
+        // 料金情報を取得
+        const priceElement = item.querySelector('p:nth-child(4)');
+        const priceText = priceElement ? priceElement.textContent.trim() : '';
+        let price = '';
+        let priceCurrency = 'JPY';
+        
+        if (priceText.includes('円')) {
+          const priceMatch = priceText.match(/(\d+,?\d*)円/);
+          if (priceMatch) {
+            price = priceMatch[1].replace(',', '');
           }
-        });
+        } else if (priceText.includes('：')) {
+          const priceMatch = priceText.match(/：(\d+,?\d*)/);
+          if (priceMatch) {
+            price = priceMatch[1].replace(',', '');
+          }
+        }
+        
+        const eventData = {
+          "@context": "https://schema.org",
+          "@type": "MusicEvent",
+          "name": title,
+          "startDate": isoDate,
+          "endDate": `${year}-${month}-${day}T15:00:00+09:00`, // 推定終了時間
+          "eventStatus": "https://schema.org/EventScheduled",
+          "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+          "location": {
+            "@type": "Place",
+            "name": venue,
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": venue.includes('東京') ? '東京都' : venue.includes('横浜') ? '横浜市' : '日本',
+              "addressCountry": "JP"
+            }
+          },
+          "performer": {
+            "@type": "Person",
+            "name": "髙木優帆"
+          },
+          "organizer": {
+            "@type": "Organization",
+            "name": title.includes('Orchestra Est') ? 'Orchestra Est' : 
+                   title.includes('サントリーホール') ? 'サントリーホール' : '髙木優帆'
+          },
+          "image": imageUrl ? imageUrl : "https://yuhotakagi.com/images/profile.jpg",
+          "offers": {
+            "@type": "Offer",
+            "price": price || "0",
+            "priceCurrency": priceCurrency,
+            "validFrom": `${year}-01-01T00:00:00+09:00`, // チケット販売開始日 (不明なので年初に設定)
+            "url": "https://yuhotakagi.com/concerts.html",
+            "availability": "https://schema.org/InStock"
+          }
+        };
+        
+        // Script要素を作成して挿入
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(eventData);
+        document.head.appendChild(script);
       }
-      
-      // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.concert-item');
-      animElements.forEach((element, index) => {
-        element.classList.add('fade-in');
-        element.classList.add(`delay-${index % 4 + 1}`);
-      });
-      
-      // ページ読み込み完了時の処理
-      setTimeout(function() {
-        document.body.classList.add('page-loaded');
-        // 構造化データを生成
-        generateConcertJsonLd();
-      }, 800);
     });
+  }
+  
+  // アニメーション要素にクラスを追加
+  const animElements = document.querySelectorAll('.concert-item');
+  animElements.forEach((element, index) => {
+    element.classList.add('fade-in');
+    element.classList.add(`delay-${index % 4 + 1}`);
+  });
+  
+  // ページ読み込み完了時の処理
+  setTimeout(function() {
+    document.body.classList.add('page-loaded');
+    // 構造化データを生成
+    generateConcertJsonLd();
+  }, 800);
+});
     </script>
 </head>
 <body class="concerts-page">
