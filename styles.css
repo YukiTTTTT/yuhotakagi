@@ -170,10 +170,11 @@ footer {
 .footer-section h3 {
     display: block;
     text-align: center;
+    font-size: 0.95;
 }
 
 .footer-section h3::after {
-    width: 80px;
+    width: 60px;
     left: 50%;
     transform: translateX(-50%);
 }
@@ -183,7 +184,8 @@ footer {
 }
 
 .footer-copyright {
-    padding-top: 15px;
+    padding-top: 10px;
+    font-size: 0.7em;
 }
 }
   
