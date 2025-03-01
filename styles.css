@@ -421,7 +421,7 @@ nav ul li a.active::after {
 
 .profile-name .jp-name {
     display: block;
-    font-size: 1.5em;
+    font-size: 1.2em;
     font-weight: 500;
     font-family: 'Noto Serif JP', serif;
     letter-spacing: 0.07em;
@@ -430,7 +430,7 @@ nav ul li a.active::after {
 
 .profile-name .en-name {
     display: block;
-    font-size: 1.1em;
+    font-size: 0.8em;
     font-weight: 400;
     font-family: 'Playfair Display', serif;
     letter-spacing: 0.05em;
