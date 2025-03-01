@@ -77,7 +77,7 @@ footer {
     color: rgba(255, 255, 255, 0.6);
 }
   
-.footer-links a {
+  .footer-links a {
     color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: color 0.3s ease;
@@ -85,19 +85,19 @@ footer {
     white-space: nowrap;
 }
   
-.footer-links a:hover {
+  .footer-links a:hover {
     color: white;
     text-decoration: underline;
 }
   
 /* コピーライト */
 .footer-copyright {
-    font-size: 0.65em; /* 極小サイズ */
-    color: rgba(255, 255, 255, 0.6);
+font-size: 0.65em; /* 極小サイズ */
+color: rgba(255, 255, 255, 0.6);
 }
 
 .footer-copyright p {
-    margin: 5px 0;
+margin: 5px 0;
 }
 
 /* フッターセクションのスタイル */
@@ -187,36 +187,36 @@ footer {
 
 /* モバイル対応 */
 @media screen and (max-width: 768px) {
-    footer {
-        padding: 30px 0 15px;
-    }
+footer {
+    padding: 30px 0 15px;
+}
 
-    .footer-navigation {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        text-align: center;
-    }
+.footer-navigation {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    text-align: center;
+}
 
-    .footer-section h3 {
-        display: block;
-        text-align: center;
-        font-size: 0.95;
-    }
+.footer-section h3 {
+    display: block;
+    text-align: center;
+    font-size: 0.95;
+}
 
-    .footer-section h3::after {
-        width: 60px;
-        left: 50%;
-        transform: translateX(-50%);
-    }
+.footer-section h3::after {
+    width: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+}
 
-    .footer-section ul li a:hover {
-        transform: none;
-    }
+.footer-section ul li a:hover {
+    transform: none;
+}
 
-    .footer-copyright {
-        padding-top: 10px;
-        font-size: 0.7em;
-    }
+.footer-copyright {
+    padding-top: 10px;
+    font-size: 0.7em;
+}
 }
   
 /* ハンバーガーメニュー */
@@ -283,7 +283,6 @@ footer {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
-
 /* ナビゲーション */
 nav {
     position: fixed;
@@ -472,7 +471,6 @@ nav ul li a.active::after {
     font-weight: 700;
     color: #333;
 }
-
 /* ページタイトル */
 .page-title {
     font-size: 2.0em;
@@ -783,7 +781,7 @@ details.faq-item .faq-content {
 .contact-note {
     background-color: #f9f9f9;
     padding: 15px;
-    border-left: 4px solid #50031a;
+    border-left: 4px solid #ccc;
     font-size: 0.95em;
     color: #555;
     line-height: 1.4;
@@ -928,7 +926,6 @@ details.faq-item .faq-content {
 body:not(.home-page) {
     padding-top: 70px;
 }
-
 /* 改善されたホームセクションのスタイル */
 .home-sections {
     padding: 60px 0;
@@ -1080,7 +1077,7 @@ details.faq-item summary::after {
 .contact-option-card {
     background-color: #fff;
     border-radius: 8px;
-    padding: 30px;
+    padding: 20px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
     width: 300px; /* 幅を広げる */
     text-align: center;
@@ -1088,7 +1085,7 @@ details.faq-item summary::after {
     display: flex;
     flex-direction: column;
     justify-content: space-between; /* 内容を均等に配置 */
-    min-height: 220px; /* 最小の高さを設定して、カードの高さを揃える */
+    min-height: 180px; /* 最小の高さを設定して、カードの高さを揃える */
     margin: 0 auto; /* カードを中央寄せ */
 }
 
@@ -1098,9 +1095,9 @@ details.faq-item summary::after {
 }
 
 .contact-icon {
-    width: 80px !important;
-    height: 80px !important;
-    margin: 0 auto 20px;
+    width: 65px;
+    height: 65px;
+    margin: 0 auto 12px;
     background-color: #f5f5f5;
     border-radius: 50%;
     display: flex;
@@ -1109,109 +1106,9 @@ details.faq-item summary::after {
 }
 
 .contact-icon svg {
-    width: 40px !important;
-    height: 40px !important;
+    width: 30px;
+    height: 30px;
     fill: #50031a;
-}
-
-/* コンタクトオプションのタイトルから縦棒を削除し、黒字にし、サイズを適切に調整 */
-.contact-option-title {
-    font-size: 1.1em !important; /* フォントサイズ調整 */
-    font-weight: 600 !important;
-    margin-bottom: 15px;
-    color: #333 !important;
-    min-height: 40px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    white-space: nowrap; /* 改行を防止 */
-}
-
-/* h3から継承される可能性のあるスタイルを上書き */
-.contact-option-card h3.contact-option-title {
-    border-left: none !important;
-    padding-left: 0 !important;
-    text-align: center;
-    min-height: 40px; /* 最小の高さを設定 */
-    font-size: 1.1em !important;
-}
-
-.contact-option-card h3.contact-option-title::before {
-    display: none !important; /* 縦棒用の疑似要素を非表示 */
-}
-
-/* リンクボタンスタイル - 元のサイズに戻す */
-.contact-option-link {
-    display: inline-block;
-    background-color: #50031a;
-    color: white !important;
-    text-decoration: none;
-    padding: 10px 25px;
-    border-radius: 4px;
-    font-weight: 500;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-    margin-top: 15px;
-    font-size: 1em; /* 元のサイズに戻す */
-}
-
-.contact-option-link:hover {
-    background-color: #72052a;
-    transform: translateY(-2px);
-    color: white !important;
-    text-decoration: none;
-}
-
-/* お申し込み方法をより目立たせる */
-.contact-method-intro {
-    text-align: center;
-    font-size: 1.1em; /* サイズを少し小さく */
-    font-weight: 500;
-    color: #50031a;
-    margin: 30px 0 20px;
-    padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
-}
-
-/* FAQアイテムのスタイル */
-.faq-item {
-    margin-bottom: 10px;
-    border: 1px solid #e0e0e0;
-    border-radius: 4px;
-    overflow: hidden;
-}
-
-.faq-item summary {
-    cursor: pointer;
-    padding: 15px;
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    transition: background-color 0.3s ease;
-}
-
-.faq-item summary:hover {
-    background-color: #f0f0f0;
-}
-
-.faq-item summary::after {
-    content: '+';
-    font-size: 1.5em;
-    color: #50031a;
-    transition: transform 0.3s ease;
-}
-
-.faq-item[open] summary::after {
-    content: '−';
-    transform: rotate(180deg);
-}
-
-.faq-item .faq-content {
-    padding: 15px;
-    background-color: white;
-    border-top: 1px solid #e0e0e0;
 }
 
 /* スマホ対応 */
@@ -1450,43 +1347,77 @@ details.faq-item summary::after {
         text-align: left;
     }
 
-    /* コンタクトオプションのタイトル - モバイル調整 */
-    .contact-option-title,
-    h3.contact-option-title,
-    .contact-option-card h3.contact-option-title {
-        font-size: 1em !important; /* 強制的に適切なサイズに調整 */
-        min-height: 30px;
-    }
+    /* コンタクトオプションのタイトル - 黒字で小さく（!importantで強制） */
+.contact-option-title,
+h3.contact-option-title,
+.contact-option-card h3.contact-option-title {
+    font-size: 0.8em !important; /* 強制的に小さく */
+    font-weight: 500 !important;
+    margin-bottom: 15px;
+    color: #333 !important; /* 強制的に黒字に */
+    border-left: none !important;
+    padding-left: 0 !important;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap; /* 改行を防止 */
+}
 
-    /* モバイル向けアイコン調整 */
-    .contact-icon {
-        width: 70px !important; /* モバイル用に小さく */
-        height: 70px !important;
-    }
+/* アイコンを大きく */
+.contact-icon {
+    width: 75px !important; /* サイズアップ（強制） */
+    height: 75px !important; /* サイズアップ（強制） */
+    margin: 0 auto 15px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    .contact-icon svg {
-        width: 35px !important;
-        height: 35px !important;
-    }
+.contact-icon svg {
+    width: 38px !important; /* サイズアップ（強制） */
+    height: 38px !important; /* サイズアップ（強制） */
+    fill: #50031a;
+}
 
-    /* モバイル向けカードとボタン調整 */
-    .contact-option-card {
-        padding: 20px;
-        min-height: 200px;
-    }
+/* レッスンページの申し込み方法セクション専用スタイル */
+.lesson-page .contact-option-title,
+.lesson-page h3.contact-option-title,
+.lesson-page .contact-option-card h3.contact-option-title {
+    font-size: 0.8em !important; /* 強制的に小さく */
+    font-weight: 500 !important;
+    margin-bottom: 15px;
+    color: #333 !important; /* 強制的に黒字に */
+    border-left: none !important;
+    padding-left: 0 !important;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    white-space: nowrap; /* 改行を防止 */
+}
 
-    .contact-option-link {
-        padding: 8px 20px;
-        font-size: 0.95em;
-    }
+/* レッスンページのアイコンを大きく */
+.lesson-page .contact-icon {
+    width: 75px !important; /* サイズアップ（強制） */
+    height: 75px !important; /* サイズアップ（強制） */
+    margin: 0 auto 15px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-    /* レッスンページの申し込み方法セクション専用スタイル */
-    .lesson-page .contact-option-title,
-    .lesson-page h3.contact-option-title,
-    .lesson-page .contact-option-card h3.contact-option-title {
-        font-size: 1em !important; /* サイズ調整 */
-        min-height: 30px;
-    }
+.lesson-page .contact-icon svg {
+    width: 38px !important; /* サイズアップ（強制） */
+    height: 38px !important; /* サイズアップ（強制） */
+    fill: #50031a;
+}
     
     /* google form */
     .google-form {
@@ -1545,7 +1476,7 @@ details.faq-item summary::after {
         0% { transform: rotate(0deg); }
         100% { transform: rotate(360deg); }
     }
-
+    
     /* スマホ表示の調整 */
     .google-form {
         padding-bottom: 500px; /* スマホでは少し小さく */
@@ -1612,7 +1543,7 @@ details.faq-item summary::after {
     }
 
     .contact-intro {
-        font-size: 0.9em;
+        font-size: 1em;
     }
     
     /* スクロールインジケーターのモバイル調整 */
@@ -1639,13 +1570,19 @@ details.faq-item summary::after {
     .contact-option-card {
         width: 90%; /* 幅を調整 */
         max-width: 280px; /* 最大幅を設定 */
-        padding: 20px; /* パディングを小さく */
-        min-height: 200px; /* 高さを少し減らす */
+        padding: 15px; /* パディングを小さく */
+        min-height: 180px; /* 高さを少し減らす */
     }
     
     .contact-method-intro {
         font-size: 0.95em; /* スマホ表示時はさらに小さく */
         padding: 8px;
+    }
+    
+    /* コンタクトオプションのタイトル */
+    .contact-option-title {
+        font-size: 0.9em; /* スマホ表示時はさらに小さく */
+        min-height: 30px; /* 高さを調整 */
     }
     
     /* FAQ項目のスマホ対応 */
@@ -1665,6 +1602,19 @@ details.faq-item summary::after {
         background-color: white;
         line-height: 1.6;
         text-align: left; /* 左寄せに設定 */
+    }
+
+    /* ナビメニューのactive状態の下線 */
+    .nav-menu ul li a.active::after {
+        content: '';
+        position: absolute;
+        width: 70%; /* 下線の幅 */
+        height: 2px;
+        bottom: -5px;
+        left: 50%; /* 中央に配置 */
+        transform: translateX(-50%); /* 中央揃え */
+        background-color: white;
+        transition: all 0.3s ease;
     }
 }
 
@@ -1857,211 +1807,84 @@ details.faq-item summary::after {
     .back-to-top:hover svg {
         transform: translateY(-2px);
     }
-}
 
-/* モバイル調整 */
-@media screen and (max-width: 768px) {
-    .back-to-top {
-        width: 45px;
-        height: 45px;
-        bottom: 20px;
-        right: 20px;
+    /* モバイル調整 */
+    @media screen and (max-width: 768px) {
+        .back-to-top {
+            width: 45px;
+            height: 45px;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .back-to-top svg {
+            width: 20px;
+            height: 20px;
+        }
+        
+        .back-to-top::after {
+            display: none; /* モバイルではテキストラベルを非表示に */
+        }
     }
-    
-    .back-to-top svg {
-        width: 20px;
-        height: 20px;
+    /* 標準的なモバイル表示 (iPhone等)向け */
+    @media screen and (max-width: 480px) {
+        .hero {
+            background-position: 35% 60%; /* さらに微調整 */
+        }
+        
+        .hero-text {
+            padding-top: 15vh;
+        }
+        .hero-text {
+            transform: translateY(-8vh); /* 上に15vh移動させる - 必要に応じて調整 */
+        }
+        
+        .hero-text h1 {
+            font-size: 3.2em;
+        }
+        
+        .hero-text p {
+            font-size: 1.3em;
+        }
+        .footer-links {
+            font-size: 0.65em; /* モバイルではさらに小さく */
+            line-height: 1.8; /* 行間を広げる */
+        }
+          
+          .footer-links a {
+            padding: 0 3px;
+        }
+          
+          .footer-copyright {
+            font-size: 0.6em;
+        }
     }
-    
-    .back-to-top::after {
-        display: none; /* モバイルではテキストラベルを非表示に */
-    }
-}
-/* 標準的なモバイル表示 (iPhone等)向け */
-@media screen and (max-width: 480px) {
-    .hero {
-        background-position: 35% 60%; /* さらに微調整 */
-    }
-    
-    .hero-text {
-        padding-top: 15vh;
-    }
-    .hero-text {
-        transform: translateY(-8vh); /* 上に15vh移動させる - 必要に応じて調整 */
-    }
-    
-    .hero-text h1 {
-        font-size: 3.2em;
-    }
-    
-    .hero-text p {
-        font-size: 1.3em;
-    }
-    .footer-links {
-        font-size: 0.65em; /* モバイルではさらに小さく */
-        line-height: 1.8; /* 行間を広げる */
-    }
-      
-    .footer-links a {
-        padding: 0 3px;
-    }
-      
-    .footer-copyright {
-        font-size: 0.6em;
-    }
-}
 
-/* 小さいモバイル画面向け */
-@media screen and (max-width: 375px) {
-    .hero {
-        background-position: 30% 68%;
+    /* 小さいモバイル画面向け */
+    @media screen and (max-width: 375px) {
+        .hero {
+            background-position: 30% 68%;
+        }
+        .hero-text {
+            transform: translateY(-6vh); /* 極小画面用 */
+        }
+        .hero-text h1 {
+            font-size: 2.8em;
+        }
     }
-    .hero-text {
-        transform: translateY(-6vh); /* 極小画面用 */
+
+    /* タブレット向け設定 */
+    @media screen and (min-width: 769px) and (max-width: 1024px) {
+        .profile-img {
+            max-width: 280px; /* タブレットでは少し大きめに */
+        }
     }
-    .hero-text h1 {
-        font-size: 2.8em;
+    @media screen and (max-width: 768px) {
+        .profile-name .jp-name {
+            font-size: 1.6em;
+        }
+        .profile-name .en-name {
+            font-size: 1.2em;
+        }
     }
-}
-
-/* タブレット向け設定 */
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    .profile-img {
-        max-width: 280px; /* タブレットでは少し大きめに */
-    }
-}
-@media screen and (max-width: 768px) {
-    .profile-name .jp-name {
-        font-size: 1.6em;
-    }
-    .profile-name .en-name {
-        font-size: 1.2em;
-    }
-}
-
-/* お問い合わせカードのスタイル調整（最終修正） */
-.contact-options {
-  display: flex;
-  justify-content: center;
-  gap: 30px;
-  margin: 40px 0;
-  flex-wrap: wrap;
-}
-
-.contact-option-card {
-  background-color: #fff;
-  border-radius: 8px;
-  padding: 30px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  width: 300px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  min-height: 220px;
-  margin: 0 auto;
-}
-
-.contact-option-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-}
-
-.contact-icon {
-  width: 80px !important;
-  height: 80px !important;
-  margin: 0 auto 20px;
-  background-color: #f5f5f5;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.contact-icon svg {
-  width: 40px !important;
-  height: 40px !important;
-  fill: #50031a;
-}
-
-.contact-option-title {
-  font-size: 1.1em !important;
-  font-weight: 600 !important;
-  margin-bottom: 15px;
-  color: #333 !important;
-  min-height: 40px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
-
-.contact-option-card h3.contact-option-title {
-  border-left: none !important;
-  padding-left: 0 !important;
-  text-align: center;
-  min-height: 40px;
-  font-size: 1.1em !important;
-}
-
-.contact-option-card h3.contact-option-title::before {
-  display: none !important;
-}
-
-.contact-option-link {
-  display: inline-block;
-  background-color: #50031a;
-  color: white !important;
-  text-decoration: none;
-  padding: 10px 25px;
-  border-radius: 4px;
-  font-weight: 500;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-  margin-top: 15px;
-}
-
-.contact-option-link:hover {
-  background-color: #72052a;
-  transform: translateY(-2px);
-  color: white !important;
-  text-decoration: none;
-}
-
-/* モバイル対応 */
-@media screen and (max-width: 768px) {
-  .contact-options {
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .contact-option-card {
-    width: 90%;
-    max-width: 280px;
-    padding: 20px;
-    min-height: 200px;
-  }
-  
-  .contact-icon {
-    width: 70px !important;
-    height: 70px !important;
-    margin-bottom: 15px;
-  }
-  
-  .contact-icon svg {
-    width: 35px !important;
-    height: 35px !important;
-  }
-  
-  .contact-option-title,
-  .contact-option-card h3.contact-option-title {
-    font-size: 1em !important;
-    min-height: 30px;
-  }
-  
-  .contact-option-link {
-    padding: 8px 20px;
-    font-size: 0.95em;
-  }
 }
