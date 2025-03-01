@@ -24,7 +24,7 @@
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
 
     <style>
-        /* ローディングアニメーションのスタイル調整 */
+    /* ローディングアニメーション */
     .page-loader {
         position: fixed;
         top: 0;
@@ -37,8 +37,49 @@
         align-items: center;
         z-index: 9999;
         transition: opacity 0.5s, visibility 0.5s;
-        opacity: 1;
-        visibility: visible;
+    }
+
+    .loader-content {
+    text-align: center;
+    }
+
+    .loader-icon {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    margin: 0 auto 15px;
+    }
+
+    .loader-icon:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background-color: #50031a;
+    animation: loadingMove 1.5s infinite ease-in-out;
+    }
+
+    @keyframes loadingMove {
+    0%, 100% {
+        transform: rotate(-15deg);
+    }
+    50% {
+        transform: rotate(15deg);
+    }
+    }
+
+    .loader-text {
+    color: #50031a;
+    font-size: 16px;
+    letter-spacing: 2px;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    }
+
+    .page-loaded .page-loader {
+    opacity: 0;
+    visibility: hidden;
     }
 
     .page-loaded .page-loader {
@@ -67,6 +108,9 @@
 
     <!-- 共通のJavaScript -->
     <script>
+
+ 
+document.addEventListener('DOMContentLoaded', function() {
     // 構造化データの追加（SEO対策）
     const jsonLd = {
         "@context": "https://schema.org",
@@ -90,29 +134,22 @@
     };
 
     // DOMが読み込まれたらJSONを追加
-    document.addEventListener('DOMContentLoaded', function() {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify(jsonLd);
-        document.head.appendChild(script);
+    const script = document.createElement('script');
+    script.type = 'application/ld+json';
+    script.textContent = JSON.stringify(jsonLd);
+    document.head.appendChild(script);
+    
+    // アニメーション要素にクラスを追加
+    const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, details.faq-item');
+    animElements.forEach((element, index) => {
+    element.classList.add('fade-in');
+    element.classList.add(`delay-${index % 4 + 1}`);
+    });
         
-        // アニメーション要素にクラスを追加
-        const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, details.faq-item');
-        animElements.forEach((element, index) => {
-        element.classList.add('fade-in');
-        element.classList.add(`delay-${index % 4 + 1}`);
-        });
-        
-        // ページ読み込み完了時の処理
-        setTimeout(function() {
-            document.body.classList.add('page-loaded');
-                    // ローディングアニメーションを非表示にする
-            const pageLoader = document.querySelector('.page-loader');
-            if (pageLoader) {
-                pageLoader.style.opacity = '0';
-                pageLoader.style.visibility = 'hidden';
-            }
-        }, 800);
+    // ページ読み込み完了時の処理
+    setTimeout(function() {
+        document.body.classList.add('page-loaded');
+    }, 800);
 
         // スキップリンクの修正
         const skipLink = document.querySelector('.skip-to-content');
