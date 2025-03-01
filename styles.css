@@ -50,15 +50,15 @@ footer {
     flex-shrink: 0;
     background-color: #50031a; /* アクセントカラーに統一 */
     color: white;
-    padding: 40px 0 20px;
+    padding: 15px 0 10px;
     text-align: center;
 }
 
 /* フッターコンテンツのレイアウト */
 .footer-content {
-    max-width: 1200px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 10px;
 }
 
 /* フッターナビゲーションのグリッドレイアウト */
@@ -68,6 +68,36 @@ footer {
     gap: 30px;
     margin-bottom: 30px;
     text-align: left;
+}
+
+/* フッターリンク */
+.footer-links {
+    margin-bottom: 8px;
+    font-size: 0.7em; /* かなり小さくする */
+    color: rgba(255, 255, 255, 0.6);
+}
+  
+  .footer-links a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color 0.3s ease;
+    padding: 0 5px;
+    white-space: nowrap;
+}
+  
+  .footer-links a:hover {
+    color: white;
+    text-decoration: underline;
+}
+  
+/* コピーライト */
+.footer-copyright {
+font-size: 0.65em; /* 極小サイズ */
+color: rgba(255, 255, 255, 0.6);
+}
+
+.footer-copyright p {
+margin: 5px 0;
 }
 
 /* フッターセクションのスタイル */
@@ -1776,6 +1806,18 @@ h3.contact-option-title,
         
         .hero-text p {
             font-size: 1.3em;
+        }
+        .footer-links {
+            font-size: 0.65em; /* モバイルではさらに小さく */
+            line-height: 1.8; /* 行間を広げる */
+        }
+          
+          .footer-links a {
+            padding: 0 3px;
+        }
+          
+          .footer-copyright {
+            font-size: 0.6em;
         }
     }
 

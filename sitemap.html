@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>プロフィール | 髙木優帆 Yuho Takagi-Cellist 公式サイト</title>
+    <title>サイトマップ | 髙木優帆 Yuho Takagi-Cellist 公式サイト</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
     <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
-    <link rel="canonical" href="https://yuhotakagi.com/profile.html">
+    <link rel="canonical" href="https://yuhotakagi.com/sitemap.html">
     
     <!-- メタデータの改善 (SEO対策) -->
-    <meta name="description" content="チェリスト髙木優帆のプロフィール。東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者として活動中。ザルツブルク・モーツァルト国際室内楽コンクール、ベヒシュタイン室内楽コンクールで最高位受賞。">
-    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, プロフィール, 経歴, 音楽, クラシック, 神奈川フィルハーモニー管弦楽団, オーケストラ">
-    <meta property="og:title" content="プロフィール | 髙木優帆 Yuho Takagi-Cellist 公式サイト">
-    <meta property="og:description" content="チェリスト髙木優帆のプロフィール。経歴、受賞歴、演奏活動などについてご紹介します。">
-    <meta property="og:image" content="https://yuhotakagi.com/images/profile.jpg">
-    <meta property="og:url" content="https://yuhotakagi.com/profile.html">
+    <meta name="description" content="チェリスト髙木優帆の公式サイトのサイトマップです。サイト内の全ページへのリンクを掲載しています。">
+    <meta name="keywords" content="髙木優帆, チェロ, チェリスト, サイトマップ">
+    <meta property="og:title" content="サイトマップ | 髙木優帆 Yuho Takagi-Cellist 公式サイト">
+    <meta property="og:description" content="チェリスト髙木優帆の公式サイトのサイトマップです。サイト内の全ページへのリンクを掲載しています。">
+    <meta property="og:image" content="https://yuhotakagi.com/images/ogp.jpg">
+    <meta property="og:url" content="https://yuhotakagi.com/sitemap.html">
     <meta property="og:type" content="website">
 
     <!-- フォントの追加 -->
@@ -62,29 +62,6 @@
 
     .skip-to-content:focus {
       top: 0;
-    }
-
-    /* ホバーエフェクトの改善 */
-    .nav-menu ul li a {
-      position: relative;
-      transition: all 0.3s ease;
-    }
-
-    .nav-menu ul li a::after {
-      content: '';
-      position: absolute;
-      width: 0;
-      height: 2px;
-      bottom: 0;
-      left: 50%;
-      background-color: white;
-      transition: all 0.3s ease;
-      transform: translateX(-50%);
-    }
-
-    .nav-menu ul li a:hover::after,
-    .nav-menu ul li a.active::after {
-      width: 70%;
     }
 
     /* トップに戻るボタンの改善 */
@@ -141,32 +118,6 @@
 
     .back-to-top:hover svg {
       transform: translateY(-2px);
-    }
-
-    /* 画像ホバーエフェクト */
-    .profile-img {
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-    /* フッター改善 */
-    footer {
-      position: relative;
-      overflow: hidden;
-    }
-
-    footer::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 2px;
-      background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.5), transparent);
     }
 
     /* ローディングアニメーション */
@@ -226,36 +177,25 @@
       opacity: 0;
       visibility: hidden;
     }
-
-    /* プロフィールページ特有の改善 */
-    .profile {
+    
+    /* サイトマップページ特有のスタイル */
+    .sitemap {
       max-width: 800px;
       margin: 30px auto;
       padding: 40px;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
     }
-
-    .profile:hover {
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-    }
-
-    .profile-img {
-      border-radius: 5px;
-      max-width: 300px;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      margin: 0 auto 20px;
-    }
-
+    
     .page-title {
       text-align: center;
       margin-bottom: 30px;
-      font-size: 2.0em;
       position: relative;
       padding-bottom: 15px;
+      font-size: 2em;
     }
-
+    
     .page-title::after {
       content: '';
       position: absolute;
@@ -266,114 +206,77 @@
       height: 2px;
       background-color: #50031a;
     }
-
-    .profile-name {
-      position: relative;
-      display: block;
-      text-align: center;
-      padding-bottom: 10px;
-      margin-bottom: 20px;
-      font-size: 1.8em;
+    
+    .sitemap-section {
+      margin-bottom: 30px;
     }
-
-    .profile-name::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 2px;
-      background-color: #50031a;
-    }
-
-    .profile-bio {
-      line-height: 1.9;
-      text-align: left;
-      max-width: 700px;
-      margin: 0 auto;
-      font-size: 1.15em;
-      color: #444;
-    }
-
-    .profile-bio p {
-      margin-bottom: 1.2em;
-    }
-
-    .achievements {
-      margin-top: 40px;
-      padding-top: 20px;
-      border-top: 1px solid #eee;
-    }
-
-    .achievements h3 {
-      font-size: 1.3em;
+    
+    .sitemap-section h3 {
       color: #50031a;
+      font-size: 1.4em;
       margin-bottom: 15px;
+      border-left: 4px solid #50031a;
+      padding-left: 12px;
     }
-
-    .achievement-list {
-      list-style-type: none;
-      padding: 0;
-      margin: 0;
-    }
-
-    .achievement-list li {
-      padding: 10px 15px;
-      margin-bottom: 10px;
-      background-color: #f9f9f9;
-      border-left: 3px solid #50031a;
-      border-radius: 3px;
-    }
-
-    .social-links {
+    
+    .sitemap-links {
       display: flex;
-      justify-content: center;
+      flex-wrap: wrap;
       gap: 15px;
-      margin: 30px 0 10px;
+      margin-left: 20px;
     }
-
-    .social-link {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background-color: #50031a;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    
+    .sitemap-link {
+      flex: 1 1 200px;
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 5px;
       transition: all 0.3s ease;
+      text-decoration: none;
+      color: #333;
+      border-left: 3px solid #50031a;
     }
-
-    .social-link svg {
-      width: 20px;
-      height: 20px;
-      fill: white;
-    }
-
-    .social-link:hover {
+    
+    .sitemap-link:hover {
       transform: translateY(-3px);
-      background-color: #72052a;
-      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      background-color: #f0f0f0;
     }
-
+    
+    .sitemap-link h4 {
+      margin: 0 0 5px 0;
+      color: #50031a;
+    }
+    
+    .sitemap-link p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #666;
+    }
+    
     /* モバイル対応 */
     @media screen and (max-width: 768px) {
-      .profile {
-        padding: 30px 20px;
-        margin: 20px auto;
+      .sitemap {
+        padding: 25px;
+        margin: 20px;
       }
-
-      .profile-img {
-        max-width: 200px;
+      
+      .page-title {
+        font-size: 1.6em;
       }
-
-      .profile-name {
-        font-size: 1.5em;
+      
+      .sitemap-section h3 {
+        font-size: 1.2em;
       }
-
-      .profile-bio {
-        font-size: 1em;
-        padding: 0 10px;
+      
+      .sitemap-links {
+        flex-direction: column;
+        gap: 10px;
+      }
+      
+      .sitemap-link {
+        flex: none;
+        padding: 12px;
       }
     }
     </style>
@@ -383,21 +286,14 @@
     // 構造化データの追加（SEO対策）
     const jsonLd = {
       "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "髙木優帆",
-      "url": "https://yuhotakagi.com",
-      "jobTitle": "チェリスト",
-      "image": "https://yuhotakagi.com/images/profile.jpg",
-      "description": "髙木優帆はチェリストとして活動しています。東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者。",
-      "performerIn": {
-        "@type": "MusicGroup",
-        "name": "神奈川フィルハーモニー管弦楽団"
+      "@type": "WebPage",
+      "name": "サイトマップ - 髙木優帆",
+      "description": "髙木優帆の公式サイトのサイトマップ。全ページへのリンクを掲載しています。",
+      "publisher": {
+        "@type": "Person",
+        "name": "髙木優帆"
       },
-      "alumniOf": {
-        "@type": "CollegeOrUniversity",
-        "name": "東京藝術大学"
-      },
-      "knowsLanguage": "ja"
+      "inLanguage": "ja"
     };
 
     // DOMが読み込まれたらJSONを追加
@@ -408,7 +304,7 @@
       document.head.appendChild(script);
       
       // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.profile, .profile-img, .profile-name, .profile-bio p');
+      const animElements = document.querySelectorAll('.sitemap, .sitemap-section');
       animElements.forEach((element, index) => {
         element.classList.add('fade-in');
         element.classList.add(`delay-${index % 4 + 1}`);
@@ -421,7 +317,7 @@
     });
     </script>
 </head>
-<body class="profile-page">
+<body>
     <!-- スキップリンク（アクセシビリティ向上） -->
     <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
 
@@ -444,7 +340,7 @@
                 <div class="close-menu">×</div>
                 <ul>
                     <li><a href="index.html">HOME</a></li>
-                    <li><a href="profile.html" class="active">PROFILE</a></li>
+                    <li><a href="profile.html">PROFILE</a></li>
                     <li><a href="concerts.html">CONCERTS</a></li>
                     <li><a href="lesson.html">LESSON</a></li>
                     <li><a href="contact.html">CONTACT</a></li>
@@ -454,17 +350,47 @@
         </header>
 
         <main id="main-content">
-            <section class="profile">
-                <h2 class="page-title">PROFILE</h2>
-                <img src="images/profile.jpg" alt="髙木優帆" class="profile-img">
-                <p class="profile-name"><strong>髙木優帆 Yuho Takagi</strong></p>
-                <div class="profile-bio">
-                    <p>愛知県出身。</p>
-                    <p>12歳よりチェロを始める。ザルツブルク・モーツァルト国際室内楽コンクール、ベヒシュタイン室内楽コンクールで最高位受賞。</p>
-                    <p>ドヴォルザーク、シューマン、チャイコフスキーのチェロ協奏曲をオーケストラと共演。
-                    アントニオ・メネセス、シュテファン・コンツ、宮田大各氏のマスタークラスを受講。
-                    チェロを故山田知野子、上森祥平、河野文昭の各氏に師事。東京藝術大学卒業。</p>
-                    <p>サントリー室内楽アカデミー第8期フェロー。現在神奈川フィルハーモニー管弦楽団次席チェロ奏者。</p>
+            <section class="sitemap">
+                <h2 class="page-title">サイトマップ</h2>
+                
+                <div class="sitemap-section">
+                    <h3>メインページ</h3>
+                    <div class="sitemap-links">
+                        <a href="index.html" class="sitemap-link">
+                            <h4>HOME</h4>
+                            <p>髙木優帆の公式サイトトップページ</p>
+                        </a>
+                        <a href="profile.html" class="sitemap-link">
+                            <h4>PROFILE</h4>
+                            <p>プロフィールとこれまでの経歴</p>
+                        </a>
+                        <a href="concerts.html" class="sitemap-link">
+                            <h4>CONCERTS</h4>
+                            <p>今後の演奏会情報と過去の公演</p>
+                        </a>
+                        <a href="lesson.html" class="sitemap-link">
+                            <h4>LESSON</h4>
+                            <p>チェロレッスンの案内</p>
+                        </a>
+                        <a href="contact.html" class="sitemap-link">
+                            <h4>CONTACT</h4>
+                            <p>お問い合わせフォーム</p>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="sitemap-section">
+                    <h3>補足ページ</h3>
+                    <div class="sitemap-links">
+                        <a href="privacy-policy.html" class="sitemap-link">
+                            <h4>プライバシーポリシー</h4>
+                            <p>個人情報の取り扱いについて</p>
+                        </a>
+                        <a href="sitemap.html" class="sitemap-link">
+                            <h4>サイトマップ</h4>
+                            <p>サイト内の全ページへのリンク</p>
+                        </a>
+                    </div>
                 </div>
             </section>
         </main>
@@ -479,8 +405,13 @@
         <footer>
             <div class="footer-content">
                 <div class="footer-links">
-                    <a href="sitemap.html">サイトマップ</a> | 
-                    <a href="privacy-policy.html">プライバシーポリシー</a>
+                    <a href="index.html">HOME</a> | 
+                    <a href="profile.html">PROFILE</a> | 
+                    <a href="concerts.html">CONCERTS</a> | 
+                    <a href="lesson.html">LESSON</a> | 
+                    <a href="contact.html">CONTACT</a> | 
+                    <a href="privacy-policy.html">プライバシーポリシー</a> | 
+                    <a href="sitemap.html">サイトマップ</a>
                 </div>
                 <div class="footer-copyright">
                     <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
