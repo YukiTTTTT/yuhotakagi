@@ -23,6 +23,48 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <style>
+        /* ローディングアニメーションのスタイル調整 */
+    .page-loader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s, visibility 0.5s;
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .page-loaded .page-loader {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    /* スキップリンクのスタイル調整 */
+    .skip-to-content {
+        position: absolute;
+        top: -50px;
+        left: 10px;
+        background: #50031a;
+        color: white;
+        padding: 8px 15px;
+        z-index: 10000;
+        transition: top 0.3s;
+        border-radius: 0 0 5px 5px;
+        text-decoration: none;
+    }
+
+    .skip-to-content:focus {
+        top: 0;
+    }
+    </style>
+
     <!-- 共通のJavaScript -->
     <script>
     // 構造化データの追加（SEO対策）
@@ -63,8 +105,27 @@
         
         // ページ読み込み完了時の処理
         setTimeout(function() {
-        document.body.classList.add('page-loaded');
+            document.body.classList.add('page-loaded');
+                    // ローディングアニメーションを非表示にする
+            const pageLoader = document.querySelector('.page-loader');
+            if (pageLoader) {
+                pageLoader.style.opacity = '0';
+                pageLoader.style.visibility = 'hidden';
+            }
         }, 800);
+
+        // スキップリンクの修正
+        const skipLink = document.querySelector('.skip-to-content');
+        if (skipLink) {
+            skipLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                const mainContent = document.getElementById('main-content');
+                if (mainContent) {
+                    mainContent.focus();
+                    mainContent.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        }
     });
     </script>
 </head>
@@ -191,7 +252,7 @@
                     </details>
                     
                     <details class="faq-item">
-                        <summary><span></span>何歳からレッスンを受けられますか？</span></summary>
+                        <summary><span>何歳からレッスンを受けられますか？</span></summary>
                         <div class="faq-content">
                             年齢制限はございません。小さなお子様でも興味をお持ちでしたらご相談ください。また、大人の方の「始めたい」という気持ちも大歓迎です。
                         </div>
