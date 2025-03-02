@@ -25,13 +25,25 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburgerMenu.addEventListener('click', function() {
         if (navMenu.classList.contains('active')) {
             closeNavMenu();
+            hamburgerMenu.classList.remove('active');
         } else {
             navMenu.classList.add('active');
             overlay.classList.add('active');
+            hamburgerMenu.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
     });
-    
+
+    // ナビゲーションメニューを閉じる関数
+    function closeNavMenu() {
+        if (navMenu) {
+            navMenu.classList.remove('active');
+            overlay.classList.remove('active');
+            hamburgerMenu.classList.remove('active');
+            document.body.style.overflow = ''; // スクロール許可
+        }
+    }
+        
     // 閉じるボタンのクリックイベント（既存コードの修正）
     document.body.addEventListener('click', function(event) {
         // 閉じるボタンとして機能するハンバーガーメニューのクリックはすでに別で処理
