@@ -421,18 +421,15 @@
         background-color: #50031a;
         color: white !important; /* !important を追加して確実に白色を適用 */
         text-decoration: none;
-        padding: 6px 12px;
+        padding: 8px 12px;
         border-radius: 4px;
-        font-size: 0.85em;
+        font-size: 0.9em;
         font-weight: 500;
-        transition: all 0.3s ease;
+        transition: background-color 0.3s, transform 0.3s;
         margin-left: 10px;
-        margin-top: 15px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
     }
     
-    .calendar-button:hover,
-    .calendar-button:active {
+    .calendar-button:hover {
         background-color: #72052a;
         transform: translateY(-2px);
         text-decoration: none;
@@ -492,18 +489,15 @@
       background-color: #50031a;
       color: white;
       text-decoration: none;
-      padding: 6px 12px;
+      padding: 8px 12px;
       border-radius: 4px;
-      font-size: 0.85em;
+      font-size: 0.9em;
       font-weight: 500;
       margin-left: 10px;
-      transition: all 0.3s ease;
-      margin-top: 15px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.3s, transform 0.3s;
     }
     
-    .calendar-button:hover,
-    .calendar-button:active {
+    .calendar-button:hover {
       background-color: #72052a;
       transform: translateY(-2px);
       text-decoration: none;
@@ -520,22 +514,19 @@
     .concert-actions {
       margin-top: 15px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      /*flex-wrap: wrap;
-      gap: 10px;*/
+      flex-wrap: wrap;
+      gap: 10px;
     }
 
     /* レスポンシブ対応 */
     @media screen and (max-width: 480px) {
-        .concert-actions {
+        .concert-actions-container {
         flex-direction: column;
         align-items: flex-start;
         }
         
-
         .calendar-button {
-        /*margin-left: 0;*/
+        margin-left: 0;
         margin-top: 10px;
         }
     }
@@ -746,7 +737,7 @@
                             <p>お問い合わせ・お申込み：<a href="mailto:koichi6230@gmail.com">koichi6230@gmail.com</a></p>
                             
                             <!-- カレンダー追加ボタン -->
-                            <div class="concert-actions">
+                            <div class="concert-actions-container">
                                 <!-- シェアボタン追加 -->
                                 <div class="share-concert">
                                     <span>シェア：</span>
@@ -783,7 +774,7 @@
                             <p>お問い合わせ・お申込み：<a href="mailto:shioriwada.va@gmail.com">shioriwada.va@gmail.com</a></p>
                             
                             <!-- カレンダー追加ボタン -->
-                            <div class="concert-actions">
+                            <div class="concert-actions-container">
                                 <!-- シェアボタン追加 -->
                                 <div class="share-concert">
                                     <span>シェア：</span>
@@ -821,7 +812,7 @@
                             <p>詳細：<a href="https://www.orchestra-est.jp/" target="_blank" rel="noopener noreferrer">公式サイト</a></p>
                             
                             <!-- カレンダー追加ボタン -->
-                            <div class="concert-actions">
+                            <div class="concert-actions-container">
                                                             <!-- シェアボタン追加 -->
                                 <div class="share-concert">
                                     <span>シェア：</span>
@@ -859,7 +850,7 @@
                             <p>詳細：<a href="https://www.suntory.co.jp/suntoryhall/schedule/detail/20250614_S_1.html" target="_blank" rel="noopener noreferrer">公式サイト</a></p>
                             
                             <!-- カレンダー追加ボタン -->
-                            <div class="concert-actions">
+                            <div class="concert-actions-container">
                                                             <!-- シェアボタン追加 -->
                                 <div class="share-concert">
                                     <span>シェア：</span>
@@ -897,7 +888,7 @@
                             <p>詳細：<a href="https://www.suntory.co.jp/suntoryhall/schedule/detail/20250621_S_1.html" target="_blank" rel="noopener noreferrer">公式サイト</a></p>
                             
                             <!-- カレンダー追加ボタン -->
-                            <div class="concert-actions">
+                            <div class="concert-actions-container">
                                 <!-- シェアボタン追加 -->
                                 <div class="share-concert">
                                     <span>シェア：</span>
