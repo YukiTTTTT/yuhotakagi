@@ -1999,3 +1999,25 @@ h3.contact-option-title,
         display: block;
     }
 }
+
+/* 小さなバツ印（×）を非表示にする追加CSS */
+.close-menu, 
+nav .close-menu,
+header .close-menu, 
+.nav-menu .close-menu {
+    display: none !important;
+}
+
+/* パンくずリスト付近に表示されるバツ印の特定と非表示 */
+.breadcrumbs + .close-menu,
+.breadcrumbs ~ .close-menu,
+main .close-menu {
+    display: none !important;
+}
+
+/* モバイルメニュー表示時のみ、閉じるボタンを表示 */
+@media screen and (max-width: 768px) {
+    .nav-menu.active .bottom-close-button {
+        display: block !important;
+    }
+}
