@@ -2014,3 +2014,18 @@ header .close-menu,
         display: block !important;
     }
 }
+/* 閉じるボタン（×）を絶対に非表示にする */
+.close-menu, 
+.nav-menu .close-menu {
+    display: none !important;
+}
+
+/* バツ印を絶対に表示しない */
+.nav-menu.active .close-menu {
+    display: none !important;
+}
+
+/* 下部のCLOSEボタンだけを表示 */
+.nav-menu.active .bottom-close-button {
+    display: block !important;
+}
