@@ -2048,4 +2048,22 @@ header .close-menu,
     .lesson > p + p {
       margin-top: 15px;
     }
-  }
+}
+
+/* スマホ表示時のテキスト調整 - 読みやすさの改善 */
+@media screen and (max-width: 768px) {
+    .contact-intro,
+    .lesson > p {
+      text-align: left;  /* 左揃えに変更 */
+      font-size: 1.05em; /* フォントサイズを少し大きく */
+      line-height: 1.8;  /* 行間を広く */
+      margin: 0 15px 20px; /* 左右に余白を追加 */
+      padding: 0;
+      letter-spacing: 0.02em; /* 文字間隔を少し広く */
+    }
+    
+    /* 見出しはセンター揃えのまま */
+    .page-title, h2, h3 {
+      text-align: center;
+    }
+}
