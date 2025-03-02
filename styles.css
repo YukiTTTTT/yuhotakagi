@@ -2008,13 +2008,6 @@ header .close-menu,
     display: none !important;
 }
 
-/* パンくずリスト付近に表示されるバツ印の特定と非表示 */
-.breadcrumbs + .close-menu,
-.breadcrumbs ~ .close-menu,
-main .close-menu {
-    display: none !important;
-}
-
 /* モバイルメニュー表示時のみ、閉じるボタンを表示 */
 @media screen and (max-width: 768px) {
     .nav-menu.active .bottom-close-button {
