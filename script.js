@@ -25,7 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
     hamburgerMenu.addEventListener('click', function() {
         if (navMenu.classList.contains('active')) {
             closeNavMenu();
-            hamburgerMenu.classList.remove('active');
         } else {
             navMenu.classList.add('active');
             overlay.classList.add('active');
@@ -39,12 +38,12 @@ document.addEventListener('DOMContentLoaded', function() {
         if (navMenu) {
             navMenu.classList.remove('active');
             overlay.classList.remove('active');
-            hamburgerMenu.classList.remove('active');
+            hamburgerMenu.classList.remove('active'); // 三本線に戻すために必要
             document.body.style.overflow = ''; // スクロール許可
         }
     }
         
-    // 閉じるボタンのクリックイベント（既存コードの修正）
+    // 閉じるボタンのクリックイベント
     document.body.addEventListener('click', function(event) {
         // 閉じるボタンとして機能するハンバーガーメニューのクリックはすでに別で処理
         // bottom-close-button だけ残す
@@ -58,15 +57,6 @@ document.addEventListener('DOMContentLoaded', function() {
             closeNavMenu();
         }
     });
-
-    // ナビゲーションメニューを閉じる関数
-    function closeNavMenu() {
-        if (navMenu) {
-            navMenu.classList.remove('active');
-            overlay.classList.remove('active');
-            document.body.style.overflow = ''; // スクロール許可
-        }
-    }
 
     // トップに戻るボタンの処理
     if (backToTop) {
