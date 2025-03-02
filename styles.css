@@ -1975,3 +1975,27 @@ h3.contact-option-title,
         margin-bottom: 15px;
     }
 }
+/* 閉じるボタン（×）を非表示にするCSS */
+.close-menu {
+    display: none !important;
+}
+
+/* ハンバーガーメニューが開いたときだけ表示 */
+.nav-menu.active .close-menu {
+    display: block !important;
+}
+
+/* 以下はすでにスタイルシートにある可能性があるコードです */
+@media screen and (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+
+    .close-menu {
+        display: none;
+    }
+
+    .nav-menu.active .close-menu {
+        display: block;
+    }
+}
