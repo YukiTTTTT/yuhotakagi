@@ -693,6 +693,17 @@
             transition: all 0.3s ease;
           }
         }
+                  /* モバイル表示での文章の左揃え修正 */
+        @media screen and (max-width: 768px) {
+          .lesson > p,
+          .contact > p,
+          .contact-intro {
+            text-align: left !important;
+            padding-left: 5px;
+            padding-right: 5px;
+            line-height: 1.8;
+          }
+        }
     </style>
 
     <!-- 共通のJavaScript -->
