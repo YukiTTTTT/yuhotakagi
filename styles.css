@@ -238,9 +238,22 @@ footer {
     height: 3px;
     margin: 5px auto;
     background-color: white;
+    transition: transform 0.3s ease, opacity 0.3s ease;
 }
 
-/* 閉じるボタン */
+/* メニューがアクティブになったときのハンバーガーアイコンの変形 */
+.nav-menu.active ~ .hamburger-menu span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.nav-menu.active ~ .hamburger-menu span:nth-child(2) {
+    opacity: 0;
+}
+
+.nav-menu.active ~ .hamburger-menu span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+/* 閉じるボタン 
 .close-menu {
     display: none;
     position: absolute;
@@ -249,7 +262,7 @@ footer {
     font-size: 24px;
     color: white;
     cursor: pointer;
-}
+}*/
 /* 右下のCLOSEボタン */
 .bottom-close-button {
     position: fixed;

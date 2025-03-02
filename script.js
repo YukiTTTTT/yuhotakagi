@@ -23,15 +23,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ハンバーガーメニュークリック時の挙動
     hamburgerMenu.addEventListener('click', function() {
-        navMenu.classList.add('active');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // スクロール禁止
+        if (navMenu.classList.contains('active')) {
+            closeNavMenu();
+        } else {
+            navMenu.classList.add('active');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
     });
     
     // 閉じるボタンのクリックイベント（既存コードの修正）
     document.body.addEventListener('click', function(event) {
-        // 閉じるボタンのクリックイベント
-        if (event.target.closest('.close-menu') || event.target.closest('.bottom-close-button')) {
+        // 閉じるボタンとして機能するハンバーガーメニューのクリックはすでに別で処理
+        // bottom-close-button だけ残す
+        if (event.target.closest('.bottom-close-button')) {
             closeNavMenu();
             event.preventDefault();
         }
