@@ -1125,8 +1125,8 @@ details.faq-item summary::after {
         display: none;
         position: fixed;
         top: 0;
-        right: 0;
-        width: 100%; /* 画面幅いっぱいに広げる */
+        right: -66.67%; /* 初期表示では画面外 */
+        width: 66.67%; /* 画面幅三分の二くらい */
         height: 100vh;
         background-color: rgba(80, 3, 26, 0.9);
         padding-top: 60px; /* 上部の余白を増やす */
@@ -1135,6 +1135,25 @@ details.faq-item summary::after {
 
     .nav-menu.active {
         display: block;
+        right: 0; /* メニューを表示するための位置 */
+    }
+
+    .menu-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5); /* 半透明のグレー */
+        z-index: 999; /* メニューより下、他のコンテンツより上 */
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease;
+    }
+    
+    .menu-overlay.active {
+        opacity: 1;
+        visibility: visible;
     }
 
     .close-menu {
@@ -1181,6 +1200,8 @@ details.faq-item summary::after {
     .hero-text p {
         font-size: 1.2em;
     }
+
+
 
     /* スマートフォンの縦長画面対応 */
     @media screen and (max-height: 700px) {
@@ -1885,6 +1906,18 @@ h3.contact-option-title,
         }
         .profile-name .en-name {
             font-size: 1.2em;
+        }
+    }
+        /* モバイルとタブレット共通の設定 */
+    @media screen and (max-width: 1024px) { /* 1024px以下のすべてのデバイスに適用 */
+        .nav-menu {
+            width: 66.67%; /* 画面の2/3に設定 */
+            right: -66.67%; /* 初期状態では画面外に配置 */
+            transition: right 0.3s ease; /* スムーズな表示/非表示アニメーション */
+        }
+        
+        .nav-menu.active {
+            right: 0; /* activeクラスが付いた時に表示 */
         }
     }
 }

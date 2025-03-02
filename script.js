@@ -1,9 +1,15 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navMenu = document.querySelector('.nav-menu');
+    const hamburgerMenu = document.querySelector('.hamburger-menu');
     const currentPage = window.location.pathname.split('/').pop();
     const navLinks = document.querySelectorAll('nav ul li a');
     const scrollIndicator = document.getElementById('scroll-indicator');
     const backToTop = document.getElementById('back-to-top');
+
+    // メニュー外のオーバーレイ要素を作成
+    const overlay = document.createElement('div');
+    overlay.className = 'menu-overlay';
+    document.body.appendChild(overlay);
 
     // 現在のページのナビゲーションリンクをアクティブにする
     navLinks.forEach(link => {
@@ -15,25 +21,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // 委任イベントリスナーでクリックイベントを処理
+    // ハンバーガーメニュークリック時の挙動
+    hamburgerMenu.addEventListener('click', function() {
+        navMenu.classList.add('active');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // スクロール禁止
+    });
+    
+    // 閉じるボタンのクリックイベント（既存コードの修正）
     document.body.addEventListener('click', function(event) {
-        // ハンバーガーメニューのクリックイベント
-        if (event.target.closest('.hamburger-menu')) {
-            navMenu.classList.add('active');
-            document.body.style.overflow = 'hidden'; // スクロール禁止
-            event.preventDefault();
-        }
-        
         // 閉じるボタンのクリックイベント
         if (event.target.closest('.close-menu') || event.target.closest('.bottom-close-button')) {
             closeNavMenu();
             event.preventDefault();
         }
         
-        // メニュー外クリックで閉じる（モバイル用）
-        if (navMenu && navMenu.classList.contains('active') && 
-            !event.target.closest('.nav-menu') && 
-            !event.target.closest('.hamburger-menu')) {
+        // メニュー外クリックで閉じる
+        if (event.target === overlay) {
             closeNavMenu();
         }
     });
@@ -42,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function closeNavMenu() {
         if (navMenu) {
             navMenu.classList.remove('active');
+            overlay.classList.remove('active');
             document.body.style.overflow = ''; // スクロール許可
         }
     }
