@@ -2029,3 +2029,23 @@ header .close-menu,
 .nav-menu.active .bottom-close-button {
     display: block !important;
 }
+
+/* スマホ表示時のテキスト調整 */
+@media screen and (max-width: 768px) {
+    .contact p,
+    .lesson > p {
+      white-space: normal;
+      text-align: center;
+      font-size: 0.95em;
+      line-height: 1.6;
+      margin: 0 auto 20px;
+      max-width: 100%;
+      padding: 0 10px;
+    }
+    
+    /* <br>タグの代わりにマージンで調整 */
+    .contact p + p,
+    .lesson > p + p {
+      margin-top: 15px;
+    }
+  }
