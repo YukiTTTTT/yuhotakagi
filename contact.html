@@ -39,6 +39,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&family=Noto+Serif+JP:wght@400;500;700&family=Playfair+Display:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- パンくずリスト用の構造化データ -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "HOME",
+            "item": "https://yuhotakagi.com/index.html"
+            },
+            {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "お問い合わせ"
+            }
+        ]
+    }
+    </script>
+
+    <!-- WebPage用の構造化データ -->
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "お問い合わせ - 髙木優帆",
+    "description": "髙木優帆の公式サイトにおけるお問い合わせについて説明しています。",
+    "publisher": {
+        "@type": "Person",
+        "name": "髙木優帆"
+    },
+    "inLanguage": "ja"
+    }
+    </script>    
+    
+    
+    
+    
     <!-- 共通のスタイル改善 -->
     <style>
       /* アニメーションの追加 */
@@ -535,6 +575,21 @@
       </header>
 
       <main id="main-content">
+        <!-- お問い合わせページ用 -->
+          <div class="breadcrumbs">
+            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <a itemprop="item" href="index.html">
+                        <span itemprop="name">HOME</span>
+                    </a>
+                    <meta itemprop="position" content="1" />
+                </li>
+                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                    <span itemprop="name">CONTACT</span>
+                    <meta itemprop="position" content="2" />
+                </li>
+            </ol>
+          </div>
           <section class="contact">
               <h2 class="page-title">CONTACT</h2>
               <div class="contact-intro">
