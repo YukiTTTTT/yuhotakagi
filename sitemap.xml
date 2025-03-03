@@ -30,4 +30,16 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+  <loc>https://yuhotakagi.com/privacy-policy.html</loc>
+  <lastmod>2025-03-04</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
+</url>
+<url>
+  <loc>https://yuhotakagi.com/sitemap.html</loc>
+  <lastmod>2025-03-04</lastmod>
+  <changefreq>yearly</changefreq>
+  <priority>0.5</priority>
+</url>
 </urlset>
