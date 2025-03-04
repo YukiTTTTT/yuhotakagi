@@ -12,6 +12,16 @@ document.addEventListener('DOMContentLoaded', function() {
     const backToInputBtn = document.getElementById('back-to-input-btn');
     const sendFormBtn = document.getElementById('send-form-btn');
     
+    // セッションストレージから送信完了状態を確認（ページリロード対策）
+    if (sessionStorage.getItem('formSubmitted') === 'true') {
+        // 送信完了状態を表示
+        formInputSection.classList.remove('active');
+        formConfirmSection.classList.remove('active');
+        formCompleteSection.classList.add('active');
+        // 状態をクリア（次回のために）
+        sessionStorage.removeItem('formSubmitted');
+    }
+    
     // Google フォームのフィールド ID
     const GOOGLE_FORM_FIELD_IDS = {
       name: 'entry.2005620554',
@@ -133,17 +143,8 @@ document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // Google フォームにデータを送信
-    async function submitToGoogleForm() {
-      // フォームデータを準備
-      const formData = new FormData();
-      formData.append(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
-      formData.append(GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
-      formData.append(GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
-      formData.append(GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value || '');
-      formData.append(GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
-      formData.append(GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
-      
+    // Google フォームにデータを送信（リダイレクト方式）
+    function submitToGoogleForm() {
       // ローディング表示
       formLoading.classList.add('active');
       
@@ -151,58 +152,28 @@ document.addEventListener('DOMContentLoaded', function() {
       debugFormSubmission();
       
       try {
-        // JSONP方式でのGoogle Formへのデータ送信
-        const formUrl = new URL(GOOGLE_FORM_URL);
-        
-        // URLSearchParamsを使ってクエリパラメータを追加
+        // URLSearchParamsを使ってクエリパラメータを構築
         const params = new URLSearchParams();
-        for (const [key, value] of formData.entries()) {
-          params.append(key, value);
-        }
+        params.append(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
+        params.append(GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
+        params.append(GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
+        params.append(GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value || '');
+        params.append(GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
+        params.append(GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
         
-        // 直接リダイレクトする方法
-        // IFRAMEを使用する方法
-        const iframe = document.createElement('iframe');
-        iframe.name = 'hidden_iframe';
-        iframe.id = 'hidden_iframe';
-        iframe.style.display = 'none';
-        document.body.appendChild(iframe);
+        // 送信完了フラグをセッションストレージに保存（リダイレクトから戻ってきたときのため）
+        sessionStorage.setItem('formSubmitted', 'true');
         
-        // フォーム要素を作成
-        const form = document.createElement('form');
-        form.method = 'POST';
-        form.action = GOOGLE_FORM_URL;
-        form.target = 'hidden_iframe';
-        form.style.display = 'none';
+        // 新規タブでGoogle Formを開く
+        window.open(`${GOOGLE_FORM_URL}?${params.toString()}`, '_blank');
         
-        // フォームデータを追加
-        for (const [key, value] of formData.entries()) {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = key;
-          input.value = value;
-          form.appendChild(input);
-        }
-        
-        document.body.appendChild(form);
-        
-        // フォーム送信
-        form.submit();
-        
-        // 一定時間後に送信完了とみなす
+        // ユーザーにはこのページで完了画面を表示
         setTimeout(() => {
-          // 送信完了画面へ
           formLoading.classList.remove('active');
           formConfirmSection.classList.remove('active');
           formCompleteSection.classList.add('active');
           window.scrollTo({ top: 0, behavior: 'smooth' });
-          
-          // 一時的なフォームとiframeを削除
-          setTimeout(() => {
-            document.body.removeChild(form);
-            document.body.removeChild(iframe);
-          }, 1000);
-        }, 2000);
+        }, 1500);
         
       } catch (error) {
         console.error('Form submission error:', error);
