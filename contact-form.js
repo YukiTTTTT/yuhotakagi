@@ -22,6 +22,10 @@ document.addEventListener('DOMContentLoaded', function() {
         sessionStorage.removeItem('formSubmitted');
     }
     
+    // Google フォームの設定
+    // フォームの事前入力URLから取得した正確なURLとパラメータ
+    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/formResponse';
+    
     // Google フォームのフィールド ID
     const GOOGLE_FORM_FIELD_IDS = {
       name: 'entry.2005620554',
@@ -31,9 +35,6 @@ document.addEventListener('DOMContentLoaded', function() {
       inquiryType: 'entry.1802838368',
       message: 'entry.839337160'
     };
-    
-    // Google フォームの URL（formResponseの部分に注意）
-    const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/formResponse';
     
     // フォームの検証関数
     function validateForm() {
@@ -147,43 +148,51 @@ document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // Google フォームにデータを送信（リダイレクト方式）
+    // Google フォームにデータを送信（直接投稿方式）
     function submitToGoogleForm() {
       // ローディング表示
       formLoading.classList.add('active');
       
+      // フォームデータの取得
+      const name = document.getElementById('name').value;
+      const nameKana = document.getElementById('name-kana').value;
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value || '';
+      const inquiryTypeSelect = document.getElementById('inquiry-type');
+      const inquiryType = inquiryTypeSelect.value;
+      const message = document.getElementById('message').value;
+      
       // デバッグ情報
-      debugFormSubmission();
+      console.log('送信するデータ:', {
+        name, nameKana, email, phone, 
+        inquiryType, 
+        inquiryTypeText: inquiryTypeSelect.options[inquiryTypeSelect.selectedIndex].text,
+        message
+      });
       
       try {
-        // URLSearchParamsを使ってクエリパラメータを構築
-        const params = new URLSearchParams();
+        // 事前入力URLに基づいたパラメータを作成
+        // 注意: Google Formsの実際のURLとパラメータ名は異なる場合があります
+        const formUrl = new URL(GOOGLE_FORM_URL);
         
-        // 各フィールドを追加
-        params.append(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
-        params.append(GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
-        params.append(GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
-        params.append(GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value || '');
+        // パラメータを追加
+        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.name, name);
+        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.nameKana, nameKana);
+        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.email, email);
+        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.phone, phone);
+        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.inquiryType, inquiryType);
+        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.message, message);
         
-        // セレクトボックスの値
-        const inquiryTypeSelect = document.getElementById('inquiry-type');
-        const selectedInquiryType = inquiryTypeSelect.value;
-        params.append(GOOGLE_FORM_FIELD_IDS.inquiryType, selectedInquiryType);
-        
-        // お問い合わせ内容
-        params.append(GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
-        
-        // 送信完了フラグをセッションストレージに保存（リダイレクトから戻ってきたときのため）
+        // 送信完了フラグをセッションストレージに保存
         sessionStorage.setItem('formSubmitted', 'true');
         
-        // 新規タブでGoogle Formを開く
-        const googleFormUrl = `${GOOGLE_FORM_URL}?${params.toString()}`;
-        console.log('送信URL:', googleFormUrl);
+        // デバッグ出力
+        console.log('Google Forms URL:', formUrl.toString());
         
-        // 新規タブでGoogleフォーム送信ページを開く
-        window.open(googleFormUrl, '_blank');
+        // Google Formsページを新しいタブで開く
+        window.open(formUrl.toString(), '_blank');
         
-        // ユーザーにはこのページで完了画面を表示
+        // 元のページで完了画面を表示
         setTimeout(() => {
           formLoading.classList.remove('active');
           formConfirmSection.classList.remove('active');
@@ -198,23 +207,62 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // デバッグ用の処理を追加
-    function debugFormSubmission() {
-      console.log('送信されるデータ:');
-      console.log('名前:', document.getElementById('name').value);
-      console.log('名前(カナ):', document.getElementById('name-kana').value);
-      console.log('メール:', document.getElementById('email').value);
-      console.log('電話:', document.getElementById('phone').value);
+    // 直接Googleフォームに送信する別のアプローチ（フォーム経由）
+    function submitDirectToGoogleForm() {
+      // ローディング表示
+      formLoading.classList.add('active');
       
-      const inquiryTypeSelect = document.getElementById('inquiry-type');
-      console.log('種別(value):', inquiryTypeSelect.value);
-      console.log('種別(text):', inquiryTypeSelect.options[inquiryTypeSelect.selectedIndex].text);
-      
-      console.log('内容:', document.getElementById('message').value);
-      
-      console.log('Google フォーム設定:');
-      console.log('URL:', GOOGLE_FORM_URL);
-      console.log('フィールド ID:', GOOGLE_FORM_FIELD_IDS);
+      try {
+        // 一時的なフォーム要素を作成
+        const tempForm = document.createElement('form');
+        tempForm.method = 'POST';
+        tempForm.action = GOOGLE_FORM_URL;
+        tempForm.target = '_blank';
+        tempForm.style.display = 'none';
+        
+        // フォームフィールドを追加
+        const addField = (name, value) => {
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = name;
+          input.value = value;
+          tempForm.appendChild(input);
+        };
+        
+        // 各フィールドを追加
+        addField(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
+        addField(GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
+        addField(GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
+        addField(GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value || '');
+        addField(GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
+        addField(GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
+        
+        // フォームをbodyに追加
+        document.body.appendChild(tempForm);
+        
+        // 送信完了フラグをセッションストレージに保存
+        sessionStorage.setItem('formSubmitted', 'true');
+        
+        // フォームを送信
+        console.log('送信するフォーム:', tempForm);
+        tempForm.submit();
+        
+        // 完了画面に切り替え
+        setTimeout(() => {
+          // 一時フォームを削除
+          document.body.removeChild(tempForm);
+          
+          formLoading.classList.remove('active');
+          formConfirmSection.classList.remove('active');
+          formCompleteSection.classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }, 1500);
+        
+      } catch (error) {
+        console.error('Form submission error:', error);
+        alert('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
+        formLoading.classList.remove('active');
+      }
     }
     
     // イベントリスナーの設定
@@ -237,8 +285,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 「送信する」ボタンのクリックイベント
     sendFormBtn.addEventListener('click', function() {
-      // 直接submitToGoogleFormを呼び出し
-      submitToGoogleForm();
+      // 両方の送信方法を試す
+      // submitToGoogleForm(); // URL方式
+      submitDirectToGoogleForm(); // フォーム方式
     });
     
     // フォーム入力時のリアルタイムバリデーション
