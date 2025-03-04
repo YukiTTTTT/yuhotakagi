@@ -136,42 +136,47 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Google フォームにデータを送信
     function submitToGoogleForm() {
-      // フォームアクションを設定
-      googleForm.action = GOOGLE_FORM_URL;
+      // フォームデータを準備
+      const formData = new FormData();
+      formData.append(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
+      formData.append(GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
+      formData.append(GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
+      formData.append(GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value || '');
+      formData.append(GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
+      formData.append(GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
       
-      // Google フォームのフィールドにデータをセット - 直接値をセットする方法に変更
-      document.getElementById('g-name').value = document.getElementById('name').value;
-      document.getElementById('g-name-kana').value = document.getElementById('name-kana').value;
-      document.getElementById('g-email').value = document.getElementById('email').value;
-      document.getElementById('g-phone').value = document.getElementById('phone').value;
-      document.getElementById('g-inquiry-type').value = document.getElementById('inquiry-type').value;
-      document.getElementById('g-message').value = document.getElementById('message').value;
-      
-      // ローディング表示を開始
+      // ローディング表示
       formLoading.classList.add('active');
       
-      // デバッグ情報を出力
+      // デバッグ情報
       debugFormSubmission();
       
-      // フォームを送信
-      try {
-        // 実際のフォーム送信を実行
-        googleForm.submit();
+      // サーバーにPOSTリクエスト
+      fetch('send-form.php', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log('Form submission response:', data);
         
-        // iframe のロードイベントを待たずに一定時間後に完了画面を表示
-        setTimeout(function() {
+        if (data.success) {
+          // 送信完了画面へ
           formConfirmSection.classList.remove('active');
           formCompleteSection.classList.add('active');
-          formLoading.classList.remove('active');
-          
-          // スクロールをトップに戻す
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 2500); // 時間を延長
-      } catch (error) {
+        } else {
+          console.error('Form submission error:', data);
+          alert('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
+        }
+      })
+      .catch(error => {
         console.error('Form submission error:', error);
         alert('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
+      })
+      .finally(() => {
         formLoading.classList.remove('active');
-      }
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
     }
     
     // デバッグ用の処理を追加
@@ -186,8 +191,7 @@ document.addEventListener('DOMContentLoaded', function() {
       
       console.log('Google フォーム設定:');
       console.log('URL:', GOOGLE_FORM_URL);
-      console.log('フォーム要素:', googleForm);
-      console.log('アクション:', googleForm.action);
+      console.log('フィールド ID:', GOOGLE_FORM_FIELD_IDS);
     }
     
     // イベントリスナーの設定
@@ -239,25 +243,9 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Google フォームの iframe ロードイベント
+    // Google フォームの iframe ロードイベント（送信完了の検出用）
     document.getElementById('google-form-iframe').addEventListener('load', function() {
-      console.log('Google form iframe loaded');
-      
-      // 最初のロード時はスキップ
-      if (!this.initialLoad) {
-        this.initialLoad = true;
-        return;
-      }
-      
-      // 2回目以降のロードはフォーム送信完了と見なす
-      console.log('Form submission completed');
-      
-      // 送信完了画面への切り替え
-      formConfirmSection.classList.remove('active');
-      formCompleteSection.classList.add('active');
-      formLoading.classList.remove('active');
-      
-      // スクロールをトップに戻す
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      // iframe がロードされた時の処理（実際の実装では送信完了の確認に使用）
+      console.log('Google form response received');
     });
   });
