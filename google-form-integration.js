@@ -23,6 +23,7 @@ const GOOGLE_FORM_SETTINGS = {
   // 以下は仮のIDです。実際のフォームのIDに置き換えてください
   fields: {
     name: 'entry.2005620554',      // お名前フィールドのID
+    nameKana: 'entry.1116858980',   // お名前(カナ)フィールドのID
     email: 'entry.1045781291',     // メールアドレスフィールドのID
     phone: 'entry.1794284292',     // 電話番号フィールドのID
     inquiryType: 'entry.1802838368', // お問い合わせ種別フィールドのID
@@ -96,6 +97,7 @@ function sendToGoogleForm(formData) {
 function collectFormData() {
   return {
     name: document.getElementById('name').value,
+    nameKana: document.getElementById('name-kana').value,
     email: document.getElementById('email').value,
     phone: document.getElementById('phone').value || '',
     inquiryType: document.getElementById('inquiry-type').value,

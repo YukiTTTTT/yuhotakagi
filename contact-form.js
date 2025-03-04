@@ -13,8 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const backToInputBtn = document.getElementById('back-to-input-btn');
     const sendFormBtn = document.getElementById('send-form-btn');
     
-    // Google フォームのフィールド ID - 実際の値に変更する必要があります
-    // 以下は仮の値です。実際のGoogleフォームの各フィールドのIDに置き換えてください
+    // Google フォームのフィールド ID
     const GOOGLE_FORM_FIELD_IDS = {
       name: 'entry.2005620554',
       nameKana: 'entry.1116858980',
@@ -24,7 +23,7 @@ document.addEventListener('DOMContentLoaded', function() {
       message: 'entry.839337160'
     };
     
-    // Google フォームの URL - 実際の URL に変更する必要があります
+    // Google フォームの URL
     const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/formResponse';
     
     // フォームの検証関数
@@ -45,19 +44,19 @@ document.addEventListener('DOMContentLoaded', function() {
         isValid = false;
       }
 
-          // お名前(カナ)の検証
-        const nameKanaInput = document.getElementById('name-kana');
-        if (!nameKanaInput.value.trim()) {
+      // お名前(カナ)の検証
+      const nameKanaInput = document.getElementById('name-kana');
+      if (!nameKanaInput.value.trim()) {
         showError(nameKanaInput, 'name-kana-error', 'お名前(カナ)を入力してください');
         isValid = false;
-        } else {
+      } else {
         // カタカナのみの入力チェック（オプション）
         const kanaPattern = /^[\u30A0-\u30FF\u3000\s]+$/;
         if (!kanaPattern.test(nameKanaInput.value)) {
-            showError(nameKanaInput, 'name-kana-error', 'カタカナで入力してください');
-            isValid = false;
+          showError(nameKanaInput, 'name-kana-error', 'カタカナで入力してください');
+          isValid = false;
         }
-        }
+      }
       
       // メールアドレスの検証
       const emailInput = document.getElementById('email');
@@ -137,21 +136,21 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Google フォームにデータを送信
     function submitToGoogleForm() {
-      // Google フォームのフィールドにデータをセット
-      setGoogleFormValue('g-name', GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
-      setGoogleFormValue('g-name-kana', GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
-      setGoogleFormValue('g-email', GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
-      setGoogleFormValue('g-phone', GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value);
-      setGoogleFormValue('g-inquiry-type', GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
-      setGoogleFormValue('g-message', GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
-      
-      // Google フォームの URL を設定
+      // フォームアクションを設定
       googleForm.action = GOOGLE_FORM_URL;
+      
+      // Google フォームのフィールドにデータをセット - 直接値をセットする方法に変更
+      document.getElementById('g-name').value = document.getElementById('name').value;
+      document.getElementById('g-name-kana').value = document.getElementById('name-kana').value;
+      document.getElementById('g-email').value = document.getElementById('email').value;
+      document.getElementById('g-phone').value = document.getElementById('phone').value;
+      document.getElementById('g-inquiry-type').value = document.getElementById('inquiry-type').value;
+      document.getElementById('g-message').value = document.getElementById('message').value;
       
       // ローディング表示を開始
       formLoading.classList.add('active');
       
-      // デバッグ情報を出力（開発時のみ使用）
+      // デバッグ情報を出力
       debugFormSubmission();
       
       // フォームを送信
@@ -159,8 +158,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // 実際のフォーム送信を実行
         googleForm.submit();
         
-        // 送信完了画面への切り替えは iframe のロードイベントで行うべきだが、
-        // 一時的な対応として setTimeout を使用
+        // iframe のロードイベントを待たずに一定時間後に完了画面を表示
         setTimeout(function() {
           formConfirmSection.classList.remove('active');
           formCompleteSection.classList.add('active');
@@ -168,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // スクロールをトップに戻す
           window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 1500);
+        }, 2500); // 時間を延長
       } catch (error) {
         console.error('Form submission error:', error);
         alert('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
@@ -176,14 +174,7 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
-    // Google フォームの値をセット
-    function setGoogleFormValue(localId, googleId, value) {
-      const element = document.getElementById(localId);
-      element.name = googleId;
-      element.value = value;
-    }
-    
-    // デバッグ用の処理を追加（開発時のみ使用）
+    // デバッグ用の処理を追加
     function debugFormSubmission() {
       console.log('送信されるデータ:');
       console.log('名前:', document.getElementById('name').value);
@@ -195,7 +186,8 @@ document.addEventListener('DOMContentLoaded', function() {
       
       console.log('Google フォーム設定:');
       console.log('URL:', GOOGLE_FORM_URL);
-      console.log('フィールド ID:', GOOGLE_FORM_FIELD_IDS);
+      console.log('フォーム要素:', googleForm);
+      console.log('アクション:', googleForm.action);
     }
     
     // イベントリスナーの設定
@@ -220,9 +212,6 @@ document.addEventListener('DOMContentLoaded', function() {
     sendFormBtn.addEventListener('click', function() {
       // 直接submitToGoogleFormを呼び出し
       submitToGoogleForm();
-      
-      // google-form-integration.jsの関数を使用する場合はこちら
-      // executeFormSubmission();
     });
     
     // フォーム入力時のリアルタイムバリデーション
@@ -250,9 +239,25 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
     
-    // Google フォームの iframe ロードイベント（送信完了の検出用）
+    // Google フォームの iframe ロードイベント
     document.getElementById('google-form-iframe').addEventListener('load', function() {
-      // iframe がロードされた時の処理（実際の実装では送信完了の確認に使用）
-      console.log('Google form response received');
+      console.log('Google form iframe loaded');
+      
+      // 最初のロード時はスキップ
+      if (!this.initialLoad) {
+        this.initialLoad = true;
+        return;
+      }
+      
+      // 2回目以降のロードはフォーム送信完了と見なす
+      console.log('Form submission completed');
+      
+      // 送信完了画面への切り替え
+      formConfirmSection.classList.remove('active');
+      formCompleteSection.classList.add('active');
+      formLoading.classList.remove('active');
+      
+      // スクロールをトップに戻す
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
