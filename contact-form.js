@@ -17,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // 以下は仮の値です。実際のGoogleフォームの各フィールドのIDに置き換えてください
     const GOOGLE_FORM_FIELD_IDS = {
       name: 'entry.2005620554',
+      nameKana: 'entry.1116858980',
       email: 'entry.1045781291',
       phone: 'entry.1794284292',
       inquiryType: 'entry.1802838368',
@@ -43,6 +44,20 @@ document.addEventListener('DOMContentLoaded', function() {
         showError(nameInput, 'name-error', 'お名前を入力してください');
         isValid = false;
       }
+
+          // お名前(カナ)の検証
+        const nameKanaInput = document.getElementById('name-kana');
+        if (!nameKanaInput.value.trim()) {
+        showError(nameKanaInput, 'name-kana-error', 'お名前(カナ)を入力してください');
+        isValid = false;
+        } else {
+        // カタカナのみの入力チェック（オプション）
+        const kanaPattern = /^[\u30A0-\u30FF\u3000\s]+$/;
+        if (!kanaPattern.test(nameKanaInput.value)) {
+            showError(nameKanaInput, 'name-kana-error', 'カタカナで入力してください');
+            isValid = false;
+        }
+        }
       
       // メールアドレスの検証
       const emailInput = document.getElementById('email');
@@ -106,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function showConfirmScreen() {
       // フォームの内容を確認画面にセット
       document.getElementById('confirm-name').textContent = document.getElementById('name').value;
+      document.getElementById('confirm-name-kana').textContent = document.getElementById('name-kana').value;
       document.getElementById('confirm-email').textContent = document.getElementById('email').value;
       document.getElementById('confirm-phone').textContent = document.getElementById('phone').value || '未入力';
       document.getElementById('confirm-inquiry-type').textContent = document.getElementById('inquiry-type').options[document.getElementById('inquiry-type').selectedIndex].text;
@@ -123,6 +139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function submitToGoogleForm() {
       // Google フォームのフィールドにデータをセット
       setGoogleFormValue('g-name', GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
+      setGoogleFormValue('g-name-kana', GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
       setGoogleFormValue('g-email', GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
       setGoogleFormValue('g-phone', GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value);
       setGoogleFormValue('g-inquiry-type', GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
@@ -170,6 +187,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function debugFormSubmission() {
       console.log('送信されるデータ:');
       console.log('名前:', document.getElementById('name').value);
+      console.log('名前(カナ):', document.getElementById('name-kana').value);
       console.log('メール:', document.getElementById('email').value);
       console.log('電話:', document.getElementById('phone').value);
       console.log('種別:', document.getElementById('inquiry-type').value);

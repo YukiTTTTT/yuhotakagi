@@ -626,6 +626,13 @@
                       <input type="text" id="name" name="name" required>
                       <div class="error-message" id="name-error"></div>
                     </div>
+
+                    <!-- お名前(カナ) -->
+                    <div class="form-group">
+                      <label for="name-kana">お名前(カナ) <span class="required-mark">*</span></label>
+                      <input type="text" id="name-kana" name="name-kana" required>
+                      <div class="error-message" id="name-kana-error"></div>
+                    </div>
                     
                     <!-- メールアドレス -->
                     <div class="form-group">
@@ -688,7 +695,13 @@
                       <div class="confirm-label">お名前:</div>
                       <div class="confirm-value" id="confirm-name"></div>
                     </div>
+
+                    <div class="confirm-group">
+                      <div class="confirm-label">お名前(カナ):</div>
+                      <div class="confirm-value" id="confirm-name-kana"></div>
+                    </div>
                     
+
                     <div class="confirm-group">
                       <div class="confirm-label">メールアドレス:</div>
                       <div class="confirm-value" id="confirm-email"></div>
@@ -745,6 +758,7 @@
                   <input type="hidden" name="formUrl" value="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform">
                   <!-- 各フィールドのGoogleフォーム用entry.XXXXXXXの値を設定 -->
                   <input type="hidden" name="entry.2005620554" id="g-name">
+                  <input type="hidden" name="entry.1116858980" id="g-name-kana">
                   <input type="hidden" name="entry.1045781291" id="g-email">
                   <input type="hidden" name="entry.1794284292" id="g-phone">
                   <input type="hidden" name="entry.1802838368" id="g-inquiry-type">
