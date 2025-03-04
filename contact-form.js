@@ -32,8 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
       nameKana: 'entry.1116858980',
       email: 'entry.1045781291',
       phone: 'entry.1794284292',
-      inquiryType: 'entry.1802838368',
-      message: 'entry.839337160'
+      inquiryType: 'entry.839337160',
+      message: 'entry.1802838368'
     };
     
     // フォームの検証関数
