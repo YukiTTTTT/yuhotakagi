@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>お問い合わせ | 髙木優帆 Yuho Takagi-Cellist 公式サイト</title>
+    
+    <!-- 既存のスタイルシート -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- お問い合わせフォーム用のスタイルシート -->
+    <link rel="stylesheet" href="contact-form.css">
+    
+    <!-- 他の既存のヘッド要素（favicon、メタデータなど） -->
+    <!-- ... -->
+</head>
+<body class="contact-page">
+    <!-- スキップリンク（アクセシビリティ向上） -->
+    <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
+
+    <!-- ローディングアニメーション -->
+    <div class="page-loader">
+        <div class="loader-content">
+            <div class="loader-icon"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        <header>
+            <!-- ハンバーガーメニュー -->
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <!-- ナビゲーションメニュー -->
+            <nav class="nav-menu">
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="profile.html">PROFILE</a></li>
+                    <li><a href="concerts.html">CONCERTS</a></li>
+                    <li><a href="lesson.html">LESSON</a></li>
+                    <li><a href="contact.html" class="active">CONTACT</a></li>
+                </ul>
+                <div class="bottom-close-button">CLOSE</div>
+            </nav>
+        </header>
+
+        <main id="main-content">
+            <!-- パンくずリスト -->
+            <div class="breadcrumbs">
+                <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <a itemprop="item" href="index.html">
+                            <span itemprop="name">HOME</span>
+                        </a>
+                        <meta itemprop="position" content="1" />
+                    </li>
+                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                        <span itemprop="name">CONTACT</span>
+                        <meta itemprop="position" content="2" />
+                    </li>
+                </ol>
+            </div>
+            
+            <!-- お問い合わせセクション -->
+            <section class="contact">
+                <h2 class="page-title">CONTACT</h2>
+                <div class="contact-intro">
+                    <p>お問い合わせは、以下のフォームやメールなどで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
+                </div>
+
+                <!-- ここにお問い合わせフォーム部分を挿入 -->
+                <!-- contact-form.htmlの内容をここに挿入 -->
+                <div class="contact-form-wrapper">
+                  <!-- フォーム入力画面 -->
+                  <div id="form-input-section" class="form-section active">
+                    <h3 class="form-title">お問い合わせフォーム</h3>
+                    <p class="form-description">必要事項をご入力の上、「内容の確認」ボタンを押してください。<span class="required-mark">*</span>は必須項目です。</p>
+                    
+                    <!-- ここにフォーム部分を挿入 -->
+                    <!-- ... -->
+                  </div>
+                  
+                  <!-- 確認画面 -->
+                  <div id="form-confirm-section" class="form-section">
+                    <!-- 確認画面の内容 -->
+                    <!-- ... -->
+                  </div>
+                  
+                  <!-- 送信完了画面 -->
+                  <div id="form-complete-section" class="form-section">
+                    <!-- 送信完了の内容 -->
+                    <!-- ... -->
+                  </div>
+                </div>
+
+                <!-- お問い合わせオプション -->
+                <div class="contact-notes">
+                    <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
+                    <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
+                    <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
+                    <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
+                </div>
+            </section>
+        </main>
+        
+        <!-- トップに戻るボタン -->
+        <div id="back-to-top" class="back-to-top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </div>
+        
+        <footer>
+            <div class="footer-content">
+                <div class="footer-links">
+                    <a href="sitemap.html">サイトマップ</a> | 
+                    <a href="privacy-policy.html">プライバシーポリシー</a> |
+                    <a href="contact.html">お問い合わせ</a>
+                </div>
+                <div class="footer-copyright">
+                    <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+    
+    <!-- 既存のスクリプト -->
+    <script src="script.js"></script>
+    
+    <!-- お問い合わせフォーム用のスクリプト -->
+    <script src="contact-form.js"></script>
+    <script src="google-form-integration.js"></script>
+</body>
+</html>

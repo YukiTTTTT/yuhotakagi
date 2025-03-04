@@ -1,0 +1,388 @@
+/* お問い合わせフォームのスタイル */
+.contact-form-wrapper {
+  max-width: 700px;
+  margin: 0 auto 40px;
+  position: relative;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+}
+
+.form-section {
+  display: none;
+  padding: 35px;
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.form-section.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* フォームタイトルと説明 */
+.form-title {
+  font-size: 1.5em;
+  color: #50031a;
+  text-align: center;
+  margin-bottom: 20px;
+  position: relative;
+  padding-bottom: 15px;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 600;
+}
+
+.form-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background-color: #50031a;
+}
+
+.form-description {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #555;
+  font-size: 0.95em;
+  line-height: 1.6;
+}
+
+/* フォームグループ */
+.form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 10px;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.95em;
+}
+
+.required-mark {
+  color: #e74c3c;
+  margin-left: 4px;
+}
+
+/* フォーム入力要素の共通スタイル */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+  color: #333;
+  background-color: #f9f9f9;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #50031a;
+  box-shadow: 0 0 0 3px rgba(80, 3, 26, 0.1);
+  background-color: #fff;
+}
+
+/* エラー表示 */
+.error-message {
+  color: #e74c3c;
+  font-size: 0.85em;
+  margin-top: 5px;
+  min-height: 18px;
+  padding-left: 5px;
+  font-weight: 500;
+  display: none;
+}
+
+.form-group.has-error input,
+.form-group.has-error select,
+.form-group.has-error textarea {
+  border-color: #e74c3c;
+  background-color: #fff8f8;
+}
+
+.form-group.has-error .error-message {
+  display: block;
+  animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
+}
+
+/* プライバシーポリシーチェックボックス */
+.privacy-policy {
+  margin-top: 30px;
+}
+
+.checkbox-container {
+  display: flex;
+  align-items: flex-start;
+}
+
+.checkbox-container input[type="checkbox"] {
+  margin-right: 8px;
+  margin-top: 4px;
+}
+
+.checkbox-container label {
+  font-size: 0.9em;
+  cursor: pointer;
+  margin-bottom: 0;
+}
+
+.checkbox-container a {
+  color: #50031a;
+  text-decoration: underline;
+  transition: color 0.3s;
+}
+
+.checkbox-container a:hover {
+  color: #72052a;
+}
+
+/* ボタン */
+.form-actions {
+  margin-top: 35px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-primary,
+.btn-secondary {
+  padding: 12px 30px;
+  border-radius: 5px;
+  font-weight: 500;
+  font-size: 1em;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  display: inline-block;
+  border: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: #50031a;
+  color: white;
+  box-shadow: 0 3px 6px rgba(80, 3, 26, 0.3);
+}
+
+.btn-primary:hover {
+  background-color: #72052a;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(80, 3, 26, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(80, 3, 26, 0.3);
+}
+
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #333;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.btn-secondary:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#send-form-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* 確認画面 */
+.confirm-content {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 20px;
+}
+
+.confirm-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+
+.confirm-group:last-child {
+  margin-bottom: 0;
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.confirm-label {
+  font-weight: 600;
+  width: 180px;
+  color: #333;
+  padding-right: 20px;
+}
+
+.confirm-value {
+  flex: 1;
+  word-break: break-word;
+  line-height: 1.6;
+}
+
+/* 送信完了画面 */
+.complete-content {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.complete-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 20px;
+  animation: scaleIn 0.5s ease-in-out;
+}
+
+.complete-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+@keyframes scaleIn {
+  0% { transform: scale(0); opacity: 0; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+.complete-message {
+  font-size: 1.1em;
+  line-height: 1.8;
+  margin: 20px 0 30px;
+  color: #333;
+}
+
+/* ローディング表示 */
+.form-loading {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.9);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s;
+}
+
+.form-loading.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid rgba(80, 3, 26, 0.1);
+  border-radius: 50%;
+  border-top: 4px solid #50031a;
+  animation: spin 1s linear infinite;
+  margin-bottom: 15px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* レスポンシブ対応 */
+@media screen and (max-width: 768px) {
+  .form-section {
+    padding: 25px 20px;
+  }
+  
+  .form-title {
+    font-size: 1.3em;
+  }
+  
+  .confirm-label, .confirm-value {
+    width: 100%;
+  }
+  
+  .confirm-label {
+    margin-bottom: 5px;
+  }
+  
+  .confirm-group {
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .btn-primary, .btn-secondary {
+    width: 100%;
+    padding: 12px 0;
+  }
+  
+  .complete-icon {
+    width: 70px;
+    height: 70px;
+  }
+}
+
+/* iPhoneの小さい画面対応 */
+@media screen and (max-width: 375px) {
+  .form-section {
+    padding: 20px 15px;
+  }
+  
+  .form-group label {
+    font-size: 0.9em;
+  }
+  
+  .form-group input[type="text"],
+  .form-group input[type="email"],
+  .form-group input[type="tel"],
+  .form-group select,
+  .form-group textarea {
+    padding: 10px 12px;
+    font-size: 0.95em;
+  }
+}

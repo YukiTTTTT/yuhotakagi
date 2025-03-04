@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>お問い合わせ | 髙木優帆 Yuho Takagi-Cellist 公式サイト</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- お問い合わせフォーム用のスタイルシート -->
+    <link rel="stylesheet" href="contact-form.css">
+    
     <!-- ファビコン -->
     <link rel="icon" type="image/png" sizes="16x16" href="images/favicon1616.png">
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon3232.png">
@@ -605,10 +609,156 @@
           <section class="contact">
               <h2 class="page-title">CONTACT</h2>
               <div class="contact-intro">
-                  <p>お問い合わせは、以下のフォームやメールなどで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
+                  <p>お問い合わせは、以下のフォームでご連絡ください。<br>レッスンや演奏依頼などについて、お気軽にお問い合わせください。</p>
               </div>
 
-              <!-- コンタクトオプションの追加 -->
+              <!-- お問い合わせフォーム部分 -->
+              <div class="contact-form-wrapper">
+                <!-- フォーム入力画面 -->
+                <div id="form-input-section" class="form-section active">
+                  <h3 class="form-title">お問い合わせフォーム</h3>
+                  <p class="form-description">必要事項をご入力の上、「内容の確認」ボタンを押してください。<span class="required-mark">*</span>は必須項目です。</p>
+                  
+                  <form id="custom-contact-form" novalidate>
+                    <!-- お名前 -->
+                    <div class="form-group">
+                      <label for="name">お名前 <span class="required-mark">*</span></label>
+                      <input type="text" id="name" name="name" required>
+                      <div class="error-message" id="name-error"></div>
+                    </div>
+                    
+                    <!-- メールアドレス -->
+                    <div class="form-group">
+                      <label for="email">メールアドレス <span class="required-mark">*</span></label>
+                      <input type="email" id="email" name="email" required>
+                      <div class="error-message" id="email-error"></div>
+                    </div>
+                    
+                    <!-- 電話番号 -->
+                    <div class="form-group">
+                      <label for="phone">電話番号</label>
+                      <input type="tel" id="phone" name="phone">
+                      <div class="error-message" id="phone-error"></div>
+                    </div>
+                    
+                    <!-- お問い合わせ種別 -->
+                    <div class="form-group">
+                      <label for="inquiry-type">お問い合わせ種別 <span class="required-mark">*</span></label>
+                      <select id="inquiry-type" name="inquiry-type" required>
+                        <option value="" disabled selected>選択してください</option>
+                        <option value="演奏依頼">演奏依頼</option>
+                        <option value="レッスンについて">レッスンについて</option>
+                        <option value="その他">その他</option>
+                      </select>
+                      <div class="error-message" id="inquiry-type-error"></div>
+                    </div>
+                    
+                    <!-- お問い合わせ内容 -->
+                    <div class="form-group">
+                      <label for="message">お問い合わせ内容 <span class="required-mark">*</span></label>
+                      <textarea id="message" name="message" rows="5" required></textarea>
+                      <div class="error-message" id="message-error"></div>
+                    </div>
+                    
+                    <!-- プライバシーポリシー同意 -->
+                    <div class="form-group privacy-policy">
+                      <div class="checkbox-container">
+                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required>
+                        <label for="privacy-policy">
+                          <a href="privacy-policy.html" target="_blank" rel="noopener">プライバシーポリシー</a>に同意します <span class="required-mark">*</span>
+                        </label>
+                      </div>
+                      <div class="error-message" id="privacy-policy-error"></div>
+                    </div>
+                    
+                    <!-- 送信ボタン -->
+                    <div class="form-actions">
+                      <button type="button" id="check-form-btn" class="btn-primary">内容の確認</button>
+                    </div>
+                  </form>
+                </div>
+                
+                <!-- 確認画面 -->
+                <div id="form-confirm-section" class="form-section">
+                  <h3 class="form-title">入力内容の確認</h3>
+                  <p class="form-description">以下の内容でよろしければ「送信する」ボタンを押してください。</p>
+                  
+                  <div class="confirm-content">
+                    <div class="confirm-group">
+                      <div class="confirm-label">お名前:</div>
+                      <div class="confirm-value" id="confirm-name"></div>
+                    </div>
+                    
+                    <div class="confirm-group">
+                      <div class="confirm-label">メールアドレス:</div>
+                      <div class="confirm-value" id="confirm-email"></div>
+                    </div>
+                    
+                    <div class="confirm-group">
+                      <div class="confirm-label">電話番号:</div>
+                      <div class="confirm-value" id="confirm-phone"></div>
+                    </div>
+                    
+                    <div class="confirm-group">
+                      <div class="confirm-label">お問い合わせ種別:</div>
+                      <div class="confirm-value" id="confirm-inquiry-type"></div>
+                    </div>
+                    
+                    <div class="confirm-group">
+                      <div class="confirm-label">お問い合わせ内容:</div>
+                      <div class="confirm-value" id="confirm-message"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-actions">
+                    <button type="button" id="back-to-input-btn" class="btn-secondary">修正する</button>
+                    <button type="button" id="send-form-btn" class="btn-primary">送信する</button>
+                  </div>
+                </div>
+                
+                <!-- 送信完了画面 -->
+                <div id="form-complete-section" class="form-section">
+                  <div class="complete-content">
+                    <div class="complete-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="11" fill="#50031a" />
+                        <path d="M10,17l-5-5l1.41-1.41L10,14.17l7.59-7.59L19,8L10,17z" fill="white" />
+                      </svg>
+                    </div>
+                    <h3 class="form-title">送信完了</h3>
+                    <p class="complete-message">
+                      お問い合わせありがとうございます。<br>
+                      内容を確認の上、折り返しご連絡させていただきます。
+                    </p>
+                    <div class="form-actions">
+                      <a href="index.html" class="btn-secondary">トップページへ戻る</a>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- 非表示のGoogleフォーム連携用iframe -->
+                <iframe id="google-form-iframe" name="google-form-iframe" style="display:none;"></iframe>
+                
+                <!-- 非表示のGoogleフォーム送信用フォーム -->
+                <form id="google-form" target="google-form-iframe" method="post" style="display:none;">
+                  <!-- Google FormのURLを設定（実際のURL） -->
+                  <input type="hidden" name="formUrl" value="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform">
+                  <!-- 各フィールドのGoogleフォーム用entry.XXXXXXXの値を設定 -->
+                  <input type="hidden" name="entry.12345678" id="g-name">
+                  <input type="hidden" name="entry.23456789" id="g-email">
+                  <input type="hidden" name="entry.34567890" id="g-phone">
+                  <input type="hidden" name="entry.45678901" id="g-inquiry-type">
+                  <input type="hidden" name="entry.56789012" id="g-message">
+                </form>
+                
+                <!-- ローディングオーバーレイ -->
+                <div id="form-loading" class="form-loading">
+                  <div class="loading-spinner"></div>
+                  <p>送信中...</p>
+                </div>
+              </div>
+
+              <!-- 他の連絡方法（メールなど）-->
               <div class="contact-options">
                   <div class="contact-option-card">
                       <div class="contact-icon">
@@ -619,52 +769,39 @@
                       <h3 class="contact-option-title">メールでのお問い合わせ</h3>
                       <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
                   </div>
-                  
-                  <div class="contact-option-card">
-                      <div class="contact-icon">
-                        <svg viewBox="0 0 219.376 219.376" fill="#000000">
-                          <path d="M127.518,0H40.63c-6.617,0-12,5.383-12,12v195.376c0,6.617,5.383,12,12,12h138.117c6.617,0,12-5.383,12-12V59.227
-                          c0-3.204-1.248-6.217-3.514-8.484l-51.364-47.36C133.619,1.2,130.661,0,127.518,0z M175.747,204.376H43.63V15h71.768v40.236
-                          c0,8.885,7.225,16.114,16.105,16.114h44.244V204.376z M131.503,56.35c-0.609,0-1.105-0.5-1.105-1.114v-31.58l34.968 32.693H131.503z
-                          M65.499,97.805c-5.14,0-9.321,4.182-9.321,9.321c0,5.14,4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321
-                          C74.82,101.987,70.638,97.805,65.499,97.805z M82.499,99.627h79.5v15h-79.5V99.627z M65.499,127.805
-                          c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321c5.14,0,9.321-4.182,9.321-9.321S70.638,127.805,65.499,127.805z
-                          M82.499,129.626h79.5v15h-79.5V129.626z M65.499,157.805c-5.14,0-9.321,4.182-9.321,9.321s4.182,9.321,9.321,9.321
-                          c5.14,0,9.321-4.182,9.321-9.321S70.638,157.805,65.499,157.805z M82.499,159.626h79.5v15h-79.5V159.626z"/>
-                      </svg>
-                      </div>
-                      <h3 class="contact-option-title">フォームでのお問い合わせ</h3>
-                      <a href="https://docs.google.com/forms/d/e/1FAIpQLScmVTZnb4pzlqhB-e39CWZkEeuBx1sj392AzGjkLQyXS3TuyA/viewform?usp=sharing" target="_blank" rel="noopener noreferrer" class="contact-option-link">Googleフォームへ</a>
-                    </div>
-                </div>
+              </div>
                 
-                <div class="contact-notes">
-                    <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
-                    <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
-                    <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
-                    <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
-                </div>
-            </section>
-        </main>
-        <!-- トップに戻るボタン -->
-        <div id="back-to-top" class="back-to-top">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-            </svg>
-        </div>
-        <footer>
-          <div class="footer-content">
-            <div class="footer-links">
-                <a href="sitemap.html">サイトマップ</a> | 
-                <a href="privacy-policy.html">プライバシーポリシー</a> |
-                <a href="contact.html">お問い合わせ</a>
-            </div>
-            <div class="footer-copyright">
-                <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
-            </div>
+              <div class="contact-notes">
+                  <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
+                  <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
+                  <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
+                  <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
+              </div>
+          </section>
+      </main>
+      <!-- トップに戻るボタン -->
+      <div id="back-to-top" class="back-to-top">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+          </svg>
+      </div>
+      <footer>
+        <div class="footer-content">
+          <div class="footer-links">
+              <a href="sitemap.html">サイトマップ</a> | 
+              <a href="privacy-policy.html">プライバシーポリシー</a> |
+              <a href="contact.html">お問い合わせ</a>
           </div>
-        </footer>
-    </div>
-    <script src="script.js"></script>
+          <div class="footer-copyright">
+              <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
+          </div>
+        </div>
+      </footer>
+  </div>
+  <script src="script.js"></script>
+  
+  <!-- お問い合わせフォーム用のスクリプト -->
+  <script src="contact-form.js"></script>
+  <script src="google-form-integration.js"></script>
 </body>
 </html>
