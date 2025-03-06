@@ -148,66 +148,7 @@ document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // Google フォームにデータを送信（直接投稿方式）
-    function submitToGoogleForm() {
-      // ローディング表示
-      formLoading.classList.add('active');
-      
-      // フォームデータの取得
-      const name = document.getElementById('name').value;
-      const nameKana = document.getElementById('name-kana').value;
-      const email = document.getElementById('email').value;
-      const phone = document.getElementById('phone').value || '';
-      const inquiryTypeSelect = document.getElementById('inquiry-type');
-      const inquiryType = inquiryTypeSelect.value;
-      const message = document.getElementById('message').value;
-      
-      // デバッグ情報
-      console.log('送信するデータ:', {
-        name, nameKana, email, phone, 
-        inquiryType, 
-        inquiryTypeText: inquiryTypeSelect.options[inquiryTypeSelect.selectedIndex].text,
-        message
-      });
-      
-      try {
-        // 事前入力URLに基づいたパラメータを作成
-        // 注意: Google Formsの実際のURLとパラメータ名は異なる場合があります
-        const formUrl = new URL(GOOGLE_FORM_URL);
-        
-        // パラメータを追加
-        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.name, name);
-        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.nameKana, nameKana);
-        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.email, email);
-        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.phone, phone);
-        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.inquiryType, inquiryType);
-        formUrl.searchParams.append(GOOGLE_FORM_FIELD_IDS.message, message);
-        
-        // 送信完了フラグをセッションストレージに保存
-        sessionStorage.setItem('formSubmitted', 'true');
-        
-        // デバッグ出力
-        console.log('Google Forms URL:', formUrl.toString());
-        
-        // Google Formsページを新しいタブで開く
-        window.open(formUrl.toString(), '_blank');
-        
-        // 元のページで完了画面を表示
-        setTimeout(() => {
-          formLoading.classList.remove('active');
-          formConfirmSection.classList.remove('active');
-          formCompleteSection.classList.add('active');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 1500);
-        
-      } catch (error) {
-        console.error('Form submission error:', error);
-        alert('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
-        formLoading.classList.remove('active');
-      }
-    }
-    
-    // 直接Googleフォームに送信する別のアプローチ（フォーム経由）
+    // Google フォームにデータを送信
     function submitDirectToGoogleForm() {
       // ローディング表示
       formLoading.classList.add('active');
@@ -285,9 +226,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 「送信する」ボタンのクリックイベント
     sendFormBtn.addEventListener('click', function() {
-      // 両方の送信方法を試す
-      // submitToGoogleForm(); // URL方式
-      submitDirectToGoogleForm(); // フォーム方式
+      submitDirectToGoogleForm();
     });
     
     // フォーム入力時のリアルタイムバリデーション
@@ -314,4 +253,4 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
       }
     });
-  });
+});
