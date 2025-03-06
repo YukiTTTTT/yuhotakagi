@@ -437,3 +437,71 @@
       font-size: 0.8em;
     }
   }
+
+  /* プライバシーポリシーチェックボックス改善 */
+.privacy-policy {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .checkbox-container {
+    display: flex;
+    align-items: flex-start;
+    text-align: left;
+    flex-direction: row; /* 横方向に配置 */
+    flex-wrap: nowrap; /* 折り返さない */
+  }
+  
+  .checkbox-container input[type="checkbox"] {
+    margin-right: 8px;
+    margin-top: 2px;
+    min-width: 18px; /* チェックボックスの最小幅を設定 */
+  }
+  
+  .checkbox-container label {
+    font-size: 0.9em;
+    line-height: 1.4;
+    cursor: pointer;
+    margin-bottom: 0;
+    display: inline; /* インライン表示に変更 */
+    width: auto; /* 幅を自動に */
+    white-space: normal; /* 改行を許可 */
+    text-align: left;
+    flex: 1;
+  }
+  
+  /* リンクスタイル */
+  .checkbox-container a {
+    color: #50031a;
+    text-decoration: underline;
+    transition: color 0.3s;
+    display: inline; /* インライン表示に変更 */
+    writing-mode: horizontal-tb; /* 横書きを強制 */
+  }
+  
+  .checkbox-container a:hover {
+    color: #72052a;
+  }
+  
+  /* エラーメッセージ */
+  #privacy-policy-error {
+    text-align: left;
+    padding-left: 26px; /* チェックボックスの幅+マージン分ずらす */
+  }
+  
+  /* スマホでの特別対応 */
+  @media screen and (max-width: 768px) {
+    .checkbox-container {
+      align-items: flex-start;
+    }
+    
+    .checkbox-container label {
+      font-size: 0.85em;
+      padding-top: 0;
+      writing-mode: horizontal-tb !important; /* 横書きを強制 */
+    }
+    
+    .checkbox-container * {
+      writing-mode: horizontal-tb !important; /* すべての子要素に横書きを強制 */
+    }
+  }
