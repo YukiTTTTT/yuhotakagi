@@ -272,6 +272,7 @@
         opacity: 0;
         visibility: hidden;
       }
+
       /* コンタクトページ特有の改善 */
       .contact {
         max-width: 800px;
@@ -315,6 +316,122 @@
         font-size: 0.95rem; /* フォントサイズを小さく */
         line-height: 1.6;
         color: #333;
+      }
+      
+      /* タブナビゲーション */
+      .contact-tabs {
+        display: flex;
+        margin: 0 auto 30px;
+        border-bottom: 1px solid #ddd;
+        max-width: 700px;
+      }
+      
+      .tab-button {
+        padding: 12px 25px;
+        background: none;
+        border: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #666;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        font-family: inherit;
+      }
+      
+      .tab-button:hover {
+        color: #50031a;
+      }
+      
+      .tab-button.active {
+        color: #50031a;
+        font-weight: 600;
+      }
+      
+      .tab-button.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #50031a;
+      }
+      
+      /* タブコンテンツ */
+      .tab-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+      }
+      
+      .tab-content.active {
+        display: block;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+      }
+      
+      /* メールお問い合わせのスタイル */
+      .email-contact {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+      }
+      
+      .email-contact-title {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+        color: #333;
+      }
+      
+      .email-guidelines {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+        text-align: left;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+      }
+      
+      .email-guidelines h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        color: #50031a;
+      }
+      
+      .email-guidelines ul {
+        padding-left: 20px;
+      }
+      
+      .email-guidelines li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+      }
+      
+      .email-button {
+        display: inline-block;
+        background-color: #50031a;
+        color: white !important;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        margin-top: 15px;
+      }
+      
+      .email-button:hover {
+        background-color: #72052a;
+        transform: translateY(-2px);
+        color: white !important;
+        text-decoration: none;
       }
   
       .google-form {
@@ -456,6 +573,7 @@
         color: white !important;
         text-decoration: none;
       }
+
       /* モバイル対応 */
       @media screen and (max-width: 768px) {
         .contact {
@@ -496,6 +614,45 @@
         .contact-option-title {
           font-size: 0.9em !important; /* スマホ表示時調整 */
         }
+        
+        /* タブナビゲーション モバイル調整 */
+        .contact-tabs {
+          flex-direction: column;
+          border-bottom: none;
+          margin-bottom: 20px;
+        }
+        
+        .tab-button {
+          padding: 12px 15px;
+          border: 1px solid #ddd;
+          margin-bottom: 5px;
+          border-radius: 4px;
+          text-align: center;
+        }
+        
+        .tab-button.active {
+          background-color: #50031a;
+          color: white;
+          border-color: #50031a;
+        }
+        
+        .tab-button.active::after {
+          display: none;
+        }
+        
+        /* メールフォーム モバイル調整 */
+        .email-contact {
+          padding: 20px 15px;
+        }
+        
+        .email-guidelines {
+          padding: 15px;
+        }
+        
+        .email-button {
+          width: 100%;
+          padding: 10px;
+        }
 
           /* モバイル表示での文章の左揃え修正 */
         @media screen and (max-width: 768px) {
@@ -510,291 +667,325 @@
         }
       }
     </style>
-
     <!-- 共通のJavaScript最適化 -->
     <script>
-    // 構造化データの追加（SEO対策）
-    const jsonLd = {
-      "@context": "https://schema.org",
-      "@type": "ContactPage",
-      "name": "お問い合わせ - 髙木優帆",
-      "description": "チェロレッスンや演奏依頼などに関するお問い合わせフォーム",
-      "mainEntityOfPage": {
-        "@type": "WebPage",
-        "@id": "https://yuhotakagi.com/contact.html"
-      },
-      "provider": {
-        "@type": "Person",
-        "name": "髙木優帆",
-        "jobTitle": "チェリスト",
-        "image": "https://yuhotakagi.com/images/profile.jpg"
-      }
-    };
-
-    // DOMが読み込まれたらJSONを追加
-    document.addEventListener('DOMContentLoaded', function() {
-      const script = document.createElement('script');
-      script.type = 'application/ld+json';
-      script.textContent = JSON.stringify(jsonLd);
-      document.head.appendChild(script);
-      
-      // アニメーション要素にクラスを追加
-      const animElements = document.querySelectorAll('.contact, .contact-intro, .contact-option-card, .contact-notes');
-      animElements.forEach((element, index) => {
-        element.classList.add('fade-in');
-        element.classList.add(`delay-${index % 4 + 1}`);
-      });
-      
-      // ページ読み込み完了時の処理
-      setTimeout(function() {
-        document.body.classList.add('page-loaded');
-      }, 800);
-    });
-    </script>
-</head>
-<body class="contact-page">
-  <!-- スキップリンク（アクセシビリティ向上） -->
-  <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
-
-  <!-- ローディングアニメーション -->
-  <div class="page-loader">
-    <div class="loader-content">
-      <div class="loader-icon"></div>
-      <div class="loader-text">Loading...</div>
-    </div>
-  </div>
-
-  <div class="wrapper">
-      <header>
-          <div class="hamburger-menu">
-              <span></span>
-              <span></span>
-              <span></span>
-          </div>
-          <nav class="nav-menu">
-              
-              <ul>
-                  <li><a href="index.html">HOME</a></li>
-                  <li><a href="profile.html">PROFILE</a></li>
-                  <li><a href="concerts.html">CONCERTS</a></li>
-                  <li><a href="lesson.html">LESSON</a></li>
-                  <li><a href="contact.html" class="active">CONTACT</a></li>
-              </ul>
-              <div class="bottom-close-button">CLOSE</div>
-          </nav>
-      </header>
-
-      <main id="main-content">
-        <!-- お問い合わせページ用 -->
-          <div class="breadcrumbs">
-            <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <a itemprop="item" href="index.html">
-                        <span itemprop="name">HOME</span>
-                    </a>
-                    <meta itemprop="position" content="1" />
-                </li>
-                <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                    <span itemprop="name">CONTACT</span>
-                    <meta itemprop="position" content="2" />
-                </li>
-            </ol>
-          </div>
-          <section class="contact">
-              <h2 class="page-title">CONTACT</h2>
-              <div class="contact-intro">
-                  <p>お問い合わせは、以下のフォームでご連絡ください。<br>レッスンや演奏依頼などについて、お気軽にお問い合わせください。</p>
-              </div>
-
-              <!-- お問い合わせフォーム部分 -->
-              <div class="contact-form-wrapper">
-                <!-- フォーム入力画面 -->
-                <div id="form-input-section" class="form-section active">
-                  <h3 class="form-title">お問い合わせフォーム</h3>
-                  
-                  <div class="required-explanation">
-                    <span class="required-mark">*</span> が付いている項目は必須項目です。
-                  </div>
-                  
-                  <form id="custom-contact-form" novalidate>
-                    <!-- お名前 -->
-                    <div class="form-group">
-                      <label for="name">お名前 <span class="required-mark">*</span></label>
-                      <input type="text" id="name" name="name" required>
-                      <div class="error-message" id="name-error"></div>
-                    </div>
-
-                    <!-- お名前(カナ) -->
-                    <div class="form-group">
-                      <label for="name-kana">お名前(カナ) <span class="required-mark">*</span></label>
-                      <input type="text" id="name-kana" name="name-kana" required>
-                      <div class="error-message" id="name-kana-error"></div>
-                    </div>
-                    
-                    <!-- メールアドレス -->
-                    <div class="form-group">
-                      <label for="email">メールアドレス <span class="required-mark">*</span></label>
-                      <input type="email" id="email" name="email" required>
-                      <div class="error-message" id="email-error"></div>
-                    </div>
-                    
-                    <!-- 電話番号 -->
-                    <div class="form-group">
-                      <label for="phone">電話番号</label>
-                      <input type="tel" id="phone" name="phone">
-                      <div class="error-message" id="phone-error"></div>
-                    </div>
-                    
-                    <!-- お問い合わせ種別 -->
-                    <div class="form-group">
-                      <label for="inquiry-type">お問い合わせ種別 <span class="required-mark">*</span></label>
-                      <select id="inquiry-type" name="inquiry-type" required>
-                        <option value="" disabled selected>選択してください</option>
-                        <option value="レッスンについて">レッスンについて</option>
-                        <option value="演奏依頼について">演奏依頼について</option>
-                        <option value="その他">その他</option>
-                      </select>
-                      <div class="error-message" id="inquiry-type-error"></div>
-                    </div>
-                    
-                    <!-- お問い合わせ内容 -->
-                    <div class="form-group">
-                      <label for="message">お問い合わせ内容 <span class="required-mark">*</span></label>
-                      <textarea id="message" name="message" rows="5" required></textarea>
-                      <div class="error-message" id="message-error"></div>
-                    </div>
-                    
-                    <!-- シンプルなプライバシーポリシー修正 -->
-                    <div class="form-group privacy-policy" style="margin: 20px 0;">
-                      <div style="display: flex; align-items: flex-start; text-align: left;">
-                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="margin-right: 10px; margin-top: 3px;">
-                        <label for="privacy-policy" style="display: inline; text-align: left; font-size: 0.9em;">
-                          <a href="privacy-policy.html" target="_blank" rel="noopener" style="color: #50031a; text-decoration: underline;">プライバシーポリシー</a>に同意します <span style="color: #e74c3c;">*</span>
-                        </label>
-                      </div>
-                      <div class="error-message" id="privacy-policy-error" style="padding-left: 25px;"></div>
-                    </div>
-                    
-                    <!-- 送信ボタン -->
-                    <div class="form-actions">
-                      <button type="button" id="check-form-btn" class="btn-primary">内容の確認</button>
-                    </div>
-                  </form>
-                </div>
-                
-                <!-- 確認画面 -->
-                <div id="form-confirm-section" class="form-section">
-                  <h3 class="form-title">入力内容の確認</h3>
-                  <p class="form-description">以下の内容でよろしければ「送信する」ボタンを押してください。</p>
-                  
-                  <div class="confirm-content">
-                    <div class="confirm-group">
-                      <div class="confirm-label">お名前:</div>
-                      <div class="confirm-value" id="confirm-name"></div>
-                    </div>
-
-                    <div class="confirm-group">
-                      <div class="confirm-label">お名前(カナ):</div>
-                      <div class="confirm-value" id="confirm-name-kana"></div>
-                    </div>
-                    
-                    <div class="confirm-group">
-                      <div class="confirm-label">メールアドレス:</div>
-                      <div class="confirm-value" id="confirm-email"></div>
-                    </div>
-                    
-                    <div class="confirm-group">
-                      <div class="confirm-label">電話番号:</div>
-                      <div class="confirm-value" id="confirm-phone"></div>
-                    </div>
-                    
-                    <div class="confirm-group">
-                      <div class="confirm-label">お問い合わせ種別:</div>
-                      <div class="confirm-value" id="confirm-inquiry-type"></div>
-                    </div>
-                    
-                    <div class="confirm-group">
-                      <div class="confirm-label">お問い合わせ内容:</div>
-                      <div class="confirm-value" id="confirm-message"></div>
-                    </div>
-                  </div>
-                  
-                  <div class="form-actions">
-                    <button type="button" id="back-to-input-btn" class="btn-secondary">修正する</button>
-                    <button type="button" id="send-form-btn" class="btn-primary">送信する</button>
-                  </div>
-                </div>
-                
-                <!-- 送信完了画面 -->
-                <div id="form-complete-section" class="form-section">
-                  <div class="complete-content">
-                    <div class="complete-icon">
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <circle cx="12" cy="12" r="11" fill="#50031a" />
-                        <path d="M10,17l-5-5l1.41-1.41L10,14.17l7.59-7.59L19,8L10,17z" fill="white" />
-                      </svg>
-                    </div>
-                    <h3 class="form-title">送信完了</h3>
-                    <p class="complete-message">
-                      お問い合わせありがとうございます。<br>
-                      内容を確認の上、折り返しご連絡させていただきます。
-                    </p>
-                    <div class="form-actions">
-                      <a href="index.html" class="btn-secondary">トップページへ戻る</a>
-                    </div>
-                  </div>
-                </div>
-                
-                <!-- ローディングオーバーレイ -->
-                <div id="form-loading" class="form-loading">
-                  <div class="loading-spinner"></div>
-                  <p>送信中...</p>
-                </div>
-              </div>
-
-              <!-- 他の連絡方法（メールなど）-->
-              <div class="contact-options">
-                  <div class="contact-option-card">
-                      <div class="contact-icon">
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                              <path d="M0 3v18h24v-18h-24zm6.623 7.929l-4.623 5.712v-9.458l4.623 3.746zm-4.141-5.929h19.035l-9.517 7.713-9.518-7.713zm5.694 7.188l3.824 3.099 3.83-3.104 5.612 6.817h-18.779l5.513-6.812zm9.208-1.264l4.616-3.741v9.348l-4.616-5.607z"/>
-                          </svg>
-                      </div>
-                      <h3 class="contact-option-title">メールでのお問い合わせ</h3>
-                      <a href="mailto:petlianyuki1121@gmail.com" class="contact-option-link">メールを送る</a>
-                  </div>
-              </div>
-                
-              <div class="contact-notes">
-                  <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
-                  <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
-                  <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
-                  <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
-              </div>
-          </section>
-      </main>
-      <!-- トップに戻るボタン -->
-      <div id="back-to-top" class="back-to-top">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
-          </svg>
-      </div>
-      <footer>
-        <div class="footer-content">
-          <div class="footer-links">
-              <a href="sitemap.html">サイトマップ</a> | 
-              <a href="privacy-policy.html">プライバシーポリシー</a> |
-              <a href="contact.html">お問い合わせ</a>
-          </div>
-          <div class="footer-copyright">
-              <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
-          </div>
-        </div>
-      </footer>
-  </div>
-  <script src="script.js"></script>
+      // 構造化データの追加（SEO対策）
+      const jsonLd = {
+        "@context": "https://schema.org",
+        "@type": "ContactPage",
+        "name": "お問い合わせ - 髙木優帆",
+        "description": "チェロレッスンや演奏依頼などに関するお問い合わせフォーム",
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": "https://yuhotakagi.com/contact.html"
+        },
+        "provider": {
+          "@type": "Person",
+          "name": "髙木優帆",
+          "jobTitle": "チェリスト",
+          "image": "https://yuhotakagi.com/images/profile.jpg"
+        }
+      };
   
-  <!-- お問い合わせフォーム用のスクリプト -->
-  <script src="contact-form.js"></script>
-</body>
+      // DOMが読み込まれたらJSONを追加
+      document.addEventListener('DOMContentLoaded', function() {
+        const script = document.createElement('script');
+        script.type = 'application/ld+json';
+        script.textContent = JSON.stringify(jsonLd);
+        document.head.appendChild(script);
+        
+        // アニメーション要素にクラスを追加
+        const animElements = document.querySelectorAll('.contact, .contact-intro, .contact-option-card, .contact-notes');
+        animElements.forEach((element, index) => {
+          element.classList.add('fade-in');
+          element.classList.add(`delay-${index % 4 + 1}`);
+        });
+        
+        // ページ読み込み完了時の処理
+        setTimeout(function() {
+          document.body.classList.add('page-loaded');
+        }, 800);
+        
+        // タブ切り替え機能
+        const formTab = document.getElementById('form-tab');
+        const emailTab = document.getElementById('email-tab');
+        const formContent = document.getElementById('form-content');
+        const emailContent = document.getElementById('email-content');
+        
+        if (formTab && emailTab && formContent && emailContent) {
+          formTab.addEventListener('click', function() {
+            formTab.classList.add('active');
+            emailTab.classList.remove('active');
+            formContent.classList.add('active');
+            emailContent.classList.remove('active');
+          });
+          
+          emailTab.addEventListener('click', function() {
+            emailTab.classList.add('active');
+            formTab.classList.remove('active');
+            emailContent.classList.add('active');
+            formContent.classList.remove('active');
+          });
+        }
+      });
+      </script>
+  </head>
+  <body class="contact-page">
+    <!-- スキップリンク（アクセシビリティ向上） -->
+    <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
+  
+    <!-- ローディングアニメーション -->
+    <div class="page-loader">
+      <div class="loader-content">
+        <div class="loader-icon"></div>
+        <div class="loader-text">Loading...</div>
+      </div>
+    </div>
+  
+    <div class="wrapper">
+        <header>
+            <div class="hamburger-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav class="nav-menu">
+                
+                <ul>
+                    <li><a href="index.html">HOME</a></li>
+                    <li><a href="profile.html">PROFILE</a></li>
+                    <li><a href="concerts.html">CONCERTS</a></li>
+                    <li><a href="lesson.html">LESSON</a></li>
+                    <li><a href="contact.html" class="active">CONTACT</a></li>
+                </ul>
+                <div class="bottom-close-button">CLOSE</div>
+            </nav>
+        </header>
+  
+        <main id="main-content">
+          <!-- お問い合わせページ用 -->
+            <div class="breadcrumbs">
+              <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                      <a itemprop="item" href="index.html">
+                          <span itemprop="name">HOME</span>
+                      </a>
+                      <meta itemprop="position" content="1" />
+                  </li>
+                  <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                      <span itemprop="name">CONTACT</span>
+                      <meta itemprop="position" content="2" />
+                  </li>
+              </ol>
+            </div>
+            <section class="contact">
+                <h2 class="page-title">CONTACT</h2>
+                <div class="contact-intro">
+                    <p>お問い合わせは、以下のフォームやメールで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
+                </div>
+  
+                <!-- タブナビゲーション -->
+                <div class="contact-tabs">
+                  <button id="form-tab" class="tab-button active">フォームでお問い合わせ</button>
+                  <button id="email-tab" class="tab-button">メールでお問い合わせ</button>
+                </div>
+  
+                <!-- フォームタブのコンテンツ -->
+                <div id="form-content" class="tab-content active">
+                  <!-- フォーム入力画面 -->
+                  <div id="form-input-section" class="form-section active">
+                    <h3 class="form-title">お問い合わせフォーム</h3>
+                    
+                    <div class="required-explanation">
+                      <span class="required-mark">*</span> が付いている項目は必須項目です。
+                    </div>
+                    
+                    <form id="custom-contact-form" novalidate>
+                      <!-- お名前 -->
+                      <div class="form-group">
+                        <label for="name">お名前 <span class="required-mark">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message" id="name-error"></div>
+                      </div>
+  
+                      <!-- お名前(カナ) -->
+                      <div class="form-group">
+                        <label for="name-kana">お名前(カナ) <span class="required-mark">*</span></label>
+                        <input type="text" id="name-kana" name="name-kana" required>
+                        <div class="error-message" id="name-kana-error"></div>
+                      </div>
+                      
+                      <!-- メールアドレス -->
+                      <div class="form-group">
+                        <label for="email">メールアドレス <span class="required-mark">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="email-error"></div>
+                      </div>
+                      
+                      <!-- 電話番号 -->
+                      <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" name="phone">
+                        <div class="error-message" id="phone-error"></div>
+                      </div>
+                      
+                      <!-- お問い合わせ種別 -->
+                      <div class="form-group">
+                        <label for="inquiry-type">お問い合わせ種別 <span class="required-mark">*</span></label>
+                        <select id="inquiry-type" name="inquiry-type" required>
+                          <option value="" disabled selected>選択してください</option>
+                          <option value="レッスンについて">レッスンについて</option>
+                          <option value="演奏依頼について">演奏依頼について</option>
+                          <option value="その他">その他</option>
+                        </select>
+                        <div class="error-message" id="inquiry-type-error"></div>
+                      </div>
+                      
+                      <!-- お問い合わせ内容 -->
+                      <div class="form-group">
+                        <label for="message">お問い合わせ内容 <span class="required-mark">*</span></label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <div class="error-message" id="message-error"></div>
+                      </div>
+                      
+                      <!-- シンプルなプライバシーポリシー修正 -->
+                      <div class="form-group privacy-policy" style="margin: 20px 0;">
+                        <div style="display: flex; align-items: flex-start; text-align: left;">
+                          <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="margin-right: 10px; margin-top: 3px;">
+                          <label for="privacy-policy" style="display: inline; text-align: left; font-size: 0.9em;">
+                            <a href="privacy-policy.html" target="_blank" rel="noopener" style="color: #50031a; text-decoration: underline;">プライバシーポリシー</a>に同意します <span style="color: #e74c3c;">*</span>
+                          </label>
+                        </div>
+                        <div class="error-message" id="privacy-policy-error" style="padding-left: 25px;"></div>
+                      </div>
+                      
+                      <!-- 送信ボタン -->
+                      <div class="form-actions">
+                        <button type="button" id="check-form-btn" class="btn-primary">内容の確認</button>
+                      </div>
+                    </form>
+                  </div>
+                  
+                  <!-- 確認画面 -->
+                  <div id="form-confirm-section" class="form-section">
+                    <h3 class="form-title">入力内容の確認</h3>
+                    <p class="form-description">以下の内容でよろしければ「送信する」ボタンを押してください。</p>
+                    
+                    <div class="confirm-content">
+                      <div class="confirm-group">
+                        <div class="confirm-label">お名前:</div>
+                        <div class="confirm-value" id="confirm-name"></div>
+                      </div>
+  
+                      <div class="confirm-group">
+                        <div class="confirm-label">お名前(カナ):</div>
+                        <div class="confirm-value" id="confirm-name-kana"></div>
+                      </div>
+                      
+                      <div class="confirm-group">
+                        <div class="confirm-label">メールアドレス:</div>
+                        <div class="confirm-value" id="confirm-email"></div>
+                      </div>
+                      
+                      <div class="confirm-group">
+                        <div class="confirm-label">電話番号:</div>
+                        <div class="confirm-value" id="confirm-phone"></div>
+                      </div>
+                      
+                      <div class="confirm-group">
+                        <div class="confirm-label">お問い合わせ種別:</div>
+                        <div class="confirm-value" id="confirm-inquiry-type"></div>
+                      </div>
+                      
+                      <div class="confirm-group">
+                        <div class="confirm-label">お問い合わせ内容:</div>
+                        <div class="confirm-value" id="confirm-message"></div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                      <button type="button" id="back-to-input-btn" class="btn-secondary">修正する</button>
+                      <button type="button" id="send-form-btn" class="btn-primary">送信する</button>
+                    </div>
+                  </div>
+                  
+                  <!-- 送信完了画面 -->
+                  <div id="form-complete-section" class="form-section">
+                    <div class="complete-content">
+                      <div class="complete-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <circle cx="12" cy="12" r="11" fill="#50031a" />
+                          <path d="M10,17l-5-5l1.41-1.41L10,14.17l7.59-7.59L19,8L10,17z" fill="white" />
+                        </svg>
+                      </div>
+                      <h3 class="form-title">送信完了</h3>
+                      <p class="complete-message">
+                        お問い合わせありがとうございます。<br>
+                        内容を確認の上、折り返しご連絡させていただきます。
+                      </p>
+                      <div class="form-actions">
+                        <a href="index.html" class="btn-secondary">トップページへ戻る</a>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <!-- ローディングオーバーレイ -->
+                  <div id="form-loading" class="form-loading">
+                    <div class="loading-spinner"></div>
+                    <p>送信中...</p>
+                  </div>
+                </div>
+  
+                <!-- メールタブのコンテンツ -->
+                <div id="email-content" class="tab-content">
+                  <div class="email-contact">
+                    <h3 class="email-contact-title">メールでのお問い合わせ</h3>
+                    <p>以下のボタンからメールアプリを起動し、直接お問い合わせいただけます。</p>
+                    
+                    <div class="email-guidelines">
+                      <h4>メール送信時のガイドライン</h4>
+                      <ul>
+                        <li>件名に要件（例：「レッスンについて」「演奏依頼について」）を明記してください</li>
+                        <li>本文内にお名前と連絡先（メールアドレスや電話番号）を必ずご記入ください</li>
+                        <li>レッスン希望の場合は、お持ちの楽器や経験レベルもお知らせいただけると幸いです</li>
+                        <li>演奏依頼の場合は、日時、場所、演奏希望曲などの詳細をご記入ください</li>
+                      </ul>
+                    </div>
+                    
+                    <a href="mailto:petlianyuki1121@gmail.com" class="email-button">メールを送る</a>
+                  </div>
+                </div>
+                  
+                <div class="contact-notes">
+                    <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
+                    <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
+                    <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
+                    <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
+                </div>
+            </section>
+        </main>
+        <!-- トップに戻るボタン -->
+        <div id="back-to-top" class="back-to-top">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+            </svg>
+        </div>
+        <footer>
+          <div class="footer-content">
+            <div class="footer-links">
+                <a href="sitemap.html">サイトマップ</a> | 
+                <a href="privacy-policy.html">プライバシーポリシー</a> |
+                <a href="contact.html">お問い合わせ</a>
+            </div>
+            <div class="footer-copyright">
+                <p>&copy; 2025 Yuho Takagi. All Rights Reserved.</p>
+            </div>
+          </div>
+        </footer>
+    </div>
+    <script src="script.js"></script>
+    
+    <!-- お問い合わせフォーム用のスクリプト -->
+    <script src="contact-form.js"></script>
+  </body>
 </html>
