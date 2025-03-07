@@ -148,60 +148,49 @@ document.addEventListener('DOMContentLoaded', function() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
     
-    // Google フォームにデータを送信
+    // Google フォームにデータを送信（バックグラウンド処理版）
     function submitDirectToGoogleForm() {
       // ローディング表示
       formLoading.classList.add('active');
       
       try {
-        // 一時的なフォーム要素を作成
-        const tempForm = document.createElement('form');
-        tempForm.method = 'POST';
-        tempForm.action = GOOGLE_FORM_URL;
-        tempForm.target = '_blank';
-        tempForm.style.display = 'none';
-        
-        // フォームフィールドを追加
-        const addField = (name, value) => {
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = name;
-          input.value = value;
-          tempForm.appendChild(input);
-        };
+        // フォームデータを収集
+        const formData = new FormData();
         
         // 各フィールドを追加
-        addField(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
-        addField(GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
-        addField(GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
-        addField(GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value || '');
-        addField(GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
-        addField(GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
+        formData.append(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value);
+        formData.append(GOOGLE_FORM_FIELD_IDS.nameKana, document.getElementById('name-kana').value);
+        formData.append(GOOGLE_FORM_FIELD_IDS.email, document.getElementById('email').value);
+        formData.append(GOOGLE_FORM_FIELD_IDS.phone, document.getElementById('phone').value || '');
+        formData.append(GOOGLE_FORM_FIELD_IDS.inquiryType, document.getElementById('inquiry-type').value);
+        formData.append(GOOGLE_FORM_FIELD_IDS.message, document.getElementById('message').value);
         
-        // フォームをbodyに追加
-        document.body.appendChild(tempForm);
-        
-        // 送信完了フラグをセッションストレージに保存
-        sessionStorage.setItem('formSubmitted', 'true');
-        
-        // フォームを送信
-        console.log('送信するフォーム:', tempForm);
-        tempForm.submit();
-        
-        // 完了画面に切り替え
-        setTimeout(() => {
-          // 一時フォームを削除
-          document.body.removeChild(tempForm);
-          
+        // fetchを使用してバックグラウンドでフォームを送信
+        fetch(GOOGLE_FORM_URL, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors' // CORSエラーを回避するために必要
+        })
+        .then(() => {
+          // 送信成功時の処理
           formLoading.classList.remove('active');
           formConfirmSection.classList.remove('active');
           formCompleteSection.classList.add('active');
           window.scrollTo({ top: 0, behavior: 'smooth' });
-        }, 1500);
+          
+          // 送信完了フラグをセッションストレージに保存
+          sessionStorage.setItem('formSubmitted', 'true');
+        })
+        .catch(error => {
+          // エラー処理
+          console.error('Form submission error:', error);
+          alert('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
+          formLoading.classList.remove('active');
+        });
         
       } catch (error) {
-        console.error('Form submission error:', error);
-        alert('送信中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
+        console.error('Form processing error:', error);
+        alert('フォーム処理中にエラーが発生しました。しばらく時間をおいて再度お試しください。');
         formLoading.classList.remove('active');
       }
     }
@@ -281,7 +270,31 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
     
+    // URLパラメータからお問い合わせ種別を自動選択
+    function setInquiryTypeFromUrl() {
+      // URLからパラメータを取得
+      const urlParams = new URLSearchParams(window.location.search);
+      const inquiryType = urlParams.get('type');
+      
+      // レッスン申し込みの場合、種別を自動選択
+      if (inquiryType === 'lesson') {
+        const selectElement = document.getElementById('inquiry-type');
+        if (selectElement) {
+          // 「レッスンについて」のオプションを選択（既存の値を尊重）
+          for (let i = 0; i < selectElement.options.length; i++) {
+            if (selectElement.options[i].value === 'レッスンについて') {
+              selectElement.selectedIndex = i;
+              break;
+            }
+          }
+        }
+      }
+    }
+    
     // ページ読み込み時と少し遅延して実行
     fixPrivacyPolicyText();
     setTimeout(fixPrivacyPolicyText, 500);
+    
+    // お問い合わせ種別の自動選択を実行
+    setInquiryTypeFromUrl();
 });
