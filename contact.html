@@ -588,6 +588,11 @@
         max-width: 700px;
         margin: 0 auto;
       }
+      /* フォーム全体のスクロール設定 */
+      .form-section {
+        overflow: visible;
+        height: auto;
+      }
 
       /* モバイル対応 */
       @media screen and (max-width: 768px) {
@@ -690,6 +695,102 @@
             padding-right: 5px;
             line-height: 1.8;
           }
+        }
+      }
+      /* フォームフィールドの高さと余白を調整 */
+      @media screen and (max-width: 768px) {
+        /* 全体のオーバーフロー設定 - これが重要 */
+        body, html, .wrapper, main, .contact {
+          overflow-x: hidden;
+          width: 100%;
+          max-width: 100%;
+          box-sizing: border-box;
+        }
+        
+        /* フォーム要素のサイズ最適化 */
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="tel"],
+        .form-group select,
+        .form-group textarea {
+          max-width: 100%;
+          width: 100%;
+          box-sizing: border-box;
+          font-size: 16px; /* モバイルでズームインを防止 */
+          padding: 8px;
+        }
+        
+        /* テキストエリアの高さ調整 */
+        .form-group textarea {
+          height: 120px;
+        }
+        
+        /* フォーム関連の余白を縮小 */
+        .form-group {
+          margin-bottom: 15px;
+        }
+        
+        .form-group label {
+          margin-bottom: 6px;
+          font-size: 0.9em;
+        }
+        
+        /* ボタンのサイズ調整 */
+        .form-actions button {
+          width: 100%;
+          margin: 5px 0;
+        }
+        
+        /* 確認画面のレイアウト調整 */
+        .confirm-label, 
+        .confirm-value {
+          width: 100%;
+          display: block;
+          margin-bottom: 5px;
+        }
+        
+        /* フォームセクションの余白を減らす */
+        .form-section {
+          padding: 20px 15px;
+        }
+        
+        /* フォームタイトルをコンパクトに */
+        .form-title {
+          font-size: 1.3em;
+          margin-bottom: 15px;
+        }
+        
+        /* タブコンテンツのサイズ調整 */
+        .tab-content {
+          width: 100%;
+          padding: 0;
+          overflow-x: hidden;
+        }
+        
+        /* フォーム入力、確認、完了セクションのスタイリング */
+        #form-input-section,
+        #form-confirm-section,
+        #form-complete-section {
+          width: 100%;
+          box-sizing: border-box;
+          padding: 10px;
+        }
+        
+        /* プライバシーポリシーチェックボックスのレイアウト調整 */
+        .privacy-policy {
+          width: 100%;
+          box-sizing: border-box;
+        }
+        
+        /* 必須マーク説明の縮小 */
+        .required-explanation {
+          font-size: 0.8em;
+          margin-bottom: 10px;
+        }
+        
+        /* エラーメッセージの調整 */
+        .error-message {
+          font-size: 0.8em;
         }
       }
     </style>
