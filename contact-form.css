@@ -425,7 +425,30 @@
     
     /* プライバシーポリシー同意部分のモバイル調整 */
     .privacy-policy {
+      display: flex;
+      align-items: flex-start;
       margin: 20px 0;
+    }
+
+    .privacy-policy input[type="checkbox"] {
+        margin-right: 8px; /* 間隔を狭く */
+        margin-top: 3px; /* テキストとの縦位置調整 */
+    }
+    
+    .privacy-policy label {
+    display: inline;
+    white-space: nowrap; /* 改行を防止 */
+    width: auto;
+    text-align: left;
+    font-size: 0.9em;
+    }
+    
+    /* 横書き強制のスタイル */
+    .privacy-policy label,
+    .privacy-policy a {
+    writing-mode: horizontal-tb !important;
+    text-orientation: mixed !important;
+    direction: ltr !important;
     }
     
     .checkbox-container {
