@@ -277,7 +277,7 @@
       .contact {
         max-width: 800px;
         margin: 30px auto;
-        padding: 40px;
+        padding: 40px 20px;
         transition: transform 0.3s ease, box-shadow 0.3s ease;
       }
   
@@ -290,6 +290,9 @@
         padding-bottom: 15px;
         margin-bottom: 30px;
         text-align: center;
+        font-size: 42px;
+        color: #444;
+        font-weight: normal;
       }
   
       .page-title::after {
@@ -298,8 +301,8 @@
         bottom: 0;
         left: 50%;
         transform: translateX(-50%);
-        width: 80px;
-        height: 2px;
+        width: 160px;
+        height: 5px;
         background-color: #50031a;
       }
   
@@ -322,21 +325,26 @@
       .contact-tabs {
         display: flex;
         margin: 0 auto 30px;
+        justify-content: center;
         border-bottom: 1px solid #ddd;
         max-width: 700px;
       }
       
       .tab-button {
-        padding: 12px 25px;
-        background: none;
+        padding: 15px 25px;
+        background-color: #fff;
         border: none;
         font-size: 16px;
         font-weight: 500;
-        color: #666;
+        color: #333;
         cursor: pointer;
         position: relative;
         transition: all 0.3s ease;
         font-family: inherit;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 5px;
+        border-radius: 5px;
       }
       
       .tab-button:hover {
@@ -344,7 +352,8 @@
       }
       
       .tab-button.active {
-        color: #50031a;
+        background-color: #50031a;
+        color: #fff;
         font-weight: 600;
       }
       
@@ -574,10 +583,17 @@
         text-decoration: none;
       }
 
+        /* フォーム周りの余白を調整 */
+      #form-content, #email-content {
+        max-width: 700px;
+        margin: 0 auto;
+      }
+
       /* モバイル対応 */
       @media screen and (max-width: 768px) {
         .contact {
-          padding: 30px 20px;
+          padding: 20px 15px;
+          margin: 15px auto;
         }
   
         .contact-options {
@@ -595,6 +611,14 @@
   
         .google-form {
           padding-bottom: 500px;
+        }
+
+        .page-title {
+          font-size: 36px; /* モバイル表示用にサイズ調整 */
+        }
+        
+        .page-title::after {
+          width: 120px; /* モバイル表示用に幅調整 */
         }
         
         /* ナビメニューのactive状態の下線 */
@@ -618,6 +642,7 @@
         /* タブナビゲーション モバイル調整 */
         .contact-tabs {
           flex-direction: column;
+          align-items: center;
           border-bottom: none;
           margin-bottom: 20px;
         }
@@ -625,7 +650,8 @@
         .tab-button {
           padding: 12px 15px;
           border: 1px solid #ddd;
-          margin-bottom: 5px;
+          margin-bottom: 10px;
+          max-width: 100%;
           border-radius: 4px;
           text-align: center;
         }
