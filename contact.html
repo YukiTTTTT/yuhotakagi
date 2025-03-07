@@ -664,15 +664,15 @@
                       <div class="error-message" id="message-error"></div>
                     </div>
                     
-                    <!-- プライバシーポリシー同意 - インラインスタイル付き修正版 -->
-                    <div class="form-group privacy-policy" style="margin: 25px 0; width: 100%; position: relative;">
-                      <div class="checkbox-wrapper" style="display: flex; flex-direction: row; width: 100%; align-items: flex-start;">
-                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="margin-top: 3px; margin-right: 10px; min-width: 18px; height: 18px; flex-shrink: 0;">
-                        <label for="privacy-policy" style="display: block; font-size: 0.9em; line-height: 1.5; color: #333; text-align: left; width: calc(100% - 30px); margin: 0; padding: 0; white-space: normal; writing-mode: horizontal-tb !important; text-orientation: mixed !important;">
-                          <a href="privacy-policy.html" target="_blank" rel="noopener" style="color: #50031a; text-decoration: underline; display: inline; writing-mode: horizontal-tb !important;">プライバシーポリシー</a>に同意します <span class="required-mark" style="color: #e74c3c; margin-left: 4px; display: inline;">*</span>
+                    <!-- シンプルなプライバシーポリシー修正 -->
+                    <div class="form-group privacy-policy" style="margin: 20px 0;">
+                      <div style="display: flex; align-items: flex-start; text-align: left;">
+                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="margin-right: 10px; margin-top: 3px;">
+                        <label for="privacy-policy" style="display: inline; text-align: left; font-size: 0.9em;">
+                          <a href="privacy-policy.html" target="_blank" rel="noopener" style="color: #50031a; text-decoration: underline;">プライバシーポリシー</a>に同意します <span style="color: #e74c3c;">*</span>
                         </label>
                       </div>
-                      <div class="error-message" id="privacy-policy-error" style="color: #e74c3c; font-size: 0.85em; margin-top: 5px; padding-left: 28px; text-align: left; display: none;"></div>
+                      <div class="error-message" id="privacy-policy-error" style="padding-left: 25px;"></div>
                     </div>
                     
                     <!-- 送信ボタン -->
