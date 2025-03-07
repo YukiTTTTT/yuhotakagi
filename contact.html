@@ -865,6 +865,87 @@
                 <div class="contact-intro">
                     <p>お問い合わせは、以下のフォームやメールで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
                 </div>
+                <!-- タブの代わりにボタン形式に変更 -->
+                <div class="contact-buttons">
+                  <a href="#form-content" id="form-btn" class="contact-button active">フォームでお問い合わせ</a>
+                  <a href="#email-content" id="email-btn" class="contact-button">メールでお問い合わせ</a>
+                </div>
+
+                <!-- フォームの内容部分 -->
+                <div id="form-content" class="content-section active">
+                  <!-- フォーム入力画面 -->
+                  <div id="form-input-section" class="form-section active">
+                    <h3 class="form-title">お問い合わせフォーム</h3>
+                    
+                    <div class="required-explanation">
+                      <span class="required-mark">*</span> が付いている項目は必須項目です。
+                    </div>
+                    
+                    <form id="custom-contact-form" novalidate>
+                      <!-- お名前 -->
+                      <div class="form-group">
+                        <label for="name">お名前 <span class="required-mark">*</span></label>
+                        <input type="text" id="name" name="name" required>
+                        <div class="error-message" id="name-error"></div>
+                      </div>
+
+                      <!-- お名前(カナ) -->
+                      <div class="form-group">
+                        <label for="name-kana">お名前(カナ) <span class="required-mark">*</span></label>
+                        <input type="text" id="name-kana" name="name-kana" required>
+                        <div class="error-message" id="name-kana-error"></div>
+                      </div>
+                      
+                      <!-- メールアドレス -->
+                      <div class="form-group">
+                        <label for="email">メールアドレス <span class="required-mark">*</span></label>
+                        <input type="email" id="email" name="email" required>
+                        <div class="error-message" id="email-error"></div>
+                      </div>
+                      
+                      <!-- 電話番号 -->
+                      <div class="form-group">
+                        <label for="phone">電話番号</label>
+                        <input type="tel" id="phone" name="phone">
+                        <div class="error-message" id="phone-error"></div>
+                      </div>
+                      
+                      <!-- お問い合わせ種別 -->
+                      <div class="form-group">
+                        <label for="inquiry-type">お問い合わせ種別 <span class="required-mark">*</span></label>
+                        <select id="inquiry-type" name="inquiry-type" required>
+                          <option value="" disabled selected>選択してください</option>
+                          <option value="レッスンについて">レッスンについて</option>
+                          <option value="演奏依頼について">演奏依頼について</option>
+                          <option value="その他">その他</option>
+                        </select>
+                        <div class="error-message" id="inquiry-type-error"></div>
+                      </div>
+                      
+                      <!-- お問い合わせ内容 -->
+                      <div class="form-group">
+                        <label for="message">お問い合わせ内容 <span class="required-mark">*</span></label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                        <div class="error-message" id="message-error"></div>
+                      </div>
+                      
+                      <!-- シンプルなプライバシーポリシー修正 -->
+                      <div class="form-group privacy-policy" style="margin: 20px 0;">
+                        <div style="display: flex; align-items: flex-start; text-align: left;">
+                          <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="margin-right: 10px; margin-top: 3px;">
+                          <label for="privacy-policy" style="display: inline; text-align: left; font-size: 0.9em;">
+                            <a href="privacy-policy.html" target="_blank" rel="noopener" style="color: #50031a; text-decoration: underline;">プライバシーポリシー</a>に同意します <span style="color: #e74c3c;">*</span>
+                          </label>
+                        </div>
+                        <div class="error-message" id="privacy-policy-error" style="padding-left: 25px;"></div>
+                      </div>
+                      
+                      <!-- 送信ボタン -->
+                      <div class="form-actions">
+                        <button type="button" id="check-form-btn" class="btn-primary">内容の確認</button>
+                      </div>
+                    </form>
+                  </div>
                 <!-- 確認画面 -->
                 <div id="form-confirm-section" class="form-section">
                   <h3 class="form-title">入力内容の確認</h3>
