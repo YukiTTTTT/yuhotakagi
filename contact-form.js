@@ -253,4 +253,35 @@ document.addEventListener('DOMContentLoaded', function() {
         return false;
       }
     });
+
+    // プライバシーポリシー縦書き問題の修正
+    function fixPrivacyPolicyText() {
+      // プライバシーポリシー関連の要素を取得
+      const privacyLabels = document.querySelectorAll('.privacy-policy label, .privacy-policy label *');
+      
+      // 横書きスタイルを強制適用
+      privacyLabels.forEach(el => {
+        el.style.cssText += `
+          writing-mode: horizontal-tb !important;
+          text-orientation: mixed !important;
+          direction: ltr !important;
+          display: inline;
+          white-space: normal;
+        `;
+      });
+      
+      // プライバシーポリシーのリンクを特に強調して修正
+      const privacyLink = document.querySelector('.privacy-policy a');
+      if (privacyLink) {
+        privacyLink.style.cssText += `
+          display: inline !important;
+          writing-mode: horizontal-tb !important;
+          text-orientation: mixed !important;
+        `;
+      }
+    }
+    
+    // ページ読み込み時と少し遅延して実行
+    fixPrivacyPolicyText();
+    setTimeout(fixPrivacyPolicyText, 500);
 });
