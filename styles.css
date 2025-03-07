@@ -2071,3 +2071,164 @@ header .close-menu,
       text-align: center !important;
     }
 }
+
+/* レッスンページのお申し込み部分の改善 */
+.section-title {
+    font-size: 1.6em;
+    margin-top: 30px;
+    margin-bottom: 20px;
+    color: #50031a;
+    border-left: 4px solid #50031a;
+    padding-left: 12px;
+    text-align: left;
+  }
+  
+  .contact-method-intro {
+    background-color: #f9f9f9;
+    padding: 12px 15px;
+    margin: 15px 0 25px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.05em;
+  }
+  
+  .contact-options {
+    margin: 25px 0;
+  }
+  
+  .contact-option-card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    max-width: 600px;
+    margin: 0 auto;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .contact-option-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-icon-container {
+    flex-shrink: 0;
+  }
+  
+  .contact-icon {
+    width: 80px;
+    height: 80px;
+    background-color: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .contact-icon svg {
+    width: 45px;
+    height: 45px;
+    fill: #50031a;
+  }
+  
+  .contact-content {
+    flex-grow: 1;
+  }
+  
+  .contact-option-title {
+    font-size: 1.3em !important;
+    font-weight: 600 !important;
+    margin-top: 0 !important;
+    margin-bottom: 12px !important;
+    color: #50031a !important;
+    border-left: none !important;
+    padding-left: 0 !important;
+    text-align: left !important;
+  }
+  
+  .contact-option-description {
+    font-size: 1em;
+    line-height: 1.5;
+    margin-bottom: 15px;
+    color: #555;
+  }
+  
+  .contact-option-link {
+    display: inline-block;
+    background-color: #50031a;
+    color: white !important;
+    text-decoration: none;
+    padding: 8px 20px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .contact-option-link:hover {
+    background-color: #72052a;
+    transform: translateY(-2px);
+    color: white !important;
+    text-decoration: none !important;
+  }
+  
+  .contact-notes {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 30px;
+    font-size: 0.95em;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    border-left: 4px solid #50031a;
+    text-align: left;
+  }
+  
+  .contact-notes p {
+    margin-bottom: 10px;
+  }
+  
+  /* スマホ対応 */
+  @media screen and (max-width: 768px) {
+    .contact-option-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 20px 15px;
+    }
+    
+    .contact-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 15px;
+    }
+    
+    .contact-icon svg {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .contact-option-title {
+      text-align: center !important;
+      margin-bottom: 10px !important;
+      font-size: 1.2em !important;
+    }
+    
+    .contact-option-description {
+      font-size: 0.95em;
+      margin-bottom: 12px;
+    }
+    
+    .contact-method-intro {
+      font-size: 0.95em;
+      padding: 10px;
+    }
+    
+    .contact-notes {
+      padding: 15px;
+      font-size: 0.9em;
+    }
+  }
