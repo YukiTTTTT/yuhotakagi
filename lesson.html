@@ -704,6 +704,172 @@
             line-height: 1.8;
           }
         }
+
+        /* タブナビゲーション */
+        .contact-tabs {
+        display: flex;
+        margin: 0 auto 30px;
+        justify-content: center;
+        border-bottom: 1px solid #ddd;
+        max-width: 700px;
+        }
+
+        .tab-button {
+        padding: 15px 25px;
+        background-color: #fff;
+        border: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #333;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        font-family: inherit;
+        width: 100%;
+        max-width: 300px;
+        margin: 0 5px;
+        border-radius: 5px;
+        }
+
+        .tab-button:hover {
+        color: #50031a;
+        }
+
+        .tab-button.active {
+        background-color: #50031a;
+        color: #fff;
+        font-weight: 600;
+        }
+
+        .tab-button.active::after {
+        content: '';
+        position: absolute;
+        bottom: -1px;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #50031a;
+        }
+
+        /* タブコンテンツ */
+        .tab-content {
+        display: none;
+        animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+        display: block;
+        }
+
+        @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+        }
+
+        /* メールお問い合わせのスタイル */
+        .email-contact {
+        background-color: #f9f9f9;
+        padding: 30px;
+        border-radius: 8px;
+        max-width: 700px;
+        margin: 0 auto;
+        text-align: center;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .email-contact-title {
+        font-size: 1.3em;
+        margin-bottom: 20px;
+        color: #333;
+        }
+
+        .email-guidelines {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        margin: 20px 0;
+        text-align: left;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .email-guidelines h4 {
+        margin-top: 0;
+        margin-bottom: 10px;
+        font-size: 1.1em;
+        color: #50031a;
+        }
+
+        .email-guidelines ul {
+        padding-left: 20px;
+        }
+
+        .email-guidelines li {
+        margin-bottom: 8px;
+        line-height: 1.5;
+        }
+
+        .email-button {
+        display: inline-block;
+        background-color: #50031a;
+        color: white !important;
+        text-decoration: none;
+        padding: 12px 30px;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        margin-top: 15px;
+        }
+
+        .email-button:hover {
+        background-color: #72052a;
+        transform: translateY(-2px);
+        color: white !important;
+        text-decoration: none;
+        }
+
+        /* モバイル対応 */
+        @media screen and (max-width: 768px) {
+        /* タブナビゲーション モバイル調整 */
+        .contact-tabs {
+            flex-direction: column;
+            align-items: center;
+            border-bottom: none;
+            margin-bottom: 20px;
+        }
+        
+        .tab-button {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            margin-bottom: 10px;
+            max-width: 100%;
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .tab-button.active {
+            background-color: #50031a;
+            color: white;
+            border-color: #50031a;
+        }
+        
+        .tab-button.active::after {
+            display: none;
+        }
+        
+        /* メールフォーム モバイル調整 */
+        .email-contact {
+            padding: 20px 15px;
+        }
+        
+        .email-guidelines {
+            padding: 15px;
+        }
+        
+        .email-button {
+            width: 100%;
+            padding: 10px;
+        }
+        }
     </style>
 
     <!-- 共通のJavaScript -->
@@ -748,6 +914,34 @@
         setTimeout(function() {
         document.body.classList.add('page-loaded');
         }, 800);
+    });
+
+    // タブ切り替え機能を追加
+    document.addEventListener('DOMContentLoaded', function() {
+    // DOM要素の取得
+    const formTab = document.getElementById('form-tab');
+    const emailTab = document.getElementById('email-tab');
+    const formContent = document.getElementById('form-content');
+    const emailContent = document.getElementById('email-content');
+    
+    // タブが存在する場合のみ処理を実行
+    if (formTab && emailTab && formContent && emailContent) {
+        // フォームタブのクリックイベント
+        formTab.addEventListener('click', function() {
+        formTab.classList.add('active');
+        emailTab.classList.remove('active');
+        formContent.classList.add('active');
+        emailContent.classList.remove('active');
+        });
+        
+        // メールタブのクリックイベント
+        emailTab.addEventListener('click', function() {
+        emailTab.classList.add('active');
+        formTab.classList.remove('active');
+        emailContent.classList.add('active');
+        formContent.classList.remove('active');
+        });
+    }
     });
     </script>
 </head>
@@ -845,37 +1039,65 @@
                 <div class="contact-method-intro">
                     お問い合わせは以下の方法で承ります：
                 </div>
+                <!-- タブナビゲーション -->
+                <div class="contact-tabs">
+                    <button id="form-tab" class="tab-button active">フォームでお問い合わせ</button>
+                    <button id="email-tab" class="tab-button">メールでお問い合わせ</button>
+                </div>
                 
-                <!-- コンタクトオプションの修正 -->
-                <div class="contact-options">
-                    <div class="contact-option-card">
-                        <div class="contact-icon-container">
-                            <div class="contact-icon">
-                                <svg class="section-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
-                                    <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
-                                    fill="#000000" stroke="none">
-                                        <path d="M706 4194 c-196 -47 -374 -227 -421 -425 -22 -96 -22 -2322 0 -2418
-                                        48 -201 225 -378 426 -426 56 -13 293 -15 1849 -15 1556 0 1793 2 1849 15 201
-                                        48 378 225 426 426 22 96 22 2322 0 2418 -48 201 -225 378 -426 426 -93 22
-                                        -3612 21 -3703 -1z m3675 -327 c47 -23 103 -79 126 -126 17 -34 18 -95 18
-                                        -1181 0 -1086 -1 -1147 -18 -1181 -23 -47 -79 -103 -126 -126 -34 -17 -116
-                                        -18 -1821 -18 -1705 0 -1787 1 -1821 18 -47 23 -103 79 -126 126 -17 34 -18
-                                        97 -21 1161 -2 832 0 1135 9 1165 21 75 86 143 163 172 23 9 464 11 1806 10
-                                        1693 -2 1777 -3 1811 -20z"/>
-                                        <path d="M1416 3337 c-74 -41 -102 -139 -63 -214 13 -24 159 -131 569 -419
-                                        306 -215 572 -394 596 -402 36 -12 48 -12 85 0 23 8 289 187 595 402 410 288
-                                        556 395 569 419 23 44 21 116 -3 158 -37 63 -123 94 -190 69 -15 -6 -250 -166
-                                        -521 -356 l-492 -346 -483 339 c-266 186 -499 346 -518 355 -46 24 -97 22
-                                        -144 -5z"/>
-                                    </g>
-                                </svg>
+                <!-- フォームタブのコンテンツ -->
+                <div id="form-content" class="tab-content active">
+                    <!-- コンタクトオプションの修正 -->
+                    <div class="contact-options">
+                        <div class="contact-option-card">
+                            <div class="contact-icon-container">
+                                <div class="contact-icon">
+                                    <svg class="section-icon" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+                                        <g transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
+                                        fill="#000000" stroke="none">
+                                            <path d="M706 4194 c-196 -47 -374 -227 -421 -425 -22 -96 -22 -2322 0 -2418
+                                            48 -201 225 -378 426 -426 56 -13 293 -15 1849 -15 1556 0 1793 2 1849 15 201
+                                            48 378 225 426 426 22 96 22 2322 0 2418 -48 201 -225 378 -426 426 -93 22
+                                            -3612 21 -3703 -1z m3675 -327 c47 -23 103 -79 126 -126 17 -34 18 -95 18
+                                            -1181 0 -1086 -1 -1147 -18 -1181 -23 -47 -79 -103 -126 -126 -34 -17 -116
+                                            -18 -1821 -18 -1705 0 -1787 1 -1821 18 -47 23 -103 79 -126 126 -17 34 -18
+                                            97 -21 1161 -2 832 0 1135 9 1165 21 75 86 143 163 172 23 9 464 11 1806 10
+                                            1693 -2 1777 -3 1811 -20z"/>
+                                            <path d="M1416 3337 c-74 -41 -102 -139 -63 -214 13 -24 159 -131 569 -419
+                                            306 -215 572 -394 596 -402 36 -12 48 -12 85 0 23 8 289 187 595 402 410 288
+                                            556 395 569 419 23 44 21 116 -3 158 -37 63 -123 94 -190 69 -15 -6 -250 -166
+                                            -521 -356 l-492 -346 -483 339 c-266 186 -499 346 -518 355 -46 24 -97 22
+                                            -144 -5z"/>
+                                        </g>
+                                    </svg>
+                                </div>
                             </div>
+                                <div class="contact-content">
+                                    <h3 class="contact-option-title">レッスンのお申し込み</h3>
+                                    <p class="contact-option-description">レッスンのお申し込み・ご質問はお問い合わせフォームから承っております。</p>
+                                    <a href="contact.html?type=lesson" class="contact-option-link">お問い合わせフォームへ</a>
+                                </div>
                         </div>
-                            <div class="contact-content">
-                                <h3 class="contact-option-title">レッスンのお申し込み</h3>
-                                <p class="contact-option-description">レッスンのお申し込み・ご質問はお問い合わせフォームから承っております。</p>
-                                <a href="contact.html?type=lesson" class="contact-option-link">お問い合わせフォームへ</a>
-                            </div>
+                    </div>
+                </div>
+
+                <!-- メールタブのコンテンツ -->
+                <div id="email-content" class="tab-content">
+                    <div class="email-contact">
+                        <h3 class="email-contact-title">メールでのお申し込み</h3>
+                        <p>以下のボタンからメールアプリを起動し、直接お問い合わせいただけます。</p>
+                        
+                        <div class="email-guidelines">
+                            <h4>メール送信時のガイドライン</h4>
+                            <ul>
+                                <li>※ 件名に「レッスンについて」と明記してください。</li>
+                                <li>※ 本文内にお名前と連絡先（メールアドレスや電話番号）を必ずご記入ください。</li>
+                                <li>※ お持ちの楽器や経験レベルもお知らせいただけますと幸いです。</li>
+                                <li>※ レッスン希望の日時があれば、候補日をいくつかお知らせください。</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="mailto:petlianyuki1121@gmail.com?subject=レッスンについて" class="email-button">メールを送る</a>
                     </div>
                 </div>
 
