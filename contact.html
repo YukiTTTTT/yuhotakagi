@@ -910,6 +910,160 @@
           }
       }
       
+      /* タブナビゲーションの改善 */
+      .contact-tabs {
+        display: flex;
+        margin: 0 auto 30px;
+        justify-content: center;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        max-width: 700px;
+        background-color: #f8f8f8;
+      }
+
+      .tab-button {
+        padding: 15px 0;
+        background-color: #f8f8f8;
+        border: none;
+        font-size: 16px;
+        font-weight: 500;
+        color: #666;
+        cursor: pointer;
+        position: relative;
+        transition: all 0.3s ease;
+        font-family: inherit;
+        width: 100%;
+        max-width: 350px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .tab-button:hover {
+        color: #50031a;
+        background-color: #f0f0f0;
+      }
+
+      .tab-button.active {
+        color: white;
+        font-weight: 600;
+        background-color: #50031a;
+      }
+
+      /* タブアイコンの追加 */
+      .tab-button::before {
+        content: '';
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+      }
+
+      .tab-button#form-tab::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z'/%3E%3C/svg%3E");
+      }
+
+      .tab-button#email-tab::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23666'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+      }
+
+      /* アクティブ状態のアイコン色を変更 */
+      .tab-button.active#form-tab::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-2 10H7v-2h10v2zm0-4H7V7h10v2z'/%3E%3C/svg%3E");
+      }
+
+      .tab-button.active#email-tab::before {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+      }
+
+      /* モバイル対応の調整 */
+      @media screen and (max-width: 768px) {
+        .tab-button {
+          font-size: 14px;
+          padding: 12px 0;
+        }
+        
+        .tab-button::before {
+          width: 16px;
+          height: 16px;
+          margin-right: 6px;
+        }
+      }
+      /* モバイル対応 - タブナビゲーション */
+      @media screen and (max-width: 768px) {
+        .contact-tabs {
+          width: 100%;
+          box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+        
+        .tab-button {
+          font-size: 14px;
+          padding: 12px 0;
+        }
+        
+        /* フォームステップの調整 */
+        .form-steps {
+          max-width: 90%;
+        }
+        
+        .form-steps::before {
+          left: 20px;
+          right: 20px;
+        }
+        
+        .step-number {
+          width: 32px;
+          height: 32px;
+          font-size: 0.9em;
+        }
+        
+        .step-label {
+          font-size: 0.8em;
+        }
+        
+        /* 確認画面のモバイル調整 */
+        .confirm-group {
+          flex-direction: column;
+        }
+        
+        .confirm-label {
+          margin-bottom: 5px;
+          font-weight: 600;
+        }
+        
+        .confirm-value {
+          padding-left: 10px;
+        }
+      }
+
+      /* 小型モバイル向け調整 */
+      @media screen and (max-width: 380px) {
+        .tab-button {
+          font-size: 12px;
+          padding: 10px 0;
+        }
+        
+        .tab-button::before {
+          width: 14px;
+          height: 14px;
+          margin-right: 4px;
+        }
+        
+        .step-number {
+          width: 28px;
+          height: 28px;
+          font-size: 0.8em;
+        }
+        
+        .step-label {
+          font-size: 0.7em;
+        }
+      }
     </style>
     <!-- 共通のJavaScript最適化 -->
     <script>
@@ -1023,188 +1177,234 @@
               </ol>
             </div>
             <section class="contact">
-                <h2 class="page-title">CONTACT</h2>
-                <div class="contact-intro">
-                    <p>お問い合わせは、以下のフォームやメールで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
-                </div>
-                <!-- タブナビゲーション -->
-                <div class="contact-tabs">
-                  <button id="form-tab" class="tab-button active">フォームでお問い合わせ</button>
-                  <button id="email-tab" class="tab-button">メールでお問い合わせ</button>
-                </div>
-
-                <!-- フォームタブのコンテンツ -->
-                <div id="form-content" class="tab-content active">
-                  <!-- フォーム入力画面 -->
-                  <div id="form-input-section" class="form-section active">
-                    <h3 class="form-title">お問い合わせフォーム</h3>
-                    
-                    <div class="required-explanation">
-                      <span class="required-mark">*</span> が付いている項目は必須項目です。
+              <h2 class="page-title">CONTACT</h2>
+              <div class="contact-intro">
+                  <p>お問い合わせは、以下のフォームやメールで承っております。<br>レッスンや演奏依頼などについて、お気軽にご連絡ください。</p>
+              </div>
+              <!-- タブナビゲーション -->
+              <div class="contact-tabs">
+                <button id="form-tab" class="tab-button active">フォームでお問い合わせ</button>
+                <button id="email-tab" class="tab-button">メールでお問い合わせ</button>
+              </div>
+          
+              <!-- フォームタブのコンテンツ -->
+              <div id="form-content" class="tab-content active">
+                <!-- フォーム入力画面 -->
+                <div id="form-input-section" class="form-section active">
+                  <div class="form-steps">
+                    <div class="step active" data-step="1">
+                      <div class="step-number">1</div>
+                      <div class="step-label">入力</div>
                     </div>
-                    
-                    <form id="custom-contact-form" novalidate>
-                      <!-- お名前 -->
-                      <div class="form-group">
-                        <label for="name">お名前 <span class="required-mark">*</span></label>
-                        <input type="text" id="name" name="name" required>
-                        <div class="error-message" id="name-error"></div>
-                      </div>
-
-                      <!-- お名前(カナ) -->
-                      <div class="form-group">
-                        <label for="name-kana">お名前(カナ) <span class="required-mark">*</span></label>
-                        <input type="text" id="name-kana" name="name-kana" required>
-                        <div class="error-message" id="name-kana-error"></div>
-                      </div>
-                      
-                      <!-- メールアドレス -->
-                      <div class="form-group">
-                        <label for="email">メールアドレス <span class="required-mark">*</span></label>
-                        <input type="email" id="email" name="email" required>
-                        <div class="error-message" id="email-error"></div>
-                      </div>
-                      
-                      <!-- 電話番号 -->
-                      <div class="form-group">
-                        <label for="phone">電話番号</label>
-                        <input type="tel" id="phone" name="phone">
-                        <div class="error-message" id="phone-error"></div>
-                      </div>
-                      
-                      <!-- お問い合わせ種別 -->
-                      <div class="form-group">
-                        <label for="inquiry-type">お問い合わせ種別 <span class="required-mark">*</span></label>
-                        <select id="inquiry-type" name="inquiry-type" required>
-                          <option value="" disabled selected>選択してください</option>
-                          <option value="レッスンについて">レッスンについて</option>
-                          <option value="演奏依頼について">演奏依頼について</option>
-                          <option value="その他">その他</option>
-                        </select>
-                        <div class="error-message" id="inquiry-type-error"></div>
-                      </div>
-                      
-                      <!-- お問い合わせ内容 -->
-                      <div class="form-group">
-                        <label for="message">お問い合わせ内容 <span class="required-mark">*</span></label>
-                        <textarea id="message" name="message" rows="5" required></textarea>
-                        <div class="error-message" id="message-error"></div>
-                      </div>
-                      
-                      <!-- シンプルなプライバシーポリシー修正 -->
-                      <div class="form-group privacy-policy" style="margin: 20px 0;">
-                        <div style="display: flex; align-items: flex-start; text-align: left;">
-                          <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="margin-right: 10px; margin-top: 3px;">
-                          <label for="privacy-policy" style="display: inline; text-align: left; font-size: 0.9em;">
-                            <a href="privacy-policy.html" target="_blank" rel="noopener" style="color: #50031a; text-decoration: underline;">プライバシーポリシー</a>に同意します <span style="color: #e74c3c;">*</span>
-                          </label>
-                        </div>
-                        <div class="error-message" id="privacy-policy-error" style="padding-left: 25px;"></div>
-                      </div>
-                      
-                      <!-- 送信ボタン -->
-                      <div class="form-actions">
-                        <button type="button" id="check-form-btn" class="btn-primary">内容の確認</button>
-                      </div>
-                    </form>
+                    <div class="step" data-step="2">
+                      <div class="step-number">2</div>
+                      <div class="step-label">確認</div>
+                    </div>
+                    <div class="step" data-step="3">
+                      <div class="step-number">3</div>
+                      <div class="step-label">完了</div>
+                    </div>
                   </div>
                   
-                  <!-- 確認画面 -->
-                  <div id="form-confirm-section" class="form-section">
-                    <h3 class="form-title">入力内容の確認</h3>
-                    <p class="form-description">以下の内容でよろしければ「送信する」ボタンを押してください。</p>
-                    
-                    <div class="confirm-content">
-                      <div class="confirm-group">
-                        <div class="confirm-label">お名前:</div>
-                        <div class="confirm-value" id="confirm-name"></div>
-                      </div>
-
-                      <div class="confirm-group">
-                        <div class="confirm-label">お名前(カナ):</div>
-                        <div class="confirm-value" id="confirm-name-kana"></div>
-                      </div>
-                      
-                      <div class="confirm-group">
-                        <div class="confirm-label">メールアドレス:</div>
-                        <div class="confirm-value" id="confirm-email"></div>
-                      </div>
-                      
-                      <div class="confirm-group">
-                        <div class="confirm-label">電話番号:</div>
-                        <div class="confirm-value" id="confirm-phone"></div>
-                      </div>
-                      
-                      <div class="confirm-group">
-                        <div class="confirm-label">お問い合わせ種別:</div>
-                        <div class="confirm-value" id="confirm-inquiry-type"></div>
-                      </div>
-                      
-                      <div class="confirm-group">
-                        <div class="confirm-label">お問い合わせ内容:</div>
-                        <div class="confirm-value" id="confirm-message"></div>
-                      </div>
+                  <h3 class="form-title">お問い合わせフォーム</h3>
+                  
+                  <div class="required-explanation">
+                    <span class="required-mark">*</span> が付いている項目は必須項目です。
+                  </div>
+                  
+                  <form id="custom-contact-form" novalidate>
+                    <!-- お名前 -->
+                    <div class="form-group">
+                      <label for="name">お名前 <span class="required-mark">*</span></label>
+                      <input type="text" id="name" name="name" required>
+                      <div class="error-message" id="name-error"></div>
+                    </div>
+          
+                    <!-- お名前(カナ) -->
+                    <div class="form-group">
+                      <label for="name-kana">お名前(カナ) <span class="required-mark">*</span></label>
+                      <input type="text" id="name-kana" name="name-kana" required>
+                      <div class="error-message" id="name-kana-error"></div>
                     </div>
                     
+                    <!-- メールアドレス -->
+                    <div class="form-group">
+                      <label for="email">メールアドレス <span class="required-mark">*</span></label>
+                      <input type="email" id="email" name="email" required>
+                      <div class="error-message" id="email-error"></div>
+                    </div>
+                    
+                    <!-- 電話番号 -->
+                    <div class="form-group">
+                      <label for="phone">電話番号</label>
+                      <input type="tel" id="phone" name="phone">
+                      <div class="error-message" id="phone-error"></div>
+                    </div>
+                    
+                    <!-- お問い合わせ種別 -->
+                    <div class="form-group">
+                      <label for="inquiry-type">お問い合わせ種別 <span class="required-mark">*</span></label>
+                      <select id="inquiry-type" name="inquiry-type" required>
+                        <option value="" disabled selected>選択してください</option>
+                        <option value="レッスンについて">レッスンについて</option>
+                        <option value="演奏依頼について">演奏依頼について</option>
+                        <option value="その他">その他</option>
+                      </select>
+                      <div class="error-message" id="inquiry-type-error"></div>
+                    </div>
+                    
+                    <!-- お問い合わせ内容 -->
+                    <div class="form-group">
+                      <label for="message">お問い合わせ内容 <span class="required-mark">*</span></label>
+                      <textarea id="message" name="message" rows="5" required></textarea>
+                      <div class="error-message" id="message-error"></div>
+                    </div>
+                    
+                    <!-- プライバシーポリシー同意 -->
+                    <div class="form-group privacy-policy" style="margin: 20px 0;">
+                      <div style="display: flex; align-items: flex-start; text-align: left;">
+                        <input type="checkbox" id="privacy-policy" name="privacy-policy" required style="margin-right: 10px; margin-top: 3px;">
+                        <label for="privacy-policy" style="display: inline; text-align: left; font-size: 0.9em;">
+                          <a href="privacy-policy.html" target="_blank" rel="noopener" style="color: #50031a; text-decoration: underline;">プライバシーポリシー</a>に同意します <span style="color: #e74c3c;">*</span>
+                        </label>
+                      </div>
+                      <div class="error-message" id="privacy-policy-error" style="padding-left: 25px;"></div>
+                    </div>
+                    
+                    <!-- 送信ボタン -->
                     <div class="form-actions">
-                      <button type="button" id="back-to-input-btn" class="btn-secondary">修正する</button>
-                      <button type="button" id="send-form-btn" class="btn-primary">送信する</button>
+                      <button type="button" id="check-form-btn" class="btn-primary">内容の確認</button>
                     </div>
-                  </div>
-                  <!-- 送信完了画面 -->
-                  <div id="form-complete-section" class="form-section">
-                    <div class="complete-content">
-                      <div class="complete-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                          <circle cx="12" cy="12" r="11" fill="#50031a" />
-                          <path d="M10,17l-5-5l1.41-1.41L10,14.17l7.59-7.59L19,8L10,17z" fill="white" />
-                        </svg>
-                      </div>
-                      <h3 class="form-title">送信完了</h3>
-                      <p class="complete-message">
-                        お問い合わせありがとうございます。<br>
-                        内容を確認の上、折り返しご連絡させていただきます。
-                      </p>
-                      <div class="form-actions">
-                        <a href="index.html" class="btn-secondary">トップページへ戻る</a>
-                      </div>
+                  </form>
+                </div>
+                
+                <!-- 確認画面 -->
+                <div id="form-confirm-section" class="form-section">
+                  <div class="form-steps">
+                    <div class="step completed" data-step="1">
+                      <div class="step-number">1</div>
+                      <div class="step-label">入力</div>
+                    </div>
+                    <div class="step active" data-step="2">
+                      <div class="step-number">2</div>
+                      <div class="step-label">確認</div>
+                    </div>
+                    <div class="step" data-step="3">
+                      <div class="step-number">3</div>
+                      <div class="step-label">完了</div>
                     </div>
                   </div>
                   
-                  <!-- ローディングオーバーレイ -->
-                  <div id="form-loading" class="form-loading">
-                    <div class="loading-spinner"></div>
-                    <p>送信中...</p>
-                  </div>
-                </div>
-
-                <!-- メールタブのコンテンツ -->
-                <div id="email-content" class="tab-content">
-                  <div class="email-contact">
-                    <h3 class="email-contact-title">メールでのお問い合わせ</h3>
-                    <p>以下のボタンからメールアプリを起動し、直接お問い合わせいただけます。</p>
-                    
-                    <div class="email-guidelines">
-                      <h4>メール送信時のガイドライン</h4>
-                      <ul>
-                        <li>※ 件名に要件（例：「レッスンについて」「演奏依頼について」）を明記してください。</li>
-                        <li>※ 本文内にお名前と連絡先（メールアドレスや電話番号）を必ずご記入ください。</li>
-                        <li>※ レッスン希望の場合は、お持ちの楽器や経験レベルもお知らせいただけますと幸いです。</li>
-                        <li>※ 演奏依頼の場合は、日時、場所、演奏希望曲などの詳細をご記入ください。</li>
-                      </ul>
+                  <h3 class="form-title">入力内容の確認</h3>
+                  <p class="form-description">以下の内容でよろしければ「送信する」ボタンを押してください。</p>
+                  
+                  <div class="confirm-content">
+                    <div class="confirm-group">
+                      <div class="confirm-label">お名前:</div>
+                      <div class="confirm-value" id="confirm-name"></div>
+                    </div>
+          
+                    <div class="confirm-group">
+                      <div class="confirm-label">お名前(カナ):</div>
+                      <div class="confirm-value" id="confirm-name-kana"></div>
                     </div>
                     
-                    <a href="mailto:petlianyuki1121@gmail.com" class="email-button">メールを送る</a>
+                    <div class="confirm-group">
+                      <div class="confirm-label">メールアドレス:</div>
+                      <div class="confirm-value" id="confirm-email"></div>
+                    </div>
+                    
+                    <div class="confirm-group">
+                      <div class="confirm-label">電話番号:</div>
+                      <div class="confirm-value" id="confirm-phone"></div>
+                    </div>
+                    
+                    <div class="confirm-group">
+                      <div class="confirm-label">お問い合わせ種別:</div>
+                      <div class="confirm-value" id="confirm-inquiry-type"></div>
+                    </div>
+                    
+                    <div class="confirm-group">
+                      <div class="confirm-label">お問い合わせ内容:</div>
+                      <div class="confirm-value" id="confirm-message"></div>
+                    </div>
+                  </div>
+                  
+                  <div class="form-actions">
+                    <button type="button" id="back-to-input-btn" class="btn-secondary">修正する</button>
+                    <button type="button" id="send-form-btn" class="btn-primary">送信する</button>
                   </div>
                 </div>
+                
+                <!-- 送信完了画面 -->
+                <div id="form-complete-section" class="form-section">
+                  <div class="form-steps">
+                    <div class="step completed" data-step="1">
+                      <div class="step-number">1</div>
+                      <div class="step-label">入力</div>
+                    </div>
+                    <div class="step completed" data-step="2">
+                      <div class="step-number">2</div>
+                      <div class="step-label">確認</div>
+                    </div>
+                    <div class="step active" data-step="3">
+                      <div class="step-number">3</div>
+                      <div class="step-label">完了</div>
+                    </div>
+                  </div>
                   
-                <div class="contact-notes">
-                    <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
-                    <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
-                    <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
-                    <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
+                  <div class="complete-content">
+                    <div class="complete-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <circle cx="12" cy="12" r="11" fill="#50031a" />
+                        <path d="M10,17l-5-5l1.41-1.41L10,14.17l7.59-7.59L19,8L10,17z" fill="white" />
+                      </svg>
+                    </div>
+                    <h3 class="form-title">送信完了</h3>
+                    <p class="complete-message">
+                      お問い合わせありがとうございます。<br>
+                      内容を確認の上、折り返しご連絡させていただきます。
+                    </p>
+                    <div class="form-actions">
+                      <a href="index.html" class="btn-secondary">トップページへ戻る</a>
+                    </div>
+                  </div>
                 </div>
-            </section>
+                
+                <!-- ローディングオーバーレイ -->
+                <div id="form-loading" class="form-loading">
+                  <div class="loading-spinner"></div>
+                  <p>送信中...</p>
+                </div>
+              </div>
+          
+              <!-- メールタブのコンテンツ -->
+              <div id="email-content" class="tab-content">
+                <div class="email-contact">
+                  <h3 class="email-contact-title">メールでのお問い合わせ</h3>
+                  <p>以下のボタンからメールアプリを起動し、直接お問い合わせいただけます。</p>
+                  
+                  <div class="email-guidelines">
+                    <h4>メール送信時のガイドライン</h4>
+                    <ul>
+                      <li>※ 件名に要件（例：「レッスンについて」「演奏依頼について」）を明記してください。</li>
+                      <li>※ 本文内にお名前と連絡先（メールアドレスや電話番号）を必ずご記入ください。</li>
+                      <li>※ レッスン希望の場合は、お持ちの楽器や経験レベルもお知らせいただけますと幸いです。</li>
+                      <li>※ 演奏依頼の場合は、日時、場所、演奏希望曲などの詳細をご記入ください。</li>
+                    </ul>
+                  </div>
+                  
+                  <a href="mailto:petlianyuki1121@gmail.com" class="email-button">メールを送る</a>
+                </div>
+              </div>
+                
+              <div class="contact-notes">
+                  <p>※ スケジュールの都合により、返信に数日かかる場合がございます。</p>
+                  <p>※ こちらからの返信が届かない場合、迷惑メールフォルダをご確認ください。</p>
+                  <p>※ 演奏依頼の場合は、希望日時・会場・曲目などをお知らせください。</p>
+                  <p>※ ご入力いただいた個人情報は、お問い合わせ対応の目的のみに使用し、それ以外の目的では使用いたしません。また、お客様の同意なく第三者への提供は行いません。</p>
+              </div>
+          </section>
         </main>
         <!-- トップに戻るボタン -->
         <div id="back-to-top" class="back-to-top">

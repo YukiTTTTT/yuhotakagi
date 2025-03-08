@@ -18,6 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
         formInputSection.classList.remove('active');
         formConfirmSection.classList.remove('active');
         formCompleteSection.classList.add('active');
+        updateFormSteps(3); // ステップ3を選択
         // 状態をクリア（次回のために）
         sessionStorage.removeItem('formSubmitted');
     }
@@ -35,6 +36,28 @@ document.addEventListener('DOMContentLoaded', function() {
       inquiryType: 'entry.839337160',
       message: 'entry.1802838368'
     };
+    
+    // フォームステップの管理関数を追加
+    function updateFormSteps(step) {
+      // すべてのステップリセット
+      const steps = document.querySelectorAll('.step');
+      steps.forEach(el => {
+        el.classList.remove('active');
+        el.classList.remove('completed');
+      });
+      
+      // 現在のステップまでをアクティブに
+      for (let i = 0; i < steps.length; i++) {
+        const currentStep = steps[i];
+        const stepNumber = parseInt(currentStep.getAttribute('data-step'));
+        
+        if (stepNumber < step) {
+          currentStep.classList.add('completed');
+        } else if (stepNumber === step) {
+          currentStep.classList.add('active');
+        }
+      }
+    }
     
     // フォームの検証関数
     function validateForm() {
@@ -201,6 +224,7 @@ document.addEventListener('DOMContentLoaded', function() {
     checkFormBtn.addEventListener('click', function() {
       if (validateForm()) {
         showConfirmScreen();
+        updateFormSteps(2); // ステップ2に進む
       }
     });
     
@@ -208,6 +232,7 @@ document.addEventListener('DOMContentLoaded', function() {
     backToInputBtn.addEventListener('click', function() {
       formConfirmSection.classList.remove('active');
       formInputSection.classList.add('active');
+      updateFormSteps(1); // ステップ1に戻る
       
       // スクロールをトップに戻す
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -215,6 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // 「送信する」ボタンのクリックイベント
     sendFormBtn.addEventListener('click', function() {
+      updateFormSteps(3); // ステップ3に進む
       submitDirectToGoogleForm();
     });
     
@@ -237,64 +263,64 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // エンターキーでのフォーム送信を防止
     customForm.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
-        e.preventDefault();
-        return false;
-      }
-    });
-
-    // プライバシーポリシー縦書き問題の修正
-    function fixPrivacyPolicyText() {
-      // プライバシーポリシー関連の要素を取得
-      const privacyLabels = document.querySelectorAll('.privacy-policy label, .privacy-policy label *');
-      
-      // 横書きスタイルを強制適用
-      privacyLabels.forEach(el => {
-        el.style.cssText += `
-          writing-mode: horizontal-tb !important;
-          text-orientation: mixed !important;
-          direction: ltr !important;
-          display: inline;
-          white-space: normal;
-        `;
+        if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
+          e.preventDefault();
+          return false;
+        }
       });
-      
-      // プライバシーポリシーのリンクを特に強調して修正
-      const privacyLink = document.querySelector('.privacy-policy a');
-      if (privacyLink) {
-        privacyLink.style.cssText += `
-          display: inline !important;
-          writing-mode: horizontal-tb !important;
-          text-orientation: mixed !important;
-        `;
+  
+      // プライバシーポリシー縦書き問題の修正
+      function fixPrivacyPolicyText() {
+        // プライバシーポリシー関連の要素を取得
+        const privacyLabels = document.querySelectorAll('.privacy-policy label, .privacy-policy label *');
+        
+        // 横書きスタイルを強制適用
+        privacyLabels.forEach(el => {
+          el.style.cssText += `
+            writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+            direction: ltr !important;
+            display: inline;
+            white-space: normal;
+          `;
+        });
+        
+        // プライバシーポリシーのリンクを特に強調して修正
+        const privacyLink = document.querySelector('.privacy-policy a');
+        if (privacyLink) {
+          privacyLink.style.cssText += `
+            display: inline !important;
+            writing-mode: horizontal-tb !important;
+            text-orientation: mixed !important;
+          `;
+        }
       }
-    }
-    
-    // URLパラメータからお問い合わせ種別を自動選択
-    function setInquiryTypeFromUrl() {
-      // URLからパラメータを取得
-      const urlParams = new URLSearchParams(window.location.search);
-      const inquiryType = urlParams.get('type');
       
-      // レッスン申し込みの場合、種別を自動選択
-      if (inquiryType === 'lesson') {
-        const selectElement = document.getElementById('inquiry-type');
-        if (selectElement) {
-          // 「レッスンについて」のオプションを選択（既存の値を尊重）
-          for (let i = 0; i < selectElement.options.length; i++) {
-            if (selectElement.options[i].value === 'レッスンについて') {
-              selectElement.selectedIndex = i;
-              break;
+      // URLパラメータからお問い合わせ種別を自動選択
+      function setInquiryTypeFromUrl() {
+        // URLからパラメータを取得
+        const urlParams = new URLSearchParams(window.location.search);
+        const inquiryType = urlParams.get('type');
+        
+        // レッスン申し込みの場合、種別を自動選択
+        if (inquiryType === 'lesson') {
+          const selectElement = document.getElementById('inquiry-type');
+          if (selectElement) {
+            // 「レッスンについて」のオプションを選択（既存の値を尊重）
+            for (let i = 0; i < selectElement.options.length; i++) {
+              if (selectElement.options[i].value === 'レッスンについて') {
+                selectElement.selectedIndex = i;
+                break;
+              }
             }
           }
         }
       }
-    }
-    
-    // ページ読み込み時と少し遅延して実行
-    fixPrivacyPolicyText();
-    setTimeout(fixPrivacyPolicyText, 500);
-    
-    // お問い合わせ種別の自動選択を実行
-    setInquiryTypeFromUrl();
-});
+      
+      // ページ読み込み時と少し遅延して実行
+      fixPrivacyPolicyText();
+      setTimeout(fixPrivacyPolicyText, 500);
+      
+      // お問い合わせ種別の自動選択を実行
+      setInquiryTypeFromUrl();
+  });
