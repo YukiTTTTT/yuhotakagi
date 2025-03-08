@@ -346,7 +346,7 @@
           padding-left: 10px;
         }
     
-        /* 見出しの縦線が二重になっている問題を修正 */
+        /* 見出しのスタイルを改善 - 縦棒をh3のみに適用し、リストアイテムからは削除 */
         .lesson h3 {
           color: #3a0214;
           font-size: 1.5em;
@@ -355,22 +355,10 @@
           font-weight: 600;
           position: relative;
           padding-left: 15px;
-          border-left: none; /* styles.cssで指定されている可能性がある border-left を削除 */
-        }
-    
-        .lesson h3::before {
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 0;
-          transform: translateY(-50%);
-          width: 5px;
-          height: 70%;
-          background-color: #50031a;
-          border-radius: 3px;
+          border-left: 4px solid #50031a; /* h3のみに縦棒を適用 */
         }
 
-        /* セクション区切りの視覚化 */
+        /* セクション区切りの視覚化 - 新しいスタイル */
         .lesson-section {
           margin: 40px 0;
           padding: 25px;
@@ -399,14 +387,10 @@
 
         .lesson-section h3 {
           border-left: none !important;
-          padding-left: 0 !important;
+          padding-left: 15px !important;
           margin-top: 0;
           font-size: 1.4em;
           color: #3a0214;
-        }
-
-        .lesson-section h3::before {
-          display: none;
         }
 
         /* セクションアイコン */
@@ -418,7 +402,7 @@
           vertical-align: middle;
         }
 
-        /* リストのマークアップ改善 */
+        /* リストのマークアップ改善 - 縦棒を削除 */
         .lesson-section ul {
           list-style: none;
           padding: 0;
@@ -431,6 +415,8 @@
           border-bottom: 1px solid #f0f0f0;
           line-height: 1.6;
           color: #222;
+          background-color: transparent; /* 背景色を削除 */
+          border-left: none; /* 縦棒を削除 */
         }
 
         .lesson-section ul li:last-child {
@@ -451,7 +437,7 @@
           border-radius: 4px;
         }
 
-        /* 料金表の視覚化 */
+        /* 料金表の視覚化 - 改善されたスタイル */
         .price-table {
           width: 100%;
           border-collapse: collapse;
@@ -479,6 +465,10 @@
 
         .price-table tr:nth-child(even) {
           background-color: #f9f9f9;
+        }
+
+        .price-table tr:hover {
+          background-color: #f0f0f0;
         }
 
         .price-table .price {
@@ -519,15 +509,12 @@
         .email-button:hover {
           background-color: #72052a;
         }
-    
         /* コンタクトオプションのタイトルから縦棒を削除し、黒字にし、サイズを適切に調整 */
         .contact-option-title {
             font-size: 1.1em !important; /* フォントサイズ調整 */
             font-weight: 600 !important;
             margin-bottom: 15px;
             color: #333 !important;
-            /*border-left: none !important;
-            padding-left: 0 !important;*/
             min-height: 40px;
             display: flex;
             justify-content: center;
@@ -641,7 +628,6 @@
           font-weight: 500;
           font-size: 1em; /* 元のサイズに戻す */
           transition: background-color 0.3s ease, transform 0.3s ease;
-          /*min-width: 120px;*/
           margin-top: 15px;
         }
     
@@ -803,252 +789,251 @@
           /* ボタンを下部に配置 */
           .contact-option-card .contact-option-link {
             margin-top: auto; /* 上部の余白を自動調整 */
-          }
+        }
     
-          /* お申し込み方法をより目立たせる */
-          .contact-method-intro {
-            font-size: 0.95em; /* スマホ表示時はさらに小さく */
-            padding: 8px;
-          }
-    
-          /* コンタクトオプションのタイトル */
-          .contact-option-title {
-            font-size: 0.85em !important; /* スマホ表示時調整 */
-            min-height: 30px; /* 高さを調整 */
-          }
-    
-          /* FAQ項目のスマホ対応 */
-          details.faq-item summary {
-            padding: 12px 40px 12px 15px; /* パディングを調整 */
-            font-size: 0.95em; /* フォントサイズ調整 */
-          }
-    
-          details.faq-item .faq-content {
-            padding: 15px;
-            font-size: 0.9em;
-          }
-    
-          /* ナビメニューのactive状態の下線 */
-          .nav-menu ul li a.active::after {
-            content: '';
-            position: absolute;
-            width: 70%; /* 下線の幅 */
-            height: 2px;
-            bottom: -5px;
-            left: 50%; /* 中央に配置 */
-            transform: translateX(-50%); /* 中央揃え */
-            background-color: white;
-            transition: all 0.3s ease;
-          }
+    /* お申し込み方法をより目立たせる */
+    .contact-method-intro {
+      font-size: 0.95em; /* スマホ表示時はさらに小さく */
+      padding: 8px;
+    }
 
-          /* レッスンセクションのモバイル対応 */
-          .lesson-section {
-            padding: 15px;
-            margin: 30px 0;
-          }
+    /* コンタクトオプションのタイトル */
+    .contact-option-title {
+      font-size: 0.85em !important; /* スマホ表示時調整 */
+      min-height: 30px; /* 高さを調整 */
+    }
 
-          .section-icon {
-            width: 20px;
-            height: 20px;
-          }
+    /* FAQ項目のスマホ対応 */
+    details.faq-item summary {
+      padding: 12px 40px 12px 15px; /* パディングを調整 */
+      font-size: 0.95em; /* フォントサイズ調整 */
+    }
 
-          /* 料金表のモバイル対応 */
-          .price-table th, .price-table td {
-            padding: 10px;
-            font-size: 0.9em;
-          }
-        }
+    details.faq-item .faq-content {
+      padding: 15px;
+      font-size: 0.9em;
+    }
 
-        /* モバイル表示での文章の左揃え修正 */
-        @media screen and (max-width: 768px) {
-          .lesson > p,
-          .contact > p,
-          .contact-intro {
-            text-align: left !important;
-            padding-left: 5px;
-            padding-right: 5px;
-            line-height: 1.8;
-          }
-        }
-        
-        /* タブナビゲーション */
-        .contact-tabs {
-          display: flex;
-          margin: 0 auto 30px;
-          justify-content: center;
-          max-width: 700px;
-        }
+    /* ナビメニューのactive状態の下線 */
+    .nav-menu ul li a.active::after {
+      content: '';
+      position: absolute;
+      width: 70%; /* 下線の幅 */
+      height: 2px;
+      bottom: -5px;
+      left: 50%; /* 中央に配置 */
+      transform: translateX(-50%); /* 中央揃え */
+      background-color: white;
+      transition: all 0.3s ease;
+    }
 
-        .tab-button {
-          padding: 15px 0;
-          background-color: #fff;
-          border: none;
-          font-size: 16px;
-          font-weight: 500;
-          color: #333;
-          cursor: pointer;
-          position: relative;
-          transition: all 0.3s ease;
-          font-family: inherit;
-          width: 100%;
-          max-width: 350px;
-          margin: 0;
-          border-bottom: 1px solid #ddd;
-        }
+    /* レッスンセクションのモバイル対応 */
+    .lesson-section {
+      padding: 15px;
+      margin: 30px 0;
+    }
 
-        .tab-button:first-child {
-          border-right: 1px solid #ddd;
-        }
+    .section-icon {
+      width: 20px;
+      height: 20px;
+    }
 
-        .tab-button:hover {
-          color: #50031a;
-        }
+    /* 料金表のモバイル対応 */
+    .price-table th, .price-table td {
+      padding: 10px;
+      font-size: 0.9em;
+    }
+  }
 
-        .tab-button.active {
-          color: #50031a;
-          font-weight: 600;
-          border-bottom: 3px solid #50031a;
-        }
+  /* モバイル表示での文章の左揃え修正 */
+  @media screen and (max-width: 768px) {
+    .lesson > p,
+    .contact > p,
+    .contact-intro {
+      text-align: left !important;
+      padding-left: 5px;
+      padding-right: 5px;
+      line-height: 1.8;
+    }
+  }
+  
+  /* タブナビゲーション */
+  .contact-tabs {
+    display: flex;
+    margin: 0 auto 30px;
+    justify-content: center;
+    max-width: 700px;
+  }
 
-        /* タブコンテンツ */
-        .tab-content {
-          display: none;
-          animation: fadeIn 0.5s ease;
-          margin-top: 20px;
-        }
+  .tab-button {
+    padding: 15px 0;
+    background-color: #fff;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    width: 100%;
+    max-width: 350px;
+    margin: 0;
+    border-bottom: 1px solid #ddd;
+  }
 
-        .tab-content.active {
-          display: block;
-        }
+  .tab-button:first-child {
+    border-right: 1px solid #ddd;
+  }
 
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
+  .tab-button:hover {
+    color: #50031a;
+  }
 
-        /* フォームコンテンツのスタイル統一 */
-        .form-content-header {
-          text-align: center;
-          margin-bottom: 25px;
-        }
+  .tab-button.active {
+    color: #50031a;
+    font-weight: 600;
+    border-bottom: 3px solid #50031a;
+  }
 
-        .form-content-header p {
-          margin-bottom: 0;
-          font-size: 1em;
-          line-height: 1.5;
-        }
-        
-        /* メールお問い合わせのスタイル */
-        .email-contact {
-          background-color: #f9f9f9;
-          padding: 30px;
-          border-radius: 8px;
-          max-width: 700px;
-          margin: 0 auto;
-          text-align: center;
-        }
+  /* タブコンテンツ */
+  .tab-content {
+    display: none;
+    animation: fadeIn 0.5s ease;
+    margin-top: 20px;
+  }
 
-        .email-contact p {
-          margin-bottom: 20px;
-          font-size: 1em;
-          line-height: 1.5;
-        }
+  .tab-content.active {
+    display: block;
+  }
 
-        .email-guidelines {
-          background-color: #fff;
-          padding: 20px;
-          border-radius: 5px;
-          margin: 20px 0;
-          text-align: left;
-        }
-        
-        .email-guidelines h4 {
-          margin-top: 0;
-          margin-bottom: 15px;
-          font-size: 1.1em;
-          color: #3a0214;
-          border-left: 4px solid #3a0214;
-          padding-left: 10px;
-        }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
 
-        .email-guidelines ul {
-          padding-left: 0;
-          list-style: none;
-          margin-bottom: 0;
-        }
+  /* フォームコンテンツのスタイル統一 */
+  .form-content-header {
+    text-align: center;
+    margin-bottom: 25px;
+  }
 
-        .email-guidelines li {
-          margin-bottom: 10px;
-          line-height: 1.5;
-          padding-left: 5px;
-          background-color: transparent;
-          border: none;
-        }
+  .form-content-header p {
+    margin-bottom: 0;
+    font-size: 1em;
+    line-height: 1.5;
+  }
+  
+  /* メールお問い合わせのスタイル */
+  .email-contact {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+  }
 
-        .email-guidelines li:last-child {
-          margin-bottom: 0;
-        }
+  .email-contact p {
+    margin-bottom: 20px;
+    font-size: 1em;
+    line-height: 1.5;
+  }
 
-        #form-content .contact-options {
-          background-color: #f9f9f9;
-          padding: 30px;
-          border-radius: 8px;
-          max-width: 700px;
-          margin: 0 auto;
-        }
+  .email-guidelines {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    margin: 20px 0;
+    text-align: left;
+  }
+  
+  .email-guidelines h4 {
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #3a0214;
+    border-left: 4px solid #3a0214;
+    padding-left: 10px;
+  }
 
-        #form-content .contact-option-card {
-          width: 100%;
-          background-color: #fff;
-          border-radius: 5px;
-          box-shadow: none;
-          padding: 20px;
-        }
-        
-        /* ボタンのスタイルを統一 */
-        .email-button {
-          display: inline-block;
-          background-color: #3a0214;
-          color: white !important;
-          text-decoration: none;
-          padding: 12px 35px;
-          border-radius: 4px;
-          font-weight: 500;
-          transition: background-color 0.3s ease, transform 0.3s ease;
-          margin-top: 15px;
-          font-size: 1em;
-        }
+  .email-guidelines ul {
+    padding-left: 0;
+    list-style: none;
+    margin-bottom: 0;
+  }
 
-        .email-button:hover {
-          background-color: #72052a;
-          transform: translateY(-2px);
-          color: white !important;
-          text-decoration: none;
-        }
-        .form-content-header {
-        text-align: center;
-        margin-bottom: 25px;
-        }
+  .email-guidelines li {
+    margin-bottom: 10px;
+    line-height: 1.5;
+    padding-left: 5px;
+    background-color: transparent;
+    border: none;
+  }
 
-        .form-content-header p {
-        margin-bottom: 25px;
-        font-size: 1em;
-        line-height: 1.5;
-        }
+  .email-guidelines li:last-child {
+    margin-bottom: 0;
+  }
 
-        #form-content .contact-option-card {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-        }
+  #form-content .contact-options {
+    background-color: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
 
-        .contact-option-link {
-        margin-top: 0;
-        }
+  #form-content .contact-option-card {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: none;
+    padding: 20px;
+  }
+  
+  /* ボタンのスタイルを統一 */
+  .email-button {
+    display: inline-block;
+    background-color: #3a0214;
+    color: white !important;
+    text-decoration: none;
+    padding: 12px 35px;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    margin-top: 15px;
+    font-size: 1em;
+  }
 
-        /* モバイル調整 */
-        @media screen and (max-width: 768px) {
+  .email-button:hover {
+    background-color: #72052a;
+    transform: translateY(-2px);
+    color: white !important;
+    text-decoration: none;
+  }
+  .form-content-header {
+  text-align: center;
+  margin-bottom: 25px;
+  }
+
+  .form-content-header p {
+  margin-bottom: 25px;
+  font-size: 1em;
+  line-height: 1.5;
+  }
+
+  #form-content .contact-option-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  }
+
+  .contact-option-link {
+  margin-top: 0;
+  }  
+  /* モバイル調整 */
+  @media screen and (max-width: 768px) {
         .form-content-header p {
             margin-bottom: 20px;
         }
@@ -1331,7 +1316,14 @@
         });
         </script>
     </head>
-    <body class="lesson-page">
+    <!-- スタイルの変更内容
+1. レッスンセクションごとにカード化し、縦線の重複を解消
+2. リストアイテムの左側の縦線を削除し、ドット形式に変更
+3. 料金表のデザインを改善し、視認性向上
+4. セクション間の区切りを明確化
+5. モバイル表示時の調整
+-->
+<body class="lesson-page">
         <!-- スキップリンク（アクセシビリティ向上） -->
         <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
     
