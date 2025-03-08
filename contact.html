@@ -1115,5 +1115,44 @@
     
     <!-- お問い合わせフォーム用のスクリプト -->
     <script src="contact-form.js"></script>
+    <!-- 追加：トップへ戻るボタンの表示修正 -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const backToTop = document.getElementById('back-to-top');
+          if (backToTop) {
+              // スクロール位置に応じてボタンの表示/非表示を切り替える
+              function checkScroll() {
+                  if (window.scrollY > 200) {
+                      backToTop.classList.add('visible');
+                  } else {
+                      backToTop.classList.remove('visible');
+                  }
+              }
+              
+              // スクロールイベントリスナーを追加
+              window.addEventListener('scroll', checkScroll);
+              
+              // クリック時の処理
+              backToTop.addEventListener('click', function() {
+                  window.scrollTo({
+                      top: 0,
+                      behavior: 'smooth'
+                  });
+              });
+              
+              // タッチデバイス対応
+              backToTop.addEventListener('touchend', function(e) {
+                  e.preventDefault();
+                  window.scrollTo({
+                      top: 0,
+                      behavior: 'smooth'
+                  });
+              });
+              
+              // 初期チェック - ページロード時に実行
+              setTimeout(checkScroll, 1000);
+          }
+      });
+    </script>
   </body>
 </html>
