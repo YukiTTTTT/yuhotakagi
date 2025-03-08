@@ -75,11 +75,6 @@
     "inLanguage": "ja"
     }
     </script>
-   
-   
-   
-   
-   
     <!-- スタイルの修正 -->
     <style>
         /* アニメーションの追加 */
@@ -512,13 +507,13 @@
           font-size: 0.95em;
           line-height: 1.6;
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-          border-left: none;/*ここかえた*/
+          border-left: 4px solid #50031a;
         }
     
         .contact-note {
           padding: 20px;
           background-color: #f9f9f9;
-          border-left: none;/*4px solid #50031a;*/
+          border-left: 4px solid #50031a;
           margin-top: 30px;
           font-size: 1em;
           line-height: 1.6;
@@ -610,7 +605,6 @@
           background-color: white;
           line-height: 1.6;
         }
-    
         /* レスポンシブ対応 */
         @media screen and (max-width: 768px) {
           .lesson {
@@ -693,7 +687,7 @@
             transition: all 0.3s ease;
           }
         }
-                  /* モバイル表示での文章の左揃え修正 */
+        /* モバイル表示での文章の左揃え修正 */
         @media screen and (max-width: 768px) {
           .lesson > p,
           .contact > p,
@@ -766,15 +760,10 @@
           margin-bottom: 25px;
         }
 
-        .form-option-title {
-          color: #333;
-          font-size: 1.4em;
-          margin-bottom: 15px;
-          position: relative;
-          display: inline-block;
-          border-bottom: 2px solid #50031a;
-          padding-bottom: 5px;
-          font-weight: 500;
+        .form-content-header p {
+          margin-bottom: 0;
+          font-size: 1em;
+          line-height: 1.5;
         }
         
         /* メールお問い合わせのスタイル */
@@ -787,14 +776,10 @@
           text-align: center;
         }
 
-        .email-contact-title {
-          color: #333;
-          font-size: 1.4em;
-          margin-bottom: 15px;
-          position: relative;
-          display: inline-block;
-          border-bottom: 2px solid #50031a;
-          padding-bottom: 5px;
+        .email-contact p {
+          margin-bottom: 20px;
+          font-size: 1em;
+          line-height: 1.5;
         }
 
         .email-guidelines {
@@ -804,7 +789,7 @@
           margin: 20px 0;
           text-align: left;
         }
-
+        
         .email-guidelines h4 {
           margin-top: 0;
           margin-bottom: 15px;
@@ -830,7 +815,6 @@
           margin-bottom: 0;
         }
 
-        /* フォームとの視覚的一貫性のために追加 */
         #form-content .contact-options {
           background-color: #f9f9f9;
           padding: 30px;
@@ -846,8 +830,21 @@
           box-shadow: none;
           padding: 20px;
         }
-
+        
         /* ボタンのスタイルを統一 */
+        .email-button {
+          display: inline-block;
+          background-color: #50031a;
+          color: white !important;
+          text-decoration: none;
+          padding: 12px 35px;
+          border-radius: 4px;
+          font-weight: 500;
+          transition: background-color 0.3s ease, transform 0.3s ease;
+          margin-top: 15px;
+          font-size: 1em;
+        }
+
         .email-button {
           display: inline-block;
           background-color: #50031a;
@@ -868,329 +865,279 @@
           text-decoration: none;
         }
         
-        /* モバイル対応 */
-        @media screen and (max-width: 768px) {
-          /* タブナビゲーション モバイル調整 */
-          .contact-tabs {
-            flex-direction: column;
-            align-items: center;
-            border-bottom: none;
-            margin-bottom: 20px;
-          }
-          
-          .tab-button {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            margin-bottom: 10px;
-            max-width: 100%;
-            border-radius: 4px;
-            text-align: center;
-          }
-          
-          .tab-button.active {
-            background-color: #50031a;
-            color: white;
-            border-color: #50031a;
-          }
-          
-          .tab-button.active::after {
-            display: none;
-          }
-          
-          /* メールフォーム モバイル調整 */
-          .email-contact {
-            padding: 20px 15px;
-          }
-          
-          .email-guidelines {
-            padding: 15px;
-          }
-          
-          .email-button {
-            width: 100%;
-            padding: 10px;
-          }
-        }
         /* モバイル表示の修正スタイル */
         @media screen and (max-width: 768px) {
-        /* タブナビゲーション修正 */
-        .contact-tabs {
+          /* タブナビゲーション修正 */
+          .contact-tabs {
             width: 100%;
             flex-direction: row;
             margin-bottom: 20px;
             border-bottom: 2px solid #ddd;
-        }
-        
-        .tab-button {
+          }
+          
+          .tab-button {
             padding: 12px 0;
             border: none;
             margin: 0;
             width: 50%;
             font-size: 14px;
             border-radius: 0;
-        }
-        
-        .tab-button:first-child {
+          }
+          
+          .tab-button:first-child {
             border-right: 1px solid #ddd;
-        }
-        
-        .tab-button.active {
+          }
+          
+          .tab-button.active {
             color: #50031a;
             background-color: transparent;
             border-bottom: 3px solid #50031a;
             font-weight: 600;
-        }
-        
-        /* フォームコンテンツの修正 */
-        #form-content .contact-options {
+          }
+          
+          /* フォームコンテンツの修正 */
+          #form-content .contact-options {
             padding: 15px;
             background-color: transparent;
             box-shadow: none;
-        }
-        
-        #form-content .contact-option-card {
+          }
+          
+          #form-content .contact-option-card {
             padding: 15px;
             text-align: center;
             box-shadow: none;
             background-color: transparent;
-        }
-        
-        .form-content-header {
+          }
+          
+          .form-content-header {
             margin-bottom: 20px;
-        }
-        
-        .form-option-title {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-            display: inline-block;
-            text-align: center;
-            width: 100%;
-        }
-        
-        .form-content-header p {
+          }
+          
+          .form-content-header p {
             text-align: center;
             margin-bottom: 20px;
-        }
-        
-        /* メールコンテンツの修正 */
-        .email-contact {
+            font-size: 0.95em;
+          }
+          
+          /* メールコンテンツの修正 */
+          .email-contact {
             padding: 15px;
             background-color: transparent;
             box-shadow: none;
-        }
-        
-        .email-contact-title {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-        
-        .email-guidelines {
+          }
+          
+          .email-contact p {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+          }
+          
+          .email-guidelines {
             margin: 15px 0;
             padding: 15px;
-        }
-        
-        .email-guidelines h4 {
+          }
+          
+          .email-guidelines h4 {
             padding-left: 8px;
             font-size: 1em;
-        }
-        
-        .email-guidelines ul {
+          }
+          
+          .email-guidelines ul {
             padding-left: 0;
-        }
-        
-        .email-guidelines li {
+          }
+          
+          .email-guidelines li {
             font-size: 0.9em;
             line-height: 1.5;
             margin-bottom: 8px;
-        }
-        
-        /* ボタンスタイルの統一 */
-        .contact-option-link,
-        .email-button {
+          }
+          
+          /* ボタンスタイルの統一 */
+          .contact-option-link,
+          .email-button {
             display: block;
             width: 100%;
             padding: 12px 0;
             text-align: center;
             margin-top: 10px;
             font-size: 0.95em;
-        }
-        
-        /* 注意事項の調整 */
-        .contact-notes {
+          }
+          
+          /* 注意事項の調整 */
+          .contact-notes {
             margin-top: 30px;
             padding: 15px;
             font-size: 0.9em;
-        }
-        
-        .contact-notes p {
+          }
+          
+          .contact-notes p {
             margin-bottom: 8px;
             line-height: 1.5;
-        }
+          }
         }
     </style>
-
     <!-- 共通のJavaScript -->
     <script>
-    // 構造化データの追加（SEO対策）
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "MusicLesson",
-        "name": "チェロレッスン - 髙木優帆",
-        "description": "初心者から上級者まで、それぞれのレベルに合わせたチェロレッスンを提供しています。",
-        "provider": {
-        "@type": "Person",
-        "name": "髙木優帆",
-        "jobTitle": "チェリスト",
-        "image": "https://yuhotakagi.com/images/profile.jpg",
-        "description": "東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者"
-        },
-        "offers": {
-        "@type": "Offer",
-        "price": "7000",
-        "priceCurrency": "JPY"
-        },
-        "educationalLevel": "初心者から上級者まで",
-        "teaches": "チェロ演奏"
-    };
-
-    // DOMが読み込まれたらJSONを追加
-    document.addEventListener('DOMContentLoaded', function() {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.textContent = JSON.stringify(jsonLd);
-        document.head.appendChild(script);
-        
-        // アニメーション要素にクラスを追加
-        const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, details.faq-item');
-        animElements.forEach((element, index) => {
-        element.classList.add('fade-in');
-        element.classList.add(`delay-${index % 4 + 1}`);
+        // 構造化データの追加（SEO対策）
+        const jsonLd = {
+            "@context": "https://schema.org",
+            "@type": "MusicLesson",
+            "name": "チェロレッスン - 髙木優帆",
+            "description": "初心者から上級者まで、それぞれのレベルに合わせたチェロレッスンを提供しています。",
+            "provider": {
+            "@type": "Person",
+            "name": "髙木優帆",
+            "jobTitle": "チェリスト",
+            "image": "https://yuhotakagi.com/images/profile.jpg",
+            "description": "東京藝術大学出身、神奈川フィルハーモニー管弦楽団次席チェロ奏者"
+            },
+            "offers": {
+            "@type": "Offer",
+            "price": "7000",
+            "priceCurrency": "JPY"
+            },
+            "educationalLevel": "初心者から上級者まで",
+            "teaches": "チェロ演奏"
+        };
+    
+        // DOMが読み込まれたらJSONを追加
+        document.addEventListener('DOMContentLoaded', function() {
+            const script = document.createElement('script');
+            script.type = 'application/ld+json';
+            script.textContent = JSON.stringify(jsonLd);
+            document.head.appendChild(script);
+            
+            // アニメーション要素にクラスを追加
+            const animElements = document.querySelectorAll('.lesson, .lesson h3, .lesson ul li, .contact-option-card, details.faq-item');
+            animElements.forEach((element, index) => {
+            element.classList.add('fade-in');
+            element.classList.add(`delay-${index % 4 + 1}`);
+            });
+            
+            // ページ読み込み完了時の処理
+            setTimeout(function() {
+            document.body.classList.add('page-loaded');
+            }, 800);
+            
+            // タブ切り替え機能を追加
+            const formTab = document.getElementById('form-tab');
+            const emailTab = document.getElementById('email-tab');
+            const formContent = document.getElementById('form-content');
+            const emailContent = document.getElementById('email-content');
+            
+            // タブが存在する場合のみ処理を実行
+            if (formTab && emailTab && formContent && emailContent) {
+              // フォームタブのクリックイベント
+              formTab.addEventListener('click', function() {
+                formTab.classList.add('active');
+                emailTab.classList.remove('active');
+                formContent.classList.add('active');
+                emailContent.classList.remove('active');
+              });
+              
+              // メールタブのクリックイベント
+              emailTab.addEventListener('click', function() {
+                emailTab.classList.add('active');
+                formTab.classList.remove('active');
+                emailContent.classList.add('active');
+                formContent.classList.remove('active');
+              });
+            }
         });
-        
-        // ページ読み込み完了時の処理
-        setTimeout(function() {
-        document.body.classList.add('page-loaded');
-        }, 800);
-        
-        // タブ切り替え機能を追加
-        const formTab = document.getElementById('form-tab');
-        const emailTab = document.getElementById('email-tab');
-        const formContent = document.getElementById('form-content');
-        const emailContent = document.getElementById('email-content');
-        
-        // タブが存在する場合のみ処理を実行
-        if (formTab && emailTab && formContent && emailContent) {
-          // フォームタブのクリックイベント
-          formTab.addEventListener('click', function() {
-            formTab.classList.add('active');
-            emailTab.classList.remove('active');
-            formContent.classList.add('active');
-            emailContent.classList.remove('active');
-          });
-          
-          // メールタブのクリックイベント
-          emailTab.addEventListener('click', function() {
-            emailTab.classList.add('active');
-            formTab.classList.remove('active');
-            emailContent.classList.add('active');
-            formContent.classList.remove('active');
-          });
-        }
-    });
-    </script>
-</head>
-<body class="lesson-page">
-    <!-- スキップリンク（アクセシビリティ向上） -->
-    <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
-
-    <!-- ローディングアニメーション -->
-    <div class="page-loader">
-      <div class="loader-content">
-        <div class="loader-icon"></div>
-        <div class="loader-text">Loading...</div>
-      </div>
-    </div>
-
-    <div class="wrapper">
-        <header>
-            <div class="hamburger-menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            <nav class="nav-menu">
-                
-                <ul>
-                    <li><a href="index.html">HOME</a></li>
-                    <li><a href="profile.html">PROFILE</a></li>
-                    <li><a href="concerts.html">CONCERTS</a></li>
-                    <li><a href="lesson.html" class="active">LESSON</a></li>
-                    <li><a href="contact.html">CONTACT</a></li>
-                </ul>
-                <div class="bottom-close-button">CLOSE</div>
-            </nav>
-        </header>
-
-        <main id="main-content">
-
-            <!-- レッスンページ用 -->
-            <div class="breadcrumbs">
-                <ol itemscope itemtype="https://schema.org/BreadcrumbList">
-                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <a itemprop="item" href="index.html">
-                            <span itemprop="name">HOME</span>
-                        </a>
-                        <meta itemprop="position" content="1" />
-                    </li>
-                    <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
-                        <span itemprop="name">LESSON</span>
-                        <meta itemprop="position" content="2" />
-                    </li>
-                </ol>
-            </div>
-            <section class="lesson">
-                <h2 class="page-title">LESSON</h2>
-                <p>東京藝術大学出身、現役オーケストラ奏者として、チェロの魅力を皆様にお伝えしたいと思っています。
-                <br>これまでのオーケストラでの豊富な経験を活かし、基礎から応用まで、生徒様のレベルに合わせて丁寧でわかりやすいレッスンを心がけています。
-                初心者の方から経験者の方まで、安心して受講いただけます。
-                <br>まずはお気軽にお問い合わせください！</p>
-
-                <h3>レッスン対象</h3>
-                <ul>
-                    <li>音楽高校・音楽大学への進学を目指す方</li>
-                    <li>チェロを始めたいお子様</li>
-                    <li>アマチュア・オーケストラに所属されている方</li>
-                    <li>大人の趣味で始められる初心者の方</li>
-                </ul>
-
-                <h3>レッスン内容</h3>
-                <ul>
-                    <li>基本的な奏法や姿勢の指導</li>
-                    <li>音色や表現力の向上</li>
-                    <li>楽譜の読み方</li>
-                    <li>アンサンブル技術の習得</li>
-                    <li>コンクールや演奏会の準備</li>
-                </ul>
-
-                <h3>レッスン場所</h3>
-                <ul>
-                    <li>川崎市内の講師宅、または出張レッスン(応相談)。まずはお気軽にお問い合わせください。</li>
-                </ul>
-
-                <h3>レッスン料金</h3>
-                <ul>
-                    <li>70分レッスン：7,000円(基本料金)</li>
-                    <li>30分レッスン：3,000円(小学生以下向け)</li>
-                </ul>
-                <!-- 注意事項を左寄せにして小さく -->
-                <p class="note">※ レッスン料金については、ぜひお気軽にお問い合わせください。
-                70分7,000円のレッスンを基本としておりますが、生徒様のレベルやご要望に応じて、時間や料金を調整することも可能です。</p>
-                <p class="note">※ 単発レッスン、定期レッスンどちらも承ります。</p>
-                <p class="note">※ その他、出張レッスンや多人数レッスン、オーケストラ指導等はお問い合わせください。</p>
-                <h3>お申し込み方法</h3>
+        </script>
+    </head>
+    <body class="lesson-page">
+        <!-- スキップリンク（アクセシビリティ向上） -->
+        <a href="#main-content" class="skip-to-content">メインコンテンツへスキップ</a>
+    
+        <!-- ローディングアニメーション -->
+        <div class="page-loader">
+          <div class="loader-content">
+            <div class="loader-icon"></div>
+            <div class="loader-text">Loading...</div>
+          </div>
+        </div>
+    
+        <div class="wrapper">
+            <header>
+                <div class="hamburger-menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <nav class="nav-menu">
+                    
+                    <ul>
+                        <li><a href="index.html">HOME</a></li>
+                        <li><a href="profile.html">PROFILE</a></li>
+                        <li><a href="concerts.html">CONCERTS</a></li>
+                        <li><a href="lesson.html" class="active">LESSON</a></li>
+                        <li><a href="contact.html">CONTACT</a></li>
+                    </ul>
+                    <div class="bottom-close-button">CLOSE</div>
+                </nav>
+            </header>
+    
+            <main id="main-content">
+    
+                <!-- レッスンページ用 -->
+                <div class="breadcrumbs">
+                    <ol itemscope itemtype="https://schema.org/BreadcrumbList">
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <a itemprop="item" href="index.html">
+                                <span itemprop="name">HOME</span>
+                            </a>
+                            <meta itemprop="position" content="1" />
+                        </li>
+                        <li itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+                            <span itemprop="name">LESSON</span>
+                            <meta itemprop="position" content="2" />
+                        </li>
+                    </ol>
+                </div>
+                <section class="lesson">
+                    <h2 class="page-title">LESSON</h2>
+                    <p>東京藝術大学出身、現役オーケストラ奏者として、チェロの魅力を皆様にお伝えしたいと思っています。
+                    <br>これまでのオーケストラでの豊富な経験を活かし、基礎から応用まで、生徒様のレベルに合わせて丁寧でわかりやすいレッスンを心がけています。
+                    初心者の方から経験者の方まで、安心して受講いただけます。
+                    <br>まずはお気軽にお問い合わせください！</p>
+    
+                    <h3>レッスン対象</h3>
+                    <ul>
+                        <li>音楽高校・音楽大学への進学を目指す方</li>
+                        <li>チェロを始めたいお子様</li>
+                        <li>アマチュア・オーケストラに所属されている方</li>
+                        <li>大人の趣味で始められる初心者の方</li>
+                    </ul>
+    
+                    <h3>レッスン内容</h3>
+                    <ul>
+                        <li>基本的な奏法や姿勢の指導</li>
+                        <li>音色や表現力の向上</li>
+                        <li>楽譜の読み方</li>
+                        <li>アンサンブル技術の習得</li>
+                        <li>コンクールや演奏会の準備</li>
+                    </ul>
+    
+                    <h3>レッスン場所</h3>
+                    <ul>
+                        <li>川崎市内の講師宅、または出張レッスン(応相談)。まずはお気軽にお問い合わせください。</li>
+                    </ul>
+    
+                    <h3>レッスン料金</h3>
+                    <ul>
+                        <li>70分レッスン：7,000円(基本料金)</li>
+                        <li>30分レッスン：3,000円(小学生以下向け)</li>
+                    </ul>
+                    <!-- 注意事項を左寄せにして小さく -->
+                    <p class="note">※ レッスン料金については、ぜひお気軽にお問い合わせください。
+                    70分7,000円のレッスンを基本としておりますが、生徒様のレベルやご要望に応じて、時間や料金を調整することも可能です。</p>
+                    <p class="note">※ 単発レッスン、定期レッスンどちらも承ります。</p>
+                    <p class="note">※ その他、出張レッスンや多人数レッスン、オーケストラ指導等はお問い合わせください。</p>
+                    <h3>お申し込み方法</h3>
                 <!-- お申し込み方法をより目立たせる -->
                 <div class="contact-method-intro">
-                    お問い合わせは以下の方法で承ります：
+                    レッスンのお申し込み・ご質問は以下の方法で承ります。
                 </div>
 
                 <!-- タブナビゲーション -->
@@ -1204,7 +1151,6 @@
                     <div class="contact-options">
                         <div class="contact-option-card">
                             <div class="form-content-header">
-                                <h3 class="form-option-title">フォームでのお申し込み</h3>
                                 <p>レッスンのお申し込み・ご質問はお問い合わせフォームから承っております。</p>
                             </div>
                             <a href="contact.html?type=lesson" class="contact-option-link">お問い合わせフォームへ</a>
@@ -1215,7 +1161,6 @@
                 <!-- メールタブのコンテンツ -->
                 <div id="email-content" class="tab-content">
                     <div class="email-contact">
-                        <h3 class="email-contact-title">メールでのお申し込み</h3>
                         <p>以下のボタンからメールアプリを起動し、直接お問い合わせいただけます。</p>
                         
                         <div class="email-guidelines">
