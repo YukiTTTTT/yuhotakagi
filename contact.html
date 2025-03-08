@@ -853,6 +853,63 @@
               z-index: 0;
           }
       }
+      
+      /* トップへ戻るボタンの強制表示スタイル */
+      #back-to-top {
+          position: fixed !important;
+          bottom: 20px !important;
+          right: 20px !important;
+          background-color: rgba(80, 3, 26, 0.9) !important;
+          color: white !important;
+          width: 45px !important;
+          height: 45px !important;
+          border-radius: 50% !important;
+          display: flex !important;
+          align-items: center !important;
+          justify-content: center !important;
+          cursor: pointer !important;
+          z-index: 9999 !important;
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.3s ease, visibility 0.3s ease !important;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3) !important;
+          pointer-events: auto !important;
+      }
+
+      #back-to-top.visible {
+          opacity: 1 !important;
+          visibility: visible !important;
+      }
+
+      #back-to-top svg {
+          width: 24px !important;
+          height: 24px !important;
+          fill: white !important;
+      }
+
+      /* スマホ表示時の画面レイアウト調整 */
+      @media screen and (max-width: 768px) {
+          .contact {
+              margin-bottom: 60px !important; /* 下部に余白を作りスクロールを確保 */
+          }
+          
+          /* いくつかのブラウザではposition:fixedの表示が安定しないため */
+          html, body {
+              height: auto !important;
+              min-height: 100% !important;
+              position: relative !important;
+          }
+          
+          /* モバイルブラウザによっては、高さの計算にviewportの問題がある場合も */
+          @supports (-webkit-touch-callout: none) {
+              /* iOS専用のFix */
+              #back-to-top {
+                  bottom: 80px !important; /* iOSでは画面下部に余分なスペースを確保 */
+                  right: 20px !important;
+              }
+          }
+      }
+      
     </style>
     <!-- 共通のJavaScript最適化 -->
     <script>

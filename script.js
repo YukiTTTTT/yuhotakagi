@@ -58,21 +58,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    // トップに戻るボタンの処理
+    // トップに戻るボタンの処理 - 修正版
     if (backToTop) {
-        // スクロール位置に応じてボタンの表示/非表示を切り替える
-        window.addEventListener('scroll', function() {
-            // 200pxスクロールしたら表示（以前より早く表示）
-            if (window.scrollY > 200) {
+        // スクロール位置に応じてボタンの表示/非表示を切り替える関数
+        function checkScrollPosition() {
+            if (window.pageYOffset > 200) {
                 backToTop.classList.add('visible');
             } else {
                 backToTop.classList.remove('visible');
             }
-        });
+        }
+        
+        // スクロールイベントリスナー
+        window.addEventListener('scroll', checkScrollPosition);
         
         // クリック時の処理
-        backToTop.addEventListener('click', function() {
-            // トップへスムーズにスクロール
+        backToTop.addEventListener('click', function(e) {
+            e.preventDefault();
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -87,6 +89,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
         });
+        
+        // ページ読み込み時に初回チェック
+        checkScrollPosition();
+        
+        // 少し遅らせて再チェック（DOMContentLoadedだけでは不十分な場合のため）
+        setTimeout(checkScrollPosition, 1000);
     } else {
         // backToTopが存在しない場合にボタンを作成
         const newBackToTop = document.createElement('div');
@@ -100,16 +108,19 @@ document.addEventListener('DOMContentLoaded', function() {
         document.body.appendChild(newBackToTop);
         
         // スクロール位置に応じてボタンの表示/非表示を切り替える
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 200) {
+        function checkScrollPosition() {
+            if (window.pageYOffset > 200) {
                 newBackToTop.classList.add('visible');
             } else {
                 newBackToTop.classList.remove('visible');
             }
-        });
+        }
+        
+        window.addEventListener('scroll', checkScrollPosition);
         
         // クリック時の処理
-        newBackToTop.addEventListener('click', function() {
+        newBackToTop.addEventListener('click', function(e) {
+            e.preventDefault();
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -124,6 +135,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth'
             });
         });
+        
+        // ページ読み込み時に初回チェック
+        checkScrollPosition();
+        // 少し遅らせて再チェック
+        setTimeout(checkScrollPosition, 1000);
     }
 
     // スクロールインジケーターのクリックイベント追加（ホームページのみ）
