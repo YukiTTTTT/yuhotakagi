@@ -1010,6 +1010,97 @@
             line-height: 1.5;
           }
         }
+        /* メールガイドラインの強制上書き */
+        .lesson .email-guidelines {
+        background-color: #fff !important;
+        padding: 20px !important;
+        border-radius: 5px !important;
+        margin: 20px 0 !important;
+        text-align: left !important;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+        }
+
+        .lesson .email-guidelines h4 {
+        margin-top: 0 !important;
+        margin-bottom: 15px !important;
+        font-size: 1.1em !important;
+        color: #50031a !important;
+        border-left: 4px solid #50031a !important;
+        padding-left: 10px !important;
+        }
+
+        .lesson .email-guidelines ul {
+        padding-left: 0 !important;
+        list-style: none !important;
+        margin-bottom: 0 !important;
+        }
+
+        .lesson .email-guidelines li {
+        margin-bottom: 10px !important;
+        line-height: 1.5 !important;
+        padding: 5px !important;
+        background-color: #f9f9f9 !important;
+        border: none !important;
+        border-radius: 3px !important;
+        box-shadow: none !important;
+        color: #333 !important;
+        font-size: 0.95em !important;
+        /* 縦線の削除 */
+        border-left: none !important;
+        }
+
+        .lesson .email-guidelines li:last-child {
+        margin-bottom: 0 !important;
+        }
+
+        /* フォームボタンの余白調整 */
+        .lesson #form-content .contact-option-card {
+        padding: 20px !important;
+        text-align: center !important;
+        box-shadow: none !important;
+        background-color: #fff !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        }
+
+        .lesson #form-content .form-content-header {
+        margin-bottom: 20px !important;
+        }
+
+        .lesson #form-content .form-content-header p {
+        margin-bottom: 15px !important;
+        }
+
+        .lesson #form-content .contact-option-link {
+        margin-top: 0 !important;
+        display: inline-block !important;
+        background-color: #50031a !important;
+        color: white !important;
+        text-decoration: none !important;
+        padding: 10px 25px !important;
+        border-radius: 4px !important;
+        font-weight: 500 !important;
+        transition: background-color 0.3s ease, transform 0.3s ease !important;
+        }
+
+        /* モバイル対応の強制スタイル */
+        @media screen and (max-width: 768px) {
+        .lesson #form-content .contact-options {
+            padding: 15px !important;
+            background-color: transparent !important;
+        }
+        
+        .lesson #form-content .contact-option-card {
+            padding: 10px !important;
+        }
+        
+        .lesson .email-guidelines li {
+            padding: 3px 5px !important;
+            margin-bottom: 8px !important;
+        }
+        }
     </style>
     <!-- 共通のJavaScript -->
     <script>
