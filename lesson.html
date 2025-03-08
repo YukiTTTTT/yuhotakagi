@@ -304,6 +304,7 @@
           max-width: 900px;
           transition: transform 0.3s ease, box-shadow 0.3s ease;
           padding: 40px;
+          color: #333; /* より暗い色のテキスト */
         }
     
         .lesson:hover {
@@ -314,6 +315,7 @@
           position: relative;
           padding-bottom: 15px;
           margin-bottom: 30px;
+          color: #3a0214; /* より暗い見出し色 */
         }
     
         .page-title::after {
@@ -332,20 +334,21 @@
           line-height: 1.8;
           margin-bottom: 25px;
           text-align: center;
+          color: #222; /* テキストをより暗く */
         }
     
         /* 注意事項を左寄せにしてフォントを小さく */
         .lesson > p.note {
           text-align: left;
           font-size: 0.95em;
-          color: #555;
+          color: #444;
           margin-bottom: 10px;
           padding-left: 10px;
         }
     
         /* 見出しの縦線が二重になっている問題を修正 */
         .lesson h3 {
-          color: #50031a;
+          color: #3a0214;
           font-size: 1.5em;
           margin-top: 35px;
           margin-bottom: 20px;
@@ -365,6 +368,156 @@
           height: 70%;
           background-color: #50031a;
           border-radius: 3px;
+        }
+
+        /* セクション区切りの視覚化 */
+        .lesson-section {
+          margin: 40px 0;
+          padding: 25px;
+          border-radius: 8px;
+          box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+          background-color: #fff;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+        }
+
+        .lesson-section:hover {
+          box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+          transform: translateY(-3px);
+        }
+
+        .lesson-section::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 5px;
+          height: 100%;
+          background-color: #50031a;
+        }
+
+        .lesson-section h3 {
+          border-left: none !important;
+          padding-left: 0 !important;
+          margin-top: 0;
+          font-size: 1.4em;
+          color: #3a0214;
+        }
+
+        .lesson-section h3::before {
+          display: none;
+        }
+
+        /* セクションアイコン */
+        .section-icon {
+          display: inline-block;
+          margin-right: 10px;
+          width: 24px;
+          height: 24px;
+          vertical-align: middle;
+        }
+
+        /* リストのマークアップ改善 */
+        .lesson-section ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .lesson-section ul li {
+          position: relative;
+          padding: 10px 0 10px 30px;
+          border-bottom: 1px solid #f0f0f0;
+          line-height: 1.6;
+          color: #222;
+        }
+
+        .lesson-section ul li:last-child {
+          border-bottom: none;
+        }
+
+        .lesson-section ul li::before {
+          content: "•";
+          position: absolute;
+          left: 10px;
+          color: #50031a;
+          font-size: 1.2em;
+        }
+
+        /* アクセシビリティ向上のためのフォーカス状態 */
+        .lesson-section ul li:focus-within {
+          outline: 2px solid #50031a;
+          border-radius: 4px;
+        }
+
+        /* 料金表の視覚化 */
+        .price-table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 20px 0;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          overflow: hidden;
+        }
+
+        .price-table th, .price-table td {
+          padding: 15px;
+          text-align: left;
+          border-bottom: 1px solid #eaeaea;
+        }
+
+        .price-table th {
+          background-color: #3a0214;
+          color: white;
+          font-weight: 500;
+        }
+
+        .price-table tr:last-child td {
+          border-bottom: none;
+        }
+
+        .price-table tr:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+
+        .price-table .price {
+          text-align: right;
+          font-weight: 600;
+          color: #3a0214;
+        }
+
+        .price-note {
+          font-size: 0.9em;
+          color: #444;
+          margin-top: 10px;
+          margin-bottom: 20px;
+        }
+
+        /* コントラスト比の改善 */
+        .lesson a {
+          color: #3a0214; /* より暗いリンク色 */
+          text-decoration: underline; /* 下線を追加して視認性向上 */
+        }
+
+        .lesson a:hover, 
+        .lesson a:focus {
+          color: #72052a;
+          text-decoration: underline;
+        }
+
+        /* ボタンのコントラスト改善 */
+        .contact-option-link,
+        .email-button {
+          background-color: #3a0214; /* より暗いボタン背景 */
+          color: white !important;
+          font-weight: 600;
+          padding: 12px 25px;
+        }
+
+        .contact-option-link:hover,
+        .email-button:hover {
+          background-color: #72052a;
         }
     
         /* コンタクトオプションのタイトルから縦棒を削除し、黒字にし、サイズを適切に調整 */
@@ -434,7 +587,7 @@
           text-align: center;
           font-size: 1.1em; /* サイズを少し小さく */
           font-weight: 500;
-          color: #50031a;
+          color: #3a0214;
           margin: 30px 0 20px;
           padding: 10px;
           background-color: #f9f9f9;
@@ -480,7 +633,7 @@
         /* リンクボタンスタイル - 元のサイズに戻す */
         .contact-option-link {
           display: inline-block;
-          background-color: #50031a;
+          background-color: #3a0214;
           color: white !important;
           text-decoration: none;
           padding: 10px 25px;
@@ -507,13 +660,13 @@
           font-size: 0.95em;
           line-height: 1.6;
           box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-          border-left: 4px solid #50031a;
+          border-left: 4px solid #3a0214;
         }
     
         .contact-note {
           padding: 20px;
           background-color: #f9f9f9;
-          border-left: 4px solid #50031a;
+          border-left: 4px solid #3a0214;
           margin-top: 30px;
           font-size: 1em;
           line-height: 1.6;
@@ -529,7 +682,7 @@
     
         .faq-title {
           text-align: center;
-          color: #50031a;
+          color: #3a0214;
           font-size: 1.8em;
           margin-bottom: 30px;
           position: relative;
@@ -544,12 +697,13 @@
           transform: translateX(-50%);
           width: 60px;
           height: 2px;
-          background-color: #50031a;
+          background-color: #3a0214;
         }
     
         .faq-list {
           list-style: none;
           padding: 0;
+          margin: 0;
         }
     
         /* 新しいFAQスタイル - ネイティブのdetails/summaryを使用 */
@@ -592,7 +746,7 @@
         }
     
         details.faq-item[open] summary {
-          background-color: #50031a;
+          background-color: #3a0214;
           color: white;
         }
     
@@ -686,7 +840,25 @@
             background-color: white;
             transition: all 0.3s ease;
           }
+
+          /* レッスンセクションのモバイル対応 */
+          .lesson-section {
+            padding: 15px;
+            margin: 30px 0;
+          }
+
+          .section-icon {
+            width: 20px;
+            height: 20px;
+          }
+
+          /* 料金表のモバイル対応 */
+          .price-table th, .price-table td {
+            padding: 10px;
+            font-size: 0.9em;
+          }
         }
+
         /* モバイル表示での文章の左揃え修正 */
         @media screen and (max-width: 768px) {
           .lesson > p,
@@ -794,8 +966,8 @@
           margin-top: 0;
           margin-bottom: 15px;
           font-size: 1.1em;
-          color: #50031a;
-          border-left: 4px solid #50031a;
+          color: #3a0214;
+          border-left: 4px solid #3a0214;
           padding-left: 10px;
         }
 
@@ -836,20 +1008,7 @@
         /* ボタンのスタイルを統一 */
         .email-button {
           display: inline-block;
-          background-color: #50031a;
-          color: white !important;
-          text-decoration: none;
-          padding: 12px 35px;
-          border-radius: 4px;
-          font-weight: 500;
-          transition: background-color 0.3s ease, transform 0.3s ease;
-          margin-top: 15px;
-          font-size: 1em;
-        }
-
-        .email-button {
-          display: inline-block;
-          background-color: #50031a;
+          background-color: #3a0214;
           color: white !important;
           text-decoration: none;
           padding: 12px 35px;
@@ -1024,8 +1183,8 @@
         margin-top: 0 !important;
         margin-bottom: 15px !important;
         font-size: 1.1em !important;
-        color: #50031a !important;
-        border-left: 4px solid #50031a !important;
+        color: #3a0214 !important;
+        border-left: 4px solid #3a0214 !important;
         padding-left: 10px !important;
         }
 
@@ -1076,7 +1235,7 @@
         .lesson #form-content .contact-option-link {
         margin-top: 0 !important;
         display: inline-block !important;
-        background-color: #50031a !important;
+        background-color: #3a0214 !important;
         color: white !important;
         text-decoration: none !important;
         padding: 10px 25px !important;
@@ -1228,38 +1387,70 @@
                     初心者の方から経験者の方まで、安心して受講いただけます。
                     <br>まずはお気軽にお問い合わせください！</p>
     
-                    <h3>レッスン対象</h3>
-                    <ul>
-                        <li>音楽高校・音楽大学への進学を目指す方</li>
-                        <li>チェロを始めたいお子様</li>
-                        <li>アマチュア・オーケストラに所属されている方</li>
-                        <li>大人の趣味で始められる初心者の方</li>
-                    </ul>
-    
-                    <h3>レッスン内容</h3>
-                    <ul>
-                        <li>基本的な奏法や姿勢の指導</li>
-                        <li>音色や表現力の向上</li>
-                        <li>楽譜の読み方</li>
-                        <li>アンサンブル技術の習得</li>
-                        <li>コンクールや演奏会の準備</li>
-                    </ul>
-    
-                    <h3>レッスン場所</h3>
-                    <ul>
-                        <li>川崎市内の講師宅、または出張レッスン(応相談)。まずはお気軽にお問い合わせください。</li>
-                    </ul>
-    
-                    <h3>レッスン料金</h3>
-                    <ul>
-                        <li>70分レッスン：7,000円(基本料金)</li>
-                        <li>30分レッスン：3,000円(小学生以下向け)</li>
-                    </ul>
-                    <!-- 注意事項を左寄せにして小さく -->
-                    <p class="note">※ レッスン料金については、ぜひお気軽にお問い合わせください。
-                    70分7,000円のレッスンを基本としておりますが、生徒様のレベルやご要望に応じて、時間や料金を調整することも可能です。</p>
-                    <p class="note">※ 単発レッスン、定期レッスンどちらも承ります。</p>
-                    <p class="note">※ その他、出張レッスンや多人数レッスン、オーケストラ指導等はお問い合わせください。</p>
+                    <div class="lesson-section">
+                        <h3><svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#50031a"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>レッスン対象</h3>
+                        <ul>
+                            <li>音楽高校・音楽大学への進学を目指す方</li>
+                            <li>チェロを始めたいお子様</li>
+                            <li>アマチュア・オーケストラに所属されている方</li>
+                            <li>大人の趣味で始められる初心者の方</li>
+                        </ul>
+                    </div>
+                
+                    <div class="lesson-section">
+                        <h3><svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#50031a"><path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg>レッスン内容</h3>
+                        <ul>
+                            <li>基本的な奏法や姿勢の指導</li>
+                            <li>音色や表現力の向上</li>
+                            <li>楽譜の読み方</li>
+                            <li>アンサンブル技術の習得</li>
+                            <li>コンクールや演奏会の準備</li>
+                        </ul>
+                    </div>
+                
+                    <div class="lesson-section">
+                        <h3><svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#50031a"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>レッスン場所</h3>
+                        <ul>
+                            <li>川崎市内の講師宅、または出張レッスン(応相談)。まずはお気軽にお問い合わせください。</li>
+                        </ul>
+                    </div>
+                
+                    <div class="lesson-section">
+                        <h3><svg class="section-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#50031a"><path d="M11.8 10.9c-2.27-.59-3-1.2-3-2.15 0-1.09 1.01-1.85 2.7-1.85 1.78 0 2.44.85 2.5 2.1h2.21c-.07-1.72-1.12-3.3-3.21-3.81V3h-3v2.16c-1.94.42-3.5 1.68-3.5 3.61 0 2.31 1.91 3.46 4.7 4.13 2.5.6 3 1.48 3 2.41 0 .69-.49 1.79-2.7 1.79-2.06 0-2.87-.92-2.98-2.1h-2.2c.12 2.19 1.76 3.42 3.68 3.83V21h3v-2.15c1.95-.37 3.5-1.5 3.5-3.55 0-2.84-2.43-3.81-4.7-4.4z"/></svg>レッスン料金</h3>
+                        
+                        <table class="price-table">
+                            <thead>
+                                <tr>
+                                    <th>レッスン形態</th>
+                                    <th>対象</th>
+                                    <th>時間</th>
+                                    <th>料金</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>スタンダードレッスン</td>
+                                    <td>一般</td>
+                                    <td>70分</td>
+                                    <td class="price">7,000円</td>
+                                </tr>
+                                <tr>
+                                    <td>キッズレッスン</td>
+                                    <td>小学生以下</td>
+                                    <td>30分</td>
+                                    <td class="price">3,000円</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        
+                        <div class="price-note">
+                            <p>※ レッスン料金については、ぜひお気軽にお問い合わせください。
+                            70分7,000円のレッスンを基本としておりますが、生徒様のレベルやご要望に応じて、時間や料金を調整することも可能です。</p>
+                            <p>※ 単発レッスン、定期レッスンどちらも承ります。</p>
+                            <p>※ その他、出張レッスンや多人数レッスン、オーケストラ指導等はお問い合わせください。</p>
+                        </div>
+                    </div>
+
                     <h3>お申し込み方法</h3>
                 <!-- お申し込み方法をより目立たせる -->
                 <div class="contact-method-intro">
