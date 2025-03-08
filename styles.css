@@ -2070,6 +2070,10 @@ header .close-menu,
     .page-title, h2, h3 {
       text-align: center !important;
     }
+
+    .lesson h3 {
+        text-align: left !important;
+    }
 }
 
 /* レッスンページのお申し込み部分の改善 */
