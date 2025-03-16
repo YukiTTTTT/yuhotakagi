@@ -27,15 +27,21 @@ header {
   background: linear-gradient(to right, var(--main-dark), var(--main-color));
 }
 
-/* ナビゲーションリンクの洗練 */
+/* ナビゲーションリンクの洗練 - 修正版 */
 nav ul li a {
-  color: rgba(255, 255, 255, 0.9);
-  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #ffffff !important; /* 白色を強制的に適用 */
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* より強いシャドウ */
+  font-weight: 600; /* フォントを太く */
 }
 
 nav ul li a.active {
-  color: white;
+  color: #ffffff !important; /* アクティブな状態も白色を維持 */
   position: relative;
+}
+
+/* ホバー状態も明示的に設定 */
+nav ul li a:hover {
+  color: #ffffff !important;
 }
 
 /* アクティブな状態をより目立たせる */
