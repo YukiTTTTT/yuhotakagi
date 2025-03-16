@@ -21,11 +21,11 @@
 .modal-content {
   position: relative;
   background-color: #fefefe;
-  margin: 50px auto;
-  padding: 30px;
+  margin: 40px auto;
+  padding: 25px;
   border-radius: 10px;
-  width: 80%;
-  max-width: 900px;
+  width: 90%;
+  max-width: 800px;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   animation: modalFadeIn 0.4s;
   max-height: 85vh;
@@ -39,8 +39,8 @@
 
 .close-modal {
   position: absolute;
-  right: 20px;
-  top: 15px;
+  right: 15px;
+  top: 10px;
   color: #aaa;
   font-size: 28px;
   font-weight: bold;
@@ -56,12 +56,13 @@
 .modal-body {
   display: flex;
   flex-wrap: wrap;
-  gap: 25px;
+  gap: 20px;
 }
 
 .modal-image-container {
   flex: 1;
-  min-width: 250px;
+  min-width: 200px;
+  max-width: 300px;
 }
 
 .modal-image-container img {
@@ -70,6 +71,7 @@
   border-radius: 8px;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
+  cursor: zoom-in;
 }
 
 .modal-image-container img:hover {
@@ -78,25 +80,27 @@
 
 .modal-details {
   flex: 2;
-  min-width: 300px;
+  min-width: 250px;
 }
 
 .modal-details h3 {
   color: #50031a;
-  font-size: 1.8em;
+  font-size: 1.6em;
   margin-top: 0;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   line-height: 1.3;
 }
 
 .modal-info {
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #eee;
 }
 
 .modal-info-item {
   display: flex;
-  align-items: center;
-  margin-bottom: 12px;
+  align-items: flex-start;
+  margin-bottom: 10px;
   color: #333;
 }
 
@@ -104,6 +108,7 @@
   color: #50031a;
   margin-right: 10px;
   flex-shrink: 0;
+  margin-top: 3px;
 }
 
 .modal-info-item p {
@@ -111,72 +116,178 @@
   line-height: 1.5;
 }
 
-.modal-actions {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 25px;
-  flex-wrap: wrap;
-  gap: 15px;
+.program-list {
+  margin: 0;
+  padding: 0;
 }
 
-.modal-calendar .calendar-button {
-  font-size: 1em;
-  padding: 10px 20px;
+.program-list p {
+  margin: 0 0 5px 0;
+  line-height: 1.4;
+  font-size: 0.95em;
+}
+
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.modal-actions-group {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.modal-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 15px;
+  background-color: #50031a;
+  color: white;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  font-size: 0.9em;
+  border: none;
+  cursor: pointer;
+}
+
+.modal-button:hover {
+  background-color: #72052a;
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+.modal-button svg {
+  margin-right: 6px;
+}
+
+.ticket-button {
+  background-color: #3a5825;
+  width: 100%;
+  margin-top: 5px;
+}
+
+.ticket-button:hover {
+  background-color: #4a6e30;
+}
+
+.modal-share {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.modal-share span {
+  font-size: 0.9em;
+  color: #666;
+}
+
+.share-button {
+  width: 30px;
+  height: 30px;
 }
 
 .modal-map-container {
-  margin-top: 30px;
+  margin-top: 20px;
   width: 100%;
 }
 
 .modal-map-container h4 {
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   color: #50031a;
-  font-size: 1.3em;
+  font-size: 1.1em;
 }
 
 .modal-map {
   width: 100%;
-  height: 300px;
+  height: 200px;
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-#modal-description {
-  line-height: 1.6;
+/* カレンダーオプションメニュー */
+.calendar-options-menu {
+  display: none;
+  position: fixed;
+  width: 250px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+  z-index: 2100;
+  overflow: hidden;
+  animation: menuFadeIn 0.2s ease;
+}
+
+@keyframes menuFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.calendar-options-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 15px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eee;
+}
+
+.calendar-options-header h4 {
+  margin: 0;
+  font-size: 1em;
   color: #333;
 }
 
-#modal-link-container {
-  margin-top: 20px;
+.close-options {
+  font-size: 20px;
+  color: #777;
+  cursor: pointer;
+  transition: color 0.2s;
 }
 
-#modal-link-container a {
-  display: inline-block;
-  margin-top: 10px;
-  background-color: #50031a;
-  color: white;
-  padding: 10px 25px;
-  border-radius: 5px;
+.close-options:hover {
+  color: #50031a;
+}
+
+.calendar-options-body {
+  padding: 10px 0;
+}
+
+.calendar-option {
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
   text-decoration: none;
-  font-weight: 500;
-  transition: all 0.3s ease;
+  color: #333;
+  transition: background-color 0.2s;
 }
 
-#modal-link-container a:hover {
-  background-color: #72052a;
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+.calendar-option:hover {
+  background-color: #f5f5f5;
+}
+
+.calendar-option svg {
+  margin-right: 10px;
+}
+
+/* ズーム可能画像 */
+.zoomable-image {
+  cursor: zoom-in;
 }
 
 /* モバイル対応 */
 @media screen and (max-width: 768px) {
   .modal-content {
-    width: 90%;
-    padding: 20px;
-    margin: 30px auto;
+    width: 95%;
+    padding: 15px;
+    margin: 20px auto;
   }
   
   .modal-body {
@@ -184,50 +295,44 @@
     gap: 15px;
   }
   
+  .modal-image-container {
+    max-width: 100%;
+  }
+  
   .modal-details h3 {
-    font-size: 1.5em;
+    font-size: 1.3em;
     margin-bottom: 15px;
   }
   
   .modal-actions {
     flex-direction: column;
-    align-items: flex-start;
   }
   
-  .modal-calendar {
+  .modal-actions-group {
+    flex-direction: column;
     width: 100%;
-    margin-bottom: 15px;
   }
   
-  .modal-calendar .calendar-button {
+  .modal-button {
     width: 100%;
-    text-align: center;
     justify-content: center;
   }
   
   .modal-share {
-    width: 100%;
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
+    margin-top: 10px;
+    justify-content: center;
   }
   
   .modal-map {
-    height: 200px;
+    height: 180px;
   }
-}
-
-/* ホバー状態の強化 */
-.concert-item {
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.concert-item:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-}
-
-.concert-item img:hover {
-  opacity: 0.9;
+  
+  /* カレンダーオプションメニューのモバイル調整 */
+  .calendar-options-menu {
+    width: 90%;
+    max-width: 300px;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
 }
