@@ -1,0 +1,208 @@
+/* ボタンスタイルの強化 */
+
+/* リップルエフェクト */
+.ripple-effect {
+  position: absolute;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 50%;
+  pointer-events: none;
+  width: 100px;
+  height: 100px;
+  transform: translate(-50%, -50%) scale(0);
+  animation: ripple 0.6s linear;
+}
+
+@keyframes ripple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* タッチアクティブスタイル */
+.touch-active {
+  transform: scale(0.98) translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* フォーカス可視化 */
+.focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(80, 3, 26, 0.3);
+}
+
+/* ボタンベーススタイルの強化 */
+.section-button, 
+.calendar-button, 
+.ticket-link, 
+.contact-option-link,
+.email-button,
+button[type="submit"],
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s ease, background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #50031a;
+}
+
+/* ホバー状態 */
+.section-button:hover, 
+.calendar-button:hover, 
+.ticket-link:hover, 
+.contact-option-link:hover,
+.email-button:hover,
+button[type="submit"]:hover,
+.btn-primary:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  color: white;
+  text-decoration: none;
+  background-color: #72052a;
+}
+
+/* アクティブ状態 */
+.section-button:active, 
+.calendar-button:active, 
+.ticket-link:active, 
+.contact-option-link:active,
+.email-button:active,
+button[type="submit"]:active,
+.btn-primary:active {
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ボタンフォーカス状態 */
+.section-button:focus, 
+.calendar-button:focus, 
+.ticket-link:focus, 
+.contact-option-link:focus,
+.email-button:focus,
+button[type="submit"]:focus,
+.btn-primary:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(80, 3, 26, 0.3);
+}
+
+/* ボタンアイコン */
+.section-button svg, 
+.calendar-button svg, 
+.ticket-link svg, 
+.contact-option-link svg,
+.email-button svg {
+  margin-right: 8px;
+  transition: transform 0.2s ease;
+}
+
+/* アイコンアニメーション */
+.section-button:hover svg, 
+.calendar-button:hover svg, 
+.ticket-link:hover svg, 
+.contact-option-link:hover svg,
+.email-button:hover svg {
+  transform: scale(1.1);
+}
+
+/* セカンダリボタン */
+.button-secondary,
+.btn-secondary {
+  background-color: #f0f0f0;
+  color: #444;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.05);
+}
+
+.button-secondary:hover,
+.btn-secondary:hover {
+  background-color: #e0e0e0;
+  color: #222;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* シェアボタンの特別なスタイル */
+.share-button {
+  position: relative;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: #50031a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease, background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.share-button svg {
+  width: 18px;
+  height: 18px;
+  fill: white;
+  transition: transform 0.2s ease;
+}
+
+.share-button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+.share-button:hover svg {
+  transform: scale(1.1);
+}
+
+/* モバイル対応 */
+@media screen and (max-width: 768px) {
+  .section-button, 
+  .calendar-button, 
+  .ticket-link, 
+  .contact-option-link,
+  .email-button,
+  button[type="submit"],
+  .btn-primary {
+    padding: 10px 18px;
+    font-size: 0.95em;
+  }
+  
+  /* シェアボタンのサイズ調整 */
+  .share-button {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .share-button svg {
+    width: 16px;
+    height: 16px;
+  }
+  
+  /* タッチデバイスでの最適化 */
+  @media (hover: none) {
+    .section-button:hover, 
+    .calendar-button:hover, 
+    .ticket-link:hover, 
+    .contact-option-link:hover,
+    .email-button:hover,
+    button[type="submit"]:hover,
+    .btn-primary:hover {
+      transform: none;
+    }
+    
+    .share-button:hover {
+      transform: none;
+    }
+  }
+}

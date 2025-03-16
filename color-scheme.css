@@ -1,0 +1,155 @@
+/* カラースキームの微調整 */
+
+/* ベースカラーを設定 */
+:root {
+  --main-color: #50031a;
+  --main-dark: #3a0214;
+  --main-light: #72052a;
+  --accent-color: #b9a648;
+  --accent-light: #d4c676;
+  --accent-dark: #8c7d25;
+  --neutral-light: #f8f8f8;
+  --neutral-medium: #f0f0f0;
+  --neutral-dark: #e0e0e0;
+  --text-dark: #222;
+  --text-medium: #444;
+  --text-light: #666;
+}
+
+/* 背景色のグラデーション導入 */
+body {
+  background: linear-gradient(to bottom, white, var(--neutral-light));
+  background-attachment: fixed;
+}
+
+/* ヘッダーの背景を少し上品にする */
+header {
+  background: linear-gradient(to right, var(--main-dark), var(--main-color));
+}
+
+/* ナビゲーションリンクの洗練 */
+nav ul li a {
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+nav ul li a.active {
+  color: white;
+  position: relative;
+}
+
+/* アクティブな状態をより目立たせる */
+nav ul li a.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 70%;
+  height: 2px;
+  background-color: var(--accent-light);
+  border-radius: 1px;
+}
+
+/* フッター背景のグラデーション */
+footer {
+  background: linear-gradient(to right, var(--main-dark), var(--main-color));
+}
+
+/* コンサートページの日付部分に特別な色を使用 */
+.concert-date {
+  background: linear-gradient(to bottom, var(--neutral-light), white);
+  color: var(--main-color);
+  font-weight: 700;
+}
+
+/* ホームページのセクションに背景色の変化を追加 */
+.home-sections {
+  background: linear-gradient(to bottom, white, var(--neutral-light));
+}
+
+/* ホームセクションのアイコン */
+.section-icon {
+  color: var(--main-color);
+  transition: all 0.3s ease;
+}
+
+.home-section:hover .section-icon {
+  color: var(--main-light);
+}
+
+/* レッスンページの料金表背景 */
+.price-table th {
+  background: linear-gradient(to right, var(--main-dark), var(--main-color));
+  color: white;
+}
+
+.price-table tr:nth-child(even) {
+  background-color: var(--neutral-light);
+}
+
+/* フォーム要素の色調整 */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="tel"],
+.form-group select,
+.form-group textarea {
+  border-color: var(--neutral-dark);
+  background-color: white;
+  transition: all 0.3s ease;
+}
+
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="tel"]:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--main-color);
+  box-shadow: 0 0 0 3px rgba(80, 3, 26, 0.1);
+}
+
+/* ステップインジケーターの色調整 */
+.step.active .step-number {
+  background-color: var(--main-color);
+}
+
+.step.completed .step-number {
+  background-color: var(--main-light);
+}
+
+/* ホームページの強調色 */
+.hero::before {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5));
+}
+
+/* FAQの色調整 */
+details.faq-item summary {
+  background-color: var(--neutral-light);
+}
+
+details.faq-item[open] summary {
+  background-color: var(--main-color);
+}
+
+/* よりリッチな背景を持つヒーローセクション */
+.hero {
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.6), transparent);
+  z-index: 1;
+}
+
+/* モバイル対応 */
+@media screen and (max-width: 768px) {
+  .hero::after {
+    height: 100px;
+  }
+}

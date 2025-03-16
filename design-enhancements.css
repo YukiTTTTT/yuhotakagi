@@ -1,0 +1,274 @@
+/* デザイン改善と視覚的階層の強化 */
+
+/* 全体的なスタイリング改善 */
+:root {
+  --main-color: #50031a;
+  --main-dark: #3a0214;
+  --main-light: #72052a;
+  --accent-color: #b9a648;
+  --accent-light: #d4c676;
+  --accent-dark: #8c7d25;
+  --text-dark: #222;
+  --text-medium: #444;
+  --text-light: #666;
+  --background-light: #f8f8f8;
+  --background-medium: #f0f0f0;
+  --background-dark: #e0e0e0;
+  --shadow-light: rgba(0, 0, 0, 0.05);
+  --shadow-medium: rgba(0, 0, 0, 0.1);
+  --shadow-dark: rgba(0, 0, 0, 0.2);
+  --transition-fast: 0.2s;
+  --transition-medium: 0.3s;
+  --transition-slow: 0.5s;
+}
+
+body {
+  color: var(--text-dark);
+  line-height: 1.7;
+  font-family: 'Noto Serif JP', 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.01em;
+}
+
+/* タイポグラフィの改善 */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.3;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+  letter-spacing: 0.03em;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-top: 0.5em;
+}
+
+h2 {
+  font-size: 2rem;
+  position: relative;
+  padding-bottom: 0.5em;
+}
+
+h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 3px;
+  background-color: var(--main-color);
+  border-radius: 2px;
+}
+
+h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: var(--main-color);
+}
+
+h4 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text-medium);
+}
+
+p {
+  margin-bottom: 1.2em;
+  line-height: 1.8;
+}
+
+/* リンクスタイルの改善 */
+a {
+  color: var(--main-color);
+  text-decoration: none;
+  transition: all var(--transition-medium) ease;
+  position: relative;
+}
+
+a:hover {
+  color: var(--main-light);
+}
+
+a.text-link {
+  position: relative;
+  display: inline-block;
+}
+
+a.text-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--main-color);
+  transform: scaleX(0);
+  transform-origin: bottom right;
+  transition: transform var(--transition-medium) ease;
+}
+
+a.text-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* ボタンスタイルの強化 */
+.button, 
+.section-button, 
+.calendar-button, 
+.ticket-link, 
+.contact-option-link,
+.email-button,
+button[type="submit"],
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 25px;
+  background-color: var(--main-color);
+  color: white;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--transition-medium) ease;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 6px var(--shadow-light);
+  letter-spacing: 0.02em;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
+.button:hover, 
+.section-button:hover, 
+.calendar-button:hover, 
+.ticket-link:hover, 
+.contact-option-link:hover,
+.email-button:hover,
+button[type="submit"]:hover,
+.btn-primary:hover {
+  background-color: var(--main-light);
+  transform: translateY(-3px);
+  box-shadow: 0 6px 12px var(--shadow-medium);
+  color: white;
+}
+
+.button:active, 
+.section-button:active, 
+.calendar-button:active, 
+.ticket-link:active, 
+.contact-option-link:active,
+.email-button:active,
+button[type="submit"]:active,
+.btn-primary:active {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px var(--shadow-light);
+}
+
+/* ボタン内のアイコン調整 */
+.button svg, 
+.section-button svg, 
+.calendar-button svg, 
+.ticket-link svg, 
+.contact-option-link svg,
+.email-button svg {
+  margin-right: 8px;
+}
+
+/* セカンダリボタン */
+.button-secondary,
+.btn-secondary {
+  background-color: var(--background-medium);
+  color: var(--text-medium);
+  border: 1px solid var(--background-dark);
+}
+
+.button-secondary:hover,
+.btn-secondary:hover {
+  background-color: var(--background-dark);
+  color: var(--text-dark);
+  box-shadow: 0 6px 12px var(--shadow-light);
+}
+
+/* アクセントボタン */
+.button-accent {
+  background-color: var(--accent-color);
+}
+
+.button-accent:hover {
+  background-color: var(--accent-dark);
+}
+
+/* カードスタイルの強化 */
+.card,
+.concert-item,
+.home-section,
+.lesson-section,
+.privacy-policy,
+.contact-option-card {
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px var(--shadow-light);
+  transition: all var(--transition-medium) ease;
+  overflow: hidden;
+}
+
+.card:hover,
+.concert-item:hover,
+.home-section:hover,
+.lesson-section:hover,
+.contact-option-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px var(--shadow-medium);
+}
+
+/* セクション間の間隔を調整 */
+section {
+  margin-bottom: 60px;
+  padding: 40px 0;
+}
+
+section:last-child {
+  margin-bottom: 0;
+}
+
+/* モバイル対応 */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+  
+  h2 {
+    font-size: 1.6rem;
+  }
+  
+  h3 {
+    font-size: 1.3rem;
+  }
+  
+  h4 {
+    font-size: 1.1rem;
+  }
+  
+  section {
+    padding: 30px 0;
+    margin-bottom: 40px;
+  }
+  
+  .button, 
+  .section-button, 
+  .calendar-button, 
+  .ticket-link, 
+  .contact-option-link,
+  .email-button,
+  button[type="submit"],
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 0.95em;
+  }
+}
