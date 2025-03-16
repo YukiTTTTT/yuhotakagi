@@ -18,6 +18,11 @@
   opacity: 1;
 }
 
+/* 閉じるアニメーションの追加 */
+.modal.closing {
+  opacity: 0;
+}
+
 .modal-content {
   position: relative;
   background-color: #fefefe;
@@ -30,6 +35,7 @@
   animation: modalFadeIn 0.4s;
   max-height: 85vh;
   overflow-y: auto;
+  transition: transform 0.3s ease;
 }
 
 @keyframes modalFadeIn {
@@ -37,20 +43,94 @@
   to {opacity: 1; transform: translateY(0);}
 }
 
+/* 閉じるボタンをより目立たせる */
 .close-modal {
   position: absolute;
   right: 15px;
   top: 10px;
   color: #aaa;
-  font-size: 28px;
+  font-size: 32px; /* 大きくする */
   font-weight: bold;
   cursor: pointer;
   z-index: 10;
-  transition: color 0.2s;
+  transition: color 0.2s, transform 0.2s;
+  width: 40px;
+  height: 40px;
+  line-height: 36px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 .close-modal:hover {
   color: #50031a;
+  transform: scale(1.1);
+}
+
+/* モバイル用閉じるボタン（下部固定） */
+.mobile-close-button {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #50031a;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2010;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  transition: transform 0.2s, background-color 0.2s;
+  animation: pulseButton 1.5s infinite alternate;
+}
+
+.mobile-close-button:active {
+  transform: translateX(-50%) scale(0.95);
+  background-color: #72052a;
+}
+
+@keyframes pulseButton {
+  0% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  100% {
+    box-shadow: 0 4px 20px rgba(80, 3, 26, 0.5);
+  }
+}
+
+/* スワイプヒントのスタイル */
+.swipe-hint {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9em;
+  z-index: 2005;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+.swipe-icon {
+  animation: swipeUpDown 1.5s infinite ease-in-out;
+}
+
+@keyframes swipeUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
 }
 
 .modal-body {
@@ -215,18 +295,18 @@
 /* カレンダーオプションメニュー */
 .calendar-options-menu {
   display: none;
-  position: fixed;
+  position: absolute;
   width: 250px;
   background-color: white;
   border-radius: 8px;
-  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
   z-index: 2100;
   overflow: hidden;
   animation: menuFadeIn 0.2s ease;
 }
 
 @keyframes menuFadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -246,14 +326,21 @@
 }
 
 .close-options {
-  font-size: 20px;
+  font-size: 24px;
   color: #777;
   cursor: pointer;
   transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
 }
 
 .close-options:hover {
   color: #50031a;
+  background-color: rgba(0, 0, 0, 0.05);
 }
 
 .calendar-options-body {
@@ -263,7 +350,7 @@
 .calendar-option {
   display: flex;
   align-items: center;
-  padding: 10px 15px;
+  padding: 12px 15px;
   text-decoration: none;
   color: #333;
   transition: background-color 0.2s;
@@ -274,7 +361,61 @@
 }
 
 .calendar-option svg {
-  margin-right: 10px;
+  margin-right: 12px;
+}
+
+/* カレンダーボタンの修正 - 下向き矢印を追加 */
+.calendar-button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  background-color: #50031a;
+  color: white !important;
+  text-decoration: none;
+  padding: 8px 12px;
+  padding-right: 24px; /* 矢印のためのスペース */
+  border-radius: 4px;
+  font-size: 0.9em;
+  font-weight: 500;
+  transition: background-color 0.3s, transform 0.3s;
+  margin-left: 10px;
+}
+
+.calendar-button::after {
+  content: "▼";
+  position: absolute;
+  right: 8px;
+  font-size: 0.7em;
+  transition: transform 0.2s;
+}
+
+.calendar-button:hover {
+  background-color: #72052a;
+  transform: translateY(-2px);
+  text-decoration: none;
+  color: white !important;
+}
+
+.calendar-button:hover::after {
+  transform: translateY(2px);
+}
+
+/* モーダル内カレンダーボタンの調整 */
+#modal-calendar-link {
+  cursor: pointer;
+  padding-right: 24px; /* 矢印のためのスペース */
+}
+
+#modal-calendar-link::after {
+  content: "▼";
+  position: absolute;
+  right: 8px;
+  font-size: 0.7em;
+  transition: transform 0.2s;
+}
+
+#modal-calendar-link:hover::after {
+  transform: translateY(2px);
 }
 
 /* ズーム可能画像 */
@@ -288,6 +429,24 @@
     width: 95%;
     padding: 15px;
     margin: 20px auto;
+    max-height: 90vh; /* スマホではもう少し大きく */
+  }
+  
+  /* 上部の閉じるボタンをさらに大きく、目立たせる */
+  .close-modal {
+    right: 10px;
+    top: 10px;
+    font-size: 36px;
+    width: 44px;
+    height: 44px;
+    line-height: 40px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  /* モバイル用下部閉じるボタンを表示 */
+  .mobile-close-button {
+    display: block;
   }
   
   .modal-body {
@@ -316,6 +475,8 @@
   .modal-button {
     width: 100%;
     justify-content: center;
+    margin-bottom: 10px;
+    padding: 12px 15px; /* 大きくしてタップしやすく */
   }
   
   .modal-share {
@@ -335,7 +496,30 @@
     top: 50% !important;
     transform: translate(-50%, -50%) !important;
   }
+  
+  /* カレンダーオプションの項目を大きくしてタッチしやすく */
+  .calendar-option {
+    padding: 15px;
+    font-size: 1.1em;
+  }
+  
+  /* カレンダーボタンをモバイルで調整 */
+  .calendar-button, 
+  #modal-calendar-link {
+    margin-left: 0;
+    margin-bottom: 10px;
+    padding: 12px 15px;
+    padding-right: 30px; /* 矢印スペースを広げる */
+    font-size: 1em;
+  }
+  
+  .calendar-button::after,
+  #modal-calendar-link::after {
+    right: 12px;
+    font-size: 0.8em;
+  }
 }
+
 /* プログラムリストを左揃えにする */
 .program-list {
   text-align: left;
