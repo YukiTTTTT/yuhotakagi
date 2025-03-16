@@ -489,3 +489,72 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 });
+
+// コンサートカードのカレンダーボタンのクリックイベントを設定
+document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    // クリックされたカレンダーボタンの近くにあるコンサート情報を取得
+    const concertItem = this.closest('.concert-item');
+    if (concertItem) {
+      showCalendarOptionsForCard(this, concertItem);
+    }
+  });
+});
+
+// コンサートカード用のカレンダーオプション表示関数
+function showCalendarOptionsForCard(button, concertItem) {
+  // コンサートの情報を取得
+  const title = concertItem.querySelector('h3').textContent;
+  const date = concertItem.querySelector('.concert-date').textContent;
+  
+  // 会場情報を取得
+  const venueEl = concertItem.querySelector('.concert-info p:nth-child(2)');
+  const venue = venueEl ? venueEl.textContent.replace('会場：', '').trim() : '';
+  
+  // 日時情報を取得
+  const timeEl = concertItem.querySelector('.concert-info p:nth-child(1)');
+  const timeText = timeEl ? timeEl.textContent.replace('日時：', '').trim() : '';
+  
+  // カレンダーリンクを生成
+  const googleCalLink = generateGoogleCalendarLink(title, date, venue, timeText);
+  document.getElementById('google-calendar-link').href = googleCalLink;
+  
+  // iCal、Outlook、Yahooのリンクを生成
+  const icalData = generateICalData(title, date, venue, timeText);
+  const icalBlob = new Blob([icalData], {type: 'text/calendar;charset=utf-8'});
+  const icalUrl = URL.createObjectURL(icalBlob);
+  document.getElementById('ical-link').href = icalUrl;
+  document.getElementById('ical-link').download = `${title.slice(0, 20)}.ics`;
+  
+  // Outlookリンクの作成
+  document.getElementById('outlook-link').href = generateOutlookLink(title, date, venue, timeText);
+  
+  // Yahoo!カレンダーリンクの作成
+  document.getElementById('yahoo-link').href = generateYahooLink(title, date, venue, timeText);
+  
+  // カレンダーオプションメニューの位置設定
+  const buttonRect = button.getBoundingClientRect();
+  calendarOptionsMenu.style.position = 'fixed';
+  
+  // モバイル対応: 画面中央に表示
+  if (window.innerWidth <= 768) {
+    calendarOptionsMenu.style.top = '50%';
+    calendarOptionsMenu.style.left = '50%';
+    calendarOptionsMenu.style.transform = 'translate(-50%, -50%)';
+  } else {
+    // デスクトップ: ボタンの下に表示
+    calendarOptionsMenu.style.top = (buttonRect.bottom + window.scrollY + 5) + 'px';
+    calendarOptionsMenu.style.left = (buttonRect.left + window.scrollX) + 'px';
+    calendarOptionsMenu.style.transform = 'none';
+    
+    // 右端からはみ出す場合
+    const menuRect = calendarOptionsMenu.getBoundingClientRect();
+    if (buttonRect.left + menuRect.width > window.innerWidth) {
+      calendarOptionsMenu.style.left = (window.innerWidth - menuRect.width - 10) + 'px';
+    }
+  }
+  
+  // メニューを表示
+  calendarOptionsMenu.style.display = 'block';
+}
