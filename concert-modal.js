@@ -390,35 +390,37 @@ document.addEventListener('DOMContentLoaded', function() {
   // デフォルトのプログラム情報を取得する関数
   function getDefaultProgram(title) {
     // タイトルによってプログラム内容を変える
-    if (title.includes('チェロ')) {
+    if (title.includes('藤森洸一')) {
       return `
-        <p>J.S.バッハ：無伴奏チェロ組曲 第1番 ト長調 BWV1007</p>
-        <p>ポッパー：ハンガリアン・ラプソディ Op.68</p>
-        <p>ショパン：チェロソナタ ト短調 Op.65</p>
+        <p>ドビュッシー：チェロソナタ</p>
+        <p>スーク：バラードとセレナード<p/>
+        <p>グリエール：2本のチェロのための二重奏曲 より抜粋</p>
+        <p>ピアッティ：2本のチェロとピアノのためのセレナーデ　他</p>
       `;
-    } else if (title.includes('ヴィオラ')) {
+    } else if (title.includes('和田志織 ')) {
       return `
-        <p>ブラームス：ヴィオラソナタ 第1番 へ短調 Op.120-1</p>
-        <p>シューマン：おとぎの絵本 Op.113</p>
-        <p>ヒンデミット：ヴィオラソナタ Op.11-4</p>
+        <p>J.S.バッハ：無伴奏チェロ組曲 第3番</p>
+        <p>ヒンデミット：無伴奏ヴィオラソナタ 作品31-4</p>
+        <p>ブラームス：ヴィオラソナタ 第2番</p>
+        <p>ブラームス：クラリネット三重奏曲(ヴィオラ版) 他</p>
       `;
-    } else if (title.includes('Orchestra') || title.includes('オーケストラ')) {
+    } else if (title.includes('Orchestra Est') ) {
       return `
         <p>モーツァルト：交響曲第40番 ト短調 K.550</p>
-        <p>ドヴォルザーク：チェロ協奏曲 ロ短調 Op.104</p>
+        <p>ドヴォルザーク：チェロ協奏曲 ロ短調 Op.104*</p>
         <p>ブラームス：交響曲第4番 ホ短調 Op.98</p>
       `;
-    } else if (title.includes('室内楽') || title.includes('ENJOY!室内楽')) {
+    } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅰ')) {
       return `
-        <p>ベートーヴェン：ピアノ三重奏曲 第7番「大公」Op.97</p>
-        <p>ドヴォルザーク：ピアノ四重奏曲 第2番 変ホ長調 Op.87</p>
-        <p>シューマン：ピアノ五重奏曲 変ホ長調 Op.44</p>
+        <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
+      `;
+    } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅱ')) {
+      return `
+        <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
       `;
     } else {
       return `
-        <p>モーツァルト：ヴァイオリンソナタ ト長調 K.301</p>
-        <p>ドビュッシー：チェロソナタ ニ短調</p>
-        <p>ショスタコーヴィチ：ピアノ三重奏曲 第2番 ホ短調 Op.67</p>
+        <p>未定</p>
       `;
     }
   }
