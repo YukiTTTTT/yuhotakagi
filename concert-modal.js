@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="modal-actions">
             <div class="modal-actions-group">
-              <a id="modal-calendar-link" href="javascript:void(0);" class="calendar-button modal-button">
+              <a id="modal-calendar-link" href="javascript:void(0);" onclick="return false;" class="calendar-button modal-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
                   <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM7 11h5v5H7z" fill="white"/>
                 </svg>
@@ -137,6 +137,44 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
+  // カレンダーボタンイベントの設定（コンサート情報ページ）
+  document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
+      // 親要素のコンサート情報を取得
+      const concertItem = this.closest('.concert-item');
+      
+      if (concertItem) {
+        const title = concertItem.querySelector('h3').textContent;
+        const date = concertItem.querySelector('.concert-date').textContent;
+        const venueEl = concertItem.querySelector('.concert-info p:nth-child(2)');
+        const venue = venueEl ? venueEl.textContent.replace('会場：', '').trim() : '';
+        const timeEl = concertItem.querySelector('.concert-info p:nth-child(1)');
+        const timeText = timeEl ? timeEl.textContent.replace('日時：', '').trim() : '';
+        
+        // カレンダーメニューを設定して表示
+        setupCalendarMenu(title, date, venue, timeText, this);
+      }
+    });
+  });
+  
+  // モーダル内のカレンダーボタンクリック時の処理
+  document.getElementById('modal-calendar-link').addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // モーダル内の情報を取得
+    const title = document.getElementById('modal-title').textContent;
+    const date = document.getElementById('modal-date').textContent;
+    const venue = document.getElementById('modal-venue').textContent;
+    const time = document.getElementById('modal-time').textContent;
+    
+    // カレンダーメニューを設定して表示
+    setupCalendarMenu(title, date, venue, time, this);
+  });
+  
   // 画像のクリックのみを拡大表示に使用
   modal.addEventListener('click', function(e) {
     if (e.target.id === 'modal-image') {
@@ -179,96 +217,72 @@ document.addEventListener('DOMContentLoaded', function() {
     calendarOptionsMenu.style.display = 'none';
   });
   
-  // モーダル内のカレンダーボタンクリック時の処理
-  document.getElementById('modal-calendar-link').addEventListener('click', function(e) {
-    e.preventDefault();
-    e.stopPropagation();
-    
-    const title = document.getElementById('modal-title').textContent;
-    const date = document.getElementById('modal-date').textContent;
-    const venue = document.getElementById('modal-venue').textContent;
-    const time = document.getElementById('modal-time').textContent;
-    
-    setupCalendarOptions(title, date, venue, time, this);
-  });
-  
-  // ページ読み込み完了後にコンサートカードのカレンダーボタンにイベントを追加
-  setTimeout(function() {
-    document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
-      button.addEventListener('click', function(e) {
-        e.preventDefault();
-        e.stopPropagation();
-        
-        const concertItem = this.closest('.concert-item');
-        if (concertItem) {
-          const title = concertItem.querySelector('h3').textContent;
-          const date = concertItem.querySelector('.concert-date').textContent;
-          
-          const venueEl = concertItem.querySelector('.concert-info p:nth-child(2)');
-          const venue = venueEl ? venueEl.textContent.replace('会場：', '').trim() : '';
-          
-          const timeEl = concertItem.querySelector('.concert-info p:nth-child(1)');
-          const timeText = timeEl ? timeEl.textContent.replace('日時：', '').trim() : '';
-          
-          setupCalendarOptions(title, date, venue, timeText, this);
-        }
-      });
-    });
-  }, 1000);
-  
-  // カレンダーオプションを設定する共通関数
-  function setupCalendarOptions(title, date, venue, time, button) {
+  // カレンダーメニューを設定して表示する関数
+  function setupCalendarMenu(title, date, venue, time, buttonElement) {
     // カレンダーリンクを生成
     const googleCalLink = generateGoogleCalendarLink(title, date, venue, time);
     document.getElementById('google-calendar-link').href = googleCalLink;
     
-    // iCal、Outlook、Yahooのリンクを生成
+    // iCalendar (.ics) データの生成
     const icalData = generateICalData(title, date, venue, time);
     const icalBlob = new Blob([icalData], {type: 'text/calendar;charset=utf-8'});
     const icalUrl = URL.createObjectURL(icalBlob);
     document.getElementById('ical-link').href = icalUrl;
     document.getElementById('ical-link').download = `${title.slice(0, 20)}.ics`;
     
-    // Outlookリンクの作成
+    // Outlook用のリンクを生成
     document.getElementById('outlook-link').href = generateOutlookLink(title, date, venue, time);
     
-    // Yahoo!カレンダーリンクの作成
+    // Yahoo!カレンダー用のリンクを生成
     document.getElementById('yahoo-link').href = generateYahooLink(title, date, venue, time);
     
-    // カレンダーオプションメニューの位置設定
-    const buttonRect = button.getBoundingClientRect();
+    // ボタンの位置を取得
+    const buttonRect = buttonElement.getBoundingClientRect();
+    
+    // カレンダーメニューの位置を設定
     calendarOptionsMenu.style.position = 'absolute';
     
-    // モバイル対応: 画面中央に表示
+    // ボタンのすぐ上に表示（モバイルの場合は画面中央に）
     if (window.innerWidth <= 768) {
+      calendarOptionsMenu.style.position = 'fixed';
       calendarOptionsMenu.style.top = '50%';
       calendarOptionsMenu.style.left = '50%';
       calendarOptionsMenu.style.transform = 'translate(-50%, -50%)';
     } else {
-      // ボタンのすぐ上に表示（要求に基づいて）
-      calendarOptionsMenu.style.top = (buttonRect.top - calendarOptionsMenu.offsetHeight - 10) + 'px';
+      // まず計算のためにメニューを表示する必要がある
+      calendarOptionsMenu.style.visibility = 'hidden';
+      calendarOptionsMenu.style.display = 'block';
+      
+      // メニューの高さを取得
+      const menuHeight = calendarOptionsMenu.offsetHeight;
+      
+      // ボタンのすぐ上に表示
+      calendarOptionsMenu.style.top = (buttonRect.top - menuHeight - 5) + 'px';
       calendarOptionsMenu.style.left = buttonRect.left + 'px';
       calendarOptionsMenu.style.transform = 'none';
       
-      // 表示位置が画面上部からはみ出す場合は下に表示
-      if (buttonRect.top < calendarOptionsMenu.offsetHeight + 10) {
-        calendarOptionsMenu.style.top = (buttonRect.bottom + 10) + 'px';
+      // 上部が画面からはみ出る場合はボタンの下に表示
+      if (buttonRect.top < menuHeight + 5) {
+        calendarOptionsMenu.style.top = (buttonRect.bottom + 5) + 'px';
       }
       
-      // 右端からはみ出す場合
+      // 右端からはみ出す場合は左に寄せる
       if (buttonRect.left + calendarOptionsMenu.offsetWidth > window.innerWidth) {
-        calendarOptionsMenu.style.left = (window.innerWidth - calendarOptionsMenu.offsetWidth - 10) + 'px';
+        calendarOptionsMenu.style.left = (window.innerWidth - calendarOptionsMenu.offsetWidth - 5) + 'px';
       }
+      
+      // 位置設定後に表示を戻す
+      calendarOptionsMenu.style.visibility = 'visible';
     }
     
-    // メニューを表示
+    // カレンダーメニューを表示
     calendarOptionsMenu.style.display = 'block';
   }
   
   // モーダルを開く関数
   function openConcertModal(concertItem) {
     // モーダルにデータを設定
-    const title = concertItem.querySelector('h3').textContent;
+    const title = concertItem.querySelector('h3').innerHTML; // HTMLとして取得
     const image = concertItem.querySelector('img').src;
     const date = concertItem.querySelector('.concert-date').textContent;
     
@@ -288,7 +302,7 @@ document.addEventListener('DOMContentLoaded', function() {
       } else if (index === 2 && (text.includes('円') || text.includes('料金') || text.includes('：'))) {
         priceText = text; // 料金情報（3行目）
       } else if (index === 3 && (text.includes('問い合わせ') || text.includes('申込') || text.includes('@') || text.includes('詳細'))) {
-        contactText = text; // 連絡先情報（4行目）
+        contactText = p.innerHTML; // 連絡先情報（4行目）をHTMLとして取得
       }
     });
     
@@ -309,7 +323,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // モーダルに情報をセット
     const modalTitle = document.getElementById('modal-title');
-    modalTitle.innerHTML = title; // HTMLとして挿入して改行を保持
+    modalTitle.innerHTML = title; // HTMLとして設定して改行を保持
     
     document.getElementById('modal-image').src = image;
     document.getElementById('modal-date').textContent = date;
@@ -318,13 +332,19 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('modal-price').textContent = priceText || '詳細はお問い合わせください';
     document.getElementById('modal-program').innerHTML = programHTML;
     
-    // 連絡先情報をセット（メールアドレスと公式サイトをリンクに変換）
-    processContactInfo(contactText);
+    // 連絡先情報の設定（HTMLコンテンツを直接利用）
+    const contactElement = document.getElementById('modal-contact');
+    if (contactText) {
+      // HTMLとして保存されているテキストを設定
+      contactElement.innerHTML = contactText;
+    } else {
+      contactElement.textContent = 'お問い合わせはこちらのWebサイトで承っております';
+    }
     
     // シェアリンクを設定
-    const shareTitle = encodeURIComponent(title);
+    const shareTitle = encodeURIComponent(title.replace(/<br\s*\/?>/gi, ' '));
     const shareUrl = encodeURIComponent(window.location.href);
-    const shareText = encodeURIComponent(`${date} ${title} ${venueText}にて開催`);
+    const shareText = encodeURIComponent(`${date} ${title.replace(/<br\s*\/?>/gi, ' ')} ${venueText}にて開催`);
     
     document.getElementById('modal-twitter').href = `https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`;
     document.getElementById('modal-facebook').href = `https://www.facebook.com/sharer/sharer.php?u=${shareUrl}`;
@@ -365,68 +385,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // モーダルを表示
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; // スクロール無効化
-  }
-  
-  // 連絡先情報を処理する関数
-  function processContactInfo(contactText) {
-    const contactElement = document.getElementById('modal-contact');
-    if (!contactText) {
-      contactElement.textContent = 'お問い合わせはこちらのWebサイトで承っております';
-      return;
-    }
-    
-    let processedText = contactText;
-    let hasLink = false;
-    
-    // メールアドレスをリンク化
-    if (processedText.includes('@')) {
-      const emailRegex = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g;
-      const emails = processedText.match(emailRegex);
-      
-      if (emails) {
-        emails.forEach(email => {
-          processedText = processedText.replace(email, `<a href="mailto:${email}">${email}</a>`);
-          hasLink = true;
-        });
-      }
-    }
-    
-    // 既存のHTMLリンクを検出
-    const linkRegex = /<a\s+[^>]*href="([^"]*)"[^>]*>([^<]*)<\/a>/g;
-    const linkMatches = [...processedText.matchAll(linkRegex)];
-    
-    if (linkMatches.length > 0) {
-      hasLink = true;
-      // 既存のリンクがある場合は既に処理済みなので、そのまま使用
-    } else {
-      // 「公式サイト」や「詳細：」などの後にあるURLやウェブサイト名をリンク化
-      const siteRegex = /(詳細：|公式サイト[：:]?|ウェブサイト[：:]?)(\s*)([^\s,。、]+)/;
-      const siteMatch = processedText.match(siteRegex);
-      
-      if (siteMatch) {
-        const prefix = siteMatch[1] + (siteMatch[2] || '');
-        let url = siteMatch[3];
-        
-        // URLかどうか判定し、整形する
-        if (!url.startsWith('http')) {
-          if (url.includes('.') && !url.startsWith('www.')) {
-            url = 'https://www.' + url;
-          } else if (url.startsWith('www.')) {
-            url = 'https://' + url;
-          } else {
-            url = 'https://' + url;
-          }
-        }
-        
-        processedText = processedText.replace(
-          siteRegex, 
-          `${prefix}<a href="${url}" target="_blank" rel="noopener noreferrer">${siteMatch[3]}</a>`
-        );
-        hasLink = true;
-      }
-    }
-    
-    contactElement.innerHTML = processedText;
   }
   
   // デフォルトのプログラム情報を取得する関数
@@ -479,8 +437,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 日時のフォーマット
     const formattedDate = formatDateForCalendar(date, time);
     
+    // タイトルから改行タグを削除
+    const cleanTitle = title.replace(/<br\s*\/?>/gi, ' ');
+    
     // Google Calendar URLを生成
-    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(title)}&dates=${formattedDate.start}/${formattedDate.end}&details=${encodeURIComponent(title + ' - ' + venue + 'にて開催')}&location=${encodeURIComponent(venue)}`;
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(cleanTitle)}&dates=${formattedDate.start}/${formattedDate.end}&details=${encodeURIComponent(cleanTitle + ' - ' + venue + 'にて開催')}&location=${encodeURIComponent(venue)}`;
   }
   
   // iCalendar (.ics) データの生成
@@ -488,14 +449,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // 日時をiCal形式に変換
     const formattedDate = formatDateForCalendar(date, time);
     
+    // タイトルから改行タグを削除
+    const cleanTitle = title.replace(/<br\s*\/?>/gi, ' ');
+    
     // iCalデータの生成
     return [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',
       'BEGIN:VEVENT',
-      `SUMMARY:${title}`,
+      `SUMMARY:${cleanTitle}`,
       `LOCATION:${venue}`,
-      `DESCRIPTION:${title} - ${venue}にて開催`,
+      `DESCRIPTION:${cleanTitle} - ${venue}にて開催`,
       `DTSTART:${formattedDate.start}`,
       `DTEND:${formattedDate.end}`,
       'END:VEVENT',
@@ -508,8 +472,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 日時のフォーマット
     const formattedDate = formatDateForCalendar(date, time);
     
+    // タイトルから改行タグを削除
+    const cleanTitle = title.replace(/<br\s*\/?>/gi, ' ');
+    
     // Outlook URLを生成
-    return `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(title)}&location=${encodeURIComponent(venue)}&startdt=${formattedDate.start}&enddt=${formattedDate.end}&body=${encodeURIComponent(title + ' - ' + venue + 'にて開催')}`;
+    return `https://outlook.office.com/calendar/0/deeplink/compose?subject=${encodeURIComponent(cleanTitle)}&location=${encodeURIComponent(venue)}&startdt=${formattedDate.start}&enddt=${formattedDate.end}&body=${encodeURIComponent(cleanTitle + ' - ' + venue + 'にて開催')}`;
   }
   
   // Yahoo!カレンダー用のリンクを生成
@@ -517,8 +484,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // 日時のフォーマット
     const formattedDate = formatDateForCalendar(date, time);
     
+    // タイトルから改行タグを削除
+    const cleanTitle = title.replace(/<br\s*\/?>/gi, ' ');
+    
     // Yahoo!カレンダー URLを生成
-    return `https://calendar.yahoo.co.jp/?v=60&TITLE=${encodeURIComponent(title)}&ST=${formattedDate.start}&ET=${formattedDate.end}&in_loc=${encodeURIComponent(venue)}&DESC=${encodeURIComponent(title + ' - ' + venue + 'にて開催')}`;
+    return `https://calendar.yahoo.co.jp/?v=60&TITLE=${encodeURIComponent(cleanTitle)}&ST=${formattedDate.start}&ET=${formattedDate.end}&in_loc=${encodeURIComponent(venue)}&DESC=${encodeURIComponent(cleanTitle + ' - ' + venue + 'にて開催')}`;
   }
   
   // 日時をカレンダー形式にフォーマットする関数
