@@ -10,7 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
       <span class="close-modal">&times;</span>
       <div class="modal-body">
         <div class="modal-image-container">
-          <img id="modal-image" src="" alt="コンサート画像" class="zoomable-image">
+          <a id="modal-image-link" href="" data-lightbox="modal-concert" data-title="" class="image-lightbox-link">
+            <img id="modal-image" src="" alt="コンサート画像" class="zoomable-image">
+          </a>
         </div>
         <div class="modal-details">
           <h3 id="modal-title"></h3>
@@ -417,11 +419,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
     const modalTitle = document.getElementById('modal-title');
     modalTitle.innerHTML = title; // HTMLとして設定して改行を保持
     
-    // 上記のコードを以下に置き換えます:
-    const modalImage = document.getElementById('modal-image');
-    modalImage.src = image;
-    modalImage.setAttribute('data-lightbox', 'concert-image');
-    modalImage.setAttribute('data-title', title.replace(/<br\s*\/?>/gi, ' '));
+    document.getElementById('modal-image').src = image;
+    const imageLink = document.getElementById('modal-image-link');
+    imageLink.href = image;
+    imageLink.setAttribute('data-title', title.replace(/<br\s*\/?>/gi, ' '));
     document.getElementById('modal-date').textContent = date;
     document.getElementById('modal-venue').textContent = venueText || '詳細はお問い合わせください';
     document.getElementById('modal-time').textContent = timeText || '詳細はお問い合わせください';
