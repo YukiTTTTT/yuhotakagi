@@ -1,171 +1,234 @@
 /* モバイル画面でのボタン表示修正 */
 @media screen and (max-width: 768px) {
-  /* カレンダーに追加ボタン、メールを送るボタンの幅修正 */
-  .calendar-button,
-  .email-button,
-  a[href^="mailto"],
-  .concert-item .calendar-button,
-  .contact-option-link,
-  [class*="btn-"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    text-align: center !important;
-    padding-left: 10px !important;
-    padding-right: 10px !important;
+    /* カレンダーに追加ボタン、メールを送るボタンの幅修正 */
+    .calendar-button,
+    .email-button,
+    a[href^="mailto"],
+    .concert-item .calendar-button,
+    .contact-option-link,
+    [class*="btn-"] {
+      width: 100% !important;
+      max-width: 100% !important;
+      box-sizing: border-box !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      text-align: center !important;
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+    }
+    
+    /* スマホの場合、ボタン全体の余白調整 */
+    .concert-actions-container,
+    .contact-option-card {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex-direction: column !important;
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+      align-items: center !important;
+    }
+    
+    /* シェアボタンのコンテナ調整 - レイアウト崩れ修正 */
+    .share-concert,
+    .concert-item .share-concert {
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      flex-wrap: wrap !important;
+      width: 100% !important;
+      margin: 15px auto !important;
+      gap: 10px !important;
+    }
+    
+    /* シェアテキストとボタンの配置修正 */
+    .share-concert span {
+      margin-right: 10px !important;
+    }
+    
+    /* シェアボタンのサイズと配置を統一 */
+    .share-button,
+    .share-concert .share-button {
+      width: 40px !important;
+      height: 40px !important;
+      border-radius: 50% !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin: 0 5px !important;
+    }
+    
+    /* モーダル内のマップボタンとクローズボタンの重なり修正 */
+    .modal-map-container {
+      padding-bottom: 60px !important; /* 下部に余白を追加 */
+    }
+    
+    .modal-map a {
+      display: block !important;
+      width: calc(100% - 20px) !important;
+      margin: 10px auto !important;
+      margin-bottom: 70px !important; /* 閉じるボタンと重ならないよう十分な余白 */
+      text-align: center !important;
+    }
+    
+    /* モバイル用閉じるボタンの位置調整 */
+    .mobile-close-button {
+      position: fixed !important;
+      bottom: 20px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 2020 !important; /* 他の要素より前面に */
+      width: auto !important;
+      min-width: 120px !important;
+      border-radius: 30px !important;
+      padding: 12px 25px !important;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+      display: block !important; /* モバイルでは常に表示 */
+    }
+    
+    /* メール送信ページの調整 */
+    .email-contact {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 15px !important;
+      box-sizing: border-box !important;
+    }
+    
+    .email-guidelines {
+      width: 100% !important;
+      padding: 15px !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* フォーム全体の横幅調整 */
+    #form-content,
+    #email-content,
+    .tab-content {
+      width: 100% !important;
+      max-width: 100% !important;
+      padding: 0 10px !important;
+      box-sizing: border-box !important;
+    }
+    
+    /* コンサートモーダルのマップ位置調整 - 特に重要な修正 */
+    #modal-map-container {
+      margin-bottom: 60px !important; /* 閉じるボタンと重ならないように下部に余白 */
+    }
+    
+    .modal-map {
+      margin-bottom: 20px !important;
+    }
+    
+    /* Google マップリンクボタンの重なり修正 */
+    .modal-map a[href*="google.com/maps"] {
+      margin-bottom: 70px !important; /* 閉じるボタンと十分な余白を確保 */
+      display: inline-block !important;
+    }
+    
+    /* モーダル内のシェアボタン配置修正 */
+    #concert-modal .modal-share,
+    .modal .modal-share {
+      display: flex !important;
+      flex-wrap: wrap !important;
+      justify-content: center !important;
+      width: 100% !important;
+      margin: 15px 0 !important;
+    }
   }
   
-  /* スマホの場合、ボタン全体の余白調整 */
-  .concert-actions-container,
-  .share-concert,
-  .contact-option-card {
-    width: 100% !important;
-    max-width: 100% !important;
-    flex-direction: column !important;
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    align-items: center !important;
+  /* iPhone SE などの小さい画面向け特別調整 */
+  @media screen and (max-width: 375px) {
+    /* ボタンの文字サイズ縮小 */
+    .calendar-button,
+    .email-button,
+    .contact-option-link {
+      font-size: 0.9em !important;
+      padding: 10px 15px !important;
+    }
+    
+    /* マップボタンのさらなる調整 */
+    #modal-map-container {
+      margin-bottom: 80px !important;
+    }
+    
+    /* モバイル閉じるボタンの表示位置保証 */
+    .mobile-close-button {
+      bottom: 15px !important;
+      min-width: 100px !important;
+      font-size: 0.9em !important;
+    }
+    
+    /* コンサートの情報エリア調整 */
+    .concert-info {
+      padding: 10px !important;
+    }
+    
+    /* 小さい画面でのシェアボタンサイズ調整 */
+    .share-button,
+    .share-concert .share-button {
+      width: 36px !important;
+      height: 36px !important;
+      margin: 0 3px !important;
+    }
   }
   
-  /* シェアボタンのコンテナ調整 */
-  .share-concert {
-    justify-content: center !important;
-    margin-bottom: 15px !important;
+  /* コンサートモーダルの修正 - クラス名指定でより具体的に */
+  @media screen and (max-width: 768px) {
+    .modal-content {
+      padding-bottom: 80px !important; /* 閉じるボタンの高さ分余白を追加 */
+    }
+    
+    #concert-modal .modal-map-container {
+      margin-bottom: 60px !important;
+    }
+    
+    #concert-modal .modal-map a {
+      margin-bottom: 60px !important;
+    }
+    
+    /* コンサートモーダルの Google マップボタン修正 */
+    #modal-map a[href*="google.com/maps"] {
+      display: block !important;
+      margin: 10px auto 70px !important;
+      width: 80% !important;
+    }
   }
   
-  /* モーダル内のマップボタンとクローズボタンの重なり修正 */
-  .modal-map-container {
-    padding-bottom: 60px !important; /* 下部に余白を追加 */
+  /* PC表示ではモバイル用閉じるボタンを非表示 */
+  @media screen and (min-width: 769px) {
+    .mobile-close-button {
+      display: none !important;
+    }
   }
   
-  .modal-map a {
-    display: block !important;
-    width: calc(100% - 20px) !important;
-    margin: 10px auto !important;
-    text-align: center !important;
-  }
-  
-  /* モバイル用閉じるボタンの位置調整 */
+  /* モーダル下部固定ボタンがモバイルでのみ表示されるよう設定 */
   .mobile-close-button {
     position: fixed !important;
     bottom: 20px !important;
     left: 50% !important;
     transform: translateX(-50%) !important;
-    z-index: 2020 !important; /* 他の要素より前面に */
+    z-index: 9999 !important; /* 最前面に */
     width: auto !important;
     min-width: 120px !important;
     border-radius: 30px !important;
     padding: 12px 25px !important;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3) !important;
+    background-color: #50031a !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
+    text-align: center !important;
+    font-weight: bold !important;
   }
   
-  /* メール送信ページの調整 */
-  .email-contact {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 15px !important;
-    box-sizing: border-box !important;
+  /* シェアボタンのスタイル調整（全画面サイズ共通） */
+  .share-concert {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
   }
   
-  .email-guidelines {
-    width: 100% !important;
-    padding: 15px !important;
-    box-sizing: border-box !important;
+  /* シェアボタンを横並びに整列 */
+  .share-concert .share-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
   }
-  
-  /* フォーム全体の横幅調整 */
-  #form-content,
-  #email-content,
-  .tab-content {
-    width: 100% !important;
-    max-width: 100% !important;
-    padding: 0 10px !important;
-    box-sizing: border-box !important;
-  }
-  
-  /* コンサートモーダルのマップ位置調整 - 特に重要な修正 */
-  #modal-map-container {
-    margin-bottom: 60px !important; /* 閉じるボタンと重ならないように下部に余白 */
-  }
-  
-  .modal-map {
-    margin-bottom: 20px !important;
-  }
-  
-  /* Google マップリンクボタンの重なり修正 */
-  .modal-map a[href*="google.com/maps"] {
-    margin-bottom: 70px !important; /* 閉じるボタンと十分な余白を確保 */
-    display: inline-block !important;
-  }
-}
-
-/* iPhone SE などの小さい画面向け特別調整 */
-@media screen and (max-width: 375px) {
-  /* ボタンの文字サイズ縮小 */
-  .calendar-button,
-  .email-button,
-  .contact-option-link {
-    font-size: 0.9em !important;
-    padding: 10px 15px !important;
-  }
-  
-  /* マップボタンのさらなる調整 */
-  #modal-map-container {
-    margin-bottom: 80px !important;
-  }
-  
-  /* モバイル閉じるボタンの表示位置保証 */
-  .mobile-close-button {
-    bottom: 15px !important;
-    min-width: 100px !important;
-    font-size: 0.9em !important;
-  }
-  
-  /* コンサートの情報エリア調整 */
-  .concert-info {
-    padding: 10px !important;
-  }
-}
-
-/* コンサートモーダルの修正 - クラス名指定でより具体的に */
-@media screen and (max-width: 768px) {
-  .modal-content {
-    padding-bottom: 80px !important; /* 閉じるボタンの高さ分余白を追加 */
-  }
-  
-  #concert-modal .modal-map-container {
-    margin-bottom: 60px !important;
-  }
-  
-  #concert-modal .modal-map a {
-    margin-bottom: 60px !important;
-  }
-  
-  /* コンサートモーダルの Google マップボタン修正 */
-  #modal-map a[href*="google.com/maps"] {
-    display: block !important;
-    margin: 10px auto 70px !important;
-    width: 80% !important;
-  }
-}
-
-/* モーダル下部固定ボタンが必ず表示されるように保証 */
-.mobile-close-button {
-  position: fixed !important;
-  bottom: 20px !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  z-index: 9999 !important; /* 最前面に */
-  width: auto !important;
-  min-width: 120px !important;
-  border-radius: 30px !important;
-  padding: 12px 25px !important;
-  background-color: #50031a !important;
-  color: white !important;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
-  text-align: center !important;
-  display: block !important;
-  font-weight: bold !important;
-}
