@@ -140,38 +140,50 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
-  // カレンダーボタンイベントの設定（コンサート情報ページ）
-  document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
-    button.addEventListener('click', function(e) {
-      e.preventDefault();
-      e.stopPropagation();
+ // カレンダーボタンイベントの設定（コンサート情報ページ）
+document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
+  button.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    
+    // 親要素のコンサート情報を取得
+    const concertItem = this.closest('.concert-item');
+    
+    if (concertItem) {
+      const title = concertItem.querySelector('h3').textContent;
+      const date = concertItem.querySelector('.concert-date').textContent;
+      const venueEl = concertItem.querySelector('.concert-info p:nth-child(2)');
+      const venue = venueEl ? venueEl.textContent.replace('会場：', '').trim() : '';
+      const timeEl = concertItem.querySelector('.concert-info p:nth-child(1)');
       
-      // 親要素のコンサート情報を取得
-      const concertItem = this.closest('.concert-item');
-      
-      if (concertItem) {
-        const title = concertItem.querySelector('h3').textContent;
-        const date = concertItem.querySelector('.concert-date').textContent;
-        const venueEl = concertItem.querySelector('.concert-info p:nth-child(2)');
-        const venue = venueEl ? venueEl.textContent.replace('会場：', '').trim() : '';
-        const timeEl = concertItem.querySelector('.concert-info p:nth-child(1)');
+      // 時間情報の抽出を改善
+      let timeText = '';
+      if (timeEl) {
+        const fullText = timeEl.textContent.replace('日時：', '').trim();
         
-        // 時間情報の抽出を改善
-        let timeText = '';
-        if (timeEl) {
-          const fullText = timeEl.textContent.replace('日時：', '').trim();
-          // 時間部分を抽出（HH:MMパターンまたは午前/午後XX時XX分パターン）
-          const timeMatch = fullText.match(/(\d+):(\d+)|(午前|午後).+?(\d+時(\d+分)?)/);
+        // より詳細な時間抽出
+        if (fullText.includes(':')) {
+          // HH:MM形式を検出
+          const timeMatch = fullText.match(/(\d+):(\d+)/);
           if (timeMatch) {
-            timeText = timeMatch[0]; // 時間部分のみを抽出
+            timeText = timeMatch[0];
+          }
+        } else if (fullText.includes('午後') || fullText.includes('午前')) {
+          // 午前/午後形式を検出
+          const timeMatch = fullText.match(/(午前|午後)([0-9０-９]+)時([0-9０-９]+)?分?/);
+          if (timeMatch) {
+            timeText = timeMatch[0];
           }
         }
         
-        // カレンダーメニューを設定して表示
-        setupCalendarMenu(title, date, venue, timeText, this);
+        console.log('抽出された時間: ', timeText); // デバッグ用
       }
-    });
+      
+      // カレンダーメニューを設定して表示
+      setupCalendarMenu(title, date, venue, timeText, this);
+    }
   });
+});
   
   // モーダル内のカレンダーボタンクリック時の処理
   document.getElementById('modal-calendar-link').addEventListener('click', function(e) {
@@ -588,17 +600,20 @@ document.addEventListener('DOMContentLoaded', function() {
     let endHour = '15';    // デフォルト値
     let endMinute = '00';  // デフォルト値
     
+    console.log('処理される時間文字列:', timeStr); // デバッグ用
+    
     if (timeStr) {
       // 「開演」という文字がある場合は削除
       const cleanTimeStr = timeStr.replace('開演', '').trim();
       
       // 時間形式（例: "19:30"）を検出
-      const timeMatch = cleanTimeStr.match(/(\d+):(\d+)/);
-      if (timeMatch) {
-        startHour = timeMatch[1].padStart(2, '0');
-        startMinute = timeMatch[2].padStart(2, '0');
-        
-      } else if (cleanTimeStr.includes('午後') || cleanTimeStr.includes('PM')) {
+      if (cleanTimeStr.match(/\d+:\d+/)) {
+        const timeMatch = cleanTimeStr.match(/(\d+):(\d+)/);
+        if (timeMatch) {
+          startHour = timeMatch[1].padStart(2, '0');
+          startMinute = timeMatch[2].padStart(2, '0');
+        }
+      } else if (cleanTimeStr.includes('午後')) {
         // 「午後〇時〇分」形式の処理
         const hourMatch = cleanTimeStr.match(/午後\s*(\d+)時/);
         const minuteMatch = cleanTimeStr.match(/(\d+)分/);
@@ -612,7 +627,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (minuteMatch) {
           startMinute = minuteMatch[1].padStart(2, '0');
         }
-      } else if (cleanTimeStr.includes('午前') || cleanTimeStr.includes('AM')) {
+      } else if (cleanTimeStr.includes('午前')) {
         // 「午前〇時〇分」形式の処理
         const hourMatch = cleanTimeStr.match(/午前\s*(\d+)時/);
         const minuteMatch = cleanTimeStr.match(/(\d+)分/);
@@ -636,6 +651,8 @@ document.addEventListener('DOMContentLoaded', function() {
       endHour = endTime.getHours().toString().padStart(2, '0');
       endMinute = endTime.getMinutes().toString().padStart(2, '0');
     }
+    
+    console.log('生成された時間:', `${startHour}:${startMinute} - ${endHour}:${endMinute}`); // デバッグ用
     
     return {
       start: `${year}${month}${day}T${startHour}${startMinute}00`,
