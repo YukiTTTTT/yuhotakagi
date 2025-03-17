@@ -556,50 +556,79 @@ document.addEventListener('DOMContentLoaded', function() {
   }
   
   // 日時をカレンダー形式にフォーマットする関数
-  function formatDateForCalendar(dateStr, timeStr) {
-    // 日付文字列を分解（例: "2025/3/29"）
-    const parts = dateStr.split('/');
-    if (parts.length !== 3) {
-      // フォーマットが不正の場合はデフォルト値を返す
-      return { 
-        start: '20250101T120000', 
-        end: '20250101T140000' 
-      };
-    }
+function formatDateForCalendar(dateStr, timeStr) {
+  // 日付文字列を分解（例: "2025/3/29"）
+  const parts = dateStr.split('/');
+  if (parts.length !== 3) {
+    // フォーマットが不正の場合はデフォルト値を返す
+    return { 
+      start: '20250101T120000', 
+      end: '20250101T140000' 
+    };
+  }
+  
+  const year = parts[0];
+  const month = parts[1].padStart(2, '0');
+  const day = parts[2].padStart(2, '0');
+  
+  // 時間情報の抽出
+  let startHour = '13';  // デフォルト値
+  let startMinute = '00'; // デフォルト値
+  let endHour = '15';    // デフォルト値
+  let endMinute = '00';  // デフォルト値
+  
+  if (timeStr) {
+    // 「開演」という文字がある場合は削除
+    const cleanTimeStr = timeStr.replace('開演', '').trim();
     
-    const year = parts[0];
-    const month = parts[1].padStart(2, '0');
-    const day = parts[2].padStart(2, '0');
-    
-    // 時間情報の抽出
-    let startHour = '13';
-    let startMinute = '00';
-    let endHour = '15';
-    let endMinute = '00';
-    
-    if (timeStr) {
-      // 「開演」という文字がある場合は削除
-      const cleanTimeStr = timeStr.replace('開演', '');
+    // 時間形式（例: "19:30"）を検出
+    const timeMatch = cleanTimeStr.match(/(\d+):(\d+)/);
+    if (timeMatch) {
+      startHour = timeMatch[1].padStart(2, '0');
+      startMinute = timeMatch[2].padStart(2, '0');
       
-      // 時間形式（例: "13:30"）を検出
-      const timeMatch = cleanTimeStr.match(/(\d+):(\d+)/);
-      if (timeMatch) {
-        startHour = timeMatch[1].padStart(2, '0');
-        startMinute = timeMatch[2].padStart(2, '0');
-        
-        // 終了時間は開始から2時間後と仮定
-        const endTime = new Date();
-        endTime.setHours(parseInt(startHour) + 2);
-        endTime.setMinutes(parseInt(startMinute));
-        
-        endHour = endTime.getHours().toString().padStart(2, '0');
-        endMinute = endTime.getMinutes().toString().padStart(2, '0');
+    } else if (cleanTimeStr.includes('午後') || cleanTimeStr.includes('PM')) {
+      // 「午後〇時〇分」形式の処理
+      const hourMatch = cleanTimeStr.match(/午後\s*(\d+)時/);
+      const minuteMatch = cleanTimeStr.match(/(\d+)分/);
+      
+      if (hourMatch) {
+        // 午後の場合は12を加算（ただし、12時の場合は加算しない）
+        const hour = parseInt(hourMatch[1]);
+        startHour = (hour === 12 ? 12 : hour + 12).toString().padStart(2, '0');
+      }
+      
+      if (minuteMatch) {
+        startMinute = minuteMatch[1].padStart(2, '0');
+      }
+    } else if (cleanTimeStr.includes('午前') || cleanTimeStr.includes('AM')) {
+      // 「午前〇時〇分」形式の処理
+      const hourMatch = cleanTimeStr.match(/午前\s*(\d+)時/);
+      const minuteMatch = cleanTimeStr.match(/(\d+)分/);
+      
+      if (hourMatch) {
+        // 午前の場合はそのまま（ただし、12時の場合は0時とする）
+        const hour = parseInt(hourMatch[1]);
+        startHour = (hour === 12 ? '00' : hour.toString().padStart(2, '0'));
+      }
+      
+      if (minuteMatch) {
+        startMinute = minuteMatch[1].padStart(2, '0');
       }
     }
     
-    return {
-      start: `${year}${month}${day}T${startHour}${startMinute}00`,
-      end: `${year}${month}${day}T${endHour}${endMinute}00`
-    };
+    // 終了時間は開始から2時間後と仮定
+    const endTime = new Date();
+    endTime.setHours(parseInt(startHour) + 2);
+    endTime.setMinutes(parseInt(startMinute));
+    
+    endHour = endTime.getHours().toString().padStart(2, '0');
+    endMinute = endTime.getMinutes().toString().padStart(2, '0');
   }
+  
+  return {
+    start: `${year}${month}${day}T${startHour}${startMinute}00`,
+    end: `${year}${month}${day}T${endHour}${endMinute}00`
+  };
+}
 });
