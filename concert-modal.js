@@ -44,12 +44,12 @@ document.addEventListener('DOMContentLoaded', function() {
           </div>
           <div class="modal-actions">
             <div class="modal-actions-group">
-              <a id="modal-calendar-link" href="javascript:void(0);" onclick="return false;" class="calendar-button modal-button">
+              <button id="modal-calendar-link" class="calendar-button modal-button">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16">
                   <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V9h14v10zM7 11h5v5H7z" fill="white"/>
                 </svg>
                 カレンダーに追加
-              </a>
+              </button>
               
               <div class="modal-share">
                 <span>シェア：</span>
@@ -72,6 +72,8 @@ document.addEventListener('DOMContentLoaded', function() {
         <h4>会場案内</h4>
         <div id="modal-map" class="modal-map"></div>
       </div>
+      <!-- モバイル用クローズボタン（下部固定） -->
+      <div class="mobile-close-button">閉じる</div>
     </div>
   </div>
   <!-- カレンダーオプションメニュー -->
@@ -116,6 +118,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // モーダル要素の取得
   const modal = document.getElementById('concert-modal');
   const closeBtn = document.querySelector('.close-modal');
+  const mobileCloseBtn = document.querySelector('.mobile-close-button');
   const calendarOptionsMenu = document.getElementById('calendar-options-menu');
   const closeCalendarOptionsBtn = document.getElementById('close-calendar-options');
   
@@ -187,6 +190,11 @@ document.addEventListener('DOMContentLoaded', function() {
     closeModal();
   });
   
+  // モバイル用閉じるボタンのクリックイベント
+  mobileCloseBtn.addEventListener('click', function() {
+    closeModal();
+  });
+  
   // モーダル外クリックで閉じる
   window.addEventListener('click', function(e) {
     if (e.target === modal) {
@@ -211,6 +219,21 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     }
   });
+  // スワイプでモーダルを閉じる（モバイル用）
+  let touchStartY = 0;
+  let touchEndY = 0;
+  
+  modal.addEventListener('touchstart', function(e) {
+    touchStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+  
+  modal.addEventListener('touchend', function(e) {
+    touchEndY = e.changedTouches[0].screenY;
+    // 下方向へのスワイプを検出
+    if (touchEndY - touchStartY > 100) {
+      closeModal();
+    }
+  }, { passive: true });
   
   // カレンダーオプションを閉じるボタン
   closeCalendarOptionsBtn.addEventListener('click', function() {
@@ -236,47 +259,39 @@ document.addEventListener('DOMContentLoaded', function() {
     // Yahoo!カレンダー用のリンクを生成
     document.getElementById('yahoo-link').href = generateYahooLink(title, date, venue, time);
     
+    // まず既存のメニューを非表示に
+    calendarOptionsMenu.style.display = 'none';
+    
     // ボタンの位置を取得
     const buttonRect = buttonElement.getBoundingClientRect();
     
-    // カレンダーメニューの位置を設定
+    // カレンダーメニューの位置設定（ボタンのすぐ下に表示）
     calendarOptionsMenu.style.position = 'absolute';
+    calendarOptionsMenu.style.zIndex = '9999'; // z-indexを高く設定
     
-    // ボタンのすぐ上に表示（モバイルの場合は画面中央に）
-    if (window.innerWidth <= 768) {
-      calendarOptionsMenu.style.position = 'fixed';
-      calendarOptionsMenu.style.top = '50%';
-      calendarOptionsMenu.style.left = '50%';
-      calendarOptionsMenu.style.transform = 'translate(-50%, -50%)';
-    } else {
-      // まず計算のためにメニューを表示する必要がある
-      calendarOptionsMenu.style.visibility = 'hidden';
+    // まずボタンの表示を確認して位置を設定
+    setTimeout(() => {
+      const menuWidth = Math.min(280, window.innerWidth * 0.8);
+      
+      if (window.innerWidth <= 768) {
+        // モバイル表示 - 画面中央に表示
+        calendarOptionsMenu.style.width = menuWidth + 'px';
+        calendarOptionsMenu.style.position = 'fixed';
+        calendarOptionsMenu.style.top = '50%';
+        calendarOptionsMenu.style.left = '50%';
+        calendarOptionsMenu.style.transform = 'translate(-50%, -50%)';
+      } else {
+        // デスクトップ表示 - ボタンの真下に表示
+        const left = Math.max(10, Math.min(buttonRect.left, window.innerWidth - menuWidth - 10));
+        calendarOptionsMenu.style.width = menuWidth + 'px';
+        calendarOptionsMenu.style.top = (buttonRect.bottom + window.scrollY + 5) + 'px';
+        calendarOptionsMenu.style.left = left + 'px';
+        calendarOptionsMenu.style.transform = 'none';
+      }
+      
+      // カレンダーメニューを表示
       calendarOptionsMenu.style.display = 'block';
-      
-      // メニューの高さを取得
-      const menuHeight = calendarOptionsMenu.offsetHeight;
-      
-      // ボタンのすぐ上に表示
-      calendarOptionsMenu.style.top = (buttonRect.top - menuHeight - 5) + 'px';
-      calendarOptionsMenu.style.left = buttonRect.left + 'px';
-      calendarOptionsMenu.style.transform = 'none';
-      
-      // 上部が画面からはみ出る場合はボタンの下に表示
-      if (buttonRect.top < menuHeight + 5) {
-        calendarOptionsMenu.style.top = (buttonRect.bottom + 5) + 'px';
-      }
-      
-      // 右端からはみ出す場合は左に寄せる
-      if (buttonRect.left + calendarOptionsMenu.offsetWidth > window.innerWidth) {
-        calendarOptionsMenu.style.left = (window.innerWidth - calendarOptionsMenu.offsetWidth - 5) + 'px';
-      }
-      
-      // 位置設定後に表示を戻す
-      calendarOptionsMenu.style.visibility = 'visible';
-    }
-    
-    // カレンダーメニューを表示
-    calendarOptionsMenu.style.display = 'block';
+    }, 50);
   }
   
   // モーダルを開く関数
@@ -292,11 +307,18 @@ document.addEventListener('DOMContentLoaded', function() {
     let venueText = '';
     let priceText = '';
     let contactText = '';
+    let exactTimeText = '';
     
     infoTexts.forEach((p, index) => {
       const text = p.textContent;
       if (index === 0 && text.includes('日時')) {
         dateTimeText = text.replace('日時：', '');
+        
+        // 開演時間を抽出
+        const timeMatch = dateTimeText.match(/(\d+:\d+)|(午前|午後|夜)/);
+        if (timeMatch) {
+          exactTimeText = timeMatch[0];
+        }
       } else if (index === 1 && text.includes('会場')) {
         venueText = text.replace('会場：', '');
       } else if (index === 2 && (text.includes('円') || text.includes('料金') || text.includes('：'))) {
@@ -385,6 +407,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // モーダルを表示
     modal.classList.add('show');
     document.body.style.overflow = 'hidden'; // スクロール無効化
+    
+    // モバイルデバイスの場合、スワイプヒントを表示
+    if (window.innerWidth <= 768) {
+      const swipeHint = document.createElement('div');
+      swipeHint.className = 'swipe-hint';
+      swipeHint.innerHTML = `
+        <div class="swipe-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+            <path d="M8 5.83l2.59 2.59L12 7l-4-4-4 4 1.41 1.41L8 5.83zm0 12.34l-2.59-2.59L4 17l4 4 4-4-1.41-1.41L8 18.17z" fill="currentColor"/>
+          </svg>
+        </div>
+        <span>下にスワイプで閉じる</span>
+      `;
+      modal.querySelector('.modal-content').appendChild(swipeHint);
+      
+      // 数秒後に消える
+      setTimeout(() => {
+        if (swipeHint.parentNode) {
+          swipeHint.style.opacity = '0';
+          setTimeout(() => {
+            if (swipeHint.parentNode) {
+              swipeHint.parentNode.removeChild(swipeHint);
+            }
+          }, 500);
+        }
+      }, 3000);
+    }
   }
   
   // デフォルトのプログラム情報を取得する関数
@@ -427,8 +476,21 @@ document.addEventListener('DOMContentLoaded', function() {
   
   // モーダルを閉じる関数
   function closeModal() {
-    modal.classList.remove('show');
-    document.body.style.overflow = ''; // スクロール有効化
+    // 閉じるアニメーションを追加
+    modal.classList.add('closing');
+    
+    // アニメーション完了後に非表示
+    setTimeout(() => {
+      modal.classList.remove('show');
+      modal.classList.remove('closing');
+      document.body.style.overflow = ''; // スクロール有効化
+      
+      // スワイプヒントがあれば削除
+      const swipeHint = modal.querySelector('.swipe-hint');
+      if (swipeHint && swipeHint.parentNode) {
+        swipeHint.parentNode.removeChild(swipeHint);
+      }
+    }, 300); // CSSアニメーションの時間と合わせる
     
     // カレンダーオプションも閉じる
     calendarOptionsMenu.style.display = 'none';
@@ -516,7 +578,11 @@ document.addEventListener('DOMContentLoaded', function() {
     let endMinute = '00';
     
     if (timeStr) {
-      const timeMatch = timeStr.match(/(\d+):(\d+)/);
+      // 「開演」という文字がある場合は削除
+      const cleanTimeStr = timeStr.replace('開演', '');
+      
+      // 時間形式（例: "13:30"）を検出
+      const timeMatch = cleanTimeStr.match(/(\d+):(\d+)/);
       if (timeMatch) {
         startHour = timeMatch[1].padStart(2, '0');
         startMinute = timeMatch[2].padStart(2, '0');

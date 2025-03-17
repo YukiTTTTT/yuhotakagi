@@ -364,16 +364,15 @@
   margin-right: 12px;
 }
 
-/* カレンダーボタンの修正 - 下向き矢印を追加 */
+/* カレンダーボタンのスタイル */
 .calendar-button {
-  position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   background-color: #50031a;
   color: white !important;
   text-decoration: none;
-  padding: 8px 12px;
-  padding-right: 24px; /* 矢印のためのスペース */
+  padding: 8px 15px;
   border-radius: 4px;
   font-size: 0.9em;
   font-weight: 500;
@@ -381,41 +380,11 @@
   margin-left: 10px;
 }
 
-.calendar-button::after {
-  content: "▼";
-  position: absolute;
-  right: 8px;
-  font-size: 0.7em;
-  transition: transform 0.2s;
-}
-
 .calendar-button:hover {
   background-color: #72052a;
   transform: translateY(-2px);
   text-decoration: none;
   color: white !important;
-}
-
-.calendar-button:hover::after {
-  transform: translateY(2px);
-}
-
-/* モーダル内カレンダーボタンの調整 */
-#modal-calendar-link {
-  cursor: pointer;
-  padding-right: 24px; /* 矢印のためのスペース */
-}
-
-#modal-calendar-link::after {
-  content: "▼";
-  position: absolute;
-  right: 8px;
-  font-size: 0.7em;
-  transition: transform 0.2s;
-}
-
-#modal-calendar-link:hover::after {
-  transform: translateY(2px);
 }
 
 /* ズーム可能画像 */
@@ -504,19 +473,12 @@
   }
   
   /* カレンダーボタンをモバイルで調整 */
-  .calendar-button, 
-  #modal-calendar-link {
+  .calendar-button {
     margin-left: 0;
     margin-bottom: 10px;
     padding: 12px 15px;
-    padding-right: 30px; /* 矢印スペースを広げる */
     font-size: 1em;
-  }
-  
-  .calendar-button::after,
-  #modal-calendar-link::after {
-    right: 12px;
-    font-size: 0.8em;
+    width: 100%;
   }
 }
 
