@@ -28,66 +28,6 @@
       align-items: center !important;
     }
     
-    /* シェアボタンのコンテナ調整 - レイアウト崩れ修正 */
-    .share-concert,
-    .concert-item .share-concert {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      flex-wrap: wrap !important;
-      width: 100% !important;
-      margin: 15px auto !important;
-      gap: 10px !important;
-    }
-    
-    /* シェアテキストとボタンの配置修正 */
-    .share-concert span {
-      margin-right: 10px !important;
-    }
-    
-    /* シェアボタンのサイズと配置を統一 */
-    .share-button,
-    .share-concert .share-button,
-    .twitter, .facebook, .email {
-      width: 40px !important;
-      height: 40px !important;
-      border-radius: 50% !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      margin: 0 5px !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-      box-sizing: content-box !important;
-    }
-    
-    /* メールボタンの特別修正（楕円になる問題解決） */
-    .share-button.email,
-    a.share-button.email,
-    .share-concert .share-button.email {
-      width: 40px !important;
-      height: 40px !important;
-      border-radius: 50% !important;
-      flex: none !important;
-      aspect-ratio: 1 / 1 !important;
-      max-width: 40px !important;
-      max-height: 40px !important;
-      overflow: hidden !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      background-color: #50031a !important;
-    }
-    
-    /* SVGアイコンのサイズ調整 */
-    .share-button svg,
-    .share-concert .share-button svg {
-      width: 24px !important;
-      height: 24px !important;
-      max-width: 100% !important;
-      max-height: 100% !important;
-    }
-    
     /* モーダル内のマップボタンとクローズボタンの重なり修正 */
     .modal-map-container {
       padding-bottom: 60px !important; /* 下部に余白を追加 */
@@ -154,16 +94,6 @@
       margin-bottom: 70px !important; /* 閉じるボタンと十分な余白を確保 */
       display: inline-block !important;
     }
-    
-    /* モーダル内のシェアボタン配置修正 */
-    #concert-modal .modal-share,
-    .modal .modal-share {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      justify-content: center !important;
-      width: 100% !important;
-      margin: 15px 0 !important;
-    }
   }
   
   /* iPhone SE などの小さい画面向け特別調整 */
@@ -191,14 +121,6 @@
     /* コンサートの情報エリア調整 */
     .concert-info {
       padding: 10px !important;
-    }
-    
-    /* 小さい画面でのシェアボタンサイズ調整 */
-    .share-button,
-    .share-concert .share-button {
-      width: 36px !important;
-      height: 36px !important;
-      margin: 0 3px !important;
     }
   }
   
@@ -249,31 +171,54 @@
     font-weight: bold !important;
   }
   
-  /* シェアボタンのスタイル調整（全画面サイズ共通） */
+  /* ----- シェアボタン修正用スタイル (共通) ----- */
+  /* シェアボタン コンテナ */
   .share-concert {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 10px;
-    flex-wrap: wrap;
+    margin: 15px 0;
   }
   
-  /* シェアボタンを横並びに整列 */
+  /* シェアボタン共通スタイル */
+  .share-button,
   .share-concert .share-button {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    margin: 0 5px;
+    border-radius: 50%;
+    background-color: #50031a;
   }
   
-  /* 特に楕円形になりがちなメールボタンの修正（全画面サイズ共通） */
-  .share-button.email {
-    aspect-ratio: 1 / 1 !important;
-    width: 40px !important;
-    height: 40px !important;
-    border-radius: 50% !important;
-    background-color: #50031a !important;
-    text-align: center !important;
-    display: flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    overflow: hidden !important;
+  /* PC用のシェアボタンサイズ */
+  @media screen and (min-width: 769px) {
+    .share-button,
+    .share-concert .share-button {
+      width: 32px;
+      height: 32px;
+    }
+    
+    .share-button svg,
+    .share-concert .share-button svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  /* モバイル用のシェアボタンサイズ */
+  @media screen and (max-width: 768px) {
+    .share-button,
+    .share-concert .share-button {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .share-button svg,
+    .share-concert .share-button svg {
+      width: 24px;
+      height: 24px;
+    }
   }
