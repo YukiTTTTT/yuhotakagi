@@ -28,66 +28,6 @@
       align-items: center !important;
     }
     
-    /* シェアボタンのコンテナ調整 - レイアウト崩れ修正 */
-    .share-concert,
-    .concert-item .share-concert {
-      display: flex !important;
-      justify-content: center !important;
-      align-items: center !important;
-      flex-wrap: wrap !important;
-      width: 100% !important;
-      margin: 15px auto !important;
-      gap: 10px !important;
-    }
-    
-    /* シェアテキストとボタンの配置修正 */
-    .share-concert span {
-      margin-right: 10px !important;
-    }
-    
-    /* シェアボタンのサイズと配置を統一 */
-    .share-button,
-    .share-concert .share-button,
-    .twitter, .facebook, .email {
-      width: 40px !important;
-      height: 40px !important;
-      border-radius: 50% !important;
-      display: inline-flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      margin: 0 5px !important;
-      padding: 0 !important;
-      overflow: hidden !important;
-      box-sizing: content-box !important;
-    }
-    
-    /* メールボタンの特別修正（楕円になる問題解決） */
-    .share-button.email,
-    a.share-button.email,
-    .share-concert .share-button.email {
-      width: 40px !important;
-      height: 40px !important;
-      border-radius: 50% !important;
-      flex: none !important;
-      aspect-ratio: 1 / 1 !important;
-      max-width: 40px !important;
-      max-height: 40px !important;
-      overflow: hidden !important;
-      display: flex !important;
-      align-items: center !important;
-      justify-content: center !important;
-      background-color: #50031a !important;
-    }
-    
-    /* SVGアイコンのサイズ調整 */
-    .share-button svg,
-    .share-concert .share-button svg {
-      width: 24px !important;
-      height: 24px !important;
-      max-width: 100% !important;
-      max-height: 100% !important;
-    }
-    
     /* モーダル内のマップボタンとクローズボタンの重なり修正 */
     .modal-map-container {
       padding-bottom: 60px !important; /* 下部に余白を追加 */
@@ -116,30 +56,6 @@
       display: block !important; /* モバイルでは常に表示 */
     }
     
-    /* メール送信ページの調整 */
-    .email-contact {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 15px !important;
-      box-sizing: border-box !important;
-    }
-    
-    .email-guidelines {
-      width: 100% !important;
-      padding: 15px !important;
-      box-sizing: border-box !important;
-    }
-    
-    /* フォーム全体の横幅調整 */
-    #form-content,
-    #email-content,
-    .tab-content {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 0 10px !important;
-      box-sizing: border-box !important;
-    }
-    
     /* コンサートモーダルのマップ位置調整 - 特に重要な修正 */
     #modal-map-container {
       margin-bottom: 60px !important; /* 閉じるボタンと重ならないように下部に余白 */
@@ -153,74 +69,6 @@
     .modal-map a[href*="google.com/maps"] {
       margin-bottom: 70px !important; /* 閉じるボタンと十分な余白を確保 */
       display: inline-block !important;
-    }
-    
-    /* モーダル内のシェアボタン配置修正 */
-    #concert-modal .modal-share,
-    .modal .modal-share {
-      display: flex !important;
-      flex-wrap: wrap !important;
-      justify-content: center !important;
-      width: 100% !important;
-      margin: 15px 0 !important;
-    }
-  }
-  
-  /* iPhone SE などの小さい画面向け特別調整 */
-  @media screen and (max-width: 375px) {
-    /* ボタンの文字サイズ縮小 */
-    .calendar-button,
-    .email-button,
-    .contact-option-link {
-      font-size: 0.9em !important;
-      padding: 10px 15px !important;
-    }
-    
-    /* マップボタンのさらなる調整 */
-    #modal-map-container {
-      margin-bottom: 80px !important;
-    }
-    
-    /* モバイル閉じるボタンの表示位置保証 */
-    .mobile-close-button {
-      bottom: 15px !important;
-      min-width: 100px !important;
-      font-size: 0.9em !important;
-    }
-    
-    /* コンサートの情報エリア調整 */
-    .concert-info {
-      padding: 10px !important;
-    }
-    
-    /* 小さい画面でのシェアボタンサイズ調整 */
-    .share-button,
-    .share-concert .share-button {
-      width: 36px !important;
-      height: 36px !important;
-      margin: 0 3px !important;
-    }
-  }
-  
-  /* コンサートモーダルの修正 - クラス名指定でより具体的に */
-  @media screen and (max-width: 768px) {
-    .modal-content {
-      padding-bottom: 80px !important; /* 閉じるボタンの高さ分余白を追加 */
-    }
-    
-    #concert-modal .modal-map-container {
-      margin-bottom: 60px !important;
-    }
-    
-    #concert-modal .modal-map a {
-      margin-bottom: 60px !important;
-    }
-    
-    /* コンサートモーダルの Google マップボタン修正 */
-    #modal-map a[href*="google.com/maps"] {
-      display: block !important;
-      margin: 10px auto 70px !important;
-      width: 80% !important;
     }
   }
   
@@ -249,31 +97,125 @@
     font-weight: bold !important;
   }
   
-  /* シェアボタンのスタイル調整（全画面サイズ共通） */
-  .share-concert {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
-  
-  /* シェアボタンを横並びに整列 */
-  .share-concert .share-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  /* 特に楕円形になりがちなメールボタンの修正（全画面サイズ共通） */
-  .share-button.email {
-    aspect-ratio: 1 / 1 !important;
-    width: 40px !important;
-    height: 40px !important;
-    border-radius: 50% !important;
-    background-color: #50031a !important;
-    text-align: center !important;
+  /* SNSシェアボタン専用のスタイル修正（全画面サイズ共通） - 最も強い優先度で */
+  .share-concert,
+  #concert-modal .share-concert,
+  .concert-info .share-concert,
+  div.share-concert {
     display: flex !important;
+    flex-direction: row !important;
     align-items: center !important;
     justify-content: center !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    margin: 15px auto !important;
+    gap: 10px !important;
+  }
+  
+  /* シェアテキストのスタイリング */
+  .share-concert span,
+  #concert-modal .share-concert span,
+  div.share-concert span {
+    margin-right: 5px !important;
+    padding-right: 5px !important;
+    white-space: nowrap !important;
+  }
+  
+  /* すべてのシェアボタンの共通スタイル - 重要度最大 */
+  .share-button,
+  a.share-button,
+  .share-concert .share-button,
+  #concert-modal .share-button,
+  .twitter, .facebook, .email,
+  a.twitter, a.facebook, a.email,
+  div.share-concert a.twitter, 
+  div.share-concert a.facebook, 
+  div.share-concert a.email {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    border-radius: 50% !important;
+    padding: 0 !important;
+    margin: 0 5px !important;
     overflow: hidden !important;
+    flex: 0 0 40px !important;
+    background-color: #50031a !important;
+  }
+  
+  /* メール特有のスタイル - 楕円形対策 */
+  .email,
+  a.email,
+  .share-button.email,
+  a.share-button.email,
+  .share-concert .email,
+  #concert-modal .email,
+  div.share-concert a.email,
+  div[class] a.email {
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    height: 40px !important;
+    min-height: 40px !important;
+    max-height: 40px !important;
+    flex: 0 0 40px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    border-radius: 50% !important;
+    transform: none !important;
+    padding: 0 !important;
+    margin: 0 5px !important;
+    overflow: hidden !important;
+    background-color: #50031a !important;
+    transform: none !important;
+    position: relative !important;
+  }
+  
+  /* メールボタン内の✉アイコン位置調整 */
+  .email svg,
+  a.email svg,
+  .share-button.email svg,
+  div.share-concert a.email svg {
+    width: 24px !important;
+    height: 24px !important;
+    max-width: 24px !important;
+    max-height: 24px !important;
+    margin: 0 !important;
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+  }
+  
+  /* PCモーダル用の調整 */
+  @media screen and (min-width: 769px) {
+    .share-button,
+    a.share-button,
+    .share-concert .share-button,
+    #concert-modal .share-button,
+    .twitter, .facebook, .email {
+      width: 32px !important;
+      min-width: 32px !important;
+      max-width: 32px !important;
+      height: 32px !important;
+      min-height: 32px !important;
+      max-height: 32px !important;
+      flex: 0 0 32px !important;
+    }
+    
+    .email svg,
+    a.email svg,
+    .share-button.email svg,
+    div.share-concert a.email svg {
+      width: 18px !important;
+      height: 18px !important;
+      max-width: 18px !important;
+      max-height: 18px !important;
+    }
   }
