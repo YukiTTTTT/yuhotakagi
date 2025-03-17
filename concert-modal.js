@@ -140,8 +140,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
   
- // カレンダーボタンイベントの設定（コンサート情報ページ）
-document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
+// concert-modal.js の修正部分
+
+// カレンダーボタンイベントの設定（コンサート情報ページ）
+document.querySelectorAll('.concert-item .calendar-button, .modal-button.calendar-button').forEach(button => {
   button.addEventListener('click', function(e) {
     e.preventDefault();
     e.stopPropagation();
@@ -150,40 +152,40 @@ document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
     const concertItem = this.closest('.concert-item');
     
     if (concertItem) {
+      // コンサート一覧画面からの場合
       const title = concertItem.querySelector('h3').textContent;
       const date = concertItem.querySelector('.concert-date').textContent;
       const venueEl = concertItem.querySelector('.concert-info p:nth-child(2)');
       const venue = venueEl ? venueEl.textContent.replace('会場：', '').trim() : '';
       const timeEl = concertItem.querySelector('.concert-info p:nth-child(1)');
       
-      // 時間情報の抽出を改善
+      // 時間情報を直接取得 - 日時の行から開演時間を確実に抽出
       let timeText = '';
       if (timeEl) {
-        const fullText = timeEl.textContent.replace('日時：', '').trim();
-        
-        // より詳細な時間抽出
-        if (fullText.includes(':')) {
-          // HH:MM形式を検出
-          const timeMatch = fullText.match(/(\d+):(\d+)/);
-          if (timeMatch) {
-            timeText = timeMatch[0];
-          }
-        } else if (fullText.includes('午後') || fullText.includes('午前')) {
-          // 午前/午後形式を検出
-          const timeMatch = fullText.match(/(午前|午後)([0-9０-９]+)時([0-9０-９]+)?分?/);
-          if (timeMatch) {
-            timeText = timeMatch[0];
-          }
+        const fullText = timeEl.textContent;
+        // コロンを含む時間表記を探す (例: 13:30開演, 19:30)
+        const colonTimeMatch = fullText.match(/\d+:\d+/);
+        if (colonTimeMatch) {
+          timeText = colonTimeMatch[0];
+          console.log('コロン形式の時間を検出:', timeText);
         }
-        
-        console.log('抽出された時間: ', timeText); // デバッグ用
       }
       
-      // カレンダーメニューを設定して表示
+      console.log('抽出された時間:', timeText);
       setupCalendarMenu(title, date, venue, timeText, this);
+    } else if (this.id === 'modal-calendar-link') {
+      // モーダル内のカレンダーボタンの場合
+      const title = document.getElementById('modal-title').textContent;
+      const date = document.getElementById('modal-date').textContent;
+      const venue = document.getElementById('modal-venue').textContent;
+      const time = document.getElementById('modal-time').textContent.replace('開演', '');
+      
+      setupCalendarMenu(title, date, venue, time, this);
     }
   });
 });
+
+// モーダル内のカレンダーボタンのイベントリスナーは削除（上記のセレクタで統合）
   
   // モーダル内のカレンダーボタンクリック時の処理
   document.getElementById('modal-calendar-link').addEventListener('click', function(e) {
@@ -580,10 +582,12 @@ document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
   
   // 日時をカレンダー形式にフォーマットする関数
   function formatDateForCalendar(dateStr, timeStr) {
+    console.log('formatDateForCalendar 入力:', dateStr, timeStr);
+    
     // 日付文字列を分解（例: "2025/3/29"）
     const parts = dateStr.split('/');
     if (parts.length !== 3) {
-      // フォーマットが不正の場合はデフォルト値を返す
+      console.log('日付フォーマットエラー:', dateStr);
       return { 
         start: '20250101T120000', 
         end: '20250101T140000' 
@@ -597,66 +601,36 @@ document.querySelectorAll('.concert-item .calendar-button').forEach(button => {
     // 時間情報の抽出
     let startHour = '13';  // デフォルト値
     let startMinute = '00'; // デフォルト値
-    let endHour = '15';    // デフォルト値
-    let endMinute = '00';  // デフォルト値
     
-    console.log('処理される時間文字列:', timeStr); // デバッグ用
-    
-    if (timeStr) {
+    // timeStrが存在し、空でない場合に処理
+    if (timeStr && timeStr.trim() !== '') {
       // 「開演」という文字がある場合は削除
       const cleanTimeStr = timeStr.replace('開演', '').trim();
+      console.log('整形後の時間文字列:', cleanTimeStr);
       
-      // 時間形式（例: "19:30"）を検出
-      if (cleanTimeStr.match(/\d+:\d+/)) {
-        const timeMatch = cleanTimeStr.match(/(\d+):(\d+)/);
-        if (timeMatch) {
-          startHour = timeMatch[1].padStart(2, '0');
-          startMinute = timeMatch[2].padStart(2, '0');
-        }
-      } else if (cleanTimeStr.includes('午後')) {
-        // 「午後〇時〇分」形式の処理
-        const hourMatch = cleanTimeStr.match(/午後\s*(\d+)時/);
-        const minuteMatch = cleanTimeStr.match(/(\d+)分/);
-        
-        if (hourMatch) {
-          // 午後の場合は12を加算（ただし、12時の場合は加算しない）
-          const hour = parseInt(hourMatch[1]);
-          startHour = (hour === 12 ? 12 : hour + 12).toString().padStart(2, '0');
-        }
-        
-        if (minuteMatch) {
-          startMinute = minuteMatch[1].padStart(2, '0');
-        }
-      } else if (cleanTimeStr.includes('午前')) {
-        // 「午前〇時〇分」形式の処理
-        const hourMatch = cleanTimeStr.match(/午前\s*(\d+)時/);
-        const minuteMatch = cleanTimeStr.match(/(\d+)分/);
-        
-        if (hourMatch) {
-          // 午前の場合はそのまま（ただし、12時の場合は0時とする）
-          const hour = parseInt(hourMatch[1]);
-          startHour = (hour === 12 ? '00' : hour.toString().padStart(2, '0'));
-        }
-        
-        if (minuteMatch) {
-          startMinute = minuteMatch[1].padStart(2, '0');
-        }
+      // HH:MM 形式の時間を検出
+      const timeMatch = cleanTimeStr.match(/(\d+):(\d+)/);
+      if (timeMatch) {
+        startHour = timeMatch[1].padStart(2, '0');
+        startMinute = timeMatch[2].padStart(2, '0');
+        console.log('HH:MM形式を検出:', startHour, startMinute);
       }
-      
-      // 終了時間は開始から2時間後と仮定
-      const endTime = new Date();
-      endTime.setHours(parseInt(startHour) + 2);
-      endTime.setMinutes(parseInt(startMinute));
-      
-      endHour = endTime.getHours().toString().padStart(2, '0');
-      endMinute = endTime.getMinutes().toString().padStart(2, '0');
     }
     
-    console.log('生成された時間:', `${startHour}:${startMinute} - ${endHour}:${endMinute}`); // デバッグ用
+    // 終了時間は開始から2時間後
+    const endTime = new Date();
+    endTime.setHours(parseInt(startHour, 10) + 2);
+    endTime.setMinutes(parseInt(startMinute, 10));
     
-    return {
+    const endHour = endTime.getHours().toString().padStart(2, '0');
+    const endMinute = endTime.getMinutes().toString().padStart(2, '0');
+    
+    const result = {
       start: `${year}${month}${day}T${startHour}${startMinute}00`,
       end: `${year}${month}${day}T${endHour}${endMinute}00`
     };
+    
+    console.log('生成されたカレンダー日時:', result);
+    return result;
   }
 });
