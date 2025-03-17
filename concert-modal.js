@@ -221,7 +221,19 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
   // 画像のクリックのみを拡大表示に使用
   modal.addEventListener('click', function(e) {
     if (e.target.id === 'modal-image') {
-      window.open(e.target.src, '_blank');
+      e.preventDefault();
+      // lightboxを使用してポップアップ表示
+      if (typeof lightbox !== 'undefined') {
+        const image = e.target;
+        // lightboxに必要な属性を動的に追加
+        image.setAttribute('data-lightbox', 'modal-image');
+        image.setAttribute('data-title', document.getElementById('modal-title').textContent);
+        // lightboxを手動で起動
+        lightbox.start(image);
+      } else {
+        // lightboxが利用できない場合はフォールバックとして新しいタブで開く
+        window.open(e.target.src, '_blank');
+      }
     }
   });
   
@@ -405,7 +417,11 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
     const modalTitle = document.getElementById('modal-title');
     modalTitle.innerHTML = title; // HTMLとして設定して改行を保持
     
-    document.getElementById('modal-image').src = image;
+    // 上記のコードを以下に置き換えます:
+    const modalImage = document.getElementById('modal-image');
+    modalImage.src = image;
+    modalImage.setAttribute('data-lightbox', 'concert-image');
+    modalImage.setAttribute('data-title', title.replace(/<br\s*\/?>/gi, ' '));
     document.getElementById('modal-date').textContent = date;
     document.getElementById('modal-venue').textContent = venueText || '詳細はお問い合わせください';
     document.getElementById('modal-time').textContent = timeText || '詳細はお問い合わせください';
