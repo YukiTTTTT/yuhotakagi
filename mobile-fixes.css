@@ -56,30 +56,6 @@
       display: block !important; /* モバイルでは常に表示 */
     }
     
-    /* メール送信ページの調整 */
-    .email-contact {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 15px !important;
-      box-sizing: border-box !important;
-    }
-    
-    .email-guidelines {
-      width: 100% !important;
-      padding: 15px !important;
-      box-sizing: border-box !important;
-    }
-    
-    /* フォーム全体の横幅調整 */
-    #form-content,
-    #email-content,
-    .tab-content {
-      width: 100% !important;
-      max-width: 100% !important;
-      padding: 0 10px !important;
-      box-sizing: border-box !important;
-    }
-    
     /* コンサートモーダルのマップ位置調整 - 特に重要な修正 */
     #modal-map-container {
       margin-bottom: 60px !important; /* 閉じるボタンと重ならないように下部に余白 */
@@ -93,56 +69,6 @@
     .modal-map a[href*="google.com/maps"] {
       margin-bottom: 70px !important; /* 閉じるボタンと十分な余白を確保 */
       display: inline-block !important;
-    }
-  }
-  
-  /* iPhone SE などの小さい画面向け特別調整 */
-  @media screen and (max-width: 375px) {
-    /* ボタンの文字サイズ縮小 */
-    .calendar-button,
-    .email-button,
-    .contact-option-link {
-      font-size: 0.9em !important;
-      padding: 10px 15px !important;
-    }
-    
-    /* マップボタンのさらなる調整 */
-    #modal-map-container {
-      margin-bottom: 80px !important;
-    }
-    
-    /* モバイル閉じるボタンの表示位置保証 */
-    .mobile-close-button {
-      bottom: 15px !important;
-      min-width: 100px !important;
-      font-size: 0.9em !important;
-    }
-    
-    /* コンサートの情報エリア調整 */
-    .concert-info {
-      padding: 10px !important;
-    }
-  }
-  
-  /* コンサートモーダルの修正 - クラス名指定でより具体的に */
-  @media screen and (max-width: 768px) {
-    .modal-content {
-      padding-bottom: 80px !important; /* 閉じるボタンの高さ分余白を追加 */
-    }
-    
-    #concert-modal .modal-map-container {
-      margin-bottom: 60px !important;
-    }
-    
-    #concert-modal .modal-map a {
-      margin-bottom: 60px !important;
-    }
-    
-    /* コンサートモーダルの Google マップボタン修正 */
-    #modal-map a[href*="google.com/maps"] {
-      display: block !important;
-      margin: 10px auto 70px !important;
-      width: 80% !important;
     }
   }
   
@@ -169,56 +95,4 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4) !important;
     text-align: center !important;
     font-weight: bold !important;
-  }
-  
-  /* ----- シェアボタン修正用スタイル (共通) ----- */
-  /* シェアボタン コンテナ */
-  .share-concert {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    margin: 15px 0;
-  }
-  
-  /* シェアボタン共通スタイル */
-  .share-button,
-  .share-concert .share-button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    overflow: hidden;
-    margin: 0 5px;
-    border-radius: 50%;
-    background-color: #50031a;
-  }
-  
-  /* PC用のシェアボタンサイズ */
-  @media screen and (min-width: 769px) {
-    .share-button,
-    .share-concert .share-button {
-      width: 32px;
-      height: 32px;
-    }
-    
-    .share-button svg,
-    .share-concert .share-button svg {
-      width: 20px;
-      height: 20px;
-    }
-  }
-  
-  /* モバイル用のシェアボタンサイズ */
-  @media screen and (max-width: 768px) {
-    .share-button,
-    .share-concert .share-button {
-      width: 40px;
-      height: 40px;
-    }
-    
-    .share-button svg,
-    .share-concert .share-button svg {
-      width: 24px;
-      height: 24px;
-    }
   }
