@@ -7,6 +7,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const modalHTML = `
   <div id="concert-modal" class="modal">
     <div class="modal-content">
+      <div class="modal-drag-handle"></div>
       <span class="close-modal">&times;</span>
       <div class="modal-body">
         <div class="modal-image-container">
@@ -220,23 +221,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
     setupCalendarMenu(title, date, venue, time, this);
   });
   
-  // 画像のクリックのみを拡大表示に使用
+  // モーダル内の画像クリックをlightboxでポップアップ表示に変更
   modal.addEventListener('click', function(e) {
-    if (e.target.id === 'modal-image') {
-      e.preventDefault();
-      // lightboxを使用してポップアップ表示
-      if (typeof lightbox !== 'undefined') {
-        const image = e.target;
-        // lightboxに必要な属性を動的に追加
-        image.setAttribute('data-lightbox', 'modal-image');
-        image.setAttribute('data-title', document.getElementById('modal-title').textContent);
-        // lightboxを手動で起動
-        lightbox.start(image);
-      } else {
-        // lightboxが利用できない場合はフォールバックとして新しいタブで開く
-        window.open(e.target.src, '_blank');
-      }
-    }
+    // モーダル内の画像クリックはlightboxに任せる
+    // アンカータグに包まれているため、デフォルトの動作で処理される
   });
   
   // 閉じるボタンのクリックイベント
@@ -274,20 +262,75 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
     }
   });
   
-  // スワイプでモーダルを閉じる（モバイル用）
+  // スワイプでモーダルを閉じる（モバイル用）- 感度改善版
   let touchStartY = 0;
+  let touchMoveY = 0;
   let touchEndY = 0;
-  
+  let isSwiping = false;
+  let isScrollingContent = false;
+  let swipeThreshold = 150; // スワイプの閾値を上げる (元は100)
+  let swipeMinDistance = 50; // 最小スワイプ距離
+
+  // スクロール状態を追跡するため、モーダルのスクロール位置を取得
+  let initialScrollTop = 0;
+
   modal.addEventListener('touchstart', function(e) {
+    const modalContent = modal.querySelector('.modal-content');
+    initialScrollTop = modalContent.scrollTop;
     touchStartY = e.changedTouches[0].screenY;
+    touchMoveY = touchStartY;
+    isSwiping = false;
+    isScrollingContent = false;
   }, { passive: true });
-  
+
+  // タッチムーブを追加して動きを監視
+  modal.addEventListener('touchmove', function(e) {
+    const modalContent = modal.querySelector('.modal-content');
+    touchMoveY = e.changedTouches[0].screenY;
+    
+    // コンテンツのスクロール位置から、スクロール中かスワイプ中かを判断
+    if (!isSwiping && !isScrollingContent) {
+      // モーダルコンテンツが一番上でさらに下方向へのスワイプなら、スワイプモードに
+      if (modalContent.scrollTop <= 0 && touchMoveY > touchStartY) {
+        isSwiping = true;
+      } 
+      // それ以外（コンテンツスクロール中）
+      else if (Math.abs(touchMoveY - touchStartY) > 10) {
+        isScrollingContent = true;
+      }
+    }
+    
+    // スワイプモードの場合、背景の不透明度を調整して視覚的フィードバックを提供
+    if (isSwiping) {
+      const swipeDistance = touchMoveY - touchStartY;
+      if (swipeDistance > swipeMinDistance) {
+        // 不透明度をスワイプ量に応じて変更
+        const opacity = Math.max(0.3, 1 - (swipeDistance / (swipeThreshold * 2)));
+        modal.style.backgroundColor = `rgba(0, 0, 0, ${opacity})`;
+        
+        // モーダルをわずかに下に移動させて視覚的フィードバック
+        const translateY = Math.min(swipeDistance / 3, 50); // 最大50pxまで
+        modalContent.style.transform = `translateY(${translateY}px)`;
+      }
+    }
+  }, { passive: true });
+
   modal.addEventListener('touchend', function(e) {
     touchEndY = e.changedTouches[0].screenY;
-    // 下方向へのスワイプを検出
-    if (touchEndY - touchStartY > 100) {
+    const swipeDistance = touchEndY - touchStartY;
+    
+    // スワイプモードで、閾値を超える下方向へのスワイプを検出した場合のみ閉じる
+    if (isSwiping && swipeDistance > swipeThreshold) {
       closeModal();
+    } else {
+      // 閾値未満の場合は元の位置に戻す（視覚効果をリセット）
+      modal.style.backgroundColor = '';
+      modal.querySelector('.modal-content').style.transform = '';
     }
+    
+    // 状態をリセット
+    isSwiping = false;
+    isScrollingContent = false;
   }, { passive: true });
   
   // カレンダーオプションを閉じるボタン
@@ -493,7 +536,7 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
             <path d="M8 5.83l2.59 2.59L12 7l-4-4-4 4 1.41 1.41L8 5.83zm0 12.34l-2.59-2.59L4 17l4 4 4-4-1.41-1.41L8 18.17z" fill="currentColor"/>
           </svg>
         </div>
-        <span>下にスワイプで閉じる</span>
+        <span>下に大きくスワイプで閉じる</span>
       `;
       modal.querySelector('.modal-content').appendChild(swipeHint);
       
@@ -553,6 +596,13 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
   function closeModal() {
     // 閉じるアニメーションを追加
     modal.classList.add('closing');
+    
+    // スワイプ関連のスタイルをリセット
+    modal.style.backgroundColor = '';
+    const modalContent = modal.querySelector('.modal-content');
+    if (modalContent) {
+      modalContent.style.transform = '';
+    }
     
     // アニメーション完了後に非表示
     setTimeout(() => {
