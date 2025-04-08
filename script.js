@@ -218,6 +218,28 @@ document.addEventListener('DOMContentLoaded', function() {
         // コンサートアイテムを取得
         const concertItems = document.querySelectorAll('.concert-item');
         
+        // ページ読み込み時に「今後の公演」をデフォルトで選択/表示する
+        const upcomingButton = document.querySelector('.filter-button[data-filter="upcoming"]');
+        if (upcomingButton) {
+            // すべてのボタンからactiveクラスを削除
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // 「今後の公演」ボタンにactiveクラスを追加
+            upcomingButton.classList.add('active');
+            
+            // 今後の公演のフィルタリングを実行
+            const now = new Date();
+            concertItems.forEach(item => {
+                const dateString = item.querySelector('.concert-date').textContent;
+                const concertDate = new Date(dateString);
+                
+                if (concertDate < now) {
+                    item.style.display = 'none';
+                } else {
+                    item.style.removeProperty('display');
+                }
+            });
+        }
+
         // フィルターボタンのクリックイベント
         filterButtons.forEach(button => {
             button.addEventListener('click', function() {
