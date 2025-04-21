@@ -571,6 +571,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>ブラームス：ヴィオラソナタ 第2番</p>
         <p>ブラームス：クラリネット三重奏曲(ヴィオラ版) 他</p>
       `;
+    } else if (title.includes('名曲選 vol.2 ')) {
+      return `
+        <p>プログラム：未定</p>
+      `;
     } else if (title.includes('Orchestra Est') ) {
       return `
         <p>モーツァルト：交響曲第40番 ト短調 K.550</p>
@@ -587,7 +591,7 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       `;
     } else {
       return `
-        <p>未定</p>
+        <p>プログラム：未定</p>
       `;
     }
   }
