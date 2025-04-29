@@ -581,6 +581,12 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>ドヴォルザーク：チェロ協奏曲 ロ短調 Op.104*</p>
         <p>ブラームス：交響曲第4番 ホ短調 Op.98</p>
       `;
+    } else if (title.includes('日曜特別') ) {
+      return `
+        <p>F.シューベルト：弦楽四重奏曲 第12番 ハ短調 D703「断章」</p>
+        <p>芥川 也寸志：弦楽四重奏曲</p>
+        <p>R.シューマン：弦楽四重奏曲 第3番 イ長調 Op41-3</p>
+      `;
     } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅰ')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
