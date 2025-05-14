@@ -591,6 +591,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
       `;
+    } else if (title.includes('BMW')) {
+      return `
+        <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
+      `;
     } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅱ')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
