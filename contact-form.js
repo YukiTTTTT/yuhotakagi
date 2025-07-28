@@ -242,6 +242,7 @@ document.addEventListener('DOMContentLoaded', function() {
           
           // 電話番号の処理を改善（空の場合は空文字を送信）
           const phoneValue = document.getElementById('phone').value.trim();
+          formData.append(GOOGLE_FORM_FIELD_IDS.phone, phoneValue); // 空文字でもOK
           
           // 各フィールドを追加
           formData.append(GOOGLE_FORM_FIELD_IDS.name, document.getElementById('name').value.trim());
