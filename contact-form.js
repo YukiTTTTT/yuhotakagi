@@ -390,6 +390,51 @@ document.addEventListener('DOMContentLoaded', function() {
               input.parentElement.classList.remove('has-error');
           }
       });
+
+      // 電話番号フィールドのリアルタイムバリデーションを追加
+      // この部分をcontact-form.jsの適切な場所（DOMContentLoadedの中）に追加してください
+
+      // 電話番号フィールドの特別なイベントリスナー
+      const phoneInput = document.getElementById('phone');
+      const phoneError = document.getElementById('phone-error');
+
+      if (phoneInput && phoneError) {
+          // フォーカスが外れた時（blur）のバリデーション
+          phoneInput.addEventListener('blur', function() {
+              const value = this.value.trim();
+              
+              // エラーをリセット
+              phoneError.style.display = 'none';
+              this.parentElement.classList.remove('has-error');
+              this.classList.remove('error-field');
+              
+              if (!value) {
+                  // 空の場合のエラー表示
+                  phoneError.textContent = '電話番号を入力してください';
+                  phoneError.style.display = 'block';
+                  this.parentElement.classList.add('has-error');
+                  this.classList.add('error-field');
+              } else {
+                  // 値がある場合は形式チェック
+                  const phonePattern = /^[0-9-+\s()]+$/;
+                  if (!phonePattern.test(value)) {
+                      phoneError.textContent = '有効な電話番号を入力してください';
+                      phoneError.style.display = 'block';
+                      this.parentElement.classList.add('has-error');
+                      this.classList.add('error-field');
+                  }
+              }
+          });
+          
+          // 入力時（input）のエラークリア
+          phoneInput.addEventListener('input', function() {
+              if (this.value.trim()) {
+                  phoneError.style.display = 'none';
+                  this.parentElement.classList.remove('has-error');
+                  this.classList.remove('error-field');
+              }
+          });
+      }
   });
   
   // エンターキーでのフォーム送信を防止
