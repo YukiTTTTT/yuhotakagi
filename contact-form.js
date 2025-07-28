@@ -128,7 +128,7 @@ document.addEventListener('DOMContentLoaded', function() {
                   // 電話番号は任意なので、空の場合はOK
                   if (!value.trim()) return false;
                   const phonePattern = /^[0-9-+\s()]+$/;
-                  return phonePattern.test(value);
+                  return phonePattern.test(value.trim());
               }
           },
           {
