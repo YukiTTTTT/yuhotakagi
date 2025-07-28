@@ -126,7 +126,7 @@ document.addEventListener('DOMContentLoaded', function() {
               message: '有効な電話番号を入力してください',
               validate: (value) => {
                   // 電話番号は任意なので、空の場合はOK
-                  if (!value.trim()) return true;
+                  if (!value.trim()) return false;
                   const phonePattern = /^[0-9-+\s()]+$/;
                   return phonePattern.test(value);
               }
