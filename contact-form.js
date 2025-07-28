@@ -123,9 +123,9 @@ document.addEventListener('DOMContentLoaded', function() {
           {
               id: 'phone',
               errorId: 'phone-error',
-              message: '有効な電話番号を入力してください',
+              message: '電話番号を入力してください',
               validate: (value) => {
-                  // 電話番号は任意なので、空の場合はOK
+                  // 電話番号は必須なので、空の場合はNG
                   if (!value.trim()) return false;
                   const phonePattern = /^[0-9-+\s()]+$/;
                   return phonePattern.test(value.trim());
