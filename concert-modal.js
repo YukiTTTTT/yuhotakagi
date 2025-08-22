@@ -599,6 +599,11 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
       `;
+    } else if (title.includes('ピアノ三重奏 名曲選 vol.2')) {
+      return `
+        <p>ブラームス：ピアノ三重奏曲 第1番 ロ長調 作品8</p>
+        <p>メンデルスゾーン：ピアノ三重奏曲 第2番 ハ短調 作品66</p>
+      `;
     } else {
       return `
         <p>プログラム：未定</p>
