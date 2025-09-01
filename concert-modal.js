@@ -593,7 +593,9 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       `;
     } else if (title.includes('BMW')) {
       return `
-        <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
+        <p>モーツァルト：弦楽四重奏曲 第14番 ト長調 K.387 『春』</p>
+        <p>ベートーヴェン：弦楽四重奏曲 第5番 イ長調 Op.18-5より 第1楽章、第3楽章</p>
+        <p>ドビュッシー：弦楽四重奏曲 ト短調 作品10</p>
       `;
     } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅱ')) {
       return `
@@ -603,6 +605,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       return `
         <p>ブラームス：ピアノ三重奏曲 第1番 ロ長調 作品8</p>
         <p>メンデルスゾーン：ピアノ三重奏曲 第2番 ハ短調 作品66</p>
+      `;
+    } else if (title.includes('とやま室内楽フェスティバル')) {
+      return `
+        <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
       `;
     } else {
       return `
