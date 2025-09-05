@@ -606,6 +606,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>ブラームス：ピアノ三重奏曲 第1番 ロ長調 作品8</p>
         <p>メンデルスゾーン：ピアノ三重奏曲 第2番 ハ短調 作品66</p>
       `;
+    } else if (title.includes('APA')) {
+      return `
+        <p>進行プログラムは公式サイトをご覧ください</p>
+      `;
     } else if (title.includes('とやま室内楽フェスティバル')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
