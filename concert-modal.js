@@ -587,6 +587,12 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>芥川 也寸志：弦楽四重奏曲</p>
         <p>R.シューマン：弦楽四重奏曲 第3番 イ長調 Op41-3</p>
       `;
+    } else if (title.includes('楽しく学べる') ) {
+      return `
+        <p>パッフェルベル：カノン</p>
+        <p>J.S.バッハ：音楽の捧げ物</p>
+        <p>シューベルト：弦楽三重奏 他</p>
+      `;
     } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅰ')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
