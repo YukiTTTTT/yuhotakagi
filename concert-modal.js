@@ -593,6 +593,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>J.S.バッハ：音楽の捧げ物</p>
         <p>シューベルト：弦楽三重奏 他</p>
       `;
+    } else if (title.includes('開館40周年記念') ) {
+      return `
+        <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
+      `;
     } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅰ')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
