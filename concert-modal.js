@@ -620,6 +620,17 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       return `
         <p>進行プログラムは公式サイトをご覧ください</p>
       `;
+    } else if (title.includes('ラ・フォル・ジュルネ')) {
+      return `
+        <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
+      `;
+    } else if (title.includes('神奈川フィルハーモニー管弦楽団による弦楽四重奏')) {
+      return `
+        <p>愛の挨拶</p>
+        <p>ツバメ</p>
+        <p>川の流れのように</p>
+        <p>シューマン：ピアノ五重奏曲　ほか</p>
+      `;
     } else if (title.includes('とやま室内楽フェスティバル')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
