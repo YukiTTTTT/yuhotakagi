@@ -597,7 +597,7 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
       `;
-    } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅰ')) {
+    } else if (title.includes('ENJOY! 室内楽アカデミー・フェロー演奏会 Ⅰ')) {
       return `
         <p>ベートーヴェン：弦楽四重奏曲第8番 ホ短調 作品59-2「ラズモフスキー第2番」より 第1・4楽章</p>
       `;
@@ -607,7 +607,7 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>ベートーヴェン：弦楽四重奏曲 第5番 イ長調 Op.18-5より 第1楽章、第3楽章</p>
         <p>ドビュッシー：弦楽四重奏曲 ト短調 作品10</p>
       `;
-    } else if (title.includes('ENJOY!室内楽アカデミー・フェロー演奏会 Ⅱ')) {
+    } else if (title.includes('ENJOY! 室内楽アカデミー・フェロー演奏会 Ⅱ')) {
       return `
         <p>シューベルト：弦楽四重奏曲第14番 ニ短調 D. 810「死と乙女」より 第2楽章</p>
       `;
