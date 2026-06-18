@@ -616,6 +616,18 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>ブラームス：ピアノ三重奏曲 第1番 ロ長調 作品8</p>
         <p>メンデルスゾーン：ピアノ三重奏曲 第2番 ハ短調 作品66</p>
       `;
+    } else if (title.includes('髙木凜々子')) {
+      return `
+        <p>W.A.モーツァルト：ディヴェルティメント ニ長調 K.136(125a)</p>
+        <p>J.パッヘルベル：カノン</p>
+        <p>横浜にゆかりのある作曲家 中田喜直メドレー　ほか</p>
+      `;
+    } else if (title.includes('石田組 コンサートツアー2026')) {
+      return `
+        <p>ラヴェル(松岡あさひ編曲)：亡き王女のためのパヴァーヌ</p>
+        <p>レッド・ツェッペリン(松岡あさひ編曲)：天国への階段</p>
+        <p>ホルスト：セントポール組曲op.29-2　ほか</p>
+      `;
     } else if (title.includes('APA')) {
       return `
         <p>進行プログラムは公式サイトをご覧ください</p>
