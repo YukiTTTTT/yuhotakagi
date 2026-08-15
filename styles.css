@@ -799,7 +799,7 @@ details.faq-item .faq-content {
     position: relative;
     width: 100%;
     height: 100vh; /* 画面全体の高さを使用 */
-    background: url('images/background.jpg') no-repeat 45% 60%; /* 背景画像の縦位置を調整 */
+    background: url('images/background3.png') no-repeat 45% 60%; /* 背景画像の縦位置を調整 */
     background-size: cover;
     margin: 0;
     padding: 0;
