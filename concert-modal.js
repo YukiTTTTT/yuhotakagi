@@ -632,6 +632,10 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       return `
         <p>進行プログラムは公式サイトをご覧ください</p>
       `;
+    } else if (title.includes('葵トリオ')) {
+      return `
+        <p>シューベルト：ピアノ三重奏曲 第2番より</p>
+      `;  
     } else if (title.includes('ラ・フォル・ジュルネ')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
