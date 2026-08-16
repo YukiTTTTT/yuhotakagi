@@ -880,7 +880,7 @@ details.faq-item .faq-content {
 /* スマホ・タブレット縦向きでは、人物を中央に配置した縦長専用写真に切り替える */
 @media screen and (max-width: 1024px) {
     .home-page .hero {
-        background-image: url('images/background3-mobile.png');
+        background-image: url('images/background4-mobile.png');
         background-position: center 3%;
     }
 }
