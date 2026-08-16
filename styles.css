@@ -881,7 +881,7 @@ details.faq-item .faq-content {
 @media screen and (max-width: 1024px) {
     .home-page .hero {
         background-image: url('images/background3-mobile.png');
-        background-position: center 15%;
+        background-position: center 3%;
     }
 }
 
