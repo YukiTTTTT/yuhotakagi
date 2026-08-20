@@ -571,6 +571,12 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>ブラームス：ヴィオラソナタ 第2番</p>
         <p>ブラームス：クラリネット三重奏曲(ヴィオラ版) 他</p>
       `;
+    } else if (title.includes('第17回定期演奏会 ')) {
+      return `
+        <p>メンデルスゾーン：序曲「真夏の夜の夢」</p>
+        <p>シュトラウス：ホルン協奏曲第2番</p>
+        <p>メンデルスゾーン：交響曲第3番「スコットランド」</p>
+      `;
     } else if (title.includes('名曲選 vol.2 ')) {
       return `
         <p>プログラム：未定</p>
