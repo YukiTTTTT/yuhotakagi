@@ -657,6 +657,12 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
       `;
+    } else if (title.includes('テネラメンテフィルハーモニー管弦楽団')) {
+      return `
+        <p>ボロディン：韃靼人の踊り</p>
+        <p>ドヴォルザーク：チェロ協奏曲（ソリスト：髙木優帆）</p>
+        <p>ラフマニノフ：交響的舞曲</p>
+      `;
     } else {
       return `
         <p>プログラム：未定</p>
