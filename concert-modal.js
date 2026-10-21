@@ -653,6 +653,11 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>川の流れのように</p>
         <p>シューマン：ピアノ五重奏曲　ほか</p>
       `;
+    } else if (title.includes('まちなかコンサート')) {
+      return `
+        <p>シング・シング・シング</p>
+        <p>Let it be　ほか</p>
+      `;
     } else if (title.includes('とやま室内楽フェスティバル')) {
       return `
         <p>高木優帆はカルテット・シュトゥルムに出演いたします。</p>
