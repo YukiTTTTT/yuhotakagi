@@ -668,6 +668,12 @@ document.querySelectorAll('.concert-item .calendar-button, .modal-button.calenda
         <p>ドヴォルザーク：チェロ協奏曲（ソリスト：髙木優帆）</p>
         <p>ラフマニノフ：交響的舞曲</p>
       `;
+    } else if (title.includes('おやこで楽しむクラシック')) {
+      return `
+        <p>ブラームス：ハンガリー舞曲第5番</p>
+        <p>ピアソラ：リベルタンゴ</p>
+        <p>葉加瀬太郎：情熱大陸　他</p>
+      `;
     } else {
       return `
         <p>プログラム：未定</p>
